@@ -17,7 +17,7 @@ This project can be ran using either the PROS VSCode extension or with the PROS 
 * Open the PLATT2-Override folder in VSCode with the PROS extension enabled and do the following
    * Open the integrated terminal
    * Run the ```pros m``` command
-   * To depoloy to a VEX V5 brain, run ```pros mu```
+   * To deploy to a VEX V5 brain, run ```pros mu```
 
 ## Contributers
   
