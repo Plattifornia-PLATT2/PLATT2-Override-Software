@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/out/build/GCC 13.3.0 aarch64-linux-gnu",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/include -isystem /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include -isystem /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag -g -std=gnu++17 -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp",
+  "file": "/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp",
+  "output": "CMakeFiles/peripheralControl.dir/src/main.cpp.o"
+}
+]

@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "name": "RPi5 (aarch64)",
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "defines": [
+        "__aarch64__",
+        "__linux__",
+        "__aarch64__"
+      ],
+      "compilerPath": "C:/Program Files (x86)/Arm GNU Toolchain aarch64-none-linux-gnu/15.2 rel1/bin/aarch64-none-linux-gnu-g++.exe",
+      "cStandard": "c17",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "linux-gcc-arm64"
+    }
+  ],
+  "version": 4
+}

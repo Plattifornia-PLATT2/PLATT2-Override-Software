@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build (WSL)",
+      "type": "shell",
+      "command": "cmake --build ${workspaceFolder}/build -- -j$(nproc)",
+      "options": {
+        "shell": {
+          "executable": "wsl.exe",
+          "args": ["-e", "bash", "-c"]
+        }
+      }
+    },
+    {
+      "label": "Deploy (PowerShell)",
+      "type": "shell",
+      "command": "$path = & wsl.exe wslpath -w '${workspaceFolder}/build/peripheralControl'; scp $path platt2@pink.local:~/peripheralControl",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe",
+          "args": ["-Command"]
+        }
+      }
+    },
+    {
+      "label": "Build and Deploy to Pi",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Build (WSL)", "Deploy (PowerShell)"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}
