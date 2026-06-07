@@ -3,7 +3,9 @@
     {
       "name": "RPi5 (aarch64)",
       "includePath": [
-        "${workspaceFolder}/**"
+        "${workspaceFolder}/**",
+         "${workspaceFolder}/lib/opencv-4.x/install/include/opencv4",
+        "${workspaceFolder}/lib/apriltag/install/include"
       ],
       "defines": [
         "__aarch64__",

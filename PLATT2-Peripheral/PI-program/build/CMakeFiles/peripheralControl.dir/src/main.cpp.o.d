@@ -36,8 +36,6 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/bits/types/FILE.h \
  /usr/aarch64-linux-gnu/include/bits/types/locale_t.h \
  /usr/aarch64-linux-gnu/include/bits/types/__locale_t.h \
- /usr/aarch64-linux-gnu/include/bits/wchar2-decl.h \
- /usr/aarch64-linux-gnu/include/bits/wchar2.h \
  /usr/aarch64-linux-gnu/include/c++/13/exception \
  /usr/aarch64-linux-gnu/include/c++/13/bits/exception.h \
  /usr/aarch64-linux-gnu/include/c++/13/bits/exception_ptr.h \
@@ -143,12 +141,8 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/sys/select.h \
  /usr/aarch64-linux-gnu/include/bits/select.h \
  /usr/aarch64-linux-gnu/include/bits/types/sigset_t.h \
- /usr/aarch64-linux-gnu/include/bits/select2.h \
- /usr/aarch64-linux-gnu/include/bits/select-decl.h \
  /usr/aarch64-linux-gnu/include/alloca.h \
- /usr/aarch64-linux-gnu/include/bits/stdlib-bsearch.h \
  /usr/aarch64-linux-gnu/include/bits/stdlib-float.h \
- /usr/aarch64-linux-gnu/include/bits/stdlib.h \
  /usr/aarch64-linux-gnu/include/c++/13/bits/std_abs.h \
  /usr/aarch64-linux-gnu/include/c++/13/cstdio \
  /usr/aarch64-linux-gnu/include/stdio.h \
@@ -157,9 +151,6 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/bits/types/struct_FILE.h \
  /usr/aarch64-linux-gnu/include/bits/types/cookie_io_functions_t.h \
  /usr/aarch64-linux-gnu/include/bits/stdio_lim.h \
- /usr/aarch64-linux-gnu/include/bits/stdio2-decl.h \
- /usr/aarch64-linux-gnu/include/bits/stdio.h \
- /usr/aarch64-linux-gnu/include/bits/stdio2.h \
  /usr/aarch64-linux-gnu/include/c++/13/cerrno \
  /usr/aarch64-linux-gnu/include/errno.h \
  /usr/aarch64-linux-gnu/include/bits/errno.h \
@@ -200,8 +191,6 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/assert.h \
  /usr/aarch64-linux-gnu/include/string.h \
  /usr/aarch64-linux-gnu/include/strings.h \
- /usr/aarch64-linux-gnu/include/bits/strings_fortified.h \
- /usr/aarch64-linux-gnu/include/bits/string_fortified.h \
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/common/image_u8.h \
  /usr/lib/gcc-cross/aarch64-linux-gnu/13/include/stdint.h \
  /usr/aarch64-linux-gnu/include/stdint.h \
@@ -220,9 +209,241 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/bits/confname.h \
  /usr/aarch64-linux-gnu/include/bits/getopt_posix.h \
  /usr/aarch64-linux-gnu/include/bits/getopt_core.h \
- /usr/aarch64-linux-gnu/include/bits/unistd.h \
- /usr/aarch64-linux-gnu/include/bits/unistd-decl.h \
  /usr/aarch64-linux-gnu/include/bits/unistd_ext.h \
  /usr/aarch64-linux-gnu/include/linux/close_range.h \
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/common/pthreads_cross.h \
- /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/tag36h11.h
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/tagCircle21h7.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/opencv.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/opencv_modules.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cvdef.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/version.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/limits \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/hal/interface.h \
+ /usr/aarch64-linux-gnu/include/c++/13/cstdint \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+ /usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h \
+ /usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_fp16.h \
+ /usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_bf16.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/base.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/climits \
+ /usr/lib/gcc-cross/aarch64-linux-gnu/13/include/limits.h \
+ /usr/lib/gcc-cross/aarch64-linux-gnu/13/include/syslimits.h \
+ /usr/aarch64-linux-gnu/include/limits.h \
+ /usr/aarch64-linux-gnu/include/bits/posix1_lim.h \
+ /usr/aarch64-linux-gnu/include/bits/local_lim.h \
+ /usr/aarch64-linux-gnu/include/linux/limits.h \
+ /usr/aarch64-linux-gnu/include/bits/posix2_lim.h \
+ /usr/aarch64-linux-gnu/include/bits/xopen_lim.h \
+ /usr/aarch64-linux-gnu/include/bits/uio_lim.h \
+ /usr/aarch64-linux-gnu/include/c++/13/algorithm \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_algo.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/algorithmfwd.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_heap.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/uniform_int_dist.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_tempbuf.h \
+ /usr/aarch64-linux-gnu/include/c++/13/pstl/glue_algorithm_defs.h \
+ /usr/aarch64-linux-gnu/include/c++/13/pstl/execution_defs.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cvstd.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/cstring \
+ /usr/aarch64-linux-gnu/include/c++/13/utility \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_relops.h \
+ /usr/aarch64-linux-gnu/include/c++/13/cmath \
+ /usr/aarch64-linux-gnu/include/math.h \
+ /usr/aarch64-linux-gnu/include/bits/math-vector.h \
+ /usr/aarch64-linux-gnu/include/bits/libm-simd-decl-stubs.h \
+ /usr/aarch64-linux-gnu/include/bits/flt-eval-method.h \
+ /usr/aarch64-linux-gnu/include/bits/fp-logb.h \
+ /usr/aarch64-linux-gnu/include/bits/fp-fast.h \
+ /usr/aarch64-linux-gnu/include/bits/mathcalls-helper-functions.h \
+ /usr/aarch64-linux-gnu/include/bits/mathcalls.h \
+ /usr/aarch64-linux-gnu/include/bits/mathcalls-narrow.h \
+ /usr/aarch64-linux-gnu/include/bits/iscanonical.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/specfun.h \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/gamma.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/special_function_util.h \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/bessel_function.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/beta_function.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/ell_integral.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/exp_integral.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/hypergeometric.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/legendre_function.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/modified_bessel_func.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/poly_hermite.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/poly_laguerre.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/tr1/riemann_zeta.tcc \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/memory \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_uninitialized.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_raw_storage_iter.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/align.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/unique_ptr.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/shared_ptr.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/shared_ptr_base.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/allocated_ptr.h \
+ /usr/aarch64-linux-gnu/include/c++/13/ext/aligned_buffer.h \
+ /usr/aarch64-linux-gnu/include/c++/13/ext/concurrence.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/shared_ptr_atomic.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/atomic_base.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/atomic_lockfree_defines.h \
+ /usr/aarch64-linux-gnu/include/c++/13/backward/auto_ptr.h \
+ /usr/aarch64-linux-gnu/include/c++/13/pstl/glue_memory_defs.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/neon_utils.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/vsx_utils.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/check.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/traits.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/matx.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/saturate.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/fast_math.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/matx.inl.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/types.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/cfloat \
+ /usr/lib/gcc-cross/aarch64-linux-gnu/13/include/float.h \
+ /usr/aarch64-linux-gnu/include/c++/13/vector \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_vector.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_bvector.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/vector.tcc \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/mat.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/bufferpool.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/array \
+ /usr/aarch64-linux-gnu/include/c++/13/compare \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/mat.inl.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/persistence.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/operations.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cvstd.inl.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/complex \
+ /usr/aarch64-linux-gnu/include/c++/13/sstream \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/sstream.tcc \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/utility.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/functional \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/std_function.h \
+ /usr/aarch64-linux-gnu/include/c++/13/unordered_map \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/unordered_map.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/hashtable.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/hashtable_policy.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/enable_special_members.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/node_handle.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/erase_if.h \
+ /usr/aarch64-linux-gnu/include/c++/13/mutex \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/chrono.h \
+ /usr/aarch64-linux-gnu/include/c++/13/ratio \
+ /usr/aarch64-linux-gnu/include/c++/13/ctime \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/parse_numbers.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/std_mutex.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/unique_lock.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/optim.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/ovx.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cvdef.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/calib3d.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/features2d.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/miniflann.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/defines.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/config.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/affine.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/utils/logger.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/utils/logger.defines.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/utils/logtag.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn/dnn.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/async.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/chrono \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn/version.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn/dict.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/map \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_tree.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_map.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_multimap.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn/layer.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/dnn/dnn.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/flann_base.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/general.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/matrix.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/params.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/any.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/defines.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/saving.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/nn_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/result_set.h \
+ /usr/aarch64-linux-gnu/include/c++/13/set \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_set.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_multiset.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/all_indices.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/kdtree_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/dynamic_bitset.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/dist.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/heap.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/allocator.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/random.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/kdtree_single_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/kmeans_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/logger.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/composite_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/linear_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/lsh_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/lsh_table.h \
+ /usr/aarch64-linux-gnu/include/c++/13/iomanip \
+ /usr/aarch64-linux-gnu/include/c++/13/locale \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/locale_facets_nonio.h \
+ /usr/aarch64-linux-gnu/include/c++/13/aarch64-linux-gnu/bits/time_members.h \
+ /usr/aarch64-linux-gnu/include/c++/13/aarch64-linux-gnu/bits/messages_members.h \
+ /usr/aarch64-linux-gnu/include/libintl.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/codecvt.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/locale_facets_nonio.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/locale_conv.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/quoted_string.h \
+ /usr/aarch64-linux-gnu/include/c++/13/math.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/autotuned_index.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/ground_truth.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/index_testing.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/timer.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/flann/sampling.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/highgui.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/imgcodecs.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/videoio.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/imgproc.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/imgproc/segmentation.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/ml.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/ml/ml.inl.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/aruco_board.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/face.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/objdetect/barcode.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/photo.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/warpers.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cuda.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cuda_types.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/core/cuda.inl.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/util.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/list \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_list.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/list.tcc \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+ /usr/aarch64-linux-gnu/include/c++/13/queue \
+ /usr/aarch64-linux-gnu/include/c++/13/deque \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_deque.h \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/deque.tcc \
+ /usr/aarch64-linux-gnu/include/c++/13/bits/stl_queue.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/camera.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/camera.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video/tracking.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video/background_segm.hpp
