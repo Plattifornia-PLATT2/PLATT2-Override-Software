@@ -3,7 +3,9 @@
 
 CMakeFiles/peripheralControl.dir/src/main.cpp.o
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/include/imageProssesing.hpp
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/apriltag.h
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/apriltag_pose.h
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/common/image_types.h
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/common/image_u8.h
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/common/matd.h
@@ -122,6 +124,7 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video/background_segm.hpp
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video/tracking.hpp
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/videoio.hpp
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/ImageProssesing.cpp
  /usr/aarch64-linux-gnu/include/alloca.h
  /usr/aarch64-linux-gnu/include/asm-generic/errno-base.h
  /usr/aarch64-linux-gnu/include/asm-generic/errno.h

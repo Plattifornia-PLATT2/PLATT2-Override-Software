@@ -1,6 +1,8 @@
 CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp \
  /usr/aarch64-linux-gnu/include/stdc-predef.h \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/ImageProssesing.cpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/include/imageProssesing.hpp \
  /usr/aarch64-linux-gnu/include/c++/13/iostream \
  /usr/aarch64-linux-gnu/include/c++/13/bits/requires_hosted.h \
  /usr/aarch64-linux-gnu/include/c++/13/aarch64-linux-gnu/bits/c++config.h \
@@ -446,4 +448,5 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video.hpp \
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video/tracking.hpp \
- /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video/background_segm.hpp
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/include/opencv4/opencv2/video/background_segm.hpp \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/include/apriltag/apriltag_pose.h

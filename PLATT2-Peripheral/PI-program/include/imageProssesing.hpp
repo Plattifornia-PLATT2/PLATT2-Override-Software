@@ -2,50 +2,58 @@
 #include <apriltag/apriltag.h>
 #include <apriltag/tagCircle21h7.h>
 #include <opencv2/opencv.hpp>
-
+#include <apriltag/apriltag_pose.h>
 
 class Camera {
+public:
+    struct tagPos {
+        double x;
+        double y;
+        double z;
+        int    tag_id;
+        double reproj_error;
+    };
 
-    public:
-
-        struct tagPos{
-            int id;
-            double x;
-            double y;
-            double z;
-        };
-
-        tagPos getImagePos();
-
-    private:
-        
-        cv::VideoCapture cap("/dev/video0", cv::CAP_V4L2);
-
+    Camera() {
+        cap.open("/dev/video0", cv::CAP_V4L2);
         cap.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('M','J','P','G'));
         cap.set(cv::CAP_PROP_FRAME_WIDTH,  1280);
         cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
 
-
-        cv::Mat frame;
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 5; i++)
             cap.grab();
-        };
 
-        apriltag_family_t *tagFamily = tagCircle21h7_create();
-        apriltag_detector_t *tagDetector = apriltag_detector_create();
+        tagFamily   = tagCircle21h7_create();
+        tagDetector = apriltag_detector_create();
         apriltag_detector_add_family(tagDetector, tagFamily);
 
-        tagDetector->quad_decimate   = 2.0f;  // Decimate image for speed; 1.0 = no decimation
-        tagDetector->quad_sigma      = 0.0f;  // Gaussian blur sigma (0 = off)
-        tagDetector->nthreads        = 2;     // CPU threads for detection
-        tagDetector->debug           = 0;
-        tagDetector->refine_edges    = 1;
+        tagDetector->quad_decimate = 2.0f;
+        tagDetector->quad_sigma    = 0.0f;
+        tagDetector->nthreads      = 2;
+        tagDetector->debug         = 0;
+        tagDetector->refine_edges  = 1;
 
-        apriltag_detection_info_t info;
-            info.tagsize = tag_size;
-            info.fx      = fx;
-            info.fy      = fy;
-            info.cx      = cx;
-            info.cy      = cy;
+        cap >> frame;
 
+        info.tagsize = 3; // meters — set to your actual tag size
+        info.fx      = frame.cols * 0.85;
+        info.fy      = frame.cols * 0.85; // use cols for both to keep square pixels
+        info.cx      = frame.cols / 2.0;
+        info.cy      = frame.rows / 2.0;
+    }
+
+    ~Camera() {
+        apriltag_detector_destroy(tagDetector);
+        tagCircle21h7_destroy(tagFamily);
+        cap.release();
+    }
+
+    tagPos getImagePos();
+
+private:
+    cv::VideoCapture          cap;
+    cv::Mat                   frame;
+    apriltag_family_t*        tagFamily   = nullptr;
+    apriltag_detector_t*      tagDetector = nullptr;
+    apriltag_detection_info_t info;
 };
