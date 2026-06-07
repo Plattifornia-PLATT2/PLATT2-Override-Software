@@ -1,22 +1,22 @@
 {
-  "configurations": [
-    {
-      "name": "RPi5 (aarch64)",
-      "includePath": [
-        "${workspaceFolder}/**",
-         "${workspaceFolder}/lib/opencv-4.x/install/include/opencv4",
-        "${workspaceFolder}/lib/apriltag/install/include"
-      ],
-      "defines": [
-        "__aarch64__",
-        "__linux__",
-        "__aarch64__"
-      ],
-      "compilerPath": "C:/Program Files (x86)/Arm GNU Toolchain aarch64-none-linux-gnu/15.2 rel1/bin/aarch64-none-linux-gnu-g++.exe",
-      "cStandard": "c17",
-      "cppStandard": "c++20",
-      "intelliSenseMode": "linux-gcc-arm64"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "RPi5 (aarch64)",
+            "includePath": [
+                "${workspaceFolder}/lib/opencv-4.x/install/include/opencv4",
+                "${workspaceFolder}/lib/apriltag/install/include",
+                "${workspaceFolder}/include/*"
+            ],
+            "defines": [
+                "__aarch64__",
+                "__linux__",
+                "__aarch64__"
+            ],
+            "compilerPath": "C:/Program Files (x86)/Arm GNU Toolchain aarch64-none-linux-gnu/15.2 rel1/bin/aarch64-none-linux-gnu-g++.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-gcc-arm64"
+        }
+    ],
+    "version": 4
 }
