@@ -2,18 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "BUILD_SHARED_LIBS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : "OFF"
-		},
-		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -167,10 +155,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "/usr/bin/aarch64-linux-gnu-g++"
 		},
 		{
@@ -295,10 +283,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "C compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "/usr/bin/aarch64-linux-gnu-gcc"
 		},
 		{
@@ -639,7 +627,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/install"
+			"value" : "/usr/local"
 		},
 		{
 			"name" : "CMAKE_INSTALL_SO_NO_EXE",
@@ -1186,30 +1174,6 @@
 			"value" : "/usr/bin/aarch64-linux-gnu-strip"
 		},
 		{
-			"name" : "CMAKE_SYSTEM_NAME",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : "Linux"
-		},
-		{
-			"name" : "CMAKE_SYSTEM_PROCESSOR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : "aarch64"
-		},
-		{
 			"name" : "CMAKE_TAPI",
 			"properties" : 
 			[
@@ -1276,18 +1240,6 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "[TRUE][v()]"
-		},
-		{
-			"name" : "OpenCV_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for OpenCV."
-				}
-			],
-			"type" : "PATH",
-			"value" : "OpenCV_DIR-NOTFOUND"
 		},
 		{
 			"name" : "PeripheralControl_BINARY_DIR",

@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/imageProssesing.cpp" "CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o.d"
   "/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp" "CMakeFiles/peripheralControl.dir/src/main.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/main.cpp.o.d"
   )
 

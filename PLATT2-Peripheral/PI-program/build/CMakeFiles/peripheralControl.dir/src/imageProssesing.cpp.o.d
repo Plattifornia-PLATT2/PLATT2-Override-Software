@@ -1,5 +1,5 @@
-CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
- /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp \
+CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o: \
+ /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/imageProssesing.cpp \
  /usr/aarch64-linux-gnu/include/stdc-predef.h \
  /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/include/imageProssesing.hpp \
  /usr/aarch64-linux-gnu/include/c++/13/iostream \

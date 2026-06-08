@@ -1,21 +1,60 @@
+#ifndef IMAGEPROSSESING_HPP
+#define IMAGEPROSSESING_HPP
+
 #include <iostream>
 #include <apriltag/apriltag.h>
 #include <apriltag/tagCircle21h7.h>
 #include <opencv2/opencv.hpp>
 #include <apriltag/apriltag_pose.h>
+#include <string>
+#include "json.hpp"
+#include <fstream>
 
 class Camera {
 public:
     struct tagPos {
-        double x;
-        double y;
-        double z;
-        int    tag_id;
-        double reproj_error;
+        double x = 0;
+        double y = 0;
+        double z = 0;
+        int    tag_id = -1;
+        double reproj_error = std::numeric_limits<double>::max();
     };
 
-    Camera() {
-        cap.open("/dev/video0", cv::CAP_V4L2);
+    struct cameraInfo {
+        
+        std::string name;
+
+        std::string address;
+        
+        double fx;
+        double fy;
+        double cx;
+        double cy;
+    };
+
+    Camera(std::string camName) {
+
+        using json = nlohmann::json;
+
+        cameraInfo camInfo;
+
+        std::ifstream f("cameraConfig.json");
+        json root = json::parse(f);
+
+        for (auto& cam : root.at("cameras")) {
+            if (cam.at("name") == camName) {
+                cameraInfo info;
+                camInfo.name    = cam.at("name");
+                camInfo.address = cam.at("address");
+                camInfo.fx      = cam.at("fx");
+                camInfo.fy      = cam.at("fy");
+                camInfo.cx      = cam.at("cx");
+                camInfo.cy      = cam.at("cy");
+                break;
+            }
+        }
+        
+        cap.open(camInfo.address, cv::CAP_V4L2);
         cap.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('M','J','P','G'));
         cap.set(cv::CAP_PROP_FRAME_WIDTH,  1280);
         cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
@@ -35,11 +74,11 @@ public:
 
         cap >> frame;
 
-        info.tagsize = 3; // meters — set to your actual tag size
-        info.fx      = frame.cols * 0.85;
-        info.fy      = frame.cols * 0.85; // use cols for both to keep square pixels
-        info.cx      = frame.cols / 2.0;
-        info.cy      = frame.rows / 2.0;
+        info.tagsize = 3; 
+        info.fx      = camInfo.fx;
+        info.fy      = camInfo.fy;
+        info.cx      = camInfo.cx;
+        info.cy      = camInfo.cy;
     }
 
     ~Camera() {
@@ -50,6 +89,7 @@ public:
 
     tagPos getImagePos();
 
+
 private:
     cv::VideoCapture          cap;
     cv::Mat                   frame;
@@ -57,3 +97,5 @@ private:
     apriltag_detector_t*      tagDetector = nullptr;
     apriltag_detection_info_t info;
 };
+
+#endif // IMAGEPROSSESING_HPP

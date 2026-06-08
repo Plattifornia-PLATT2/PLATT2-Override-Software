@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o.d"
   "peripheralControl"

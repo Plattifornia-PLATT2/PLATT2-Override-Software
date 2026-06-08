@@ -129,6 +129,30 @@ peripheralControl/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/build
 .PHONY : peripheralControl/fast
 
+src/imageProssesing.o: src/imageProssesing.cpp.o
+.PHONY : src/imageProssesing.o
+
+# target to build an object file
+src/imageProssesing.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o
+.PHONY : src/imageProssesing.cpp.o
+
+src/imageProssesing.i: src/imageProssesing.cpp.i
+.PHONY : src/imageProssesing.i
+
+# target to preprocess a source file
+src/imageProssesing.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.i
+.PHONY : src/imageProssesing.cpp.i
+
+src/imageProssesing.s: src/imageProssesing.cpp.s
+.PHONY : src/imageProssesing.s
+
+# target to generate assembly for a file
+src/imageProssesing.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.s
+.PHONY : src/imageProssesing.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... peripheralControl"
+	@echo "... src/imageProssesing.o"
+	@echo "... src/imageProssesing.i"
+	@echo "... src/imageProssesing.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

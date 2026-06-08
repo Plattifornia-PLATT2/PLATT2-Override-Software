@@ -69,10 +69,24 @@ include CMakeFiles/peripheralControl.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/peripheralControl.dir/flags.make
 
+CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
+CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o: /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/imageProssesing.cpp
+CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o -MF CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o.d -o CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/imageProssesing.cpp
+
+CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.i"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/imageProssesing.cpp > CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.i
+
+CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.s"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/imageProssesing.cpp -o CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.s
+
 CMakeFiles/peripheralControl.dir/src/main.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
 CMakeFiles/peripheralControl.dir/src/main.cpp.o: /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp
 CMakeFiles/peripheralControl.dir/src/main.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/peripheralControl.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/peripheralControl.dir/src/main.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/src/main.cpp.o -MF CMakeFiles/peripheralControl.dir/src/main.cpp.o.d -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/src/main.cpp
 
 CMakeFiles/peripheralControl.dir/src/main.cpp.i: cmake_force
@@ -85,11 +99,13 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.s: cmake_force
 
 # Object files for target peripheralControl
 peripheralControl_OBJECTS = \
+"CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o" \
 "CMakeFiles/peripheralControl.dir/src/main.cpp.o"
 
 # External object files for target peripheralControl
 peripheralControl_EXTERNAL_OBJECTS =
 
+peripheralControl: CMakeFiles/peripheralControl.dir/src/imageProssesing.cpp.o
 peripheralControl: CMakeFiles/peripheralControl.dir/src/main.cpp.o
 peripheralControl: CMakeFiles/peripheralControl.dir/build.make
 peripheralControl: /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/install/lib/libapriltag.a
@@ -129,7 +145,7 @@ peripheralControl: /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/
 peripheralControl: /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/lib/opencv4/3rdparty/libkleidicv_thread.a
 peripheralControl: /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/install/lib/opencv4/3rdparty/libkleidicv.a
 peripheralControl: CMakeFiles/peripheralControl.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable peripheralControl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable peripheralControl"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/peripheralControl.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

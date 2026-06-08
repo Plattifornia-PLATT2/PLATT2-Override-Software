@@ -1,10 +1,10 @@
-#include "ImageProssesing.cpp"
+#include "imageProssesing.hpp"
 
 
 
 int main() {
 
-    Camera camera;
+    Camera camera("frontCam");
     //camera.printCameraInfo();
     auto pos = camera.getImagePos();
     std::cout << "Tag ID: " << pos.tag_id << "\n";
