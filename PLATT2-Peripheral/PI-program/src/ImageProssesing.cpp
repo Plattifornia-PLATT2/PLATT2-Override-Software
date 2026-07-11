@@ -1,6 +1,6 @@
 #include "imageProssesing.hpp"
 
-Camera::tagPos Camera::getTagPos() {
+Camera::tagPos Camera::getImagePos() {
 
     cv::Mat frame, gray;
     cap >> frame;
