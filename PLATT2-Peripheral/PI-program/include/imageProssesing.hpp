@@ -87,8 +87,7 @@ public:
         cap.release();
     }
 
-    tagPos getImagePos();
-
+    tagPos getTagPos();
 
 private:
     cv::VideoCapture          cap;
