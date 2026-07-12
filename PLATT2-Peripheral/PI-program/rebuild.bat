@@ -11,7 +11,7 @@ if not "%~1"=="" (
 )
 
 echo.
-echo Rebuilding application only (fast, ~5 sec)...
+echo Rebuilding application 
 echo Output: %OUTPUT_DIR%
 echo.
 
@@ -19,6 +19,7 @@ REM Build app
 docker build -f Dockerfile -t peripheralcontrol:build .
 if errorlevel 1 (
     echo ✗ Build failed
+    pause
     exit /b 1
 )
 
@@ -28,6 +29,7 @@ if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
 docker create --name rpi5-extract peripheralcontrol:build /bin/sh >nul 2>&1
 if errorlevel 1 (
     echo ✗ Container creation failed
+    pause
     exit /b 1
 )
 
@@ -35,6 +37,7 @@ docker cp rpi5-extract:/peripheralControl "%OUTPUT_DIR%\peripheralControl" >nul 
 if errorlevel 1 (
     echo ✗ Extraction failed
     docker rm rpi5-extract >nul 2>&1
+    pause
     exit /b 1
 )
 
@@ -52,7 +55,8 @@ if exist "%OUTPUT_DIR%\peripheralControl" (
     echo.
 ) else (
     echo ✗ Rebuild failed
+    pause
     exit /b 1
 )
-
+pause
 endlocal

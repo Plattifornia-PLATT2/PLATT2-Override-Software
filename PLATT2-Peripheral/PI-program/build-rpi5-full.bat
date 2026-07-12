@@ -22,9 +22,8 @@ echo App Image:   %APP_IMAGE%
 echo Output:      %OUTPUT_DIR%
 echo.
 
-REM Step 1: Build pre-built libraries (OpenCV + AprilTag)
+REM Step 1: Build pre-built libraries
 echo [STEP 1] Building pre-built libraries image...
-echo This will take 15-30 minutes on first run
 echo.
 docker build -f Dockerfile.rpi5-libs -t %LIBS_IMAGE% .
 if errorlevel 1 (
@@ -80,23 +79,12 @@ if exist "%OUTPUT_DIR%\peripheralControl" (
     echo Binary Details:
     for /f "tokens=*" %%A in ('dir "%OUTPUT_DIR%\peripheralControl" ^| findstr peripheralControl') do echo   %%A
     echo.
-    echo Next steps:
-    echo   1. Copy to Raspberry Pi 5:
-    echo      scp "%OUTPUT_DIR%\peripheralControl" pi@^<your-rpi-ip^>:~/
-    echo.
-    echo   2. SSH into RPi and run:
-    echo      chmod +x ~/peripheralControl
-    echo      ./peripheralControl
-    echo.
+
 ) else (
     echo ✗ Build failed - binary not found
     pause
     exit /b 1
 )
 
-echo To push libraries to registry for reuse across projects:
-echo   docker tag %LIBS_IMAGE% your-registry/%LIBS_IMAGE%
-echo   docker push your-registry/%LIBS_IMAGE%
-echo.
 pause
 endlocal
