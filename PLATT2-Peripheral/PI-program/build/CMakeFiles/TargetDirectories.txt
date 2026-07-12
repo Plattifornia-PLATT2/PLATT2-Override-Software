@@ -1,3 +1,0 @@
-/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles/peripheralControl.dir
-/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/build/CMakeFiles/rebuild_cache.dir
