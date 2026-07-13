@@ -28,8 +28,8 @@ RUN mkdir -p build && cd build && \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_EXAMPLES=OFF \
     -DBUILD_PYTHON_WRAPPER=OFF \
-    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3" \
-    && make -j$(nproc) \
+    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined" \
+    && make -j4 \
     && make install
 
 # Build OpenCV
@@ -49,6 +49,14 @@ RUN mkdir -p build && cd build && \
     -DBUILD_PERF_TESTS=OFF \
     -DBUILD_EXAMPLES=OFF \
     -DBUILD_DOCS=OFF \
+    -DBUILD_opencv_imgcodecs=ON \
+    -DBUILD_opencv_videoio=ON \
+    -DWITH_JPEG=ON \
+    -DWITH_PNG=ON \
+    -DWITH_TIFF=OFF \
+    -DWITH_WEBP=OFF \
+    -DWITH_OPENJPEG=OFF \
+    -DBUILD_opencv_dnn=OFF \
     -DWITH_GTK=OFF \
     -DWITH_QT=OFF \
     -DWITH_OPENGL=OFF \
@@ -57,9 +65,11 @@ RUN mkdir -p build && cd build && \
     -DWITH_LAPACK=OFF \
     -DWITH_EIGEN=OFF \
     -DENABLE_FAST_MATH=ON \
-    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3" \
-    -DCMAKE_CXX_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3" \
-    && make -j$(nproc) \
+    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined -D_DEFAULT_SOURCE" \
+    -DCMAKE_CXX_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined -D_DEFAULT_SOURCE" \
+    -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
+    -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
+    && make -j4 \
     && make install
 
 # Final layer with pre-built libraries

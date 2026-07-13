@@ -11,40 +11,7 @@ WORKDIR /build
 COPY src ./src
 COPY include ./include
 
-# Create CMakeLists.txt for the app
-RUN cat > CMakeLists.txt << 'EOF'
-cmake_minimum_required(VERSION 3.16)
-project(peripheralControl CXX C)
-set(CMAKE_CXX_STANDARD 17)
-
-# Find AprilTag
-find_package(apriltag REQUIRED CONFIG PATHS /opt/rpi/lib/apriltag/cmake NO_DEFAULT_PATH)
-
-# Find OpenCV
-find_package(OpenCV REQUIRED CONFIG PATHS /opt/rpi/lib/cmake/opencv4 NO_DEFAULT_PATH COMPONENTS core imgproc videoio imgcodecs)
-
-add_executable(peripheralControl src/main.cpp src/ImageProssesing.cpp)
-
-target_include_directories(peripheralControl PRIVATE 
-    include 
-    ${apriltag_INCLUDE_DIRS}
-    ${OpenCV_INCLUDE_DIRS}
-)
-
-target_link_libraries(peripheralControl PRIVATE 
-    apriltag::apriltag
-    ${OpenCV_LIBRARIES}
-    m pthread
-)
-
-# Static linking
-target_link_options(peripheralControl PRIVATE 
-    -static-libgcc 
-    -static-libstdc++
-)
-
-install(TARGETS peripheralControl DESTINATION /)
-EOF
+COPY CMakeLists.txt ./CMakeLists.txt
 
 # Build the application
 RUN mkdir -p build_app && cd build_app && \
@@ -56,7 +23,10 @@ RUN mkdir -p build_app && cd build_app && \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_PREFIX_PATH=/opt/rpi/lib/cmake \
     -DCMAKE_MODULE_PATH=/opt/rpi/lib/cmake \
-    && make -j$(nproc)
+    -DCMAKE_C_FLAGS="-Wno-error=builtin-macro-redefined" \
+    -DCMAKE_CXX_FLAGS="-Wno-error=builtin-macro-redefined" \
+    -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
+    && make -j4
 
 # Output stage - extract binary
 FROM scratch AS output

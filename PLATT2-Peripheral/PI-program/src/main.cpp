@@ -1,7 +1,6 @@
 #include "imageProssesing.hpp"
 
 
-
 int main() {
 
     Camera camera("frontCam");
