@@ -4,14 +4,16 @@
             "name": "RPi5 (Docker)",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/lib/opencv-4.x/install/include",
-                "${workspaceFolder}/lib/apriltag/install/include"
+                "${workspaceFolder}/include",
+                "/opt/rpi/include/opencv4",
+                "/opt/rpi/include"
             ],
             "defines": [
                 "__aarch64__",
                 "__linux__"
             ],
             "compilerPath": "/usr/bin/aarch64-linux-gnu-g++",
+            "configurationProvider": "ms-vscode.cmake-tools",
             "cStandard": "c17",
             "cppStandard": "c++17",
             "intelliSenseMode": "linux-gcc-arm64"

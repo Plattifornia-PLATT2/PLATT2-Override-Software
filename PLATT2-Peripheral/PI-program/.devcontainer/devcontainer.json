@@ -8,5 +8,15 @@
   },
   "hostRequirements": {
     "gpu": false
-  }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-cmake-tools.cmake-tools"
+      ]
+    }
+  },
+  "remoteUser": "root"
 }
