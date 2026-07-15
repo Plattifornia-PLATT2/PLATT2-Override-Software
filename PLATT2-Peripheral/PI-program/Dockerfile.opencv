@@ -1,0 +1,46 @@
+# Build OpenCV once, store as base image
+# Usage: docker build -f Dockerfile.opencv -t my-opencv-rpi5:latest .
+# Then push: docker push my-opencv-rpi5:latest
+
+FROM ubuntu:22.04 AS opencv-builder
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential cmake git pkg-config \
+    crossbuild-essential-arm64 \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV CC=aarch64-linux-gnu-gcc \
+    CXX=aarch64-linux-gnu-g++
+
+WORKDIR /opencv-build
+COPY lib/opencv-4.x ./
+
+RUN mkdir -p build && cd build && \
+    cmake .. \
+    -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+    -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+    -DCMAKE_SYSTEM_NAME=Linux \
+    -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/opt/rpi \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_PERF_TESTS=OFF \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_DOCS=OFF \
+    -DWITH_GTK=OFF \
+    -DWITH_QT=OFF \
+    -DWITH_OPENGL=OFF \
+    -DWITH_GSTREAMER=OFF \
+    -DWITH_V4L=ON \
+    -DWITH_LAPACK=OFF \
+    -DWITH_EIGEN=OFF \
+    -DENABLE_FAST_MATH=ON \
+    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3" \
+    -DCMAKE_CXX_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3" \
+    && make -j$(nproc) \
+    && make install
+
+FROM ubuntu:22.04
+COPY --from=opencv-builder /opt/rpi /opt/rpi

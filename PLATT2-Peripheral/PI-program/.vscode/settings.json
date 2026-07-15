@@ -1,0 +1,12 @@
+{
+  "files.exclude": {
+    "**/lib": true
+  },
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.codeAnalysis.enabled": true,
+  "C_Cpp.errorSquiggles": "enabled",
+  "C_Cpp.autocomplete": "default",
+  "editor.formatOnSave": false,
+  "dev.containers.gpuAvailability": "none",
+  "terminal.integrated.defaultProfile.linux": "bash"
+}

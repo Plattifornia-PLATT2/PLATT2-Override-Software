@@ -1,0 +1,94 @@
+# Build OpenCV + AprilTag once, store as reusable base image
+# Usage: docker build -f Dockerfile.rpi5-libs -t my-rpi5-libs:latest .
+# Then push: docker push my-rpi5-libs:latest
+# Then use in main Dockerfile: FROM my-rpi5-libs:latest AS libs
+
+FROM ubuntu:22.04 AS builder
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential cmake git pkg-config \
+    crossbuild-essential-arm64 \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV CC=aarch64-linux-gnu-gcc \
+    CXX=aarch64-linux-gnu-g++
+
+# Build AprilTag
+WORKDIR /build/apriltag
+COPY lib/apriltag ./
+
+RUN mkdir -p build && cd build && \
+    cmake .. \
+    -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+    -DCMAKE_SYSTEM_NAME=Linux \
+    -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/opt/rpi \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_PYTHON_WRAPPER=OFF \
+    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined" \
+    && make -j4 \
+    && make install
+
+# Build OpenCV
+WORKDIR /build/opencv
+COPY lib/opencv-4.x ./
+
+RUN mkdir -p build && cd build && \
+    cmake .. \
+    -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+    -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+    -DCMAKE_SYSTEM_NAME=Linux \
+    -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/opt/rpi \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_PERF_TESTS=OFF \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_DOCS=OFF \
+    -DBUILD_opencv_imgcodecs=ON \
+    -DBUILD_opencv_videoio=ON \
+    -DWITH_JPEG=ON \
+    -DWITH_PNG=ON \
+    -DWITH_TIFF=OFF \
+    -DWITH_WEBP=OFF \
+    -DWITH_OPENJPEG=OFF \
+    -DBUILD_opencv_dnn=OFF \
+    -DWITH_GTK=OFF \
+    -DWITH_QT=OFF \
+    -DWITH_OPENGL=OFF \
+    -DWITH_GSTREAMER=OFF \
+    -DWITH_V4L=ON \
+    -DWITH_LAPACK=OFF \
+    -DWITH_EIGEN=OFF \
+    -DENABLE_FAST_MATH=ON \
+    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined -D_DEFAULT_SOURCE" \
+    -DCMAKE_CXX_FLAGS="-march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined -D_DEFAULT_SOURCE" \
+    -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
+    -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
+    && make -j4 \
+    && make install
+
+# Final layer with pre-built libraries
+FROM ubuntu:22.04
+LABEL maintainer="your-email@example.com" \
+      description="Pre-built OpenCV + AprilTag for Raspberry Pi 5 ARM64 cross-compilation" \
+      version="1.0"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential cmake pkg-config \
+    crossbuild-essential-arm64 \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /opt/rpi /opt/rpi
+
+ENV CC=aarch64-linux-gnu-gcc \
+    CXX=aarch64-linux-gnu-g++ \
+    CMAKE_PREFIX_PATH=/opt/rpi \
+    PKG_CONFIG_PATH=/opt/rpi/lib/pkgconfig:/opt/rpi/usr/local/lib/pkgconfig
+
+WORKDIR /build
