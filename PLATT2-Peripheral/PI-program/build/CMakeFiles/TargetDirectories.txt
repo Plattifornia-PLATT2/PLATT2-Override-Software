@@ -1,0 +1,3 @@
+/workspaces/PI-program/build/CMakeFiles/peripheralControl.dir
+/workspaces/PI-program/build/CMakeFiles/edit_cache.dir
+/workspaces/PI-program/build/CMakeFiles/rebuild_cache.dir

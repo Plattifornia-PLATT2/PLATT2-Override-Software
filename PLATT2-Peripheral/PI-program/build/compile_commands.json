@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/workspaces/PI-program/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include/opencv4 -I/opt/rpi/include -g -std=gnu++17 -o CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o -c /workspaces/PI-program/src/ImageProssesing.cpp",
+  "file": "/workspaces/PI-program/src/ImageProssesing.cpp"
+},
+{
+  "directory": "/workspaces/PI-program/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include/opencv4 -I/opt/rpi/include -g -std=gnu++17 -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /workspaces/PI-program/src/main.cpp",
+  "file": "/workspaces/PI-program/src/main.cpp"
+}
+]
