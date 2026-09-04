@@ -49,20 +49,20 @@ class PinkConfig : public IConfig {
 
 
     // ** Drive Ports **
-    static constexpr int RIGHT_1_PORT{-20};
-    static constexpr int RIGHT_2_PORT{19};
-    static constexpr int RIGHT_3_PORT{2};
-    static constexpr int RIGHT_4_PORT{-1};
+    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-20};
+    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{19};
+    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{2};
+    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-1};
     
     //static constexpr int RIGHT_1_PORT{3};
     //static constexpr int RIGHT_2_PORT{-4};
     //static constexpr int RIGHT_3_PORT{-5};
     //static constexpr int RIGHT_4_PORT{6};
 
-    static constexpr int LEFT_1_PORT{3};
-    static constexpr int LEFT_2_PORT{-4}; 
-    static constexpr int LEFT_3_PORT{-5};
-    static constexpr int LEFT_4_PORT{6};
+    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{3};
+    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{4};
+    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{5};
+    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{6};
 
     // ** Intake Ports **
     static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};

@@ -4,15 +4,18 @@
 #include <memory>
 #include "platt2/EDriverConfig.hpp"
 #include "platt2/helperFunctions.h"
+#include "subsystems/holonomicDrive/XDrive.hpp"
+#include "subsystems/holonomicDrive/HolonomicControl.hpp"
+#include "platt2/robot/subsystems/holonomicDrive/MovementVector.hpp"
 
 namespace platt2{
 
 namespace robot{
 
     Robot::Robot(
-        std::shared_ptr<subsystems::tankDrive::TankDrive>& tank_drive_subsystem,
+        std::shared_ptr<subsystems::holonomicDrive::XDrive>& xDrive_subsystem,
         std::shared_ptr<subsystems::odometry::Odometry>& odometry_subsystem,
-        std::shared_ptr<subsystems::tankDrive::TankControl>& tank_controller,
+        std::shared_ptr<subsystems::holonomicDrive::HolonomicControl>& holonomic_control_subsystem,
         std::shared_ptr<subsystems::intake::IntakeSubsystem>& intake_subsystem,
         platt2::robot::AllianceConfig alliance_config,
         platt2::robot::RobotConfig robot_config,
@@ -20,9 +23,9 @@ namespace robot{
         std::unique_ptr<profiles::DriverProfile>& driver_profile,
         std::unique_ptr<auton::IAuton>& auton_routine,
         std::shared_ptr<subsystems::colorsort::ColorSortSubsystem>& color_sort_subsystem
-    ) : tankDrive_subsystem{tank_drive_subsystem},
+    ) : xDrive_subsystem{xDrive_subsystem},
         odom_subsystem{odometry_subsystem},
-        tank_controller{tank_controller},
+        holonomic_controller{holonomic_control_subsystem},
         intake_subsystem{intake_subsystem},
         driver_profile{std::move(driver_profile)},
         auton_routine{std::move(auton_routine)},
@@ -51,19 +54,23 @@ namespace robot{
             }
 
             // Create movement vector
-            subsystems::tankDrive::TankDrive::MovementVector movement;   
+            subsystems::holonomicDrive::MovementVector movement;  
+            
+            polar p = CtoP(rightX, leftX);    
 
             if(driver_profile->driverEnum = JON){
-                movement.v = leftY;
+                movement.r = p.r;
+                movement.theta = p.theta; 
                 movement.w = rightX/1.5;
             }
             else if(driver_profile->driverEnum = QUINN){
-                movement.v = leftY * 0.90;
+                movement.r = p.r * 0.90;
+                movement.theta = p.theta; 
                 movement.w = rightX/3;
             }
     
 
-            tankDrive_subsystem->moveVector(movement);
+            xDrive_subsystem->moveVector(movement);
 
             if(controller.get_digital(driver_profile->frontIntake_IN)){
                 intake_subsystem->colorSortMode(color_sort_subsystem->isSortActive());

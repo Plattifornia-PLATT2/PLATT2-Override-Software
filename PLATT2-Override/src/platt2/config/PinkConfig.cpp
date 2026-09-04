@@ -5,6 +5,7 @@
 #include "platt2/profiles/DriverProfile.hpp"
 #include "platt2/profiles/JonProfile.hpp"
 #include "platt2/profiles/QuinnProfile.hpp"
+#include "platt2/robot/subsystems/holonomicDrive/XDriveModule.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
 #include "platt2/robot/subsystems/odometry/OdometryPosition.hpp"
 #include "platt2/robot/subsystems/tankDrive/tankControl.hpp"
@@ -26,16 +27,17 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
     //motors
 
     // Right Module
-    std::unique_ptr<pros::v5::Motor> right1{std::make_unique<pros::v5::Motor>(RIGHT_1_PORT, DRIVE_GEARSET)};
-    std::unique_ptr<pros::v5::Motor> right2{std::make_unique<pros::v5::Motor>(RIGHT_2_PORT, DRIVE_GEARSET)};
-    std::unique_ptr<pros::v5::Motor> right3{std::make_unique<pros::v5::Motor>(RIGHT_3_PORT, DRIVE_GEARSET)};
-    std::unique_ptr<pros::v5::Motor> right4{std::make_unique<pros::v5::Motor>(RIGHT_4_PORT, DRIVE_GEARSET)};
+    std::unique_ptr<pros::v5::Motor> fr_bottom{std::make_unique<pros::v5::Motor>(FRONT_RIGHT_TOP_MOTOR_PORT, DRIVE_GEARSET)};
+    std::unique_ptr<pros::v5::Motor> fr_top{std::make_unique<pros::v5::Motor>(FRONT_RIGHT_BOTTOM_MOTOR_PORT, DRIVE_GEARSET)};
+
+    std::unique_ptr<pros::v5::Motor> fl_bottom{std::make_unique<pros::v5::Motor>(FRONT_LEFT_TOP_MOTOR_PORT, DRIVE_GEARSET)};
+    std::unique_ptr<pros::v5::Motor> fl_top{std::make_unique<pros::v5::Motor>(FRONT_LEFT_BOTTOM_MOTOR_PORT, DRIVE_GEARSET)};
 
     //Left Module
-    std::unique_ptr<pros::v5::Motor> left1{std::make_unique<pros::v5::Motor>(LEFT_1_PORT, DRIVE_GEARSET)};
-    std::unique_ptr<pros::v5::Motor> left2{std::make_unique<pros::v5::Motor>(LEFT_2_PORT, DRIVE_GEARSET)};
-    std::unique_ptr<pros::v5::Motor> left3{std::make_unique<pros::v5::Motor>(LEFT_3_PORT, DRIVE_GEARSET)};
-    std::unique_ptr<pros::v5::Motor> left4{std::make_unique<pros::v5::Motor>(LEFT_4_PORT, DRIVE_GEARSET)};
+    std::unique_ptr<pros::v5::Motor> br_top{std::make_unique<pros::v5::Motor>(BACK_RIGHT_TOP_MOTOR_PORT, DRIVE_GEARSET)};
+    std::unique_ptr<pros::v5::Motor> br_bottom{std::make_unique<pros::v5::Motor>(BACK_RIGHT_BOTTOM_MOTOR_PORT, DRIVE_GEARSET)};
+    std::unique_ptr<pros::v5::Motor> bl_top{std::make_unique<pros::v5::Motor>(BACK_LEFT_TOP_MOTOR_PORT, DRIVE_GEARSET)};
+    std::unique_ptr<pros::v5::Motor> bl_bottom{std::make_unique<pros::v5::Motor>(BACK_LEFT_BOTTOM_MOTOR_PORT, DRIVE_GEARSET)};
 
     //Intake motors
     std::unique_ptr<pros::Motor> front_intake_motor{std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT, INTAKE_GEARSET)};
@@ -48,21 +50,20 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
 
     //X drive modules
 
-    std::unique_ptr<platt2::robot::subsystems::tankDrive::TankDrive::TankModule> right_module{std::make_unique<platt2::robot::subsystems::tankDrive::TankDrive::TankModule>(right1, right2, right3, right4)};
-    std::unique_ptr<platt2::robot::subsystems::tankDrive::TankDrive::TankModule> left_module{std::make_unique<platt2::robot::subsystems::tankDrive::TankDrive::TankModule>(left1, left2, left3, left4)};
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> front_right_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(fr_top, fr_bottom, deg_to_rad(45), deg_to_rad(45))};
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> front_left_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(fl_top, fl_bottom, deg_to_rad(45), deg_to_rad(45))};
 
-    left_module->module_motors.setBrakeMode(pros::MotorBrake::brake);
-    right_module->module_motors.setBrakeMode(pros::MotorBrake::brake);
-
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> back_right_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(br_top, br_bottom, deg_to_rad(45), deg_to_rad(45))};
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> back_left_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(bl_top, bl_bottom, deg_to_rad(45), deg_to_rad(45))};
 
     // x drive system
-    std::vector<std::unique_ptr<platt2::robot::subsystems::tankDrive::TankDrive::TankModule>> modules;
-    modules.push_back(std::move(left_module));
-    modules.push_back(std::move(right_module));
+    std::vector<std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule>> modules;
+    modules.push_back(std::move(front_right_module));
+    modules.push_back(std::move(front_left_module));
+    modules.push_back(std::move(back_right_module));
+    modules.push_back(std::move(back_left_module));
 
-    
-
-    std::shared_ptr<platt2::robot::subsystems::tankDrive::TankDrive> tankDrive_subsystem = std::make_shared<platt2::robot::subsystems::tankDrive::TankDrive>(std::move(modules));
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> xDrive_subsystem = std::make_shared<platt2::robot::subsystems::holonomicDrive::XDrive>(std::move(modules));
 
     // odom subsystem
     std::unique_ptr<pros::IMU> vex_imu = std::make_unique<pros::IMU>(VEX_IMU_PORT);
@@ -115,8 +116,8 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
     //holonomic control system
     std::unique_ptr<robot::pid::PID>position_pid = std::make_unique<robot::pid::PID>(position_dt, position_max, position_min, position_Kp, position_Kd, position_Ki);
     std::unique_ptr<robot::pid::PID>heading_pid = std::make_unique<robot::pid::PID>(heading_dt, heading_max, heading_min, heading_Kp, heading_Kd, heading_Ki);
-    std::shared_ptr<robot::subsystems::tankDrive::TankControl> tank_control_subsystem = std::make_shared<robot::subsystems::tankDrive::TankControl>(tankDrive_subsystem, odom_subsystem, std::move(position_pid), std::move(heading_pid));
-
+   
+    std::shared_ptr<robot::subsystems::holonomicDrive::HolonomicControl> holonomic_control_subsystem = std::make_shared<robot::subsystems::holonomicDrive::HolonomicControl>(xDrive_subsystem, odom_subsystem, std::move(position_pid), std::move(heading_pid));
     
     
     std::unique_ptr<profiles::DriverProfile> driver_profile;
@@ -137,25 +138,25 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
         case robot::PINK_SKILLS:{
             std::unique_ptr<auton::PinkSkillsAuton> pink_skills_auton = std::make_unique<auton::PinkSkillsAuton>();
             auton_routine = std::move(pink_skills_auton);
-            auton_routine->init(tank_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
+            auton_routine->init(holonomic_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
             break;
         }
         case robot::PURPLE_SKILLS:{
             std::unique_ptr<auton::PurpleSkillsAuton> purple_skills_auton = std::make_unique<auton::PurpleSkillsAuton>();
             auton_routine = std::move(purple_skills_auton);
-            auton_routine->init(tank_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
+            auton_routine->init(holonomic_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
              break;
         }
         case robot::PINK_COMP_WP:{
             std::unique_ptr<auton::PinkCompAuton> pink_comp_auton = std::make_unique<auton::PinkCompAuton>();
             auton_routine = std::move(pink_comp_auton);
-            auton_routine->init(tank_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
+            auton_routine->init(holonomic_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
              break;
         }
         case robot::PURPLE_COMP_WP:{
             std::unique_ptr<auton::PurpleCompAuton> purple_comp_auton = std::make_unique<auton::PurpleCompAuton>();
             auton_routine = std::move(purple_comp_auton);
-            auton_routine->init(tank_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
+            auton_routine->init(holonomic_control_subsystem, odom_subsystem, intake_subsystem, color_sort_subsystem, alliance);
              break;
         }
         case robot::NO_AUTON:{
@@ -166,9 +167,9 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
 
     // build robot object
     std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(
-        tankDrive_subsystem, 
+        xDrive_subsystem, 
         odom_subsystem, 
-        tank_control_subsystem, 
+        holonomic_control_subsystem, 
         intake_subsystem, 
         alliance, 
         platt2::robot::RobotConfig::PINK, 
