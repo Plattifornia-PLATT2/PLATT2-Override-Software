@@ -56,7 +56,7 @@ namespace robot{
             // Create movement vector
             subsystems::holonomicDrive::MovementVector movement;  
             
-            polar p = CtoP(rightX, leftX);    
+            polar p = CtoP(leftX, leftY);    
 
             if(driver_profile->driverEnum = JON){
                 movement.r = p.r;

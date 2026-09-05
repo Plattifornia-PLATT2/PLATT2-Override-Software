@@ -50,11 +50,11 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
 
     //X drive modules
 
-    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> front_right_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(fr_top, fr_bottom, deg_to_rad(45), deg_to_rad(45))};
-    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> front_left_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(fl_top, fl_bottom, deg_to_rad(45), deg_to_rad(45))};
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> front_right_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(fr_top, fr_bottom, deg_to_rad(45), deg_to_rad(135))};
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> front_left_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(fl_top, fl_bottom, deg_to_rad(135), deg_to_rad(225))};
 
-    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> back_right_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(br_top, br_bottom, deg_to_rad(45), deg_to_rad(45))};
-    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> back_left_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(bl_top, bl_bottom, deg_to_rad(45), deg_to_rad(45))};
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> back_right_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(br_top, br_bottom, deg_to_rad(315), deg_to_rad(45))};
+    std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule> back_left_module{std::make_unique<platt2::robot::subsystems::holonomicDrive::XDriveModule>(bl_top, bl_bottom, deg_to_rad(225), deg_to_rad(315))};
 
     // x drive system
     std::vector<std::unique_ptr<platt2::robot::subsystems::holonomicDrive::XDriveModule>> modules;

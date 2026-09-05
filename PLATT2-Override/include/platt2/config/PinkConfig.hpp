@@ -49,26 +49,22 @@ class PinkConfig : public IConfig {
 
 
     // ** Drive Ports **
-    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-20};
-    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{19};
+    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-9};
+    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{10};
     static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{2};
     static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-1};
-    
-    //static constexpr int RIGHT_1_PORT{3};
-    //static constexpr int RIGHT_2_PORT{-4};
-    //static constexpr int RIGHT_3_PORT{-5};
-    //static constexpr int RIGHT_4_PORT{6};
 
-    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{3};
-    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{4};
-    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{5};
-    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{6};
+    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{-19};
+    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{20};
+    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{12};
+    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-11};
+
 
     // ** Intake Ports **
     static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
-    static constexpr int MIDDLE_INTAKE_MOTOR_PORT{12};
-    static constexpr int REAR_INTAKE_MOTOR_PORT{9};
-    static constexpr int LOWER_ROLLER_MOTOR_PORT{11};
+    static constexpr int MIDDLE_INTAKE_MOTOR_PORT{17};
+    static constexpr int REAR_INTAKE_MOTOR_PORT{0};
+    static constexpr int LOWER_ROLLER_MOTOR_PORT{18};
     static constexpr int UPPER_CONVEYOR_MOTOR_PORT{15};
     static constexpr int REAR_INTAKE_LEFT_MOTOR_PORT{13};
     static constexpr int REAR_INTAKE_RIGHT_MOTOR_PORT{-14};

@@ -50,15 +50,15 @@ class PurpleConfig : public IConfig {
 
 
    // ** Drive Ports **
-    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-20};
-    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{19};
+    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{9};
+    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{-10};
     static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{2};
     static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-1};
 
-    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{3};
-    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{4};
-    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{5};
-    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{6};
+    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{19};
+    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{-20};
+    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{12};
+    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-11};
 
 
     // ** Intake Ports **
