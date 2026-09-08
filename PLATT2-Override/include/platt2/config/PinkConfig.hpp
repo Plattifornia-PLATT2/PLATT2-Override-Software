@@ -65,7 +65,7 @@ class PinkConfig : public IConfig {
     static constexpr int MIDDLE_INTAKE_MOTOR_PORT{17};
     static constexpr int REAR_INTAKE_MOTOR_PORT{0};
     static constexpr int LOWER_ROLLER_MOTOR_PORT{18};
-    static constexpr int UPPER_CONVEYOR_MOTOR_PORT{15};
+    static constexpr int UPPER_CONVEYOR_MOTOR_PORT{0};
     static constexpr int REAR_INTAKE_LEFT_MOTOR_PORT{13};
     static constexpr int REAR_INTAKE_RIGHT_MOTOR_PORT{-14};
     //static constexpr int DISTANCE_SENSOR_PORT{14};
@@ -83,7 +83,7 @@ class PinkConfig : public IConfig {
     static constexpr int REAR_INTAKE_PISTON_PORT {6};
 
     // ** VEX IMU Port **
-    static constexpr int VEX_IMU_PORT{18};
+    static constexpr int VEX_IMU_PORT{15};
 
     // ** Odometry Offsets **
     static constexpr int HORIZONTAL_ENCODER_PORT{20};
