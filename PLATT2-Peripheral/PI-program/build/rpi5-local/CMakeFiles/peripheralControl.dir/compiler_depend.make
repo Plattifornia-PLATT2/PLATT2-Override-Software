@@ -953,7 +953,20 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp \
   /usr/aarch64-linux-gnu/include/c++/11/fstream \
   /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/basic_file.h \
   /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/c++io.h \
-  /usr/aarch64-linux-gnu/include/c++/11/bits/fstream.tcc
+  /usr/aarch64-linux-gnu/include/c++/11/bits/fstream.tcc \
+  ../../include/uartLink.hpp \
+  /usr/aarch64-linux-gnu/include/termios.h \
+  /usr/aarch64-linux-gnu/include/bits/termios.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-struct.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-c_cc.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-c_iflag.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-c_oflag.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-baud.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-c_cflag.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-c_lflag.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-tcflow.h \
+  /usr/aarch64-linux-gnu/include/bits/termios-misc.h \
+  /usr/aarch64-linux-gnu/include/sys/ttydefaults.h
 
 CMakeFiles/peripheralControl.dir/src/uartLink.cpp.o: ../../src/uartLink.cpp \
   /usr/aarch64-linux-gnu/include/stdc-predef.h \

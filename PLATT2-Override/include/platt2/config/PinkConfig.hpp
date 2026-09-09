@@ -59,7 +59,7 @@ class PinkConfig : public IConfig {
     //static constexpr int RIGHT_3_PORT{-5};
     //static constexpr int RIGHT_4_PORT{6};
 
-    static constexpr int LEFT_1_PORT{3};
+    static constexpr int LEFT_1_PORT{0};
     static constexpr int LEFT_2_PORT{-4}; 
     static constexpr int LEFT_3_PORT{-5};
     static constexpr int LEFT_4_PORT{6};
@@ -81,7 +81,7 @@ class PinkConfig : public IConfig {
     // ** Pneumatics **
     static constexpr int ED_MECH_PISTON_PORT{1};
     static constexpr int UPPER_CONVEYOR_HEIGHT_PISTON_PORT{2};
-    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{3};
+    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{0};
     static constexpr int RAKE_MECH_PISTON_PORT{4};
     static constexpr int DESCORE_PISTON_PORT{5};
     static constexpr int REAR_INTAKE_PISTON_PORT {6};
