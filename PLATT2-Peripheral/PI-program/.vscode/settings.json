@@ -8,5 +8,6 @@
   "C_Cpp.autocomplete": "default",
   "editor.formatOnSave": false,
   "dev.containers.gpuAvailability": "none",
-  "terminal.integrated.defaultProfile.linux": "bash"
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "C_Cpp.default.compilerPath": "/usr/bin/aarch64-linux-gnu-g++"
 }

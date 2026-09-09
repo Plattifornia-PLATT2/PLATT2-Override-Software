@@ -6,18 +6,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(BUILD_SHARED_LIBS OFF)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
 
+# Default to /opt/rpi for Docker builds, but allow override for local builds
+if(NOT DEFINED RPI_ROOT)
+    set(RPI_ROOT "/opt/rpi")
+endif()
+
+
+
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(peripheralControl ${SOURCES})
 
 target_include_directories(peripheralControl PRIVATE
     include
-    /opt/rpi/include/opencv4
-    /opt/rpi/include
+    ${RPI_ROOT}/include
+    ${RPI_ROOT}/include/opencv4
 )
 
 target_link_directories(peripheralControl PRIVATE
-    /opt/rpi/lib
-    /opt/rpi/lib/opencv4/3rdparty
+    ${RPI_ROOT}/lib
+    ${RPI_ROOT}/lib/opencv4/3rdparty
 )
 
 target_link_libraries(peripheralControl PRIVATE

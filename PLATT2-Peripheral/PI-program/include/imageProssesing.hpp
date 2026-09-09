@@ -19,7 +19,7 @@ public:
         int    tag_id = -1;
         double reproj_error = std::numeric_limits<double>::max();
     };
-
+    
     struct cameraInfo {
         
         std::string name;

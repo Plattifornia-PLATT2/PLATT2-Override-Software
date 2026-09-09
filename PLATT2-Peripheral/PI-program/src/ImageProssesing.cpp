@@ -16,7 +16,7 @@ Camera::tagPos Camera::getImagePos() {
     };
 
     zarray_t *detections = apriltag_detector_detect(tagDetector, &image);
-
+    
     tagPos best_result;
     double best_error = std::numeric_limits<double>::max();
 

@@ -177,6 +177,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/uartLink.o: src/uartLink.cpp.o
+.PHONY : src/uartLink.o
+
+# target to build an object file
+src/uartLink.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartLink.cpp.o
+.PHONY : src/uartLink.cpp.o
+
+src/uartLink.i: src/uartLink.cpp.i
+.PHONY : src/uartLink.i
+
+# target to preprocess a source file
+src/uartLink.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartLink.cpp.i
+.PHONY : src/uartLink.cpp.i
+
+src/uartLink.s: src/uartLink.cpp.s
+.PHONY : src/uartLink.s
+
+# target to generate assembly for a file
+src/uartLink.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartLink.cpp.s
+.PHONY : src/uartLink.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +216,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/uartLink.o"
+	@echo "... src/uartLink.i"
+	@echo "... src/uartLink.s"
 .PHONY : help
 
 
