@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.15)
 project(PeripheralControl VERSION 1.0)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(BUILD_SHARED_LIBS OFF)
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
+# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
 
 # Default to /opt/rpi for Docker builds, but allow override for local builds
 if(NOT DEFINED RPI_ROOT)
@@ -29,6 +29,7 @@ target_link_directories(peripheralControl PRIVATE
 
 target_link_libraries(peripheralControl PRIVATE
     -Wl,--start-group
+    dl
     apriltag
     opencv_core
     opencv_imgproc

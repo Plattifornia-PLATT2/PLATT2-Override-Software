@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/workspaces/PI-program/include -I/workspaces/PI-program/build/rpi5-libs-extracted/rpi/include -I/workspaces/PI-program/build/rpi5-libs-extracted/rpi/include/opencv4
 
-CXX_FLAGS = -march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined -O3 -DNDEBUG -std=gnu++17
+CXX_FLAGS = -march=armv8-a -mtune=cortex-a76 -O3 -Wno-error=builtin-macro-redefined -O3 -DNDEBUG -std=gnu++20
 

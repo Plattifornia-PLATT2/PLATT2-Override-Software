@@ -1,11 +1,11 @@
-// UartTextLink.hpp
+// UartPort.hpp
 //
 // Single-class UART text-packet transport for Raspberry Pi 5 (Linux termios).
 // Packets are plain text lines, delimited by '\n' (assumes payloads don't
 // contain embedded newlines).
 //
 // Usage:
-//   UartTextLink link("/dev/ttyAMA0", B115200);
+//   UartPort link("/dev/ttyAMA0", B115200);
 //   if (!link.open()) { /* handle error */ }
 //   link.sendLine("HELLO");
 //   if (auto line = link.receiveLine(200)) { /* use *line */ }
@@ -16,16 +16,19 @@
 #include <string>
 
 #include <termios.h>
+#include <iostream>
 
-class UartTextLink {
+class UartPort {
 public:
-    explicit UartTextLink(std::string device, speed_t baud = B115200);
-    ~UartTextLink();
+    explicit UartPort(std::string device, speed_t baud = B115200);
+    ~UartPort();
 
-    UartTextLink(const UartTextLink&) = delete;
-    UartTextLink& operator=(const UartTextLink&) = delete;
-    UartTextLink(UartTextLink&& other) noexcept;
-    UartTextLink& operator=(UartTextLink&& other) noexcept;
+    UartPort(const UartPort&) = delete;
+    UartPort& operator=(const UartPort&) = delete;
+    UartPort(UartPort&& other) noexcept;
+    UartPort& operator=(UartPort&& other) noexcept;
+
+    UartPort(){if (!this->open()) {std::cerr << "open failed: " << this->lastError() << "\n";}}
 
     // Opens and configures the serial port. Returns false on failure
     // (see lastError() for details).

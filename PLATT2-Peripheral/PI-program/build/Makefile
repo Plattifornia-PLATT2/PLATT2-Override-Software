@@ -177,29 +177,53 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/uartLink.o: src/uartLink.cpp.o
-.PHONY : src/uartLink.o
+src/taskManager.o: src/taskManager.cpp.o
+.PHONY : src/taskManager.o
 
 # target to build an object file
-src/uartLink.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartLink.cpp.o
-.PHONY : src/uartLink.cpp.o
+src/taskManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/taskManager.cpp.o
+.PHONY : src/taskManager.cpp.o
 
-src/uartLink.i: src/uartLink.cpp.i
-.PHONY : src/uartLink.i
+src/taskManager.i: src/taskManager.cpp.i
+.PHONY : src/taskManager.i
 
 # target to preprocess a source file
-src/uartLink.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartLink.cpp.i
-.PHONY : src/uartLink.cpp.i
+src/taskManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/taskManager.cpp.i
+.PHONY : src/taskManager.cpp.i
 
-src/uartLink.s: src/uartLink.cpp.s
-.PHONY : src/uartLink.s
+src/taskManager.s: src/taskManager.cpp.s
+.PHONY : src/taskManager.s
 
 # target to generate assembly for a file
-src/uartLink.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartLink.cpp.s
-.PHONY : src/uartLink.cpp.s
+src/taskManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/taskManager.cpp.s
+.PHONY : src/taskManager.cpp.s
+
+src/uartPort.o: src/uartPort.cpp.o
+.PHONY : src/uartPort.o
+
+# target to build an object file
+src/uartPort.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o
+.PHONY : src/uartPort.cpp.o
+
+src/uartPort.i: src/uartPort.cpp.i
+.PHONY : src/uartPort.i
+
+# target to preprocess a source file
+src/uartPort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartPort.cpp.i
+.PHONY : src/uartPort.cpp.i
+
+src/uartPort.s: src/uartPort.cpp.s
+.PHONY : src/uartPort.s
+
+# target to generate assembly for a file
+src/uartPort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartPort.cpp.s
+.PHONY : src/uartPort.cpp.s
 
 # Help Target
 help:
@@ -216,9 +240,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/uartLink.o"
-	@echo "... src/uartLink.i"
-	@echo "... src/uartLink.s"
+	@echo "... src/taskManager.o"
+	@echo "... src/taskManager.i"
+	@echo "... src/taskManager.s"
+	@echo "... src/uartPort.o"
+	@echo "... src/uartPort.i"
+	@echo "... src/uartPort.s"
 .PHONY : help
 
 

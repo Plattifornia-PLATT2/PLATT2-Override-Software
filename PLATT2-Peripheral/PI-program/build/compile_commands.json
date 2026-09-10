@@ -1,17 +1,22 @@
 [
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/c++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++17 -o CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o -c /workspaces/PI-program/src/ImageProssesing.cpp",
+  "command": "/usr/bin/c++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o -c /workspaces/PI-program/src/ImageProssesing.cpp",
   "file": "/workspaces/PI-program/src/ImageProssesing.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/c++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++17 -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /workspaces/PI-program/src/main.cpp",
+  "command": "/usr/bin/c++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /workspaces/PI-program/src/main.cpp",
   "file": "/workspaces/PI-program/src/main.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/c++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++17 -o CMakeFiles/peripheralControl.dir/src/uartLink.cpp.o -c /workspaces/PI-program/src/uartLink.cpp",
-  "file": "/workspaces/PI-program/src/uartLink.cpp"
+  "command": "/usr/bin/c++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/taskManager.cpp.o -c /workspaces/PI-program/src/taskManager.cpp",
+  "file": "/workspaces/PI-program/src/taskManager.cpp"
+},
+{
+  "directory": "/workspaces/PI-program/build",
+  "command": "/usr/bin/c++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o -c /workspaces/PI-program/src/uartPort.cpp",
+  "file": "/workspaces/PI-program/src/uartPort.cpp"
 }
 ]

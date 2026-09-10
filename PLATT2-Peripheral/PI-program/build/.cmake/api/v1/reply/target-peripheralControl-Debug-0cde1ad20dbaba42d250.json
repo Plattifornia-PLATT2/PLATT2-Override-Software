@@ -59,7 +59,7 @@
 					"fragment" : "-g"
 				},
 				{
-					"fragment" : "-std=gnu++17"
+					"fragment" : "-std=gnu++20"
 				}
 			],
 			"includes" : 
@@ -84,13 +84,14 @@
 				[
 					1
 				],
-				"standard" : "17"
+				"standard" : "20"
 			},
 			"sourceIndexes" : 
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -284,7 +285,8 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -305,7 +307,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/uartLink.cpp",
+			"path" : "src/taskManager.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/uartPort.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

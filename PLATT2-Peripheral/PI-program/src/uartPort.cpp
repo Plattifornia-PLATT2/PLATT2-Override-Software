@@ -1,23 +1,22 @@
-#include "uartLink.hpp"
+#include "uartPort.hpp"
 
 #include <cerrno>
 #include <chrono>
 #include <cstring>
-
 #include <fcntl.h>
 #include <poll.h>
 #include <unistd.h>
 
-UartTextLink::UartTextLink(std::string device, speed_t baud)
+UartPort::UartPort(std::string device, speed_t baud)
     : device_(std::move(device)), baud_(baud) {}
 
-UartTextLink::~UartTextLink() { close(); }
+UartPort::~UartPort() { close(); }
 
-UartTextLink::UartTextLink(UartTextLink&& other) noexcept {
+UartPort::UartPort(UartPort&& other) noexcept {
     *this = std::move(other);
 }
 
-UartTextLink& UartTextLink::operator=(UartTextLink&& other) noexcept {
+UartPort& UartPort::operator=(UartPort&& other) noexcept {
     if (this != &other) {
         close();
         fd_ = other.fd_;
@@ -29,7 +28,7 @@ UartTextLink& UartTextLink::operator=(UartTextLink&& other) noexcept {
     return *this;
 }
 
-bool UartTextLink::open() {
+bool UartPort::open() {
     close();
 
     fd_ = ::open(device_.c_str(), O_RDWR | O_NOCTTY | O_NONBLOCK);
@@ -45,7 +44,7 @@ bool UartTextLink::open() {
     return true;
 }
 
-void UartTextLink::close() {
+void UartPort::close() {
     if (fd_ >= 0) {
         ::close(fd_);
         fd_ = -1;
@@ -53,11 +52,11 @@ void UartTextLink::close() {
     rxBuffer_.clear();
 }
 
-bool UartTextLink::isOpen() const { return fd_ >= 0; }
+bool UartPort::isOpen() const { return fd_ >= 0; }
 
-const std::string& UartTextLink::lastError() const { return lastError_; }
+const std::string& UartPort::lastError() const { return lastError_; }
 
-bool UartTextLink::sendLine(const std::string& text) {
+bool UartPort::sendLine(const std::string& text) {
     if (!isOpen()) {
         lastError_ = "sendLine: link not open";
         return false;
@@ -79,7 +78,7 @@ bool UartTextLink::sendLine(const std::string& text) {
     return true;
 }
 
-std::optional<std::string> UartTextLink::receiveLine(int timeoutMs) {
+std::optional<std::string> UartPort::receiveLine(int timeoutMs) {
     if (!isOpen()) {
         lastError_ = "receiveLine: link not open";
         return std::nullopt;
@@ -133,7 +132,7 @@ std::optional<std::string> UartTextLink::receiveLine(int timeoutMs) {
     }
 }
 
-bool UartTextLink::configurePort() {
+bool UartPort::configurePort() {
     termios tty{};
     if (tcgetattr(fd_, &tty) != 0) {
         lastError_ = "configurePort: tcgetattr failed: " + std::string(std::strerror(errno));

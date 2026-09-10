@@ -157,10 +157,10 @@ upload_binary() {
     
     case "${pi_name}" in
         pink)
-            pi_host="pink.local"
+            pi_host="pink"
             ;;
         purple)
-            pi_host="purple.local"
+            pi_host="purple"
             ;;
         "")
             log_error "Usage: $0 upload <pink|purple>"
@@ -202,10 +202,10 @@ run_binary() {
     
     case "${pi_name}" in
         pink)
-            pi_host="pink.local"
+            pi_host="pink"
             ;;
         purple)
-            pi_host="purple.local"
+            pi_host="purple"
             ;;
         "")
             log_error "Usage: $0 run <pink|purple>"

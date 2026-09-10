@@ -3,8 +3,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o.d"
-  "CMakeFiles/peripheralControl.dir/src/uartLink.cpp.o"
-  "CMakeFiles/peripheralControl.dir/src/uartLink.cpp.o.d"
+  "CMakeFiles/peripheralControl.dir/src/taskManager.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/taskManager.cpp.o.d"
+  "CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o.d"
   "peripheralControl"
   "peripheralControl.pdb"
 )
