@@ -29,7 +29,7 @@ namespace auton{
  */
 class PurpleSkillsAuton : public auton::IAuton {
     private:
-    std::shared_ptr<robot::subsystems::tankDrive::TankControl> tank_subsytem;
+    std::shared_ptr<robot::subsystems::holonomicDrive::HolonomicControl> holonomic_subsytem;
     std::shared_ptr<robot::subsystems::odometry::Odometry> odometry_subsystem;
     std::shared_ptr<robot::subsystems::intake::IntakeSubsystem> intake_subsystem;
     std::shared_ptr<robot::subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem;
@@ -52,7 +52,7 @@ class PurpleSkillsAuton : public auton::IAuton {
      * @param color_sort_subsystem The color sort subsystem to use
      */
     void init(
-        std::shared_ptr<robot::subsystems::tankDrive::TankControl> tank_subsytem, 
+        std::shared_ptr<robot::subsystems::holonomicDrive::HolonomicControl> holonomic_subsytem,
         std::shared_ptr<robot::subsystems::odometry::Odometry> odometry_subsystem, 
         std::shared_ptr<robot::subsystems::intake::IntakeSubsystem> intake_subsystem,
         std::shared_ptr<robot::subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem,

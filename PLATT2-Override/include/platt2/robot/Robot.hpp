@@ -50,8 +50,8 @@ namespace platt2
 
             // Subsystems
             std::shared_ptr<subsystems::odometry::Odometry> odom_subsystem;
-            std::shared_ptr<subsystems::tankDrive::TankDrive> tankDrive_subsystem;
-            std::shared_ptr<subsystems::tankDrive::TankControl> tank_controller;
+            std::shared_ptr<subsystems::holonomicDrive::XDrive> xDrive_subsystem;
+            std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomic_controller;
             std::shared_ptr<subsystems::intake::IntakeSubsystem> intake_subsystem;
             std::shared_ptr<subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem;
 
@@ -96,9 +96,9 @@ namespace platt2
              * @param auton_routine Current autonomous routine
              * @param color_sort_subsystem Shared pointer to a ColorSortSubsystem object
              */
-            Robot(std::shared_ptr<subsystems::tankDrive::TankDrive>& tank_drive_subsystem, 
+            Robot(std::shared_ptr<subsystems::holonomicDrive::XDrive>& x_drive_subsystem, 
                 std::shared_ptr<subsystems::odometry::Odometry>& odometry_subsystem, 
-                std::shared_ptr<subsystems::tankDrive::TankControl>& tank_controller,
+                std::shared_ptr<subsystems::holonomicDrive::HolonomicControl>& holonomic_controller,
                 std::shared_ptr<subsystems::intake::IntakeSubsystem>& intake_subsystem,
                 platt2::robot::AllianceConfig alliance_config,
                 platt2::robot::RobotConfig robot_config,
