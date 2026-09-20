@@ -1,11 +1,11 @@
 #include "uartPort.hpp"
-
-#include <cerrno>
-#include <chrono>
-#include <cstring>
-#include <fcntl.h>
+#include <bit>
+#include <thread>
 #include <poll.h>
-#include <unistd.h>
+#include <sys/ioctl.h>
+#include <cerrno>
+#include <cstdint>
+
 
 UartPort::UartPort(std::string device, speed_t baud)
     : device_(std::move(device)), baud_(baud) {}
@@ -56,80 +56,143 @@ bool UartPort::isOpen() const { return fd_ >= 0; }
 
 const std::string& UartPort::lastError() const { return lastError_; }
 
-bool UartPort::sendLine(const std::string& text) {
-    if (!isOpen()) {
-        lastError_ = "sendLine: link not open";
-        return false;
-    }
 
-    std::string frame = text;
-    frame.push_back('\n');
+bool UartPort::sendLine(const data& d) {
+    constexpr uint32_t kSendTimeoutMs = 20;
 
-    size_t written = 0;
-    while (written < frame.size()) {
-        ssize_t n = ::write(fd_, frame.data() + written, frame.size() - written);
-        if (n < 0) {
-            if (errno == EAGAIN || errno == EWOULDBLOCK) continue;
-            lastError_ = "sendLine: write() failed: " + std::string(std::strerror(errno));
-            return false;
+    std::array<uint8_t, 64> buf;              // must be >= frame size
+    const size_t n = pack(d, buf);
+    if (n == 0) return false;                 // buffer too small
+
+    uint8_t* p = buf.data();
+    size_t left = n;
+    const uint32_t start = millis();
+
+    while (left > 0) {
+        const int32_t w = ::write(fd_ , p, static_cast<int32_t>(left));
+
+        if (w == 0) {                         // TX buffer full, wait and retry
+            if (millis() - start > kSendTimeoutMs) return false;
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            continue;
         }
-        written += static_cast<size_t>(n);
+        p    += w;
+        left -= static_cast<size_t>(w);
     }
     return true;
 }
 
-std::optional<std::string> UartPort::receiveLine(int timeoutMs) {
-    if (!isOpen()) {
-        lastError_ = "receiveLine: link not open";
-        return std::nullopt;
+bool UartPort::receiveLine(data& d, std::uint32_t timeoutMs) {
+   const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(timeoutMs);
+
+    while(true) {
+        if (tryParse(d)) return true;             // frame already buffered or just completed
+        if (msUntil(deadline) == 0) return false; // timed out
+
+        // Pull whatever the port has
+        const int32_t avail = get_read_avail(fd_);
+        if (avail > 0) {
+            const size_t room = rx_.size() - rxLen_;
+            const size_t want = std::min(static_cast<size_t>(avail), room);
+            const int32_t got = ::read(fd_, rx_.data() + rxLen_, static_cast<int32_t>(want));
+            if (got > 0) { rxLen_ += static_cast<size_t>(got); continue; }
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));                           // nothing arrived, yield to other tasks
     }
+}
 
-    // Already have a full line buffered from a previous read.
-    if (auto pos = rxBuffer_.find('\n'); pos != std::string::npos) {
-        std::string line = rxBuffer_.substr(0, pos);
-        rxBuffer_.erase(0, pos + 1);
-        return line;
+uint16_t UartPort::crc16(const uint8_t* p, size_t n) {   // CRC-16/CCITT-FALSE
+    uint16_t crc = 0xFFFF;
+    while (n--) {
+        crc ^= static_cast<uint16_t>(*p++) << 8;
+        for (int i = 0; i < 8; ++i)
+            crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : (crc << 1);
     }
+    return crc;
+}
 
-    const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(timeoutMs);
-    char chunk[256];
 
-    while (true) {
-        auto remaining = std::chrono::duration_cast<std::chrono::milliseconds>(
-            deadline - std::chrono::steady_clock::now()).count();
-        if (remaining <= 0) {
-            lastError_ = "receiveLine: timed out";
-            return std::nullopt;
+size_t UartPort::pack(const data& d, std::span<uint8_t> out) {
+    static_assert(std::endian::native == std::endian::little,
+                  "wire format is little-endian");
+
+    constexpr size_t kSyncLen   = 2;
+    constexpr size_t kHeaderLen = kSyncLen + 1 + 2;   // sync + type + length
+    constexpr size_t kCrcLen    = 2;
+    constexpr size_t kFrameLen  = kHeaderLen + SENSOR_PAYLOAD + kCrcLen;
+
+    if (out.size() < kFrameLen) return 0;
+
+    uint8_t* p = out.data();
+    auto put = [&p](const auto& v) {          // append raw bytes, advance cursor
+        memcpy(p, &v, sizeof v);
+        p += sizeof v;
+    };
+
+    // Header
+    put(uint8_t{SYNC0});
+    put(uint8_t{SYNC1});
+    put(static_cast<uint8_t>(Type::Sensor));
+    put(static_cast<uint16_t>(SENSOR_PAYLOAD));
+
+    // Payload
+    //put(static_cast<uint32_t>(d.id));
+    //put(static_cast<float>(d.temperature));
+    //put(static_cast<uint16_t>(d.x));
+    //put(static_cast<uint8_t>(d.ok ? 1 : 0));
+
+    // CRC covers type..payload (everything after the sync bytes)
+    put(crc16(out.data() + kSyncLen, static_cast<size_t>(p - out.data()) - kSyncLen));
+
+    return static_cast<size_t>(p - out.data());
+}
+
+bool UartPort::tryParse(data& d) {
+    
+    auto drop = [this](size_t n) {
+        memmove(rx_.data(), rx_.data() + n, rxLen_ - n);
+        rxLen_ -= n;
+    };
+
+    while (rxLen_ > 0) {
+        if (rx_[0] != SYNC0)                  { drop(1); continue; }
+        if (rxLen_ >= 2 && rx_[1] != SYNC1)   { drop(1); continue; }
+        if (rxLen_ < kHeaderLen)              return false;
+
+        const uint8_t  type = rx_[2];
+        const uint16_t len  = static_cast<uint16_t>(rx_[3] | (rx_[4] << 8));
+
+        if (type != static_cast<uint8_t>(Type::Sensor) || len != SENSOR_PAYLOAD) {
+            drop(1);
+            continue;
         }
 
-        pollfd pfd{fd_, POLLIN, 0};
-        int ready = ::poll(&pfd, 1, static_cast<int>(remaining));
-        if (ready < 0) {
-            if (errno == EINTR) continue;
-            lastError_ = "receiveLine: poll() failed: " + std::string(std::strerror(errno));
-            return std::nullopt;
-        }
-        if (ready == 0) {
-            lastError_ = "receiveLine: timed out";
-            return std::nullopt;
-        }
+        if (rxLen_ < kFrameLen) return false;     // rest of frame still in flight
 
-        ssize_t n = ::read(fd_, chunk, sizeof(chunk));
-        if (n < 0) {
-            if (errno == EAGAIN || errno == EWOULDBLOCK) continue;
-            lastError_ = "receiveLine: read() failed: " + std::string(std::strerror(errno));
-            return std::nullopt;
-        }
-        if (n == 0) continue;
+        const uint16_t calc = crc16(rx_.data() + kSyncLen, 1 + 2 + len);
+        const uint16_t recv = static_cast<uint16_t>(
+            rx_[kFrameLen - 2] | (rx_[kFrameLen - 1] << 8));
 
-        rxBuffer_.append(chunk, static_cast<size_t>(n));
+        if (calc != recv) { drop(1); continue; }
 
-        if (auto pos = rxBuffer_.find('\n'); pos != std::string::npos) {
-            std::string line = rxBuffer_.substr(0, pos);
-            rxBuffer_.erase(0, pos + 1);
-            return line;
-        }
+        const uint8_t* p = rx_.data() + kHeaderLen;
+        auto get = [&p](auto& v) {
+            memcpy(&v, p, sizeof v);
+            p += sizeof v;
+        };
+
+        uint32_t id;  float temp;  uint16_t x;  uint8_t ok;
+        get(id);  get(temp);  get(x);  get(ok);
+
+        //d.id          = id;
+        //d.temperature = temp;
+        //d.x           = static_cast<decltype(d.x)>(x);
+        //d.ok          = (ok != 0);
+
+        drop(kFrameLen);
+        return true;
     }
+    return false;
 }
 
 bool UartPort::configurePort() {
@@ -171,4 +234,41 @@ bool UartPort::configurePort() {
 
     tcflush(fd_, TCIOFLUSH);
     return true;
+}
+
+uint64_t UartPort::msUntil(std::chrono::steady_clock::time_point deadline) {
+    auto remaining = std::chrono::duration_cast<std::chrono::milliseconds>(
+        deadline - std::chrono::steady_clock::now()).count();
+    return remaining > 0 ? static_cast<uint64_t>(remaining) : 0;
+}
+
+uint64_t UartPort::millis() {
+    static const auto start_time = std::chrono::steady_clock::now();
+    auto current_time = std::chrono::steady_clock::now();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(current_time - start_time).count();
+}
+
+int32_t UartPort::get_read_avail(int fd){
+    pollfd pfd{};
+    pfd.fd     = fd;
+    pfd.events = POLLIN;
+
+    int rc;
+    do {
+        rc = poll(&pfd, 1,0);
+    } while (rc < 0 && errno == EINTR);      // retry if interrupted by a signal
+
+    if (rc < 0)  return -1;                  // poll error, errno is set
+    if (rc == 0) return 0;                   // timeout, nothing to read
+
+    if (pfd.revents & (POLLERR | POLLNVAL)) { errno = EIO; return -1; }
+
+    // POLLHUP can arrive together with POLLIN while buffered data remains,
+    // so only treat it as fatal if there's nothing left to read.
+    int n = 0;
+    if (ioctl(fd, FIONREAD, &n) < 0) return -1;
+
+    if (n == 0 && (pfd.revents & POLLHUP)) { errno = EIO; return -1; }
+
+    return static_cast<int32_t>(n);
 }

@@ -177,29 +177,29 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/taskManager.o: src/taskManager.cpp.o
-.PHONY : src/taskManager.o
+src/piLink.o: src/piLink.cpp.o
+.PHONY : src/piLink.o
 
 # target to build an object file
-src/taskManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/taskManager.cpp.o
-.PHONY : src/taskManager.cpp.o
+src/piLink.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/piLink.cpp.o
+.PHONY : src/piLink.cpp.o
 
-src/taskManager.i: src/taskManager.cpp.i
-.PHONY : src/taskManager.i
+src/piLink.i: src/piLink.cpp.i
+.PHONY : src/piLink.i
 
 # target to preprocess a source file
-src/taskManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/taskManager.cpp.i
-.PHONY : src/taskManager.cpp.i
+src/piLink.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/piLink.cpp.i
+.PHONY : src/piLink.cpp.i
 
-src/taskManager.s: src/taskManager.cpp.s
-.PHONY : src/taskManager.s
+src/piLink.s: src/piLink.cpp.s
+.PHONY : src/piLink.s
 
 # target to generate assembly for a file
-src/taskManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/taskManager.cpp.s
-.PHONY : src/taskManager.cpp.s
+src/piLink.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/piLink.cpp.s
+.PHONY : src/piLink.cpp.s
 
 src/uartPort.o: src/uartPort.cpp.o
 .PHONY : src/uartPort.o
@@ -240,9 +240,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/taskManager.o"
-	@echo "... src/taskManager.i"
-	@echo "... src/taskManager.s"
+	@echo "... src/piLink.o"
+	@echo "... src/piLink.i"
+	@echo "... src/piLink.s"
 	@echo "... src/uartPort.o"
 	@echo "... src/uartPort.i"
 	@echo "... src/uartPort.s"

@@ -222,7 +222,7 @@ run_binary() {
     
     log_info "Running peripheralControl on platt@${pi_host}"
     
-    if ssh "platt@${pi_host}" "chmod +x ~/peripheralControl && ~/peripheralControl"; then
+    if ssh -t "platt@${pi_host}" "chmod +x ~/peripheralControl && ~/peripheralControl"; then
         log_success "Execution completed"
     else
         log_error "Execution failed"

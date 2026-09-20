@@ -1,34 +1,29 @@
-# Main Dockerfile - Uses pre-built OpenCV + AprilTag
-# First build the base libs image:
-#   docker build -f Dockerfile.rpi5-libs -t rpi5-libs:latest .
-#
-# Then build your app:
-#   docker build -f Dockerfile -t rpi5-apriltag:latest .
+# Dev stage for interactive development with SSH access
+FROM rpi5-libs:latest AS dev
 
-FROM rpi5-libs:latest AS builder
+# Install SSH client for deployment + bash for interactive work
+RUN apt-get update && apt-get install -y --no-install-recommends openssh-client bash && rm -rf /var/lib/apt/lists/*
 
-# Install SSH client for deployment
-RUN apt-get update && apt-get install -y --no-install-recommends openssh-client && rm -rf /var/lib/apt/lists/*
-
-# Set up SSH directory
+# Set up SSH directory and copy keys with proper permissions
 RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+RUN mkdir -p /tmp/ssh-keys && chmod 700 /tmp/ssh-keys
 
-# Create SSH config with key identity options and no passphrase prompt
+# Create SSH config pointing to temp location
 RUN cat > /root/.ssh/config << 'EOF'
 Host *
-    AddKeysToAgent yes
-    IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile /tmp/ssh-keys/id_rsa
     StrictHostKeyChecking no
-    PasswordAuthentication no
+    UserKnownHostsFile=/dev/null
 EOF
 RUN chmod 600 /root/.ssh/config
 
 WORKDIR /build
 COPY src ./src
 COPY include ./include
-
 COPY CMakeLists.txt ./CMakeLists.txt
+COPY entrypoint.sh /entrypoint.sh
+COPY platt.sh /usr/local/bin/platt.sh
+RUN chmod +x /entrypoint.sh /usr/local/bin/platt.sh
 
 # Build the application
 RUN mkdir -p build_app && cd build_app && \
@@ -45,6 +40,4 @@ RUN mkdir -p build_app && cd build_app && \
     -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
     && make -j4
 
-# Output stage - extract binary
-FROM scratch AS output
-COPY --from=builder /build/build_app/peripheralControl /peripheralControl
+CMD ["/bin/bash"]
