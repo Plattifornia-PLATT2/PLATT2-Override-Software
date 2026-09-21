@@ -56,14 +56,16 @@ namespace robot{
             // Create movement vector
             subsystems::holonomicDrive::MovementVector movement;  
             
-            polar p = CtoP(leftX, leftY);    
+            polar p = CtoP(leftX, leftY);   
+            
+            p.theta = p.theta - (odom_subsystem->getHeading()+(M_PI_2));
 
-            if(driver_profile->driverEnum = JON){
+            if((driver_profile->driverEnum = JON)){
                 movement.r = p.r;
-                movement.theta = p.theta; 
+                movement.theta = p.theta;
                 movement.w = rightX/1.5;
             }
-            else if(driver_profile->driverEnum = QUINN){
+            else if((driver_profile->driverEnum = QUINN)){
                 movement.r = p.r * 0.90;
                 movement.theta = p.theta; 
                 movement.w = rightX/3;
