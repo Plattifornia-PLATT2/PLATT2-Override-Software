@@ -1,8 +1,8 @@
 #ifndef LINK_HPP
 #define LINK_HPP
 
-#include "sharedData.hpp"
-#include "uartPort.hpp"
+#include "utilities/sharedData.hpp"
+#include "utilities/uartPort.hpp"
 #include <stop_token>
 #include <iostream>
 #include <mutex>

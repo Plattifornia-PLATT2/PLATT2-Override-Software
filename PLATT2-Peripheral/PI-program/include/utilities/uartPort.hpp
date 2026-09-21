@@ -24,7 +24,8 @@
 #include <unistd.h>
 #include <span>
 
-#include "sharedData.hpp"
+#include "utilities/sharedData.hpp"
+#include "utilities/imageProssesing.hpp"
 
 class UartPort {
 public:

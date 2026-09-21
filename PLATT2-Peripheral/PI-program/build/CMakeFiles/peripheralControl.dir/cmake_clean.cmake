@@ -1,12 +1,12 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o"
-  "CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o.d"
-  "CMakeFiles/peripheralControl.dir/src/piLink.cpp.o"
-  "CMakeFiles/peripheralControl.dir/src/piLink.cpp.o.d"
-  "CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o"
-  "CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o.d"
+  "CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o.d"
+  "CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o.d"
+  "CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o.d"
   "peripheralControl"
   "peripheralControl.pdb"
 )

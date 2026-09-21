@@ -1,5 +1,5 @@
-CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
- /workspaces/PI-program/src/main.cpp \
+CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o: \
+ /workspaces/PI-program/src/utilities/ImageProssesing.cpp \
  /usr/aarch64-linux-gnu/include/stdc-predef.h \
  /workspaces/PI-program/include/utilities/imageProssesing.hpp \
  /usr/aarch64-linux-gnu/include/c++/11/iostream \
@@ -495,82 +495,4 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/c++/11/fstream \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/basic_file.h \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/c++io.h \
- /usr/aarch64-linux-gnu/include/c++/11/bits/fstream.tcc \
- /workspaces/PI-program/include/utilities/uartPort.hpp \
- /usr/aarch64-linux-gnu/include/termios.h \
- /usr/aarch64-linux-gnu/include/bits/termios.h \
- /usr/aarch64-linux-gnu/include/bits/termios-struct.h \
- /usr/aarch64-linux-gnu/include/bits/termios-c_cc.h \
- /usr/aarch64-linux-gnu/include/bits/termios-c_iflag.h \
- /usr/aarch64-linux-gnu/include/bits/termios-c_oflag.h \
- /usr/aarch64-linux-gnu/include/bits/termios-baud.h \
- /usr/aarch64-linux-gnu/include/bits/termios-c_cflag.h \
- /usr/aarch64-linux-gnu/include/bits/termios-c_lflag.h \
- /usr/aarch64-linux-gnu/include/bits/termios-tcflow.h \
- /usr/aarch64-linux-gnu/include/bits/termios-misc.h \
- /usr/aarch64-linux-gnu/include/sys/ttydefaults.h \
- /usr/aarch64-linux-gnu/include/fcntl.h \
- /usr/aarch64-linux-gnu/include/bits/fcntl.h \
- /usr/aarch64-linux-gnu/include/bits/fcntl-linux.h \
- /usr/aarch64-linux-gnu/include/bits/types/struct_iovec.h \
- /usr/aarch64-linux-gnu/include/linux/falloc.h \
- /usr/aarch64-linux-gnu/include/bits/stat.h \
- /usr/aarch64-linux-gnu/include/bits/struct_stat.h \
- /usr/aarch64-linux-gnu/include/bits/fcntl2.h \
- /usr/aarch64-linux-gnu/include/poll.h \
- /usr/aarch64-linux-gnu/include/sys/poll.h \
- /usr/aarch64-linux-gnu/include/bits/poll.h \
- /usr/aarch64-linux-gnu/include/bits/poll2.h \
- /usr/aarch64-linux-gnu/include/c++/11/span \
- /workspaces/PI-program/include/utilities/sharedData.hpp \
- /usr/aarch64-linux-gnu/include/c++/11/condition_variable \
- /usr/aarch64-linux-gnu/include/c++/11/stop_token \
- /usr/aarch64-linux-gnu/include/c++/11/atomic \
- /usr/aarch64-linux-gnu/include/c++/11/bits/std_thread.h \
- /usr/aarch64-linux-gnu/include/c++/11/semaphore \
- /usr/aarch64-linux-gnu/include/c++/11/bits/semaphore_base.h \
- /usr/aarch64-linux-gnu/include/c++/11/bits/atomic_timed_wait.h \
- /usr/aarch64-linux-gnu/include/c++/11/bits/this_thread_sleep.h \
- /usr/aarch64-linux-gnu/include/semaphore.h \
- /usr/aarch64-linux-gnu/include/bits/semaphore.h \
- /workspaces/PI-program/include/subsystems/piLink.hpp \
- /usr/aarch64-linux-gnu/include/c++/11/thread \
- /usr/aarch64-linux-gnu/include/c++/11/csignal \
- /usr/aarch64-linux-gnu/include/signal.h \
- /usr/aarch64-linux-gnu/include/bits/signum-generic.h \
- /usr/aarch64-linux-gnu/include/bits/signum-arch.h \
- /usr/aarch64-linux-gnu/include/bits/types/sig_atomic_t.h \
- /usr/aarch64-linux-gnu/include/bits/types/siginfo_t.h \
- /usr/aarch64-linux-gnu/include/bits/types/__sigval_t.h \
- /usr/aarch64-linux-gnu/include/bits/siginfo-arch.h \
- /usr/aarch64-linux-gnu/include/bits/siginfo-consts.h \
- /usr/aarch64-linux-gnu/include/bits/siginfo-consts-arch.h \
- /usr/aarch64-linux-gnu/include/bits/types/sigval_t.h \
- /usr/aarch64-linux-gnu/include/bits/types/sigevent_t.h \
- /usr/aarch64-linux-gnu/include/bits/sigevent-consts.h \
- /usr/aarch64-linux-gnu/include/bits/sigaction.h \
- /usr/aarch64-linux-gnu/include/bits/sigcontext.h \
- /usr/aarch64-linux-gnu/include/asm/sigcontext.h \
- /usr/aarch64-linux-gnu/include/linux/types.h \
- /usr/aarch64-linux-gnu/include/asm/types.h \
- /usr/aarch64-linux-gnu/include/asm-generic/types.h \
- /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
- /usr/aarch64-linux-gnu/include/linux/posix_types.h \
- /usr/aarch64-linux-gnu/include/linux/stddef.h \
- /usr/aarch64-linux-gnu/include/asm/posix_types.h \
- /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
- /usr/aarch64-linux-gnu/include/asm/sve_context.h \
- /usr/aarch64-linux-gnu/include/bits/types/stack_t.h \
- /usr/aarch64-linux-gnu/include/sys/ucontext.h \
- /usr/aarch64-linux-gnu/include/sys/procfs.h \
- /usr/aarch64-linux-gnu/include/sys/user.h \
- /usr/aarch64-linux-gnu/include/bits/procfs.h \
- /usr/aarch64-linux-gnu/include/bits/procfs-id.h \
- /usr/aarch64-linux-gnu/include/bits/procfs-prregset.h \
- /usr/aarch64-linux-gnu/include/bits/procfs-extra.h \
- /usr/aarch64-linux-gnu/include/bits/sigstack.h \
- /usr/aarch64-linux-gnu/include/bits/sigstksz.h \
- /usr/aarch64-linux-gnu/include/bits/ss_flags.h \
- /usr/aarch64-linux-gnu/include/bits/types/struct_sigstack.h \
- /usr/aarch64-linux-gnu/include/bits/sigthread.h \
- /usr/aarch64-linux-gnu/include/bits/signal_ext.h
+ /usr/aarch64-linux-gnu/include/c++/11/bits/fstream.tcc

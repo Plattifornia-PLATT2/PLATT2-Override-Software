@@ -1,11 +1,12 @@
-#include "uartPort.hpp"
 #include <bit>
 #include <thread>
 #include <poll.h>
 #include <sys/ioctl.h>
 #include <cerrno>
 #include <cstdint>
-#include <sharedData.hpp>
+
+#include "utilities/sharedData.hpp"
+#include "utilities/uartPort.hpp"
 
 
 UartPort::UartPort(std::string device, speed_t baud)

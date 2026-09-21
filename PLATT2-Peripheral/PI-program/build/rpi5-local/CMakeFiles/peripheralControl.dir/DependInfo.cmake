@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspaces/PI-program/src/ImageProssesing.cpp" "CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o.d"
   "/workspaces/PI-program/src/main.cpp" "CMakeFiles/peripheralControl.dir/src/main.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/main.cpp.o.d"
-  "/workspaces/PI-program/src/piLink.cpp" "CMakeFiles/peripheralControl.dir/src/piLink.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/piLink.cpp.o.d"
-  "/workspaces/PI-program/src/uartPort.cpp" "CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o.d"
+  "/workspaces/PI-program/src/subsystems/piLink.cpp" "CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o.d"
+  "/workspaces/PI-program/src/utilities/ImageProssesing.cpp" "CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o.d"
+  "/workspaces/PI-program/src/utilities/uartPort.cpp" "CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o" "gcc" "CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o.d"
   )
 
 # Targets to which this target links.

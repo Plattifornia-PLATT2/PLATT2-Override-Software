@@ -1,7 +1,7 @@
-#include "imageProssesing.hpp"
-#include "uartPort.hpp"
-#include "piLink.hpp"
-#include "sharedData.hpp"
+#include "utilities/imageProssesing.hpp"
+#include "utilities/uartPort.hpp"
+#include "subsystems/piLink.hpp"
+#include "utilities/sharedData.hpp"
 #include <thread>
 #include <vector>
 #include <stop_token>

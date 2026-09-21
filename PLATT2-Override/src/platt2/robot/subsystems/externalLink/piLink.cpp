@@ -16,7 +16,6 @@ void piLink::linkLoop(){
         
         bool sent = link.sendLine(zeroPacket);
         
-        
         bool recived = link.receiveLine(dataBuffer, 100);
 
         if (recived){
