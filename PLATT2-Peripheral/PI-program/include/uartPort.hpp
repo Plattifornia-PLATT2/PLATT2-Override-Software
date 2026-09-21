@@ -36,12 +36,6 @@ public:
 
     UartPort(){if (!this->open()) {std::cerr << "open failed: " << this->lastError() << "\n";}} 
     
-    struct data{
-
-        double test = 300;
-
-    };
-
 
     bool open();
     void close();
@@ -52,7 +46,6 @@ public:
     bool sendLine(const data&);
     bool receiveLine(data&, std::uint32_t timeoutMs = 100);
 
-    std::optional<std::string> receiveLine(int timeoutMs = 100);
 
 
 

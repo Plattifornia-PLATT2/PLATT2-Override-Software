@@ -249,26 +249,7 @@ uint64_t UartPort::millis() {
 }
 
 int32_t UartPort::get_read_avail(int fd){
-    pollfd pfd{};
-    pfd.fd     = fd;
-    pfd.events = POLLIN;
-
-    int rc;
-    do {
-        rc = poll(&pfd, 1,0);
-    } while (rc < 0 && errno == EINTR);      // retry if interrupted by a signal
-
-    if (rc < 0)  return -1;                  // poll error, errno is set
-    if (rc == 0) return 0;                   // timeout, nothing to read
-
-    if (pfd.revents & (POLLERR | POLLNVAL)) { errno = EIO; return -1; }
-
-    // POLLHUP can arrive together with POLLIN while buffered data remains,
-    // so only treat it as fatal if there's nothing left to read.
     int n = 0;
     if (ioctl(fd, FIONREAD, &n) < 0) return -1;
-
-    if (n == 0 && (pfd.revents & POLLHUP)) { errno = EIO; return -1; }
-
     return static_cast<int32_t>(n);
 }

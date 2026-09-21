@@ -4,6 +4,18 @@
 #include <mutex>
 #include <condition_variable>
 
+
+struct sendPacket{
+
+        double posX;
+        double posY;
+        double heading;
+
+};
+
+
+
+
 struct sharedData {
     
     std::mutex mtx;
@@ -11,17 +23,17 @@ struct sharedData {
     bool restart = false;
     bool shutdown = false;
     
-    
-    int counter = 0;
     std::condition_variable cv;
 
 
-
+    sendPacket linkData;
 
 
 
 
 
 };
+
+
 
 #endif
