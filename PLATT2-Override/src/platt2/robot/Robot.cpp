@@ -42,10 +42,7 @@ namespace robot{
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
         controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());           
 
-        
-        piLink comlink;
-
-        comlink.linkLoop();
+    
         
         pros::screen::print(pros::E_TEXT_MEDIUM, 7, "Exited");
         

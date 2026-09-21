@@ -43,3 +43,6 @@ void piLink::linkLoop(){
 
 
 }
+
+        //piLink comlink;
+        //comlink.linkLoop();
