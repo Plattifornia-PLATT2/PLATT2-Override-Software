@@ -1,4 +1,5 @@
 #include "platt2/robot/subsystems/externalLink/serialPort.hpp"
+#include "piLink.hpp"
 #include "pros/error.h"
 #include "pros/rtos.hpp"
 
@@ -14,7 +15,7 @@ std::uint32_t serialPort::msUntil(std::uint32_t deadline) {
     return (deadline > now) ? (deadline - now) : 0;
 }
 
-bool serialPort::sendLine(const data& d) {
+bool serialPort::sendLine(const piLink::sendPacket& d) {
     constexpr uint32_t kSendTimeoutMs = 20;
 
     std::array<uint8_t, 64> buf;              // must be >= frame size
@@ -27,7 +28,10 @@ bool serialPort::sendLine(const data& d) {
 
     while (left > 0) {
         const int32_t w = serial_.write(p, static_cast<int32_t>(left));
-        if (w == PROS_ERR) return false;      // port error
+        if (w == PROS_ERR) {
+            lastError_ = "serial write failed, errno=" + std::to_string(errno);
+            return false;
+        }
 
         if (w == 0) {                         // TX buffer full, wait and retry
             if (pros::millis() - start > kSendTimeoutMs) return false;
@@ -40,7 +44,7 @@ bool serialPort::sendLine(const data& d) {
     return true;
 }
 
-bool serialPort::receiveLine(data& d, std::uint32_t timeoutMs) {
+bool serialPort::receiveLine(piLink::sendPacket& d, std::uint32_t timeoutMs) {
     const std::uint32_t deadline = pros::millis() + timeoutMs;
 
     while(true) {
@@ -71,7 +75,7 @@ uint16_t serialPort::crc16(const uint8_t* p, size_t n) {   // CRC-16/CCITT-FALSE
     return crc;
 }
 
-size_t serialPort::pack(const data& d, std::span<uint8_t> out) {
+size_t serialPort::pack(const piLink::sendPacket& d, std::span<uint8_t> out) {
     static_assert(std::endian::native == std::endian::little,
                   "wire format is little-endian");
 
@@ -94,6 +98,10 @@ size_t serialPort::pack(const data& d, std::span<uint8_t> out) {
     put(static_cast<uint8_t>(Type::Sensor));
     put(static_cast<uint16_t>(SENSOR_PAYLOAD));
 
+    put(static_cast<float>(d.posX));
+    put(static_cast<float>(d.posY));
+    put(static_cast<float>(d.heading));
+
     // Payload
     //put(static_cast<uint32_t>(d.id));
     //put(static_cast<float>(d.temperature));
@@ -106,7 +114,7 @@ size_t serialPort::pack(const data& d, std::span<uint8_t> out) {
     return static_cast<size_t>(p - out.data());
 }
 
-bool serialPort::tryParse(data& d) {
+bool serialPort::tryParse(piLink::sendPacket& d) {
     
     auto drop = [this](size_t n) {
         memmove(rx_.data(), rx_.data() + n, rxLen_ - n);
@@ -140,8 +148,21 @@ bool serialPort::tryParse(data& d) {
             p += sizeof v;
         };
 
-        uint32_t id;  float temp;  uint16_t x;  uint8_t ok;
-        get(id);  get(temp);  get(x);  get(ok);
+
+        float posX;
+        float posY;
+        float heading;
+
+        get(posX);
+        get(posY);
+        get(heading);
+
+        d.posX = posX;
+        d.posY = posY;
+        d.heading = heading;
+
+        //uint32_t id;  float temp;  uint16_t x;  uint8_t ok;
+        //get(id);  get(temp);  get(x);  get(ok);
 
         //d.id          = id;
         //d.temperature = temp;

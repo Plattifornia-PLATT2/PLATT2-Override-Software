@@ -1021,7 +1021,7 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp \
   /usr/aarch64-linux-gnu/include/sys/poll.h \
   /usr/aarch64-linux-gnu/include/bits/poll.h \
   /usr/aarch64-linux-gnu/include/bits/poll2.h \
-  ../../include/piLink.hpp \
+  /usr/aarch64-linux-gnu/include/c++/11/span \
   ../../include/sharedData.hpp \
   /usr/aarch64-linux-gnu/include/c++/11/condition_variable \
   /usr/aarch64-linux-gnu/include/c++/11/stop_token \
@@ -1033,6 +1033,7 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp \
   /usr/aarch64-linux-gnu/include/c++/11/bits/this_thread_sleep.h \
   /usr/aarch64-linux-gnu/include/semaphore.h \
   /usr/aarch64-linux-gnu/include/bits/semaphore.h \
+  ../../include/piLink.hpp \
   ../../include/sharedData.hpp \
   /usr/aarch64-linux-gnu/include/c++/11/thread \
   /usr/aarch64-linux-gnu/include/c++/11/csignal \
@@ -1367,7 +1368,9 @@ CMakeFiles/peripheralControl.dir/src/piLink.cpp.o: ../../src/piLink.cpp \
   /usr/aarch64-linux-gnu/include/poll.h \
   /usr/aarch64-linux-gnu/include/sys/poll.h \
   /usr/aarch64-linux-gnu/include/bits/poll.h \
-  /usr/aarch64-linux-gnu/include/bits/poll2.h
+  /usr/aarch64-linux-gnu/include/bits/poll2.h \
+  /usr/aarch64-linux-gnu/include/c++/11/span \
+  /usr/aarch64-linux-gnu/include/c++/11/cstddef
 
 CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
   /usr/aarch64-linux-gnu/include/stdc-predef.h \
@@ -1614,8 +1617,75 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
   /usr/aarch64-linux-gnu/include/bits/getopt_core.h \
   /usr/aarch64-linux-gnu/include/bits/unistd.h \
   /usr/aarch64-linux-gnu/include/bits/unistd_ext.h \
-  /usr/aarch64-linux-gnu/include/linux/close_range.h
+  /usr/aarch64-linux-gnu/include/linux/close_range.h \
+  /usr/aarch64-linux-gnu/include/c++/11/span \
+  /usr/aarch64-linux-gnu/include/c++/11/array \
+  /usr/aarch64-linux-gnu/include/c++/11/cstddef \
+  ../../include/sharedData.hpp \
+  /usr/aarch64-linux-gnu/include/c++/11/mutex \
+  /usr/aarch64-linux-gnu/include/c++/11/tuple \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/uses_allocator.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/invoke.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/std_mutex.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/unique_lock.h \
+  /usr/aarch64-linux-gnu/include/c++/11/condition_variable \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/shared_ptr.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/shared_ptr_base.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/allocated_ptr.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/refwrap.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/unique_ptr.h \
+  /usr/aarch64-linux-gnu/include/c++/11/ext/aligned_buffer.h \
+  /usr/aarch64-linux-gnu/include/c++/11/ext/concurrence.h \
+  /usr/aarch64-linux-gnu/include/c++/11/stop_token \
+  /usr/aarch64-linux-gnu/include/c++/11/atomic \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/atomic_base.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/atomic_lockfree_defines.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/atomic_wait.h \
+  /usr/aarch64-linux-gnu/include/c++/11/climits \
+  /usr/lib/gcc-cross/aarch64-linux-gnu/11/include/limits.h \
+  /usr/lib/gcc-cross/aarch64-linux-gnu/11/include/syslimits.h \
+  /usr/aarch64-linux-gnu/include/limits.h \
+  /usr/aarch64-linux-gnu/include/bits/posix1_lim.h \
+  /usr/aarch64-linux-gnu/include/bits/local_lim.h \
+  /usr/aarch64-linux-gnu/include/linux/limits.h \
+  /usr/aarch64-linux-gnu/include/bits/posix2_lim.h \
+  /usr/aarch64-linux-gnu/include/bits/xopen_lim.h \
+  /usr/aarch64-linux-gnu/include/bits/uio_lim.h \
+  /usr/aarch64-linux-gnu/include/syscall.h \
+  /usr/aarch64-linux-gnu/include/sys/syscall.h \
+  /usr/aarch64-linux-gnu/include/asm/unistd.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/unistd.h \
+  /usr/aarch64-linux-gnu/include/asm/bitsperlong.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/bitsperlong.h \
+  /usr/aarch64-linux-gnu/include/bits/syscall.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/std_thread.h \
+  /usr/aarch64-linux-gnu/include/c++/11/semaphore \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/semaphore_base.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/atomic_timed_wait.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/this_thread_sleep.h \
+  /usr/aarch64-linux-gnu/include/sys/time.h \
+  /usr/aarch64-linux-gnu/include/semaphore.h \
+  /usr/aarch64-linux-gnu/include/bits/semaphore.h \
+  /usr/aarch64-linux-gnu/include/c++/11/bit \
+  /usr/aarch64-linux-gnu/include/c++/11/thread \
+  /usr/aarch64-linux-gnu/include/sys/ioctl.h \
+  /usr/aarch64-linux-gnu/include/bits/ioctls.h \
+  /usr/aarch64-linux-gnu/include/asm/ioctls.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/ioctls.h \
+  /usr/aarch64-linux-gnu/include/linux/ioctl.h \
+  /usr/aarch64-linux-gnu/include/asm/ioctl.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/ioctl.h \
+  /usr/aarch64-linux-gnu/include/bits/ioctl-types.h \
+  ../../include/sharedData.hpp
 
+
+/usr/aarch64-linux-gnu/include/asm/ioctl.h:
+
+/usr/aarch64-linux-gnu/include/linux/ioctl.h:
+
+/usr/aarch64-linux-gnu/include/asm-generic/ioctls.h:
+
+/usr/aarch64-linux-gnu/include/asm/ioctls.h:
 
 ../../src/piLink.cpp:
 
@@ -2163,7 +2233,13 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 
 /usr/aarch64-linux-gnu/include/time.h:
 
+/usr/aarch64-linux-gnu/include/bits/ioctls.h:
+
 /usr/aarch64-linux-gnu/include/bits/flt-eval-method.h:
+
+/usr/aarch64-linux-gnu/include/bits/siginfo-consts-arch.h:
+
+/usr/aarch64-linux-gnu/include/c++/11/bits/postypes.h:
 
 /usr/lib/gcc-cross/aarch64-linux-gnu/11/include/limits.h:
 
@@ -2387,6 +2463,8 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 
 /usr/aarch64-linux-gnu/include/bits/struct_stat.h:
 
+/usr/aarch64-linux-gnu/include/c++/11/span:
+
 /usr/aarch64-linux-gnu/include/c++/11/tr1/exp_integral.tcc:
 
 /usr/aarch64-linux-gnu/include/c++/11/tr1/modified_bessel_func.tcc:
@@ -2446,6 +2524,8 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 /usr/aarch64-linux-gnu/include/c++/11/bits/ranges_uninitialized.h:
 
 /usr/aarch64-linux-gnu/include/bits/termios-c_cflag.h:
+
+/usr/aarch64-linux-gnu/include/sys/ioctl.h:
 
 /usr/aarch64-linux-gnu/include/c++/11/bits/uses_allocator_args.h:
 
@@ -2539,6 +2619,8 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 
 /usr/aarch64-linux-gnu/include/c++/11/iomanip:
 
+/usr/aarch64-linux-gnu/include/asm-generic/ioctl.h:
+
 /usr/aarch64-linux-gnu/include/c++/11/set:
 
 /usr/aarch64-linux-gnu/include/c++/11/bits/stl_multiset.h:
@@ -2568,10 +2650,6 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 ../rpi5-libs-extracted/rpi/include/opencv4/opencv2/flann/composite_index.h:
 
 /usr/aarch64-linux-gnu/include/c++/11/locale:
-
-/usr/aarch64-linux-gnu/include/c++/11/bits/postypes.h:
-
-/usr/aarch64-linux-gnu/include/bits/siginfo-consts-arch.h:
 
 /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h:
 
@@ -2687,6 +2765,8 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 
 /usr/aarch64-linux-gnu/include/bits/termios.h:
 
+/usr/aarch64-linux-gnu/include/bits/ioctl-types.h:
+
 /usr/aarch64-linux-gnu/include/bits/termios-c_oflag.h:
 
 /usr/aarch64-linux-gnu/include/c++/11/ext/string_conversions.h:
@@ -2733,8 +2813,6 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 
 /usr/aarch64-linux-gnu/include/bits/poll2.h:
 
-../../include/piLink.hpp:
-
 /usr/aarch64-linux-gnu/include/sys/single_threaded.h:
 
 /usr/aarch64-linux-gnu/include/c++/11/bits/stl_numeric.h:
@@ -2744,6 +2822,8 @@ CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o: ../../src/uartPort.cpp \
 /usr/aarch64-linux-gnu/include/c++/11/bits/this_thread_sleep.h:
 
 /usr/aarch64-linux-gnu/include/bits/semaphore.h:
+
+../../include/piLink.hpp:
 
 /usr/aarch64-linux-gnu/include/c++/11/pstl/glue_memory_defs.h:
 

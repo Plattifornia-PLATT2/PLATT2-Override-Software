@@ -291,4 +291,6 @@ CMakeFiles/peripheralControl.dir/src/piLink.cpp.o: \
  /usr/aarch64-linux-gnu/include/poll.h \
  /usr/aarch64-linux-gnu/include/sys/poll.h \
  /usr/aarch64-linux-gnu/include/bits/poll.h \
- /usr/aarch64-linux-gnu/include/bits/poll2.h
+ /usr/aarch64-linux-gnu/include/bits/poll2.h \
+ /usr/aarch64-linux-gnu/include/c++/11/span \
+ /usr/aarch64-linux-gnu/include/c++/11/cstddef

@@ -11,10 +11,6 @@ class piLink{
     public:
 
         void linkLoop(std::stop_token, sharedData&);
-    
-    private:
-
-        void parse(sharedData&);
 
 
 

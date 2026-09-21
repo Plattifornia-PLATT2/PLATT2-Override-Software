@@ -7,9 +7,9 @@
 
 struct sendPacket{
 
-        double posX;
-        double posY;
-        double heading;
+        double posX = 0;
+        double posY = 0;
+        double heading = 0;
 
 };
 

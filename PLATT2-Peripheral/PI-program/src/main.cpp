@@ -35,6 +35,8 @@ int main() {
         std::unique_lock<std::mutex> lock(shared.mtx);
         shared.cv.wait(lock, [&shared] { return shared.restart || shared.shutdown; });
 
+        std::cout << "fuck" << std::endl;
+
         for (auto& t : comTask) {
             t.request_stop();
         }

@@ -5,6 +5,7 @@
 #include <sys/ioctl.h>
 #include <cerrno>
 #include <cstdint>
+#include <sharedData.hpp>
 
 
 UartPort::UartPort(std::string device, speed_t baud)
@@ -57,24 +58,32 @@ bool UartPort::isOpen() const { return fd_ >= 0; }
 const std::string& UartPort::lastError() const { return lastError_; }
 
 
-bool UartPort::sendLine(const data& d) {
+bool UartPort::sendLine(const sendPacket& d) {
     constexpr uint32_t kSendTimeoutMs = 20;
 
-    std::array<uint8_t, 64> buf;              // must be >= frame size
-    const size_t n = pack(d, buf);
-    if (n == 0) return false;                 // buffer too small
+    if (fd_ < 0) { lastError_ = "sendLine: port not open"; return false; }
 
-    uint8_t* p = buf.data();
+    std::array<uint8_t, 64> buf;
+    const size_t n = pack(d, buf);
+    if (n == 0) { lastError_ = "sendLine: buffer too small"; return false; }
+
+    const uint8_t* p = buf.data();
     size_t left = n;
-    const uint32_t start = millis();
+    const uint64_t start = millis();
 
     while (left > 0) {
-        const int32_t w = ::write(fd_ , p, static_cast<int32_t>(left));
-
-        if (w == 0) {                         // TX buffer full, wait and retry
-            if (millis() - start > kSendTimeoutMs) return false;
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
-            continue;
+        const ssize_t w = ::write(fd_, p, left);
+        if (w < 0) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR) {
+                if (millis() - start > kSendTimeoutMs) {
+                    lastError_ = "sendLine: timeout";
+                    return false;
+                }
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                continue;
+            }
+            lastError_ = "write() failed: " + std::string(std::strerror(errno));
+            return false;
         }
         p    += w;
         left -= static_cast<size_t>(w);
@@ -82,7 +91,7 @@ bool UartPort::sendLine(const data& d) {
     return true;
 }
 
-bool UartPort::receiveLine(data& d, std::uint32_t timeoutMs) {
+bool UartPort::receiveLine(sendPacket& d, std::uint32_t timeoutMs) {
    const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(timeoutMs);
 
     while(true) {
@@ -112,7 +121,7 @@ uint16_t UartPort::crc16(const uint8_t* p, size_t n) {   // CRC-16/CCITT-FALSE
 }
 
 
-size_t UartPort::pack(const data& d, std::span<uint8_t> out) {
+size_t UartPort::pack(const sendPacket& d, std::span<uint8_t> out) {
     static_assert(std::endian::native == std::endian::little,
                   "wire format is little-endian");
 
@@ -135,6 +144,10 @@ size_t UartPort::pack(const data& d, std::span<uint8_t> out) {
     put(static_cast<uint8_t>(Type::Sensor));
     put(static_cast<uint16_t>(SENSOR_PAYLOAD));
 
+    put(static_cast<float>(d.posX));
+    put(static_cast<float>(d.posY));
+    put(static_cast<float>(d.heading));
+
     // Payload
     //put(static_cast<uint32_t>(d.id));
     //put(static_cast<float>(d.temperature));
@@ -147,7 +160,7 @@ size_t UartPort::pack(const data& d, std::span<uint8_t> out) {
     return static_cast<size_t>(p - out.data());
 }
 
-bool UartPort::tryParse(data& d) {
+bool UartPort::tryParse(sendPacket& d) {
     
     auto drop = [this](size_t n) {
         memmove(rx_.data(), rx_.data() + n, rxLen_ - n);
@@ -181,8 +194,23 @@ bool UartPort::tryParse(data& d) {
             p += sizeof v;
         };
 
-        uint32_t id;  float temp;  uint16_t x;  uint8_t ok;
-        get(id);  get(temp);  get(x);  get(ok);
+
+
+        float posX;
+        float posY;
+        float heading;
+
+        get(posX);
+        get(posY);
+        get(heading);
+
+        d.posX = posX;
+        d.posY = posY;
+        d.heading = heading;
+
+
+        //uint32_t id;  float temp;  uint16_t x;  uint8_t ok;
+        //get(id);  get(temp);  get(x);  get(ok);
 
         //d.id          = id;
         //d.temperature = temp;

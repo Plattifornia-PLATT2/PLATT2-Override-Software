@@ -1,5 +1,6 @@
 #pragma once
 
+#include "piLink.hpp"
 #include "pros/serial.hpp"
 
 #include <cstdint>
@@ -10,17 +11,11 @@ public:
     // port: smart port number (1-21). baudrate: e.g. 115200.
     explicit serialPort(std::uint8_t port, std::int32_t baudrate = 115200);
     
-    struct data{
 
-        double test = 300;
-
-    };
+    bool sendLine(const piLink::sendPacket&);
 
 
-    bool sendLine(const data&);
-
-
-    bool receiveLine(data&, std::uint32_t timeoutMs = 100);
+    bool receiveLine(piLink::sendPacket&, std::uint32_t timeoutMs = 100);
  
     
     const std::string& lastError() const;
@@ -28,10 +23,9 @@ public:
 private:
 
     static constexpr size_t SENSOR_PAYLOAD =
-        sizeof(uint32_t) +   // id
+        sizeof(float) +   // id
         sizeof(float)    +   // temperature
-        sizeof(int16_t)  +   // x
-        sizeof(uint8_t);     // ok
+        sizeof(float);   // x     // ok
 
     static constexpr size_t kSyncLen   = 2;
     static constexpr size_t kHeaderLen = kSyncLen + 1 + 2;   // sync + type + length
@@ -43,9 +37,9 @@ private:
     
     uint16_t crc16(const uint8_t* p, size_t n);
 
-    size_t pack(const data&, std::span<uint8_t>);
+    size_t pack(const piLink::sendPacket&, std::span<uint8_t>);
     
-    bool tryParse(data& d);
+    bool tryParse(piLink::sendPacket& d);
     std::array<uint8_t, 64> rx_;
     size_t                  rxLen_ = 0;
 

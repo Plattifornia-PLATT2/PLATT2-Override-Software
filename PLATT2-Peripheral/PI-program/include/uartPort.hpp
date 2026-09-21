@@ -24,6 +24,8 @@
 #include <unistd.h>
 #include <span>
 
+#include "sharedData.hpp"
+
 class UartPort {
 public:
     explicit UartPort(std::string device, speed_t baud = B115200);
@@ -34,17 +36,14 @@ public:
     UartPort(UartPort&& other) noexcept;
     UartPort& operator=(UartPort&& other) noexcept;
 
-    UartPort(){if (!this->open()) {std::cerr << "open failed: " << this->lastError() << "\n";}} 
-    
-
     bool open();
     void close();
     bool isOpen() const;
     const std::string& lastError() const;
 
 
-    bool sendLine(const data&);
-    bool receiveLine(data&, std::uint32_t timeoutMs = 100);
+    bool sendLine(const sendPacket&);
+    bool receiveLine(sendPacket&, std::uint32_t timeoutMs = 100);
 
 
 
@@ -56,10 +55,9 @@ private:
     int fd_ = -1;
 
     static constexpr size_t SENSOR_PAYLOAD =
-        sizeof(uint32_t) +   // id
+        sizeof(float) +   // id
         sizeof(float)    +   // temperature
-        sizeof(int16_t)  +   // x
-        sizeof(uint8_t);     // ok
+        sizeof(float);
 
     static constexpr size_t kSyncLen   = 2;
     static constexpr size_t kHeaderLen = kSyncLen + 1 + 2;   // sync + type + length
@@ -71,9 +69,9 @@ private:
     
     uint16_t crc16(const uint8_t* p, size_t n);
 
-    size_t pack(const data&, std::span<uint8_t>);
+    size_t pack(const sendPacket&, std::span<uint8_t>);
     
-    bool tryParse(data& d);
+    bool tryParse(sendPacket& d);
     std::array<uint8_t, 64> rx_;
     size_t                  rxLen_ = 0;
 

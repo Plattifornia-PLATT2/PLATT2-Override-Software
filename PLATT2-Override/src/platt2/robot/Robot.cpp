@@ -4,6 +4,7 @@
 #include <memory>
 #include "platt2/EDriverConfig.hpp"
 #include "platt2/helperFunctions.h"
+#include "platt2/robot/subsystems/externalLink/piLink.hpp"
 
 namespace platt2{
 
@@ -38,33 +39,17 @@ namespace robot{
 
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
         controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());           
-        
-        #define SERIAL_PORT 3
-        #define BAUDRATE 115200
 
-        pros::c::serial_enable(SERIAL_PORT);
-        pros::c::serial_set_baudrate(SERIAL_PORT, BAUDRATE);
-        pros::screen::print(pros::E_TEXT_MEDIUM, 1, "Waiting for data...");
+        
+        piLink comlink;
+
+        comlink.linkLoop();
+        
+        pros::screen::print(pros::E_TEXT_MEDIUM, 7, "Exited");
+        
+        
         while(true){
 
-
-
-        
-
-            uint8_t buf[256];
-            while (true) {
-                int32_t avail = pros::c::serial_get_read_avail(SERIAL_PORT);
-            
-                if (avail > 0) {
-                    int32_t n = pros::c::serial_read(SERIAL_PORT, buf, sizeof(buf));
-                    buf[n < 256 ? n : 255] = '\0';
-                
-                    pros::screen::erase();
-                    pros::screen::print(pros::E_TEXT_MEDIUM, 1, "Received: %s", buf);
-                }
-            
-                pros::delay(10);  // avoid busy-waiting/hogging CPU
-            }
 
             
             double leftX = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X))/127;
