@@ -177,6 +177,54 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/piLink.o: src/piLink.cpp.o
+.PHONY : src/piLink.o
+
+# target to build an object file
+src/piLink.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/piLink.cpp.o
+.PHONY : src/piLink.cpp.o
+
+src/piLink.i: src/piLink.cpp.i
+.PHONY : src/piLink.i
+
+# target to preprocess a source file
+src/piLink.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/piLink.cpp.i
+.PHONY : src/piLink.cpp.i
+
+src/piLink.s: src/piLink.cpp.s
+.PHONY : src/piLink.s
+
+# target to generate assembly for a file
+src/piLink.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/piLink.cpp.s
+.PHONY : src/piLink.cpp.s
+
+src/uartPort.o: src/uartPort.cpp.o
+.PHONY : src/uartPort.o
+
+# target to build an object file
+src/uartPort.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartPort.cpp.o
+.PHONY : src/uartPort.cpp.o
+
+src/uartPort.i: src/uartPort.cpp.i
+.PHONY : src/uartPort.i
+
+# target to preprocess a source file
+src/uartPort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartPort.cpp.i
+.PHONY : src/uartPort.cpp.i
+
+src/uartPort.s: src/uartPort.cpp.s
+.PHONY : src/uartPort.s
+
+# target to generate assembly for a file
+src/uartPort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/uartPort.cpp.s
+.PHONY : src/uartPort.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +240,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/piLink.o"
+	@echo "... src/piLink.i"
+	@echo "... src/piLink.s"
+	@echo "... src/uartPort.o"
+	@echo "... src/uartPort.i"
+	@echo "... src/uartPort.s"
 .PHONY : help
 
 

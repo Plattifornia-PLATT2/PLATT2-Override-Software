@@ -77,7 +77,7 @@ class PinkConfig : public IConfig {
     // ** Pneumatics **
     static constexpr int ED_MECH_PISTON_PORT{1};
     static constexpr int UPPER_CONVEYOR_HEIGHT_PISTON_PORT{2};
-    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{3};
+    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{0};
     static constexpr int RAKE_MECH_PISTON_PORT{4};
     static constexpr int DESCORE_PISTON_PORT{5};
     static constexpr int REAR_INTAKE_PISTON_PORT {6};

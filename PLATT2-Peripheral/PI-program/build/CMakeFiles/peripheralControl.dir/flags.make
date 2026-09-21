@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/aarch64-linux-gnu-g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspaces/PI-program/include -I/opt/rpi/include/opencv4 -I/opt/rpi/include
+CXX_INCLUDES = -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4
 
-CXX_FLAGS = -g -std=gnu++17
+CXX_FLAGS = -g -std=gnu++20
 

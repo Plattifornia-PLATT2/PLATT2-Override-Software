@@ -40,9 +40,19 @@ namespace robot{
     void Robot::driverControl(){
 
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
-        controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());
+        controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());           
 
+        
+        piLink comlink;
+
+        comlink.linkLoop();
+        
+        pros::screen::print(pros::E_TEXT_MEDIUM, 7, "Exited");
+        
+        
         while(true){
+
+
             
             double leftX = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X))/127;
             double leftY = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y))/127;

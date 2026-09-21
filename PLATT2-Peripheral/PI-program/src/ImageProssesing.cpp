@@ -1,5 +1,10 @@
 #include "imageProssesing.hpp"
-
+    //Camera camera("frontCam");
+    //camera.printCameraInfo();
+    //auto pos = camera.getImagePos();
+    //std::cout << "Tag ID: " << pos.tag_id << "\n";
+    //std::cout << "Position (x, y, z): (" << pos.x << ", " << pos.y << ", " << pos.z << ")\n";
+    //std::cout << "Reprojection Error: " << pos.reproj_error << "\n";
 Camera::tagPos Camera::getImagePos() {
 
     cv::Mat frame, gray;
@@ -16,7 +21,7 @@ Camera::tagPos Camera::getImagePos() {
     };
 
     zarray_t *detections = apriltag_detector_detect(tagDetector, &image);
-
+    
     tagPos best_result;
     double best_error = std::numeric_limits<double>::max();
 

@@ -1,0 +1,33 @@
+# Dev Container Dockerfile - includes Docker CLI for building RPi5 binaries
+FROM ubuntu:22.04
+
+# Install build tools, Docker CLI, ARM64 cross-compile tools, and SSH
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    pkg-config \
+    curl \
+    ca-certificates \
+    gnupg \
+    lsb-release \
+    openssh-client \
+    crossbuild-essential-arm64 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Docker CLI (not daemon, just the CLI)
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    docker-ce-cli \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install VSCode extensions prerequisites
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gdb \
+    lldb \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspaces/PI-program
+
+ENTRYPOINT [ "/bin/bash" ]

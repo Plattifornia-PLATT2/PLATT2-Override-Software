@@ -1,21 +1,19 @@
 {
     "configurations": [
         {
-            "name": "RPi5 (Docker)",
+            "name": "RPi5 (Local)",
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/include",
-                "/opt/rpi/include/opencv4",
-                "/opt/rpi/include"
+                "${workspaceFolder}/build/rpi5-libs-extracted/rpi/include"
             ],
             "defines": [
                 "__aarch64__",
                 "__linux__"
             ],
             "compilerPath": "/usr/bin/aarch64-linux-gnu-g++",
-            "configurationProvider": "ms-vscode.cmake-tools",
             "cStandard": "c17",
-            "cppStandard": "c++17",
+            "cppStandard": "c++20",
             "intelliSenseMode": "linux-gcc-arm64"
         }
     ],
