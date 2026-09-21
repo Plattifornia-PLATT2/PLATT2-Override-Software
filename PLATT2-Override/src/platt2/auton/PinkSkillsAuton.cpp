@@ -9,13 +9,13 @@ namespace platt2{
 namespace auton{
 
 void PinkSkillsAuton::init(
-    std::shared_ptr<robot::subsystems::tankDrive::TankControl> tank_subsytem, 
+    std::shared_ptr<robot::subsystems::holonomicDrive::HolonomicControl> holonomic_subsytem, 
     std::shared_ptr<robot::subsystems::odometry::Odometry> odometry_subsystem, 
     std::shared_ptr<robot::subsystems::intake::IntakeSubsystem> intake_subsystem,
     std::shared_ptr<robot::subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem,
     robot::AllianceConfig alliance_color
 ) {
-    this->tank_subsytem = tank_subsytem;
+    this->holonomic_subsytem = holonomic_subsytem;
     this->odometry_subsystem = odometry_subsystem;
     this->intake_subsystem = intake_subsystem;
     this->color_sort_subsystem = color_sort_subsystem;
