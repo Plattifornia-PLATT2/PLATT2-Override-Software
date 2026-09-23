@@ -9,16 +9,26 @@
 #include <string>
 #include "utilities/json.hpp"
 #include <fstream>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include "utilities/sharedData.hpp"
 
 class Camera {
 public:
-    struct tagPos {
-        double x = 0;
-        double y = 0;
+
+
+
+
+    struct tagInfo {
+        Pos pos;
         double z = 0;
+        double angle = 0;
         int    tag_id = -1;
         double reproj_error = std::numeric_limits<double>::max();
     };
+
+    
     
     struct cameraInfo {
         
@@ -31,6 +41,7 @@ public:
         double cx;
         double cy;
     };
+    
 
     Camera(std::string camName) {
 
@@ -38,12 +49,11 @@ public:
 
         cameraInfo camInfo;
 
-        std::ifstream f("cameraConfig.json");
+        std::ifstream f("config.json");
         json root = json::parse(f);
 
         for (auto& cam : root.at("cameras")) {
             if (cam.at("name") == camName) {
-                cameraInfo info;
                 camInfo.name    = cam.at("name");
                 camInfo.address = cam.at("address");
                 camInfo.fx      = cam.at("fx");
@@ -53,28 +63,29 @@ public:
                 break;
             }
         }
-        
+
         cap.open(camInfo.address, cv::CAP_V4L2);
         cap.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('M','J','P','G'));
+        
+        //cap.set(cv::CAP_PROP_FRAME_WIDTH,  640);
+        //cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+        
         cap.set(cv::CAP_PROP_FRAME_WIDTH,  1280);
         cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
-
-        for (int i = 0; i < 5; i++)
-            cap.grab();
 
         tagFamily   = tagCircle21h7_create();
         tagDetector = apriltag_detector_create();
         apriltag_detector_add_family(tagDetector, tagFamily);
 
-        tagDetector->quad_decimate = 2.0f;
+        tagDetector->quad_decimate = 4.0f;
         tagDetector->quad_sigma    = 0.0f;
-        tagDetector->nthreads      = 2;
+        tagDetector->nthreads      = 4;
         tagDetector->debug         = 0;
         tagDetector->refine_edges  = 1;
 
-        cap >> frame;
+        waitForExposureSettled();
 
-        info.tagsize = 3; 
+        info.tagsize =  0.6875; 
         info.fx      = camInfo.fx;
         info.fy      = camInfo.fy;
         info.cx      = camInfo.cx;
@@ -87,7 +98,9 @@ public:
         cap.release();
     }
 
-    tagPos getImagePos();
+    std::vector<Camera::tagInfo> getTagPos();
+    void capImg();
+    double getHorizontalAngle(matd_t* R);
 
 
 private:
@@ -96,6 +109,8 @@ private:
     apriltag_family_t*        tagFamily   = nullptr;
     apriltag_detector_t*      tagDetector = nullptr;
     apriltag_detection_info_t info;
+
+    bool waitForExposureSettled(int maxFrames = 60, double clippedFraction = 0.02, int stableFramesRequired = 3);
 };
 
 #endif // IMAGEPROSSESING_HPP

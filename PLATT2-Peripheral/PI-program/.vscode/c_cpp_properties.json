@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/include/**",
-                "${workspaceFolder}/build/rpi5-libs-extracted/rpi/include"
+                "${workspaceFolder}/build/rpi5-libs-extracted/rpi/include",
+                "${workspaceFolder}/include"
             ],
             "defines": [
                 "__aarch64__",

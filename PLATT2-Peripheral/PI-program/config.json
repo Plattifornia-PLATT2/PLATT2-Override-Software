@@ -1,0 +1,28 @@
+{
+    "cameras": [
+        {
+            "name": "front",
+            "address": "/dev/video0",
+            "fx": 910.5,
+            "fy": 910.9,
+            "cx": 640.0,
+            "cy": 360.0
+        },
+        {
+            "name": "rear",
+            "address": "/dev/video2",
+            "fx": 905.2,
+            "fy": 906.7,
+            "cx": 638.5,
+            "cy": 358.2
+        },
+        {
+            "name": "shooter",
+            "address": "/dev/video4",
+            "fx": 915.0,
+            "fy": 914.3,
+            "cx": 641.0,
+            "cy": 359.7
+        }
+    ]
+}

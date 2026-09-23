@@ -153,6 +153,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/subsystems/cameraTracking.o: src/subsystems/cameraTracking.cpp.o
+.PHONY : src/subsystems/cameraTracking.o
+
+# target to build an object file
+src/subsystems/cameraTracking.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/cameraTracking.cpp.o
+.PHONY : src/subsystems/cameraTracking.cpp.o
+
+src/subsystems/cameraTracking.i: src/subsystems/cameraTracking.cpp.i
+.PHONY : src/subsystems/cameraTracking.i
+
+# target to preprocess a source file
+src/subsystems/cameraTracking.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/cameraTracking.cpp.i
+.PHONY : src/subsystems/cameraTracking.cpp.i
+
+src/subsystems/cameraTracking.s: src/subsystems/cameraTracking.cpp.s
+.PHONY : src/subsystems/cameraTracking.s
+
+# target to generate assembly for a file
+src/subsystems/cameraTracking.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/cameraTracking.cpp.s
+.PHONY : src/subsystems/cameraTracking.cpp.s
+
 src/subsystems/piLink.o: src/subsystems/piLink.cpp.o
 .PHONY : src/subsystems/piLink.o
 
@@ -237,6 +261,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/subsystems/cameraTracking.o"
+	@echo "... src/subsystems/cameraTracking.i"
+	@echo "... src/subsystems/cameraTracking.s"
 	@echo "... src/subsystems/piLink.o"
 	@echo "... src/subsystems/piLink.i"
 	@echo "... src/subsystems/piLink.s"

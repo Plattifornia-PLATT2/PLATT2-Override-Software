@@ -269,6 +269,37 @@ Transfer to RPi5:
 EOF
 }
 
+
+build_upload(){
+
+    local pi_name="$1"
+    local pi_host
+    
+    case "${pi_name}" in
+        pink)
+            pi_host="pink"
+            ;;
+        purple)
+            pi_host="purple"
+            ;;
+        "")
+            log_error "Usage: $0 run <pink|purple>"
+            log_error "Example: $0 run pink"
+            log_error "Example: $0 run purple"
+            exit 1
+            ;;
+        *)
+            log_error "Invalid target: ${pi_name}"
+            log_error "Valid targets: pink, purple"
+            exit 1
+            ;;
+    esac
+
+    build_app
+    upload_binary "${pi_host}"
+    
+}
+
 ##############################################################################
 # Main
 ##############################################################################
@@ -300,6 +331,9 @@ main() {
             ;;
         help|--help|-h)
             show_help
+            ;;
+        bu)
+            build_upload "$2"
             ;;
         *)
             log_error "Unknown command: ${command}"

@@ -13,7 +13,13 @@ struct sendPacket{
 
 };
 
+struct Pos{
 
+    double x = 0;
+    double y = 0;
+
+
+};
 
 
 struct sharedData {
@@ -25,10 +31,10 @@ struct sharedData {
     
     std::condition_variable cv;
 
-
     sendPacket linkData;
 
-
+    double x = 0;
+    double y = 0;
 
 
 

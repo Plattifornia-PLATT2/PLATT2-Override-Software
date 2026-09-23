@@ -495,4 +495,16 @@ CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o: \
  /usr/aarch64-linux-gnu/include/c++/11/fstream \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/basic_file.h \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/c++io.h \
- /usr/aarch64-linux-gnu/include/c++/11/bits/fstream.tcc
+ /usr/aarch64-linux-gnu/include/c++/11/bits/fstream.tcc \
+ /usr/aarch64-linux-gnu/include/c++/11/thread \
+ /usr/aarch64-linux-gnu/include/c++/11/stop_token \
+ /usr/aarch64-linux-gnu/include/c++/11/atomic \
+ /usr/aarch64-linux-gnu/include/c++/11/bits/std_thread.h \
+ /usr/aarch64-linux-gnu/include/c++/11/semaphore \
+ /usr/aarch64-linux-gnu/include/c++/11/bits/semaphore_base.h \
+ /usr/aarch64-linux-gnu/include/c++/11/bits/atomic_timed_wait.h \
+ /usr/aarch64-linux-gnu/include/c++/11/bits/this_thread_sleep.h \
+ /usr/aarch64-linux-gnu/include/semaphore.h \
+ /usr/aarch64-linux-gnu/include/bits/semaphore.h \
+ /workspaces/PI-program/include/utilities/sharedData.hpp \
+ /usr/aarch64-linux-gnu/include/c++/11/condition_variable
