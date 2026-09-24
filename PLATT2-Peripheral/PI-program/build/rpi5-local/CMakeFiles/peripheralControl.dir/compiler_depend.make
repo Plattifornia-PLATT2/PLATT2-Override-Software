@@ -524,7 +524,6 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp \
   /usr/aarch64-linux-gnu/include/bits/poll.h \
   /usr/aarch64-linux-gnu/include/bits/poll2.h \
   /usr/aarch64-linux-gnu/include/c++/11/span \
-  ../../include/subsystems/piLink.hpp \
   ../../include/utilities/sharedData.hpp \
   /usr/aarch64-linux-gnu/include/c++/11/condition_variable \
   /usr/aarch64-linux-gnu/include/c++/11/stop_token \
@@ -536,6 +535,7 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp \
   /usr/aarch64-linux-gnu/include/c++/11/bits/this_thread_sleep.h \
   /usr/aarch64-linux-gnu/include/semaphore.h \
   /usr/aarch64-linux-gnu/include/bits/semaphore.h \
+  ../../include/subsystems/piLink.hpp \
   /usr/aarch64-linux-gnu/include/c++/11/thread \
   /usr/aarch64-linux-gnu/include/c++/11/csignal \
   /usr/aarch64-linux-gnu/include/signal.h \
@@ -3286,8 +3286,6 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 
 /usr/aarch64-linux-gnu/include/bits/poll2.h:
 
-../../include/subsystems/piLink.hpp:
-
 /usr/aarch64-linux-gnu/include/c++/11/bits/atomic_lockfree_defines.h:
 
 ../../include/utilities/sharedData.hpp:
@@ -3301,6 +3299,8 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 /usr/aarch64-linux-gnu/include/c++/11/bits/this_thread_sleep.h:
 
 /usr/aarch64-linux-gnu/include/bits/semaphore.h:
+
+../../include/subsystems/piLink.hpp:
 
 /usr/aarch64-linux-gnu/include/c++/11/pstl/glue_memory_defs.h:
 
