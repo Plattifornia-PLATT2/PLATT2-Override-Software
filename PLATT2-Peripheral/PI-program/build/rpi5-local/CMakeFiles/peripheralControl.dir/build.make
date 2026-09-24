@@ -69,10 +69,38 @@ include CMakeFiles/peripheralControl.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/peripheralControl.dir/flags.make
 
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o: ../../include/utilities/sfTk/sfDevOTOS.cpp
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o -MF CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o.d -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o -c /workspaces/PI-program/include/utilities/sfTk/sfDevOTOS.cpp
+
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.i"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/PI-program/include/utilities/sfTk/sfDevOTOS.cpp > CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.i
+
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.s"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/PI-program/include/utilities/sfTk/sfDevOTOS.cpp -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.s
+
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o: ../../include/utilities/sfTk/sfToolkit.cpp
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o -MF CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o.d -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o -c /workspaces/PI-program/include/utilities/sfTk/sfToolkit.cpp
+
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.i"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/PI-program/include/utilities/sfTk/sfToolkit.cpp > CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.i
+
+CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.s"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/PI-program/include/utilities/sfTk/sfToolkit.cpp -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.s
+
 CMakeFiles/peripheralControl.dir/src/main.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
 CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp
 CMakeFiles/peripheralControl.dir/src/main.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/peripheralControl.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/peripheralControl.dir/src/main.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/src/main.cpp.o -MF CMakeFiles/peripheralControl.dir/src/main.cpp.o.d -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /workspaces/PI-program/src/main.cpp
 
 CMakeFiles/peripheralControl.dir/src/main.cpp.i: cmake_force
@@ -86,7 +114,7 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.s: cmake_force
 CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
 CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: ../../src/subsystems/piLink.cpp
 CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o -MF CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o.d -o CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o -c /workspaces/PI-program/src/subsystems/piLink.cpp
 
 CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.i: cmake_force
@@ -100,7 +128,7 @@ CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.s: cmake_force
 CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
 CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o: ../../src/utilities/ImageProssesing.cpp
 CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o -MF CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o.d -o CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o -c /workspaces/PI-program/src/utilities/ImageProssesing.cpp
 
 CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.i: cmake_force
@@ -111,10 +139,24 @@ CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.s: cmake_forc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.s"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/PI-program/src/utilities/ImageProssesing.cpp -o CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.s
 
+CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
+CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o: ../../src/utilities/sfTkLinuxI2C.cpp
+CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o -MF CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o.d -o CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o -c /workspaces/PI-program/src/utilities/sfTkLinuxI2C.cpp
+
+CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.i"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/PI-program/src/utilities/sfTkLinuxI2C.cpp > CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.i
+
+CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.s"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/PI-program/src/utilities/sfTkLinuxI2C.cpp -o CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.s
+
 CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: CMakeFiles/peripheralControl.dir/flags.make
 CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utilities/uartPort.cpp
 CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: CMakeFiles/peripheralControl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o -MF CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o.d -o CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o -c /workspaces/PI-program/src/utilities/uartPort.cpp
 
 CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.i: cmake_force
@@ -127,21 +169,27 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.s: cmake_force
 
 # Object files for target peripheralControl
 peripheralControl_OBJECTS = \
+"CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o" \
+"CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o" \
 "CMakeFiles/peripheralControl.dir/src/main.cpp.o" \
 "CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o" \
 "CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o" \
+"CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o" \
 "CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o"
 
 # External object files for target peripheralControl
 peripheralControl_EXTERNAL_OBJECTS =
 
+peripheralControl: CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o
+peripheralControl: CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o
 peripheralControl: CMakeFiles/peripheralControl.dir/src/main.cpp.o
 peripheralControl: CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o
 peripheralControl: CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o
+peripheralControl: CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o
 peripheralControl: CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o
 peripheralControl: CMakeFiles/peripheralControl.dir/build.make
 peripheralControl: CMakeFiles/peripheralControl.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable peripheralControl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/PI-program/build/rpi5-local/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable peripheralControl"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/peripheralControl.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

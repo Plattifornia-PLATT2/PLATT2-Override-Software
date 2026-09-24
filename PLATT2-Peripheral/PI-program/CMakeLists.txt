@@ -13,7 +13,7 @@ endif()
 
 
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp" "include/utilities/sfTk/*.cpp")
 add_executable(peripheralControl ${SOURCES})
 
 target_include_directories(peripheralControl PRIVATE

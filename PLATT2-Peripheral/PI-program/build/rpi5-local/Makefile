@@ -129,6 +129,54 @@ peripheralControl/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/build
 .PHONY : peripheralControl/fast
 
+include/utilities/sfTk/sfDevOTOS.o: include/utilities/sfTk/sfDevOTOS.cpp.o
+.PHONY : include/utilities/sfTk/sfDevOTOS.o
+
+# target to build an object file
+include/utilities/sfTk/sfDevOTOS.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o
+.PHONY : include/utilities/sfTk/sfDevOTOS.cpp.o
+
+include/utilities/sfTk/sfDevOTOS.i: include/utilities/sfTk/sfDevOTOS.cpp.i
+.PHONY : include/utilities/sfTk/sfDevOTOS.i
+
+# target to preprocess a source file
+include/utilities/sfTk/sfDevOTOS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.i
+.PHONY : include/utilities/sfTk/sfDevOTOS.cpp.i
+
+include/utilities/sfTk/sfDevOTOS.s: include/utilities/sfTk/sfDevOTOS.cpp.s
+.PHONY : include/utilities/sfTk/sfDevOTOS.s
+
+# target to generate assembly for a file
+include/utilities/sfTk/sfDevOTOS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.s
+.PHONY : include/utilities/sfTk/sfDevOTOS.cpp.s
+
+include/utilities/sfTk/sfToolkit.o: include/utilities/sfTk/sfToolkit.cpp.o
+.PHONY : include/utilities/sfTk/sfToolkit.o
+
+# target to build an object file
+include/utilities/sfTk/sfToolkit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o
+.PHONY : include/utilities/sfTk/sfToolkit.cpp.o
+
+include/utilities/sfTk/sfToolkit.i: include/utilities/sfTk/sfToolkit.cpp.i
+.PHONY : include/utilities/sfTk/sfToolkit.i
+
+# target to preprocess a source file
+include/utilities/sfTk/sfToolkit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.i
+.PHONY : include/utilities/sfTk/sfToolkit.cpp.i
+
+include/utilities/sfTk/sfToolkit.s: include/utilities/sfTk/sfToolkit.cpp.s
+.PHONY : include/utilities/sfTk/sfToolkit.s
+
+# target to generate assembly for a file
+include/utilities/sfTk/sfToolkit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.s
+.PHONY : include/utilities/sfTk/sfToolkit.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -201,6 +249,30 @@ src/utilities/ImageProssesing.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.s
 .PHONY : src/utilities/ImageProssesing.cpp.s
 
+src/utilities/sfTkLinuxI2C.o: src/utilities/sfTkLinuxI2C.cpp.o
+.PHONY : src/utilities/sfTkLinuxI2C.o
+
+# target to build an object file
+src/utilities/sfTkLinuxI2C.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o
+.PHONY : src/utilities/sfTkLinuxI2C.cpp.o
+
+src/utilities/sfTkLinuxI2C.i: src/utilities/sfTkLinuxI2C.cpp.i
+.PHONY : src/utilities/sfTkLinuxI2C.i
+
+# target to preprocess a source file
+src/utilities/sfTkLinuxI2C.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.i
+.PHONY : src/utilities/sfTkLinuxI2C.cpp.i
+
+src/utilities/sfTkLinuxI2C.s: src/utilities/sfTkLinuxI2C.cpp.s
+.PHONY : src/utilities/sfTkLinuxI2C.s
+
+# target to generate assembly for a file
+src/utilities/sfTkLinuxI2C.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.s
+.PHONY : src/utilities/sfTkLinuxI2C.cpp.s
+
 src/utilities/uartPort.o: src/utilities/uartPort.cpp.o
 .PHONY : src/utilities/uartPort.o
 
@@ -234,6 +306,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... peripheralControl"
+	@echo "... include/utilities/sfTk/sfDevOTOS.o"
+	@echo "... include/utilities/sfTk/sfDevOTOS.i"
+	@echo "... include/utilities/sfTk/sfDevOTOS.s"
+	@echo "... include/utilities/sfTk/sfToolkit.o"
+	@echo "... include/utilities/sfTk/sfToolkit.i"
+	@echo "... include/utilities/sfTk/sfToolkit.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -243,6 +321,9 @@ help:
 	@echo "... src/utilities/ImageProssesing.o"
 	@echo "... src/utilities/ImageProssesing.i"
 	@echo "... src/utilities/ImageProssesing.s"
+	@echo "... src/utilities/sfTkLinuxI2C.o"
+	@echo "... src/utilities/sfTkLinuxI2C.i"
+	@echo "... src/utilities/sfTkLinuxI2C.s"
 	@echo "... src/utilities/uartPort.o"
 	@echo "... src/utilities/uartPort.i"
 	@echo "... src/utilities/uartPort.s"
