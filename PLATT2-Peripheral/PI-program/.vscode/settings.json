@@ -1,14 +1,6 @@
 {
-  "C_Cpp.files.exclude": {
-    "**/build": true,
-    "**/lib": true
-  },
-  "C_Cpp.intelliSenseEngine": "default",
-  "C_Cpp.codeAnalysis.enabled": true,
-  "C_Cpp.errorSquiggles": "enabled",
-  "C_Cpp.autocomplete": "default",
-  "editor.formatOnSave": false,
-  "dev.containers.gpuAvailability": "none",
-  "terminal.integrated.defaultProfile.linux": "bash",
-  "C_Cpp.default.compilerPath": "/usr/bin/aarch64-linux-gnu-g++"
+  "dev.containers.mountSourceWorkspace": true,
+  "dev.containers.passEnvironment": false,
+  "remote.containers.copyMounts": false,
+  "remote.containers.displaySocketPath": ""
 }
