@@ -534,6 +534,14 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/semaphore.h \
  /usr/aarch64-linux-gnu/include/bits/semaphore.h \
  /workspaces/PI-program/include/subsystems/piLink.hpp \
+ /workspaces/PI-program/include/subsystems/otos.hpp \
+ /workspaces/PI-program/include/utilities/OtosLinux.h \
+ /workspaces/PI-program/include/utilities/sfTk/sfDevOTOS.h \
+ /workspaces/PI-program/include/utilities/sfTk/sfToolkit.h \
+ /workspaces/PI-program/include/utilities/sfTk/sfTkError.h \
+ /workspaces/PI-program/include/utilities/sfTk/sfTkII2C.h \
+ /workspaces/PI-program/include/utilities/sfTk/sfTkIBus.h \
+ /workspaces/PI-program/include/utilities/sfTkLinuxI2C.h \
  /usr/aarch64-linux-gnu/include/c++/11/thread \
  /usr/aarch64-linux-gnu/include/c++/11/csignal \
  /usr/aarch64-linux-gnu/include/signal.h \

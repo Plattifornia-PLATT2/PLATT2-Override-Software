@@ -201,6 +201,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/subsystems/otos.o: src/subsystems/otos.cpp.o
+.PHONY : src/subsystems/otos.o
+
+# target to build an object file
+src/subsystems/otos.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o
+.PHONY : src/subsystems/otos.cpp.o
+
+src/subsystems/otos.i: src/subsystems/otos.cpp.i
+.PHONY : src/subsystems/otos.i
+
+# target to preprocess a source file
+src/subsystems/otos.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.i
+.PHONY : src/subsystems/otos.cpp.i
+
+src/subsystems/otos.s: src/subsystems/otos.cpp.s
+.PHONY : src/subsystems/otos.s
+
+# target to generate assembly for a file
+src/subsystems/otos.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.s
+.PHONY : src/subsystems/otos.cpp.s
+
 src/subsystems/piLink.o: src/subsystems/piLink.cpp.o
 .PHONY : src/subsystems/piLink.o
 
@@ -315,6 +339,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/subsystems/otos.o"
+	@echo "... src/subsystems/otos.i"
+	@echo "... src/subsystems/otos.s"
 	@echo "... src/subsystems/piLink.o"
 	@echo "... src/subsystems/piLink.i"
 	@echo "... src/subsystems/piLink.s"

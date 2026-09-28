@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o"
   "CMakeFiles/peripheralControl.dir/src/main.cpp.o.d"
+  "CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o"
   "CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o"

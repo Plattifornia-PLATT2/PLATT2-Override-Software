@@ -7,7 +7,7 @@
 #pragma once
 
 #include <unistd.h>
-#include <sfTk/sfDevOTOS.h>
+#include <utilities/sfTk/sfDevOTOS.h>
 
 class OtosLinux : public sfDevOTOS
 {
