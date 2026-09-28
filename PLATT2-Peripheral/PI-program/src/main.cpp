@@ -2,6 +2,7 @@
 #include "utilities/uartPort.hpp"
 #include "subsystems/piLink.hpp"
 #include "utilities/sharedData.hpp"
+#include "subsystems/otos.hpp"
 #include <thread>
 #include <vector>
 #include <stop_token>
@@ -16,13 +17,18 @@ int main() {
     std::vector<std::jthread> dependentTasks;
     
     sharedData shared;
-    
+    OTOS otos;
     
     piLink link;
 
     
+    
     std::jthread signalThread = sigThread(shared);
    
+
+    otos.calibrate();
+    
+
     //comTask[0].request_stop(); 
 
     while (true){
@@ -31,6 +37,7 @@ int main() {
         //dependentTasks.emplace_back([&link, &shared](std::stop_token st) {link.linkLoop(st, shared);});
 
         comTask.emplace_back([&link, &shared](std::stop_token st) {link.linkLoop(st, shared);});
+        dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
         
         std::unique_lock<std::mutex> lock(shared.mtx);
         shared.cv.wait(lock, [&shared] { return shared.restart || shared.shutdown; });
