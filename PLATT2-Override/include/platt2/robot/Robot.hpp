@@ -10,9 +10,9 @@
 #include "platt2/robot/subsystems/tankDrive/tankControl.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
 #include "platt2/robot/subsystems/colorsort/ColorSort.hpp"
-#include "platt2/EAllianceConfig.hpp"
-#include "platt2/EAutonConfig.hpp"
-#include "platt2/ERobotConfig.hpp"
+#include "platt2/robot/EAllianceConfig.hpp"
+#include "platt2/robot/EAutonConfig.hpp"
+#include "platt2/robot/ERobotConfig.hpp"
 #include "platt2/auton/IAuton.hpp"
 
 // ** PROS API Includes **
@@ -23,6 +23,7 @@
 #include "subsystems/tankDrive/tankDrive.hpp"
 
 // ** Standard Library Includes **
+#include <map>
 #include <memory>
 #include <algorithm>
 #include <cmath>
@@ -48,9 +49,11 @@ namespace platt2
         {
             private:
 
+            std::map<typename Key, typename Tp>
+
             // Subsystems
             std::shared_ptr<subsystems::odometry::Odometry> odom_subsystem;
-            std::shared_ptr<subsystems::holonomicDrive::XDrive> xDrive_subsystem;
+            std::shared_ptr<subsystems::holonomicDrive::IHolonomic> xDrive_subsystem;
             std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomic_controller;
             std::shared_ptr<subsystems::intake::IntakeSubsystem> intake_subsystem;
             std::shared_ptr<subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem;

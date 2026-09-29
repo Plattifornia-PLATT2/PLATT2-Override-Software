@@ -43,6 +43,15 @@ namespace holonomicDrive{
          */
         virtual void moveVector(MovementVector v) = 0;
 
+
+        /**
+         * @brief Turns the chassis to the specified heading.
+         * 
+         * @param heading The target heading to turn to.
+         */
+        virtual void turnToHeading(double heading) = 0;
+
+
     };
 
 
