@@ -3,10 +3,10 @@
 
 // ** PLATT2 Library Includes **
 #include "platt2/robot/Robot.hpp"
-#include "platt2/EAllianceConfig.hpp"
-#include "platt2/EAutonConfig.hpp"
+#include "platt2/robot/EAllianceConfig.hpp"
+#include "platt2/robot/EAutonConfig.hpp"
 #include "platt2/menu/menu.hpp"
-#include "platt2/ERobotConfig.hpp"
+#include "platt2/robot/ERobotConfig.hpp"
 #include "platt2/config/PinkConfig.hpp"
 #include "platt2/config/PurpleConfig.hpp"
 #include "platt2/menu/menu.hpp"

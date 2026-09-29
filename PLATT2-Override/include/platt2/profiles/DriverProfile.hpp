@@ -1,7 +1,7 @@
 #ifndef EDRIVERPROFILE_HPP
 #define EDRIVERPROFILE_HPP
 
-#include "platt2/EDriverConfig.hpp"
+#include "platt2/robot/EDriverConfig.hpp"
 #include "pros/misc.h"
 
 /**

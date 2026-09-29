@@ -1,5 +1,5 @@
 #include "platt2/robot/subsystems/holonomicDrive/HolonomicControl.hpp"
-#include "platt2/EAllianceConfig.hpp"
+
 #include "platt2/helperFunctions.h"
 #include "pros/rtos.hpp"
 #include <cmath>

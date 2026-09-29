@@ -4,16 +4,12 @@
 // ** PLATT2 Library Includes **
 #include "platt2/profiles/DriverProfile.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
-#include "platt2/EAllianceConfig.hpp"
-#include "platt2/EAutonConfig.hpp"
-#include "platt2/ERobotConfig.hpp"
 #include "platt2/robot/subsystems/tankDrive/tankControl.hpp"
-#include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
-#include "platt2/robot/subsystems/colorsort/ColorSort.hpp"
 #include "platt2/robot/EAllianceConfig.hpp"
 #include "platt2/robot/EAutonConfig.hpp"
 #include "platt2/robot/ERobotConfig.hpp"
-#include "platt2/auton/IAuton.hpp"
+#include "platt2/robot/subsystems/ESubsystems.hpp"
+#include "subsystems/holonomicDrive/HolonomicControl.hpp"
 
 // ** PROS API Includes **
 #include "pros/misc.hpp"
@@ -49,17 +45,12 @@ namespace platt2
         {
             private:
 
-            std::map<typename Key, typename Tp>
-
             // Subsystems
             std::shared_ptr<subsystems::odometry::Odometry> odom_subsystem;
             std::shared_ptr<subsystems::holonomicDrive::IHolonomic> xDrive_subsystem;
             std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomic_controller;
-            std::shared_ptr<subsystems::intake::IntakeSubsystem> intake_subsystem;
-            std::shared_ptr<subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem;
 
             // Config Values
-            std::unique_ptr<auton::IAuton> auton_routine;
             AllianceConfig current_alliance;
             RobotConfig current_config;
             AutonConfig current_auton_route;
@@ -102,13 +93,10 @@ namespace platt2
             Robot(std::shared_ptr<subsystems::holonomicDrive::XDrive>& x_drive_subsystem, 
                 std::shared_ptr<subsystems::odometry::Odometry>& odometry_subsystem, 
                 std::shared_ptr<subsystems::holonomicDrive::HolonomicControl>& holonomic_controller,
-                std::shared_ptr<subsystems::intake::IntakeSubsystem>& intake_subsystem,
                 platt2::robot::AllianceConfig alliance_config,
                 platt2::robot::RobotConfig robot_config,
                 platt2::robot::AutonConfig auton_config,
-                std::unique_ptr<profiles::DriverProfile>& driver_profile,
-                std::unique_ptr<auton::IAuton>& auton_routine,
-                std::shared_ptr<subsystems::colorsort::ColorSortSubsystem>& color_sort_subsystem
+                std::unique_ptr<profiles::DriverProfile>& driver_profile
             );
 
         };

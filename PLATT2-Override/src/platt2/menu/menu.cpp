@@ -3,9 +3,7 @@
 #include "liblvgl/misc/lv_color.h"
 #include "liblvgl/misc/lv_types.h"
 #include "liblvgl/widgets/buttonmatrix/lv_buttonmatrix.h"
-#include "platt2/EAllianceConfig.hpp"
-#include "platt2/EAutonConfig.hpp"
-#include "platt2/ERobotConfig.hpp"
+
 
 namespace platt2{
 namespace menu{

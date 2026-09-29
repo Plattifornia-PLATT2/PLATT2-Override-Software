@@ -1,10 +1,10 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
-#include "platt2/EAllianceConfig.hpp"
-#include "platt2/EAutonConfig.hpp"
-#include "platt2/ERobotConfig.hpp"
-#include "platt2/EDriverConfig.hpp"
+#include "platt2/robot/EAllianceConfig.hpp"
+#include "platt2/robot/EAutonConfig.hpp"
+#include "platt2/robot/ERobotConfig.hpp"
+#include "platt2/robot/EDriverConfig.hpp"
 #include "platt2/robot/Robot.hpp"
 
 #include "liblvgl/lvgl.h"

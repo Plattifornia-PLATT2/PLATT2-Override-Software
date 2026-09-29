@@ -5,17 +5,16 @@
 #include "platt2/config/IConfig.hpp"
 #include "platt2/robot/Robot.hpp"
 #include "platt2/robot/pid/pid.hpp"
-#include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
-#include "platt2/EAllianceConfig.hpp"
-#include "platt2/EAutonConfig.hpp"
-#include "platt2/ERobotConfig.hpp"
+#include "platt2/robot/EAllianceConfig.hpp"
+#include "platt2/robot/EAutonConfig.hpp"
+#include "platt2/robot/ERobotConfig.hpp"
 #include "platt2/profiles/JonProfile.hpp"
+#include "platt2/profiles/QuinnProfile.hpp"
 #include "platt2/auton/PinkSkillsAuton.hpp"
 #include "platt2/auton/PurpleSkillsAuton.hpp"
 #include "platt2/auton/PinkCompAuton.hpp"
 #include "platt2/auton/PurpleCompAuton.hpp"
-#include "platt2/robot/subsystems/colorSort/colorSort.hpp"
 #include "platt2/hal/TrackingWheel.hpp"
 #include "platt2/robot/subsystems/odometry/TrackingWheelPositionTracker.hpp"
 
@@ -59,28 +58,7 @@ class PinkConfig : public IConfig {
     static constexpr int BACK_LEFT_TOP_MOTOR_PORT{12};
     static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-11};
 
-
-    // ** Intake Ports **
-    static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
-    static constexpr int MIDDLE_INTAKE_MOTOR_PORT{17};
-    static constexpr int REAR_INTAKE_MOTOR_PORT{0};
-    static constexpr int LOWER_ROLLER_MOTOR_PORT{18};
-    static constexpr int UPPER_CONVEYOR_MOTOR_PORT{0};
-    static constexpr int REAR_INTAKE_LEFT_MOTOR_PORT{13};
-    static constexpr int REAR_INTAKE_RIGHT_MOTOR_PORT{-14};
-    //static constexpr int DISTANCE_SENSOR_PORT{14};
-    static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
-
-    // ** Color Sort Ports **
-    static constexpr int OPTICAL_SENSOR_PORT{10};
-
     // ** Pneumatics **
-    static constexpr int ED_MECH_PISTON_PORT{1};
-    static constexpr int UPPER_CONVEYOR_HEIGHT_PISTON_PORT{2};
-    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{0};
-    static constexpr int RAKE_MECH_PISTON_PORT{4};
-    static constexpr int DESCORE_PISTON_PORT{5};
-    static constexpr int REAR_INTAKE_PISTON_PORT {6};
 
     // ** VEX IMU Port **
     static constexpr int VEX_IMU_PORT{15};
@@ -107,6 +85,11 @@ class PinkConfig : public IConfig {
     static constexpr double heading_Kp{0.15};
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
+
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
+
+    std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
+
 
     public:
 

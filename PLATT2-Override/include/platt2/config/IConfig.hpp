@@ -3,9 +3,9 @@
 
 #include <memory>
 
-#include "platt2/EAllianceConfig.hpp"
-#include "platt2/EAutonConfig.hpp"
-#include "platt2/EDriverConfig.hpp"
+#include "platt2/robot/EAllianceConfig.hpp"
+#include "platt2/robot/EAutonConfig.hpp"
+#include "platt2/robot/EDriverConfig.hpp"
 #include "platt2/robot/Robot.hpp"
 
 /**

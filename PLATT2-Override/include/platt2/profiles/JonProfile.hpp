@@ -1,7 +1,7 @@
 #ifndef JONPROFILE_HPP
 #define JONPROFILE_HPP
 
-#include "platt2/EDriverConfig.hpp"
+#include "platt2/robot/EDriverConfig.hpp"
 #include "platt2/profiles/DriverProfile.hpp"
 #include "pros/misc.h"
 
