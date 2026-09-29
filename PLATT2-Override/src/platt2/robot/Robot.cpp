@@ -40,9 +40,16 @@ namespace robot{
     void Robot::driverControl(){
 
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
-        controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());
+        controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());           
 
+    
+        
+        pros::screen::print(pros::E_TEXT_MEDIUM, 7, "Exited");
+        
+        
         while(true){
+
+
             
             double leftX = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X))/127;
             double leftY = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y))/127;
@@ -56,14 +63,16 @@ namespace robot{
             // Create movement vector
             subsystems::holonomicDrive::MovementVector movement;  
             
-            polar p = CtoP(leftX, leftY);    
+            polar p = CtoP(leftX, leftY);   
+            
+            p.theta = p.theta - (odom_subsystem->getHeading()+(M_PI_2));
 
-            if(driver_profile->driverEnum = JON){
+            if((driver_profile->driverEnum = JON)){
                 movement.r = p.r;
-                movement.theta = p.theta; 
+                movement.theta = p.theta;
                 movement.w = rightX/1.5;
             }
-            else if(driver_profile->driverEnum = QUINN){
+            else if((driver_profile->driverEnum = QUINN)){
                 movement.r = p.r * 0.90;
                 movement.theta = p.theta; 
                 movement.w = rightX/3;

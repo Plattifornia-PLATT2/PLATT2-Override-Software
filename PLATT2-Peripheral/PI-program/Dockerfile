@@ -7,6 +7,23 @@
 
 FROM rpi5-libs:latest AS builder
 
+# Install SSH client for deployment
+RUN apt-get update && apt-get install -y --no-install-recommends openssh-client && rm -rf /var/lib/apt/lists/*
+
+# Set up SSH directory
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+
+# Create SSH config with key identity options and no passphrase prompt
+RUN cat > /root/.ssh/config << 'EOF'
+Host *
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_ed25519
+    StrictHostKeyChecking no
+    PasswordAuthentication no
+EOF
+RUN chmod 600 /root/.ssh/config
+
 WORKDIR /build
 COPY src ./src
 COPY include ./include

@@ -1,0 +1,43 @@
+# Dev stage for interactive development with SSH access
+FROM rpi5-libs:latest AS dev
+
+# Install SSH client for deployment + bash for interactive work
+RUN apt-get update && apt-get install -y --no-install-recommends openssh-client bash && rm -rf /var/lib/apt/lists/*
+
+# Set up SSH directory and copy keys with proper permissions
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+RUN mkdir -p /tmp/ssh-keys && chmod 700 /tmp/ssh-keys
+
+# Create SSH config pointing to temp location
+RUN cat > /root/.ssh/config << 'EOF'
+Host *
+    IdentityFile /tmp/ssh-keys/id_rsa
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+EOF
+RUN chmod 600 /root/.ssh/config
+
+WORKDIR /build
+COPY src ./src
+COPY include ./include
+COPY CMakeLists.txt ./CMakeLists.txt
+COPY entrypoint.sh /entrypoint.sh
+COPY platt.sh /usr/local/bin/platt.sh
+RUN chmod +x /entrypoint.sh /usr/local/bin/platt.sh
+
+# Build the application
+RUN mkdir -p build_app && cd build_app && \
+    cmake .. \
+    -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+    -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+    -DCMAKE_SYSTEM_NAME=Linux \
+    -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_PREFIX_PATH=/opt/rpi/lib/cmake \
+    -DCMAKE_MODULE_PATH=/opt/rpi/lib/cmake \
+    -DCMAKE_C_FLAGS="-Wno-error=builtin-macro-redefined" \
+    -DCMAKE_CXX_FLAGS="-Wno-error=builtin-macro-redefined" \
+    -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
+    && make -j4
+
+CMD ["/bin/bash"]

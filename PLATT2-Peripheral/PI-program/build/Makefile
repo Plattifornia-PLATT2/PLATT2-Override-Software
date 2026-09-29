@@ -129,30 +129,6 @@ peripheralControl/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/build
 .PHONY : peripheralControl/fast
 
-src/ImageProssesing.o: src/ImageProssesing.cpp.o
-.PHONY : src/ImageProssesing.o
-
-# target to build an object file
-src/ImageProssesing.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.o
-.PHONY : src/ImageProssesing.cpp.o
-
-src/ImageProssesing.i: src/ImageProssesing.cpp.i
-.PHONY : src/ImageProssesing.i
-
-# target to preprocess a source file
-src/ImageProssesing.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.i
-.PHONY : src/ImageProssesing.cpp.i
-
-src/ImageProssesing.s: src/ImageProssesing.cpp.s
-.PHONY : src/ImageProssesing.s
-
-# target to generate assembly for a file
-src/ImageProssesing.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/ImageProssesing.cpp.s
-.PHONY : src/ImageProssesing.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -177,6 +153,78 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/subsystems/piLink.o: src/subsystems/piLink.cpp.o
+.PHONY : src/subsystems/piLink.o
+
+# target to build an object file
+src/subsystems/piLink.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o
+.PHONY : src/subsystems/piLink.cpp.o
+
+src/subsystems/piLink.i: src/subsystems/piLink.cpp.i
+.PHONY : src/subsystems/piLink.i
+
+# target to preprocess a source file
+src/subsystems/piLink.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.i
+.PHONY : src/subsystems/piLink.cpp.i
+
+src/subsystems/piLink.s: src/subsystems/piLink.cpp.s
+.PHONY : src/subsystems/piLink.s
+
+# target to generate assembly for a file
+src/subsystems/piLink.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.s
+.PHONY : src/subsystems/piLink.cpp.s
+
+src/utilities/ImageProssesing.o: src/utilities/ImageProssesing.cpp.o
+.PHONY : src/utilities/ImageProssesing.o
+
+# target to build an object file
+src/utilities/ImageProssesing.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o
+.PHONY : src/utilities/ImageProssesing.cpp.o
+
+src/utilities/ImageProssesing.i: src/utilities/ImageProssesing.cpp.i
+.PHONY : src/utilities/ImageProssesing.i
+
+# target to preprocess a source file
+src/utilities/ImageProssesing.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.i
+.PHONY : src/utilities/ImageProssesing.cpp.i
+
+src/utilities/ImageProssesing.s: src/utilities/ImageProssesing.cpp.s
+.PHONY : src/utilities/ImageProssesing.s
+
+# target to generate assembly for a file
+src/utilities/ImageProssesing.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.s
+.PHONY : src/utilities/ImageProssesing.cpp.s
+
+src/utilities/uartPort.o: src/utilities/uartPort.cpp.o
+.PHONY : src/utilities/uartPort.o
+
+# target to build an object file
+src/utilities/uartPort.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o
+.PHONY : src/utilities/uartPort.cpp.o
+
+src/utilities/uartPort.i: src/utilities/uartPort.cpp.i
+.PHONY : src/utilities/uartPort.i
+
+# target to preprocess a source file
+src/utilities/uartPort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.i
+.PHONY : src/utilities/uartPort.cpp.i
+
+src/utilities/uartPort.s: src/utilities/uartPort.cpp.s
+.PHONY : src/utilities/uartPort.s
+
+# target to generate assembly for a file
+src/utilities/uartPort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.s
+.PHONY : src/utilities/uartPort.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +234,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... peripheralControl"
-	@echo "... src/ImageProssesing.o"
-	@echo "... src/ImageProssesing.i"
-	@echo "... src/ImageProssesing.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/subsystems/piLink.o"
+	@echo "... src/subsystems/piLink.i"
+	@echo "... src/subsystems/piLink.s"
+	@echo "... src/utilities/ImageProssesing.o"
+	@echo "... src/utilities/ImageProssesing.i"
+	@echo "... src/utilities/ImageProssesing.s"
+	@echo "... src/utilities/uartPort.o"
+	@echo "... src/utilities/uartPort.i"
+	@echo "... src/utilities/uartPort.s"
 .PHONY : help
 
 
