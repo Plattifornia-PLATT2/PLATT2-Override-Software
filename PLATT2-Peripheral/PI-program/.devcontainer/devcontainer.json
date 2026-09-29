@@ -1,10 +1,8 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
   "build": {
     "dockerfile": "Dockerfile.devcontainer",
     "context": ".",
-    "args": {}
+    "args":{}
   },
   "hostRequirements": {
     "gpu": false
@@ -21,7 +19,8 @@
   "remoteUser": "root",
   "mounts": [
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-     ],
-
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/PI-program,type=bind,consistency=cached", 
+  "workspaceFolder": "/workspaces/PI-program",
   "postCreateCommand": "chmod +x /workspaces/PI-program/platt.sh; sed -i 's/\r$//' platt.sh"
 }
