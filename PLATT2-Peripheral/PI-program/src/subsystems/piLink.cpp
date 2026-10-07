@@ -12,17 +12,11 @@ void piLink::linkLoop(std::stop_token stopToken, sharedData& shared){
     std::cerr << link.lastError() << std::endl;   
     return;}
 
-
-    {
-        std::lock_guard<std::mutex> lock(shared.mtx);
-        shared.linkData.posX = 700;
-    }
-
     while (!stopToken.stop_requested()) {
         
         {
         std::lock_guard<std::mutex> lock(shared.mtx);
-            dataBuffer = shared.linkData;
+            dataBuffer = shared.sendData;
         }
         
         bool sent = link.sendLine(dataBuffer);

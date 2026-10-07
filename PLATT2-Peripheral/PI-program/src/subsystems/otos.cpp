@@ -78,11 +78,13 @@ void OTOS::sensorLoop(std::stop_token stopToken, sharedData& shared){
         
         double x = getX();
         double y = getY();
+        double heading = getH();
 
         {
         std::lock_guard<std::mutex> lock(shared.mtx);
-            shared.linkData.posX = x;
-            shared.linkData.posY = y; 
+            shared.OTOSpos.x = x;
+            shared.OTOSpos.y = y; 
+            shared.OTOSpos.heading = heading;
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));

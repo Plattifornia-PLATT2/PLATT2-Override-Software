@@ -4,20 +4,17 @@
 #include <mutex>
 #include <condition_variable>
 
-
-struct sendPacket{
-
-        double posX = 0;
-        double posY = 0;
-        double heading = 0;
-
-};
-
 struct Pos{
 
     double x = 0;
     double y = 0;
+    double heading = 0;
 
+};
+
+struct sendPacket{
+
+    Pos pos;
 
 };
 
@@ -31,11 +28,11 @@ struct sharedData {
     
     std::condition_variable cv;
 
-    sendPacket linkData;
+    sendPacket sendData;
 
-    double x = 0;
-    double y = 0;
+    Pos OTOSpos;
 
+    Pos kalmanPos;
 
 
 };

@@ -16,8 +16,9 @@ class cameraTracking{
 
 
     private:
-    Pos getGlobalPos(std::vector<Camera::tagInfo>);
-    Pos getGoalPos(int);
+    Pos getGlobalPos(Camera::tagInfo, sharedData&);
+    Pos getGoalPos(int, bool);
+    Pos cameraTracking::rotateVector(Pos , double);
 
 };
 

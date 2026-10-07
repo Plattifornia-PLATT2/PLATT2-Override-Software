@@ -36,17 +36,28 @@ void cameraTracking::camTrackLoop(std::stop_token stopToken, sharedData& shared)
 
 }
 
-Pos cameraTracking::getGlobalPos(std::vector<Camera::tagInfo>){
+Pos cameraTracking::getGlobalPos(Camera::tagInfo tag, sharedData& shared){
 
+    Pos currentPos;
+    bool farGoal;
 
+    {
+        std::lock_guard<std::mutex> lock(shared.mtx);
+        Pos currentPos = shared.OTOSpos;
+    }
 
+    Pos camVec = rotateVector(tag.pos, currentPos.heading);
+    
+    currentPos.y+camVec.y>=72 ? farGoal=false : farGoal=true;
+    
+    Pos goalPos = getGoalPos(tag.tag_id, farGoal);
+    Pos globalPos = {goalPos.x - camVec.x, goalPos.y - camVec.y};
 
-
-
+    return globalPos;
 
 }
 
-Pos cameraTracking::getGoalPos(int goal){
+Pos cameraTracking::getGoalPos(int goal, bool far){
 
     Pos goalPos;
 
@@ -70,13 +81,28 @@ Pos cameraTracking::getGoalPos(int goal){
         default:
             break; 
 
+
+    if (!far){
+
+        goalPos = rotateVector(goalPos, M_PI);
+        goalPos = {goalPos.x-144, goalPos.y-144};
+    }
+
     return goalPos;
 
 }
+}
 
+Pos cameraTracking::rotateVector(Pos vec, double theta){
 
+    double cos_theta = std::cos(theta);
+    double sin_theta = std::sin(theta);
 
+    Pos rotated;
+    rotated.x = vec.x * cos_theta + vec.y * sin_theta;
+    rotated.y = vec.x * sin_theta - vec.y * cos_theta;
 
+    return rotated;
 }
 
 

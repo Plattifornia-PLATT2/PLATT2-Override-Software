@@ -145,9 +145,9 @@ size_t UartPort::pack(const sendPacket& d, std::span<uint8_t> out) {
     put(static_cast<uint8_t>(Type::Sensor));
     put(static_cast<uint16_t>(SENSOR_PAYLOAD));
 
-    put(static_cast<float>(d.posX));
-    put(static_cast<float>(d.posY));
-    put(static_cast<float>(d.heading));
+    put(static_cast<float>(d.pos.x));
+    put(static_cast<float>(d.pos.y));
+    put(static_cast<float>(d.pos.heading));
 
     // Payload
     //put(static_cast<uint32_t>(d.id));
@@ -205,9 +205,9 @@ bool UartPort::tryParse(sendPacket& d) {
         get(posY);
         get(heading);
 
-        d.posX = posX;
-        d.posY = posY;
-        d.heading = heading;
+        d.pos.x = posX;
+        d.pos.x = posY;
+        d.pos.heading = heading;
 
 
         //uint32_t id;  float temp;  uint16_t x;  uint8_t ok;
