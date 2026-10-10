@@ -1,4 +1,5 @@
-#include "PoseEstimator.hpp"
+#include "subsystems/PoseEstimator.hpp"
+#include <iostream>
 
 
 PoseEstimator::PoseEstimator() {
@@ -39,7 +40,7 @@ void PoseEstimator::update_sensor_reading(const PoseReading& pose_reading) {
     }
     cleanup_window(time_now);
 }
-PoseEstimator::Pose PoseEstimator::get_current_pose_estimation() {
+Pose PoseEstimator::get_current_pose_estimation() {
     Eigen::Vector3d current_pose_vec = UKF.get_pose_estimation();
     Pose current_pose{current_pose_vec(0), current_pose_vec(1), current_pose_vec(2)};
     return current_pose;
@@ -90,5 +91,50 @@ void PoseEstimator::rewindUKF(PoseEstimator::Buffer::iterator start_it) {
     }
 
     last_time = prev_time;
+
+}
+
+
+void PoseEstimator::kalmanLoop(std::stop_token stopToken, sharedData& shared){
+
+    PoseReading OTOSReading;
+    PoseReading CamReading;
+
+    while(!stopToken.stop_requested()){
+
+        {
+        std::lock_guard<std::mutex> lock(shared.mtx);
+            OTOSReading = shared.OTOSPos;
+            CamReading = shared.camPos;
+        }
+
+        if(OTOSReading.newData){
+
+            update_sensor_reading(OTOSReading);
+            {
+            std::lock_guard<std::mutex> lock(shared.mtx);
+            shared.OTOSPos.newData = false;
+            }
+
+        }
+
+        if(CamReading.newData){
+
+            update_sensor_reading(CamReading);
+            {
+            std::lock_guard<std::mutex> lock(shared.mtx);
+                shared.camPos.newData = false;
+            }
+        }
+        
+
+        {
+        std::lock_guard<std::mutex> lock(shared.mtx);
+            shared.kalmanPos =  get_current_pose_estimation();
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
+    }
 
 }

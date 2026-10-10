@@ -13,19 +13,28 @@
 #include <chrono>
 #include <thread>
 #include "utilities/sharedData.hpp"
+#include <random>
+#include <opencv2/calib3d.hpp>
 
 class Camera {
 public:
 
+    struct tagStd {
 
+        double x;          
+        double y;          
+        double theta;  
+        
+    };
 
 
     struct tagInfo {
-        Pos pos;
+        Pose pos;
         double z = 0;
-        double angle = 0;
         int    tag_id = -1;
         double reproj_error = std::numeric_limits<double>::max();
+        tagStd stdErr;
+        std::chrono::high_resolution_clock::time_point timeStamp;
     };
 
     
@@ -41,6 +50,8 @@ public:
         double cx;
         double cy;
     };
+
+
     
 
     Camera(std::string camName) {
@@ -98,7 +109,7 @@ public:
         cap.release();
     }
 
-    std::vector<Camera::tagInfo> getTagPos();
+    Camera::tagInfo getTagPos();
     void capImg();
     double getHorizontalAngle(matd_t* R);
 
@@ -109,7 +120,8 @@ private:
     apriltag_family_t*        tagFamily   = nullptr;
     apriltag_detector_t*      tagDetector = nullptr;
     apriltag_detection_info_t info;
-
+   
+    tagStd estimateTagStd(const apriltag_detection_t* det, double sigmaPx = 0.5, int N = 30);
     bool waitForExposureSettled(int maxFrames = 60, double clippedFraction = 0.02, int stableFramesRequired = 3);
 };
 

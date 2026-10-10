@@ -1,47 +1,57 @@
 [
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o -c /workspaces/PI-program/include/utilities/sfTk/sfDevOTOS.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfDevOTOS.cpp.o -c /workspaces/PI-program/include/utilities/sfTk/sfDevOTOS.cpp",
   "file": "/workspaces/PI-program/include/utilities/sfTk/sfDevOTOS.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o -c /workspaces/PI-program/include/utilities/sfTk/sfToolkit.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/include/utilities/sfTk/sfToolkit.cpp.o -c /workspaces/PI-program/include/utilities/sfTk/sfToolkit.cpp",
   "file": "/workspaces/PI-program/include/utilities/sfTk/sfToolkit.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /workspaces/PI-program/src/main.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/main.cpp.o -c /workspaces/PI-program/src/main.cpp",
   "file": "/workspaces/PI-program/src/main.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/subsystems/cameraTracking.cpp.o -c /workspaces/PI-program/src/subsystems/cameraTracking.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/subsystems/PoseEstimator.cpp.o -c /workspaces/PI-program/src/subsystems/PoseEstimator.cpp",
+  "file": "/workspaces/PI-program/src/subsystems/PoseEstimator.cpp"
+},
+{
+  "directory": "/workspaces/PI-program/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/subsystems/cameraTracking.cpp.o -c /workspaces/PI-program/src/subsystems/cameraTracking.cpp",
   "file": "/workspaces/PI-program/src/subsystems/cameraTracking.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o -c /workspaces/PI-program/src/subsystems/otos.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o -c /workspaces/PI-program/src/subsystems/otos.cpp",
   "file": "/workspaces/PI-program/src/subsystems/otos.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o -c /workspaces/PI-program/src/subsystems/piLink.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o -c /workspaces/PI-program/src/subsystems/piLink.cpp",
   "file": "/workspaces/PI-program/src/subsystems/piLink.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o -c /workspaces/PI-program/src/utilities/ImageProssesing.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o -c /workspaces/PI-program/src/utilities/ImageProssesing.cpp",
   "file": "/workspaces/PI-program/src/utilities/ImageProssesing.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o -c /workspaces/PI-program/src/utilities/sfTkLinuxI2C.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/utilities/KalmanFilterHolonomicPose.cpp.o -c /workspaces/PI-program/src/utilities/KalmanFilterHolonomicPose.cpp",
+  "file": "/workspaces/PI-program/src/utilities/KalmanFilterHolonomicPose.cpp"
+},
+{
+  "directory": "/workspaces/PI-program/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o -c /workspaces/PI-program/src/utilities/sfTkLinuxI2C.cpp",
   "file": "/workspaces/PI-program/src/utilities/sfTkLinuxI2C.cpp"
 },
 {
   "directory": "/workspaces/PI-program/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o -c /workspaces/PI-program/src/utilities/uartPort.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4 -g -Wno-psabi -std=gnu++20 -o CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o -c /workspaces/PI-program/src/utilities/uartPort.cpp",
   "file": "/workspaces/PI-program/src/utilities/uartPort.cpp"
 }
 ]

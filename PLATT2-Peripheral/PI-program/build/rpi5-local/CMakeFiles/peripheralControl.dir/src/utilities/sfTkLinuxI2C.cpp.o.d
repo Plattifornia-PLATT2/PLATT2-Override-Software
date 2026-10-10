@@ -1,7 +1,7 @@
 CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o: \
  /workspaces/PI-program/src/utilities/sfTkLinuxI2C.cpp \
  /usr/aarch64-linux-gnu/include/stdc-predef.h \
- /workspaces/PI-program/include/utilities/sfTkLinuxI2C.h \
+ /workspaces/PI-program/include/utilities/sfTk/sfTkLinuxI2C.h \
  /usr/aarch64-linux-gnu/include/c++/11/string \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/c++config.h \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/os_defines.h \

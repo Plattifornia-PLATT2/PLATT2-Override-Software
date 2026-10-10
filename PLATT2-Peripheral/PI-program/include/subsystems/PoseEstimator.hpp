@@ -1,12 +1,15 @@
+
 #ifndef POSE_ESTIMATOR
 #define POSE_ESTIMATOR
 
 #include <Eigen/Dense>
 #include <Eigen/Core>
 #include <chrono>
-#include "KalmanFilterHolonomicPose.hpp"
+#include "utilities/KalmanFilterHolonomicPose.hpp"
 #include <map>
 #include <vector>
+#include <stop_token>
+#include "utilities/sharedData.hpp"
 
 class PoseEstimator {
     /*
@@ -25,22 +28,11 @@ class PoseEstimator {
     private:
     std::chrono::steady_clock::time_point last_time;
     bool is_init = false;
+    
+    
     public:
     using TimeStamp = std::chrono::steady_clock::time_point;
 
-    struct Pose {
-        double x;
-        double y;
-        double theta; // (from -pi to pi)
-    };
-
-    struct PoseReading {
-        Pose pose; 
-        double std_x;
-        double std_y;
-        double std_theta; 
-        double latency = 0.0; // in mili seconds
-    };
 
     struct StateUKF {
         PoseReading pose_measurement;
@@ -63,6 +55,9 @@ class PoseEstimator {
     double get_delta_time(TimeStamp current_time);
     void update_sensor_reading(const PoseReading& pose_reading);
     Pose get_current_pose_estimation();
+
+    void kalmanLoop(std::stop_token stopToken, sharedData& shared);
+
     //void add_measurement(const PoseReading& pose_reading, TimeStamp measurement_time); OLD: used for map<>
     PoseEstimator::Buffer::iterator add_measurement(const PoseReading& pose_reading, TimeStamp measurement_time);
     // void rewindUKF(TimeStamp measurement_time); OLD: used for map<>

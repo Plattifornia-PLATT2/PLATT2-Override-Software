@@ -2,7 +2,14 @@
 #include "utilities/imageProssesing.hpp"
 
 
-
+//struct PoseReading {
+//    Pose pose; 
+//    double std_x;
+//    double std_y;
+//    double std_theta; 
+//    double latency = 0.0; // in mili seconds
+//    bool newData = false;
+//};
 
 
 
@@ -10,56 +17,95 @@ void cameraTracking::camTrackLoop(std::stop_token stopToken, sharedData& shared)
 
     Camera cam("rear");
 
-    auto start = std::chrono::high_resolution_clock::now();
-    std::vector<Camera::tagInfo> out = cam.getTagPos();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    std::cout << "tOTAL time: "<<duration.count()<<std::endl;
+    PoseReading buffer;
+    Pose stdErrBuffer;
 
-    for (const auto& element : out) {
-        std::cout << "X: "<<element.pos.x<<" Y: "<<element.pos.y << " angle: "<<element.angle<<" error: "<<element.reproj_error<< std::endl;
+    while(!stopToken.stop_requested()){
+
+        Camera::tagInfo out = cam.getTagPos();
+
+        if (out.tag_id < 0){
+            
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            continue;
+
+        }
+
+        out.pos = getGlobalPos(out, shared);
+        stdErrBuffer = getGlobalStdErr(out, shared);
+
+        buffer.pose = out.pos;
+
+        buffer.std_x = stdErrBuffer.x;
+        buffer.std_y = stdErrBuffer.y;
+        buffer.std_theta = 1E6; // tell kalman filter to disregard angle from camera
+        
+        buffer.latency = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - out.timeStamp).count();
+
+        buffer.newData = true;
+        
+        {
+        std::lock_guard<std::mutex> lock(shared.mtx);
+        shared.camPos = buffer;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-    //std::cout <<out[0].x <<", "<< out[0].y<<", " << out[0].z<< ", "<< out[0].Hangle << std::endl;
-
-
- 
-
-
-   
-
-    // 4. Calculate the difference (duration)
-    // You can change 'microseconds' to milliseconds, nanoseconds, or seconds
     
-
+    // auto start = std::chrono::high_resolution_clock::now();
+    //auto end = std::chrono::high_resolution_clock::now();
+    //auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
 
 }
 
-Pos cameraTracking::getGlobalPos(Camera::tagInfo tag, sharedData& shared){
+Pose cameraTracking::getGlobalPos(Camera::tagInfo tag, sharedData& shared){
 
-    Pos currentPos;
+    Pose currentPos;
     bool farGoal;
 
     {
         std::lock_guard<std::mutex> lock(shared.mtx);
-        Pos currentPos = shared.OTOSpos;
+        currentPos = shared.OTOSPos.pose;
     }
 
-    Pos camVec = rotateVector(tag.pos, currentPos.heading);
+    Pose camVec = rotateVector(tag.pos, currentPos.theta);
     
     currentPos.y+camVec.y>=72 ? farGoal=false : farGoal=true;
     
-    Pos goalPos = getGoalPos(tag.tag_id, farGoal);
-    Pos globalPos = {goalPos.x - camVec.x, goalPos.y - camVec.y};
+    Pose goalPos = getGoalPos(tag.tag_id, farGoal);
+    Pose globalPos = {goalPos.x - camVec.x, goalPos.y - camVec.y};
 
     return globalPos;
 
 }
 
-Pos cameraTracking::getGoalPos(int goal, bool far){
+Pose cameraTracking::getGlobalStdErr(Camera::tagInfo tag, sharedData& shared){
 
-    Pos goalPos;
+    Pose currentPos;
+    bool farGoal;
+
+    {
+        std::lock_guard<std::mutex> lock(shared.mtx);
+        currentPos = shared.OTOSPos.pose;
+    }
+
+    const double c = std::cos(currentPos.theta);
+    const double s = std::sin(currentPos.theta);
+    
+    const double vx = tag.stdErr.x * tag.stdErr.x;
+    const double vy = tag.stdErr.y * tag.stdErr.y;
+
+    Pose globalStdErr = {c*c*vx + s*s*vy, s*s*vx + c*c*vy};
+
+    return globalStdErr;
+
+}
+
+Pose cameraTracking::getGoalPos(int goal, bool far){
+
+    Pose goalPos;
 
     switch (goal) {
         case 0:
@@ -81,7 +127,7 @@ Pos cameraTracking::getGoalPos(int goal, bool far){
         default:
             break; 
 
-
+    }
     if (!far){
 
         goalPos = rotateVector(goalPos, M_PI);
@@ -91,14 +137,14 @@ Pos cameraTracking::getGoalPos(int goal, bool far){
     return goalPos;
 
 }
-}
 
-Pos cameraTracking::rotateVector(Pos vec, double theta){
+
+Pose cameraTracking::rotateVector(Pose vec, double theta){
 
     double cos_theta = std::cos(theta);
     double sin_theta = std::sin(theta);
 
-    Pos rotated;
+    Pose rotated;
     rotated.x = vec.x * cos_theta + vec.y * sin_theta;
     rotated.y = vec.x * sin_theta - vec.y * cos_theta;
 

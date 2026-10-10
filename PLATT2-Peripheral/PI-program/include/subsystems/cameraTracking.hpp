@@ -16,9 +16,10 @@ class cameraTracking{
 
 
     private:
-    Pos getGlobalPos(Camera::tagInfo, sharedData&);
-    Pos getGoalPos(int, bool);
-    Pos cameraTracking::rotateVector(Pos , double);
+    Pose getGlobalPos(Camera::tagInfo, sharedData&);
+    Pose getGoalPos(int, bool);
+    Pose rotateVector(Pose , double);
+    Pose getGlobalStdErr(Camera::tagInfo, sharedData&);
 
 };
 

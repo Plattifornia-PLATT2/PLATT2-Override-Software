@@ -5,13 +5,11 @@
     //std::cout << "Tag ID: " << pos.tag_id << "\n";
     //std::cout << "Position (x, y, z): (" << pos.x << ", " << pos.y << ", " << pos.z << ")\n";
     //std::cout << "Reprojection Error: " << pos.reproj_error << "\n";
-std::vector<Camera::tagInfo> Camera::getTagPos() {
-
+Camera::tagInfo Camera::getTagPos() {
+    auto frameTimeStamp = std::chrono::high_resolution_clock::now();
     cv::Mat frame, gray;
     cap >> frame;
     cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
-
-    //cv::imwrite("gray.jpg", gray);
 
     image_u8_t image = {
         .width  = gray.cols,
@@ -20,60 +18,48 @@ std::vector<Camera::tagInfo> Camera::getTagPos() {
         .buf    = gray.data
     };
 
-    auto start = std::chrono::high_resolution_clock::now();
-    zarray_t *detections = apriltag_detector_detect(tagDetector, &image);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    std::cout << "time: "<<duration.count()<<std::endl;
+    zarray_t* detections = apriltag_detector_detect(tagDetector, &image);
 
-    
-    std::vector<tagInfo> result;
-    tagInfo stepRes;
-    
-    for (int i = 0; i < zarray_size(detections); ++i){
+    tagInfo best;               
+    const apriltag_detection_t* bestDet = nullptr;
+    double bestScore = -std::numeric_limits<double>::infinity();  // #include <limits>
 
+    for (int i = 0; i < zarray_size(detections); ++i) {
         apriltag_detection_t* det;
         zarray_get(detections, i, &det);
 
-        // --- draw overlay for this detection ---
-        for (int j = 0; j < 4; j++) {
-            cv::Point2d p1(det->p[j][0], det->p[j][1]);
-            cv::Point2d p2(det->p[(j + 1) % 4][0], det->p[(j + 1) % 4][1]);
-            cv::line(frame, p1, p2, cv::Scalar(0, 255, 0), 2);
-        }
-        cv::Point2d center(det->c[0], det->c[1]);
-        cv::circle(frame, center, 4, cv::Scalar(0, 0, 255), -1);
-        cv::putText(frame, std::to_string(det->id),
-                    center + cv::Point2d(10, -10),
-                    cv::FONT_HERSHEY_SIMPLEX, 0.8,
-                    cv::Scalar(0, 255, 255), 2);
-        // ----------------------------------------
+        // --- overlay (unchanged) ---
+        // ...
 
         info.det = det;
-
         apriltag_pose_t pose;
         double err = estimate_tag_pose(&info, &pose);
-        
-        if (err < 0.1){
 
-            stepRes = tagInfo {
-                .pos          = { MATD_EL(pose.t, 0, 0), MATD_EL(pose.t, 2, 0) },
-                .z            = MATD_EL(pose.t, 1, 0),
-                .angle        = getHorizontalAngle(pose.R),
-                .tag_id       = det->id,
-                .reproj_error = err
-            };
+        if (err < 0.1) {
+            double score = -err;                 // higher is better, see below
 
-            result.push_back(stepRes);
+            if (score > bestScore) {
+                bestScore = score;
+                bestDet   = det;
+                best = tagInfo{
+                    .pos          = { MATD_EL(pose.t, 0, 0), MATD_EL(pose.t, 2, 0),
+                                      getHorizontalAngle(pose.R) },
+                    .z            = MATD_EL(pose.t, 1, 0),
+                    .tag_id       = det->id,
+                    .reproj_error = err,
+                    .timeStamp    = frameTimeStamp
+                };
+            }
         }
 
         matd_destroy(pose.R);
         matd_destroy(pose.t);
     }
 
-    cv::imwrite("detections.jpg", frame);
+    
+    apriltag_detections_destroy(detections);     // must come after bestDet is used
 
-    return result;
+    return best;
 }
 
 void Camera::capImg(){
@@ -126,5 +112,63 @@ bool Camera::waitForExposureSettled(int maxFrames, double clippedFraction, int s
         }
     }
     return false;
+}
+
+Camera::tagStd Camera::estimateTagStd(const apriltag_detection_t* det,
+                                      double sigmaPx, int N)
+{
+    const double h = info.tagsize / 2.0;
+    const std::vector<cv::Point3d> obj = {
+        {-h,  h, 0}, { h,  h, 0}, { h, -h, 0}, {-h, -h, 0}
+    };
+
+    const cv::Matx33d K(info.fx, 0,       info.cx,
+                        0,       info.fy, info.cy,
+                        0,       0,       1);
+
+    thread_local std::mt19937 rng{42};
+    std::normal_distribution<double> noise(0.0, sigmaPx);
+
+    // Nominal angle, used to unwrap the perturbed angles
+    double nominal = getHorizontalAngle(/* your pose.R */ nullptr); // see note below
+
+    std::vector<double> xs, zs, angs;
+    xs.reserve(N); zs.reserve(N); angs.reserve(N);
+
+    for (int i = 0; i < N; ++i) {
+        std::vector<cv::Point2d> img(4);
+        for (int k = 0; k < 4; ++k)
+            img[k] = { det->p[k][0] + noise(rng), det->p[k][1] + noise(rng) };
+
+        cv::Vec3d rvec, tvec;
+        if (!cv::solvePnP(obj, img, K, cv::noArray(), rvec, tvec,
+                          false, cv::SOLVEPNP_IPPE_SQUARE))
+            continue;
+
+        cv::Matx33d R;
+        cv::Rodrigues(rvec, R);
+
+        xs.push_back(tvec[0]);
+        zs.push_back(tvec[2]);
+        angs.push_back(std::atan2(R(0, 2), R(2, 2)) * 180.0 / M_PI);
+    }
+
+    if (xs.size() < 10) return {1e3, 1e3, 1e3};   // fail safe: huge uncertainty
+
+    auto stddev = [](const std::vector<double>& v) {
+        double m = 0; for (double a : v) m += a; m /= v.size();
+        double s = 0; for (double a : v) s += (a - m) * (a - m);
+        return std::sqrt(s / (v.size() - 1));
+    };
+
+    // Angle: wrap deviations relative to the first sample so ±180 doesn't blow it up
+    for (double& a : angs) {
+        double d = a - angs[0];
+        while (d >  180) d -= 360;
+        while (d < -180) d += 360;
+        a = angs[0] + d;
+    }
+
+    return { stddev(xs), stddev(zs), stddev(angs) };
 }
 

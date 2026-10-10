@@ -2,7 +2,7 @@
 #define OTOS_HPP
 
 #include "utilities/OtosLinux.h"
-#include "utilities/sfTkLinuxI2C.h"
+#include "utilities/sfTk/sfTkLinuxI2C.h"
 #include "utilities/sfTk/sfDevOTOS.h"
 #include <stop_token>
 #include <utilities/sharedData.hpp>
@@ -27,6 +27,9 @@ class OTOS {
         double getX();
         double getY();
         double getH();
+        double getXstdDev();
+        double getYstdDev();
+        double getHstdDev();
 
 
     };

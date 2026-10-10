@@ -16,7 +16,7 @@ void piLink::linkLoop(std::stop_token stopToken, sharedData& shared){
         
         {
         std::lock_guard<std::mutex> lock(shared.mtx);
-            dataBuffer = shared.sendData;
+            dataBuffer.pos = shared.kalmanPos;
         }
         
         bool sent = link.sendLine(dataBuffer);

@@ -4,20 +4,26 @@
 #include <mutex>
 #include <condition_variable>
 
-struct Pos{
+struct Pose {
+    double x;
+    double y;
+    double theta; // (from -pi to pi)
+};
 
-    double x = 0;
-    double y = 0;
-    double heading = 0;
-
+struct PoseReading {
+    Pose pose; 
+    double std_x;
+    double std_y;
+    double std_theta; 
+    double latency = 0.0; // in mili seconds
+    bool newData = false;
 };
 
 struct sendPacket{
 
-    Pos pos;
+    Pose pos;
 
 };
-
 
 struct sharedData {
     
@@ -28,12 +34,10 @@ struct sharedData {
     
     std::condition_variable cv;
 
-    sendPacket sendData;
+    PoseReading OTOSPos;
+    PoseReading camPos;
 
-    Pos OTOSpos;
-
-    Pos kalmanPos;
-
+    Pose kalmanPos;
 
 };
 

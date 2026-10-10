@@ -147,7 +147,7 @@ size_t UartPort::pack(const sendPacket& d, std::span<uint8_t> out) {
 
     put(static_cast<float>(d.pos.x));
     put(static_cast<float>(d.pos.y));
-    put(static_cast<float>(d.pos.heading));
+    put(static_cast<float>(d.pos.theta));
 
     // Payload
     //put(static_cast<uint32_t>(d.id));
@@ -199,15 +199,15 @@ bool UartPort::tryParse(sendPacket& d) {
 
         float posX;
         float posY;
-        float heading;
+        float theta;
 
         get(posX);
         get(posY);
-        get(heading);
+        get(theta);
 
         d.pos.x = posX;
         d.pos.x = posY;
-        d.pos.heading = heading;
+        d.pos.theta = theta;
 
 
         //uint32_t id;  float temp;  uint16_t x;  uint8_t ok;

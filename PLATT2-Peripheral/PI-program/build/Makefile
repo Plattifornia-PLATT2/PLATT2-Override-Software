@@ -201,6 +201,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/subsystems/PoseEstimator.o: src/subsystems/PoseEstimator.cpp.o
+.PHONY : src/subsystems/PoseEstimator.o
+
+# target to build an object file
+src/subsystems/PoseEstimator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/PoseEstimator.cpp.o
+.PHONY : src/subsystems/PoseEstimator.cpp.o
+
+src/subsystems/PoseEstimator.i: src/subsystems/PoseEstimator.cpp.i
+.PHONY : src/subsystems/PoseEstimator.i
+
+# target to preprocess a source file
+src/subsystems/PoseEstimator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/PoseEstimator.cpp.i
+.PHONY : src/subsystems/PoseEstimator.cpp.i
+
+src/subsystems/PoseEstimator.s: src/subsystems/PoseEstimator.cpp.s
+.PHONY : src/subsystems/PoseEstimator.s
+
+# target to generate assembly for a file
+src/subsystems/PoseEstimator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/subsystems/PoseEstimator.cpp.s
+.PHONY : src/subsystems/PoseEstimator.cpp.s
+
 src/subsystems/cameraTracking.o: src/subsystems/cameraTracking.cpp.o
 .PHONY : src/subsystems/cameraTracking.o
 
@@ -297,6 +321,30 @@ src/utilities/ImageProssesing.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.s
 .PHONY : src/utilities/ImageProssesing.cpp.s
 
+src/utilities/KalmanFilterHolonomicPose.o: src/utilities/KalmanFilterHolonomicPose.cpp.o
+.PHONY : src/utilities/KalmanFilterHolonomicPose.o
+
+# target to build an object file
+src/utilities/KalmanFilterHolonomicPose.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/KalmanFilterHolonomicPose.cpp.o
+.PHONY : src/utilities/KalmanFilterHolonomicPose.cpp.o
+
+src/utilities/KalmanFilterHolonomicPose.i: src/utilities/KalmanFilterHolonomicPose.cpp.i
+.PHONY : src/utilities/KalmanFilterHolonomicPose.i
+
+# target to preprocess a source file
+src/utilities/KalmanFilterHolonomicPose.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/KalmanFilterHolonomicPose.cpp.i
+.PHONY : src/utilities/KalmanFilterHolonomicPose.cpp.i
+
+src/utilities/KalmanFilterHolonomicPose.s: src/utilities/KalmanFilterHolonomicPose.cpp.s
+.PHONY : src/utilities/KalmanFilterHolonomicPose.s
+
+# target to generate assembly for a file
+src/utilities/KalmanFilterHolonomicPose.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/KalmanFilterHolonomicPose.cpp.s
+.PHONY : src/utilities/KalmanFilterHolonomicPose.cpp.s
+
 src/utilities/sfTkLinuxI2C.o: src/utilities/sfTkLinuxI2C.cpp.o
 .PHONY : src/utilities/sfTkLinuxI2C.o
 
@@ -363,6 +411,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/subsystems/PoseEstimator.o"
+	@echo "... src/subsystems/PoseEstimator.i"
+	@echo "... src/subsystems/PoseEstimator.s"
 	@echo "... src/subsystems/cameraTracking.o"
 	@echo "... src/subsystems/cameraTracking.i"
 	@echo "... src/subsystems/cameraTracking.s"
@@ -375,6 +426,9 @@ help:
 	@echo "... src/utilities/ImageProssesing.o"
 	@echo "... src/utilities/ImageProssesing.i"
 	@echo "... src/utilities/ImageProssesing.s"
+	@echo "... src/utilities/KalmanFilterHolonomicPose.o"
+	@echo "... src/utilities/KalmanFilterHolonomicPose.i"
+	@echo "... src/utilities/KalmanFilterHolonomicPose.s"
 	@echo "... src/utilities/sfTkLinuxI2C.o"
 	@echo "... src/utilities/sfTkLinuxI2C.i"
 	@echo "... src/utilities/sfTkLinuxI2C.s"
