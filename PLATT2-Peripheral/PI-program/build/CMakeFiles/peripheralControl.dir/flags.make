@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/workspaces/PI-program/include -I/opt/rpi/include -I/opt/rpi/include/opencv4
 
-CXX_FLAGS = -g -std=gnu++20
+CXX_FLAGS = -g -Wno-psabi -std=gnu++20
 

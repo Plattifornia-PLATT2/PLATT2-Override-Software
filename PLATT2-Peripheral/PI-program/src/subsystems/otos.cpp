@@ -73,16 +73,60 @@ double OTOS::getH(){
     return pos.h;
 }
 
+
+
+double OTOS::getXstdDev(){
+    sfe_otos_pose2d_t pos;
+    sfTkError_t err = otos.getPositionStdDev(pos);
+    if (err != ksfTkErrOk)
+    {
+        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+    }
+    return pos.x;
+}
+
+double OTOS::getYstdDev(){
+    sfe_otos_pose2d_t pos;
+    sfTkError_t err = otos.getPositionStdDev(pos);
+    if (err != ksfTkErrOk)
+    {
+        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+    }
+    return pos.y;
+}
+
+double OTOS::getHstdDev(){
+    sfe_otos_pose2d_t pos;
+    sfTkError_t err = otos.getPositionStdDev(pos);
+    if (err != ksfTkErrOk)
+    {
+        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+    }
+    return pos.h;
+}
+
+
 void OTOS::sensorLoop(std::stop_token stopToken, sharedData& shared){
+    
     while (!stopToken.stop_requested()) {
         
-        double x = getX();
-        double y = getY();
+        PoseReading buffer;
+        auto t0 = std::chrono::steady_clock::now();
+        buffer.pose.x = getX();
+        buffer.pose.y = getY();
+        buffer.pose.theta = getH();
+
+        buffer.std_x = getXstdDev();
+        buffer.std_y = getYstdDev();
+        buffer.std_theta = getHstdDev();
+        auto t1 = std::chrono::steady_clock::now();
+        buffer.latency = std::chrono::duration<double, std::milli>(t1 - t0).count();
+
+        buffer.newData = true;
 
         {
         std::lock_guard<std::mutex> lock(shared.mtx);
-            shared.linkData.posX = x;
-            shared.linkData.posY = y; 
+            shared.OTOSPos = buffer;
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));

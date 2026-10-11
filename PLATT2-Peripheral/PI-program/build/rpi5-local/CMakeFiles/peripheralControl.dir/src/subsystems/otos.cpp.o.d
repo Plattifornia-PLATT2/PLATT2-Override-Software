@@ -124,7 +124,7 @@ CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o: \
  /workspaces/PI-program/include/utilities/sfTk/sfTkError.h \
  /workspaces/PI-program/include/utilities/sfTk/sfTkII2C.h \
  /workspaces/PI-program/include/utilities/sfTk/sfTkIBus.h \
- /workspaces/PI-program/include/utilities/sfTkLinuxI2C.h \
+ /workspaces/PI-program/include/utilities/sfTk/sfTkLinuxI2C.h \
  /usr/aarch64-linux-gnu/include/c++/11/string \
  /usr/aarch64-linux-gnu/include/c++/11/bits/stringfwd.h \
  /usr/aarch64-linux-gnu/include/c++/11/bits/memoryfwd.h \

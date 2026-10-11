@@ -1,4 +1,4 @@
-#include "utilities/sfTkLinuxI2C.h"
+#include "utilities/sfTk/sfTkLinuxI2C.h"
 
 #include <cerrno>
 #include <cstdio>
