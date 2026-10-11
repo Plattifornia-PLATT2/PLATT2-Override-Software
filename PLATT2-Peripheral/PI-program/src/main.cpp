@@ -20,6 +20,7 @@ int main() {
     
     sharedData shared;
     OTOS otos;
+    OTOS otos;
     
     piLink link;
     cameraTracking cam;
