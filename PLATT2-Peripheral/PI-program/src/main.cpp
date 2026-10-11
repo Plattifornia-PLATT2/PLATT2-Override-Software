@@ -29,6 +29,7 @@ int main() {
 
     otos.calibrate();
     
+    
     std::jthread signalThread = sigThread(shared);
     comTask.emplace_back([&link, &shared](std::stop_token st) {link.linkLoop(st, shared);});
 
