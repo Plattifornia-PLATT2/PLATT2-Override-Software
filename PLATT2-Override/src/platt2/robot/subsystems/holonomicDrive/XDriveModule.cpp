@@ -1,6 +1,11 @@
 #include "platt2/robot/subsystems/holonomicDrive/XDriveModule.hpp"
 #include "MovementVector.hpp"
 #include "platt2/helperFunctions.h"
+<<<<<<< Updated upstream
+=======
+#include "pros/abstract_motor.hpp"
+#include "pros/screen.hpp"
+>>>>>>> Stashed changes
 #include <cmath>
 
 
@@ -16,6 +21,14 @@ namespace holonomicDrive{
  
 void XDriveModule::move_vector(MovementVector v){
 
+<<<<<<< Updated upstream
+=======
+double XDriveModule::desiredModuleVel(const MovementVector& v) {
+    double linear = -sin(v.theta + getPhi()) * sgn(sin(getTheta())) * v.r;
+    double rot    = -sgn(cos(getTheta())) * v.w * getRadius();
+    return linear + rot;   // in/s
+}
+>>>>>>> Stashed changes
 
     double p = -(sin(v.theta+getPhi())/sin(getTheta())); // should be expanded for readability
 
@@ -35,6 +48,7 @@ void XDriveModule::move_vector(MovementVector v){
 XDriveModule::XDriveModule(std::unique_ptr<pros::Motor>& motor_l, std::unique_ptr<pros::Motor>& motor_r, double theta, double phi){
     module_motors.addMotor(motor_l);
     module_motors.addMotor(motor_r);
+    module_motors.setBrakeMode(pros::MotorBrake::brake);
     this->theta = theta;
     this->phi = phi;
     
