@@ -19,30 +19,20 @@ namespace holonomicDrive{
 
     void XDrive::moveVector(MovementVector v){ 
 
-        double projection;
-        double s;
-        double test;
-
         std::vector<double> pV;
+        pV.reserve(drive_modules.size());
+        double scale = 1.0;
 
-
-        for (auto& module : drive_modules) {
-            
-            projection = -sin(v.theta+(module->getPhi()))/sin((module->getTheta()));
-            
-            pV.push_back(std::abs(projection));
+        for (auto& m : drive_modules) {
+            double s = m->desiredModuleVel(v);
+            pV.push_back(s);
+            if (std::abs(s) > m->maxModuleVel())
+                scale = std::min(scale, m->maxModuleVel() / std::abs(s));
         }
-
-        s = *std::max_element(pV.begin(), pV.end());
-       
-        v.normalization_scalar = s/v.r;
-
-        for (auto& module : drive_modules){
-            module->move_vector(v);
+        
+        for (size_t i = 0; i < drive_modules.size(); ++i)
+            drive_modules[i]->setModuleVel(pV[i] * scale);
         }
-
-         
-    }
 
 }
      

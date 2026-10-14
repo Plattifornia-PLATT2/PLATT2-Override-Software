@@ -39,9 +39,13 @@ namespace holonomicDrive{
          * 
          */
         hal::MotorGroup module_motors;
-        
+
         double theta;
         double phi;
+        double radius;
+        double wheelDiameter;
+        double gearRatio;
+        
 
         public:
         /**
@@ -49,7 +53,11 @@ namespace holonomicDrive{
          * 
          * @param v The movement vector to apply to the module.
          */
-        void move_vector(MovementVector v);
+
+        double maxModuleVel();
+        double desiredModuleVel(const MovementVector&);
+        void setModuleVel(double);
+
 
         /**
          * @brief Get the angle between N the turning center and the center of the wheel
@@ -64,7 +72,9 @@ namespace holonomicDrive{
          * @return double The angle (phi) of the X Drive module
          */
         double getPhi();
-
+        double getRadius();
+        double getWheelDiameter();
+        double getGearRatio();
         //double get_rpm();
         //double getAngleFromZero();
 
@@ -76,7 +86,7 @@ namespace holonomicDrive{
          * @param theta The angle between N the turning center and the center of the wheel
          * @param phi The angle between N the turning center and the direction the wheel is facing
          */
-        XDriveModule(std::unique_ptr<pros::Motor>& motor_l, std::unique_ptr<pros::Motor>& motor_r, double theta, double phi);
+        XDriveModule(std::unique_ptr<pros::Motor>& motor_l, std::unique_ptr<pros::Motor>& motor_r, double theta, double phi, double radius, double wheelDiameter, double gearRatio);
         // theta refers to the angle between N the turning center and the center of the wheel
         // phi refers to the angle between N the turning center and the direction the wheel is faceing 
     };

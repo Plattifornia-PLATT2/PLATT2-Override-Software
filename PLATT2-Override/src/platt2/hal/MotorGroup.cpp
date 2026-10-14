@@ -14,7 +14,7 @@ void MotorGroup::setVoltage(double voltage){
 
 void MotorGroup::setVelocity(double velocity){
     for(auto &motor: motors)
-        if(motor) motor->move_velocity(velocity*600);
+        if(motor) motor->move_velocity(velocity);
 }
 
 void MotorGroup::setBrakeMode(pros::MotorBrake brakeMode){
@@ -22,13 +22,22 @@ void MotorGroup::setBrakeMode(pros::MotorBrake brakeMode){
         if(motor) motor->set_brake_mode(brakeMode);
 }
 
+
 void MotorGroup::addMotor(std::unique_ptr<pros::Motor> &motor){
+    //motor->move(0);
     motors.push_back(std::move(motor));
 }
 
 void MotorGroup::setMotorGearing(pros::MotorGears gears){
     for(auto &motor : motors)
         if(motor) motor->set_gearing(gears);
+}
+
+pros::MotorGears MotorGroup::getMotorGearing(){
+    pros::MotorGears out;
+     for(auto &motor : motors)
+        if(motor) out =  motor->get_gearing();
+    return out;
 }
 
 void MotorGroup::setZeroPostion(){

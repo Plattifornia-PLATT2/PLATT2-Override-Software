@@ -62,6 +62,7 @@ class MotorGroup{
      * 
      * @param motor The motor to add
      */
+
     void addMotor(std::unique_ptr<pros::Motor> &motor);
 
     /**
@@ -75,6 +76,10 @@ class MotorGroup{
      * @brief Sets the zero position of the motor encoders
      * 
      */
+
+
+    pros::MotorGear getMotorGearing();
+
     void setZeroPostion();
 
     /**

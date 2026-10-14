@@ -1,12 +1,9 @@
 #include "platt2/robot/subsystems/holonomicDrive/XDriveModule.hpp"
 #include "MovementVector.hpp"
 #include "platt2/helperFunctions.h"
-<<<<<<< Updated upstream
-=======
-#include "pros/abstract_motor.hpp"
 #include "pros/screen.hpp"
->>>>>>> Stashed changes
 #include <cmath>
+#include <ostream>
 
 
 namespace platt2{
@@ -17,40 +14,64 @@ namespace subsystems{
 
 namespace holonomicDrive{
 
-    double deadzone = 0.085;
- 
-void XDriveModule::move_vector(MovementVector v){
 
-<<<<<<< Updated upstream
-=======
 double XDriveModule::desiredModuleVel(const MovementVector& v) {
-    double linear = -sin(v.theta + getPhi()) * sgn(sin(getTheta())) * v.r;
+    double linear = -sin(v.theta + getPhi()) / sin(getTheta()) * v.r;
     double rot    = -sgn(cos(getTheta())) * v.w * getRadius();
     return linear + rot;   // in/s
 }
->>>>>>> Stashed changes
 
-    double p = -(sin(v.theta+getPhi())/sin(getTheta())); // should be expanded for readability
-
-    double m = ((p/v.normalization_scalar)*(1-std::abs(v.w))); // should be expanded for readability
+double XDriveModule::maxModuleVel()  {
     
-    double rot = -sgn(cos(getTheta()))*v.w;
-
-    double combined = m+rot;
-
-    double output = sgn(combined)*deadzone + combined*(1-deadzone);
-    //std::cout<<output<<std::endl;
-
-    module_motors.setVoltage((output));
+    double gear;
     
+    switch(module_motors.getMotorGearing()){
+
+        case pros::MotorGears::blue: 
+        gear = 600;
+        break;
+
+        case pros::MotorGears::red: 
+        gear = 100;
+        break;
+
+        case pros::MotorGears::green: 
+        gear = 200;
+        break;
+
+        default:
+        gear = 0;
+        break;
+    }
+
+    return ((gear)*getGearRatio()) / 60.0 * M_PI * getWheelDiameter();
+
 }
 
-XDriveModule::XDriveModule(std::unique_ptr<pros::Motor>& motor_l, std::unique_ptr<pros::Motor>& motor_r, double theta, double phi){
+void XDriveModule::setModuleVel(double ips) {
+    // Option A: motor-side velocity PID
+    double rpm = ips / (M_PI * getWheelDiameter()) * 60.0 / getGearRatio();
+    module_motors.setVelocity(rpm);   // new method on MotorGroup
+
+    // Option B: voltage feedforward, using your existing setVoltage (-1..1)
+    // double u = in_per_s / maxSpeed();                    // kV term, normalized
+    // module_motors.setVoltage(sgn(u) * cfg.kS + u * (1.0 - cfg.kS));
+}
+
+
+
+
+
+
+
+XDriveModule::XDriveModule(std::unique_ptr<pros::Motor>& motor_l, std::unique_ptr<pros::Motor>& motor_r, double theta, double phi, double radius, double wheelDiameter, double gearRatio){
     module_motors.addMotor(motor_l);
     module_motors.addMotor(motor_r);
-    module_motors.setBrakeMode(pros::MotorBrake::brake);
     this->theta = theta;
     this->phi = phi;
+    this->radius = radius;
+    this->wheelDiameter = wheelDiameter;
+    this->gearRatio = gearRatio;
     
 }
 
@@ -64,6 +85,22 @@ double XDriveModule::getPhi(){
     return this->phi;
 
 }
+double XDriveModule::getRadius(){
+
+    return this->radius;
+
+}
+double XDriveModule::getWheelDiameter(){
+
+    return this->wheelDiameter;
+
+}
+double XDriveModule::getGearRatio(){
+
+    return this->gearRatio;
+
+}
+
 
 
 }}}} // namespaces
