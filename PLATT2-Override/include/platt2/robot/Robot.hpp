@@ -47,6 +47,7 @@ namespace platt2
             std::shared_ptr<subsystems::holonomicDrive::XDrive> xdriveSubsystem;
             std::shared_ptr<subsystems::odometry::Odometry> odometrySubsystem;
             std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomicControlSubsystem;
+            std::shared_ptr<subsystems::intake::IntakeSubsystem> intakeSubsystem;
         };
 
         /**

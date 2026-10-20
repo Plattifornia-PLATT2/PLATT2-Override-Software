@@ -1,4 +1,6 @@
 #include "platt2/config/PinkConfig.hpp"
+#include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
+#include <memory>
 
 namespace platt2{
 namespace config{
@@ -20,14 +22,6 @@ std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> PinkConfig::b
     std::unique_ptr<pros::v5::Motor> bl_top{std::make_unique<pros::v5::Motor>(BACK_LEFT_TOP_MOTOR_PORT, DRIVE_GEARSET)};
     std::unique_ptr<pros::v5::Motor> bl_bottom{std::make_unique<pros::v5::Motor>(BACK_LEFT_BOTTOM_MOTOR_PORT, DRIVE_GEARSET)};
 
-    //Intake motors
-    std::unique_ptr<pros::Motor> front_intake_motor{std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT, INTAKE_GEARSET)};
-    std::unique_ptr<pros::Motor> middle_intake_motor{std::make_unique<pros::Motor>(MIDDLE_INTAKE_MOTOR_PORT, INTAKE_GEARSET)};
-    std::unique_ptr<pros::Motor> rear_intake_motor{std::make_unique<pros::Motor>(REAR_INTAKE_MOTOR_PORT, INTAKE_GEARSET)};
-    std::unique_ptr<pros::Motor> upper_conveyor_motor{std::make_unique<pros::Motor>(UPPER_CONVEYOR_MOTOR_PORT, INTAKE_GEARSET)};
-    std::unique_ptr<pros::Motor> lower_roller_motor{std::make_unique<pros::Motor>(LOWER_ROLLER_MOTOR_PORT, pros::MotorGears::green)};
-    std::unique_ptr<pros::Motor> rear_intake_left_motor{std::make_unique<pros::Motor>(REAR_INTAKE_LEFT_MOTOR_PORT, pros::MotorGears::green)};
-    std::unique_ptr<pros::Motor> rear_intake_right_motor{std::make_unique<pros::Motor>(REAR_INTAKE_RIGHT_MOTOR_PORT, pros::MotorGears::green)};
 
     //X drive modules
 
@@ -77,6 +71,14 @@ std::shared_ptr<robot::subsystems::odometry::Odometry> PinkConfig::buildOdometry
     return odom_subsystem;
 }
 
+std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> PinkConfig::buildIntakeSubsystem(){
+    std::unique_ptr<pros::Motor> frontMotor = std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT);
+   
+    std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> intakeSubsystem = std::make_unique<platt2::robot::subsystems::intake::IntakeSubsystem>(std::move(frontMotor));
+    return intakeSubsystem;
+}
+
+
 robot::RobotSubsystems PinkConfig::buildSubsystems(){
     robot::RobotSubsystems subsystems;
 
@@ -85,6 +87,8 @@ robot::RobotSubsystems PinkConfig::buildSubsystems(){
     subsystems.odometrySubsystem = buildOdometrySubsystem();
 
     subsystems.holonomicControlSubsystem = buildControlSystem(subsystems.xdriveSubsystem, subsystems.odometrySubsystem);
+
+    subsystems.intakeSubsystem = buildIntakeSubsystem();
 
     return subsystems;
 }

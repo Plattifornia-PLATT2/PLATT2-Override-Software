@@ -63,25 +63,15 @@ class PinkConfig : public IConfig {
 
     // ** Intake Ports **
     static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
-    static constexpr int MIDDLE_INTAKE_MOTOR_PORT{17};
-    static constexpr int REAR_INTAKE_MOTOR_PORT{0};
-    static constexpr int LOWER_ROLLER_MOTOR_PORT{18};
-    static constexpr int UPPER_CONVEYOR_MOTOR_PORT{0};
-    static constexpr int REAR_INTAKE_LEFT_MOTOR_PORT{13};
-    static constexpr int REAR_INTAKE_RIGHT_MOTOR_PORT{-14};
-    //static constexpr int DISTANCE_SENSOR_PORT{14};
+
+
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
 
     // ** Color Sort Ports **
     static constexpr int OPTICAL_SENSOR_PORT{10};
 
     // ** Pneumatics **
-    static constexpr int ED_MECH_PISTON_PORT{1};
-    static constexpr int UPPER_CONVEYOR_HEIGHT_PISTON_PORT{2};
-    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{0};
-    static constexpr int RAKE_MECH_PISTON_PORT{4};
-    static constexpr int DESCORE_PISTON_PORT{5};
-    static constexpr int REAR_INTAKE_PISTON_PORT {6};
+
 
     // ** VEX IMU Port **
     static constexpr int VEX_IMU_PORT{15};
@@ -112,7 +102,7 @@ class PinkConfig : public IConfig {
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
-
+    std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
 
     robot::RobotSubsystems buildSubsystems();
 

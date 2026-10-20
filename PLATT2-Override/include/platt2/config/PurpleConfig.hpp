@@ -116,6 +116,7 @@ class PurpleConfig : public IConfig {
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
+    std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
 
 
     robot::RobotSubsystems buildSubsystems();

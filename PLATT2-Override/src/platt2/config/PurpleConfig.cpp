@@ -77,6 +77,13 @@ std::shared_ptr<robot::subsystems::odometry::Odometry> PurpleConfig::buildOdomet
     return odom_subsystem;
 }
 
+std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> PurpleConfig::buildIntakeSubsystem(){
+    std::unique_ptr<pros::Motor> frontMotor = std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT);
+   
+    std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> intakeSubsystem = std::make_unique<platt2::robot::subsystems::intake::IntakeSubsystem>(std::move(frontMotor));
+    return intakeSubsystem;
+}
+
 robot::RobotSubsystems PurpleConfig::buildSubsystems(){
     robot::RobotSubsystems subsystems;
 
@@ -85,6 +92,8 @@ robot::RobotSubsystems PurpleConfig::buildSubsystems(){
     subsystems.odometrySubsystem = buildOdometrySubsystem();
 
     subsystems.holonomicControlSubsystem = buildControlSystem(subsystems.xdriveSubsystem, subsystems.odometrySubsystem);
+
+    subsystems.intakeSubsystem = buildIntakeSubsystem();
 
     return subsystems;
 }
