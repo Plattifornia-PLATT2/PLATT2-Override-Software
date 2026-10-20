@@ -7,26 +7,7 @@
 namespace platt2{
 namespace auton{
 
-void PinkCompAuton::init(
-    std::shared_ptr<robot::subsystems::holonomicDrive::HolonomicControl> holonomic_subsytem, 
-    std::shared_ptr<robot::subsystems::odometry::Odometry> odometry_subsystem, 
-    std::shared_ptr<robot::subsystems::intake::IntakeSubsystem> intake_subsystem,
-    std::shared_ptr<robot::subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem,
-    robot::AllianceConfig alliance_color
-) {
-    this->holonomic_subsytem = holonomic_subsytem;
-    this->odometry_subsystem = odometry_subsystem;
-    this->intake_subsystem = intake_subsystem;
-    this->color_sort_subsystem = color_sort_subsystem;
-    this->alliance_color= alliance_color;
-
-    if(odometry_subsystem){
-        robot::subsystems::odometry::Position startingPos;
-        startingPos.x = STARTING_X_POSITION;
-        startingPos.y = STARTING_Y_POSITION;
-        startingPos.heading = STARTING_HEADING;
-        odometry_subsystem->setPos(startingPos);
-    }
+void PinkCompAuton::init() {
 }
 
 std::string PinkCompAuton::getName() const {

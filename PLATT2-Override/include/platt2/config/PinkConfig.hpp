@@ -11,6 +11,7 @@
 #include "platt2/EAutonConfig.hpp"
 #include "platt2/ERobotConfig.hpp"
 #include "platt2/profiles/JonProfile.hpp"
+#include "platt2/profiles/QuinnProfile.hpp"
 #include "platt2/auton/PinkSkillsAuton.hpp"
 #include "platt2/auton/PurpleSkillsAuton.hpp"
 #include "platt2/auton/PinkCompAuton.hpp"
@@ -107,6 +108,15 @@ class PinkConfig : public IConfig {
     static constexpr double heading_Kp{0.15};
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
+
+    std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
+
+
+    robot::RobotSubsystems buildSubsystems();
+
+
 
     public:
 

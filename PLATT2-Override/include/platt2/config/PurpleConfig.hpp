@@ -18,6 +18,9 @@
 #include "platt2/auton/PurpleSkillsAuton.hpp"
 #include "platt2/auton/PinkCompAuton.hpp"
 #include "platt2/auton/PurpleCompAuton.hpp"
+#include "platt2/hal/TrackingWheel.hpp"
+#include "platt2/robot/subsystems/odometry/TrackingWheelPositionTracker.hpp"
+
 
 // ** Pros API Includes **
 #include "pros/motors.hpp"
@@ -110,10 +113,19 @@ class PurpleConfig : public IConfig {
     static constexpr double heading_Ki{0};
 
     
+    std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
+
+
+    robot::RobotSubsystems buildSubsystems();
+
+
+
     public:
 
     /**
-     * @brief Builds the purple robot with given config values
+     * @brief Builds the pink robot with given config values
      * 
      * @param auton The auton route to use
      * @param profile The driver profile to use
