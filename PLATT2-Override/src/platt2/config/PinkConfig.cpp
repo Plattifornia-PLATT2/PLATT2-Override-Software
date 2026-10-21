@@ -6,6 +6,7 @@
 #include "platt2/profiles/JonProfile.hpp"
 #include "platt2/profiles/QuinnProfile.hpp"
 #include "platt2/robot/subsystems/holonomicDrive/XDriveModule.hpp"
+#include "platt2/robot/subsystems/odometry/OTOSPositionTracker.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
 #include "platt2/robot/subsystems/odometry/OdometryPosition.hpp"
 #include "platt2/robot/subsystems/tankDrive/tankControl.hpp"
@@ -73,7 +74,7 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
     std::unique_ptr<hal::TrackingWheel> horizontal_tracking_wheel = std::make_unique<hal::TrackingWheel>(std::move(horiontal_encoder), TRACKING_WHEEL_DIAMETER);
     std::unique_ptr<hal::TrackingWheel> vertical_tracking_wheel = std::make_unique<hal::TrackingWheel>(std::move(vertical_encoder), TRACKING_WHEEL_DIAMETER);
 
-    std::unique_ptr<robot::subsystems::odometry::TrackingWheelPositionTracker> position_tracker = std::make_unique<robot::subsystems::odometry::TrackingWheelPositionTracker>(std::move(horizontal_tracking_wheel), std::move(vertical_tracking_wheel), std::move(vex_imu));
+    std::unique_ptr<robot::subsystems::odometry::OTOSPositionTracker> position_tracker = std::make_unique<robot::subsystems::odometry::OTOSPositionTracker>(std::move(horizontal_tracking_wheel), std::move(vertical_tracking_wheel), std::move(vex_imu));
     position_tracker->setOffsets(HORIZONTAL_TRACKING_WHEEL_OFFSET, VERTICAL_TRACKING_WHEEL_OFFSET);
     std::shared_ptr<robot::subsystems::odometry::Odometry> odom_subsystem;
     odom_subsystem = std::make_shared<robot::subsystems::odometry::Odometry>(std::move(position_tracker));

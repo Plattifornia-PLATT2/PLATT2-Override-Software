@@ -1,14 +1,36 @@
+
+#include "platt2\hal\serialPort.hpp"
 #include "platt2\robot\subsystems\externalLink\piLink.hpp"
-#include "platt2\robot\subsystems\externalLink\serialPort.hpp"
 #include "pros/rtos.hpp"
 #include "pros/screen.hpp"
 
-void piLink::linkLoop(){
+namespace platt2{
+namespace robot{
+namespace subsystems{
+namespace piLink{
 
-    sendPacket dataBuffer;
-    sendPacket zeroPacket;
+static void taskLink(void *p) {
+    reinterpret_cast<piLinkSubsystem*>(p)->linkLoop();
+
+}
+
+piLinkSubsystem::piLinkSubsystem(
+
+
+) : 
+
+piLinkTask(taskLink, this)
+
+{
+}
+
+
+void piLinkSubsystem::linkLoop(){
+
+    hal::serialPort::sendPacket dataBuffer;
+    hal::serialPort::sendPacket zeroPacket;
     
-    serialPort link(5);
+    hal::serialPort link(5);
 
     pros::screen::print(pros::E_TEXT_MEDIUM, 5, "working");
 
@@ -41,7 +63,7 @@ void piLink::linkLoop(){
     
 
 
-}
+}}}}}
 
         //piLink comlink;
         //comlink.linkLoop();

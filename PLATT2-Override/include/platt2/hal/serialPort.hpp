@@ -1,21 +1,45 @@
 #pragma once
 
-#include "piLink.hpp"
 #include "pros/serial.hpp"
 
 #include <cstdint>
 #include <string.h>
 
+/**
+ * @brief Namespace for all PLATT2 library code
+ * @authors PLATT2 development team
+ */
+namespace platt2{
+
+/**
+ * @brief Namespace for all hardware abstraction layer code
+ * @author Dominic Young
+ */
+namespace hal{
+
+/**
+ * @brief A class to control a group of motors
+ * @author Dominic Young
+ */
+
 class serialPort {
 public:
+
+    struct sendPacket{
+
+            double posX = 0;
+            double posY = 0;
+            double heading = 0;
+
+    }; 
     // port: smart port number (1-21). baudrate: e.g. 115200.
     explicit serialPort(std::uint8_t port, std::int32_t baudrate = 115200);
     
 
-    bool sendLine(const piLink::sendPacket&);
+    bool sendLine(const sendPacket&);
 
 
-    bool receiveLine(piLink::sendPacket&, std::uint32_t timeoutMs = 100);
+    bool receiveLine(sendPacket&, std::uint32_t timeoutMs = 100);
  
     
     const std::string& lastError() const;
@@ -37,9 +61,9 @@ private:
     
     uint16_t crc16(const uint8_t* p, size_t n);
 
-    size_t pack(const piLink::sendPacket&, std::span<uint8_t>);
+    size_t pack(const sendPacket&, std::span<uint8_t>);
     
-    bool tryParse(piLink::sendPacket& d);
+    bool tryParse(sendPacket& d);
     std::array<uint8_t, 64> rx_;
     size_t                  rxLen_ = 0;
 
@@ -48,4 +72,4 @@ private:
     pros::Serial serial_;
     std::string rxBuffer_;
     std::string lastError_;
-};
+};}}

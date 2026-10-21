@@ -17,7 +17,7 @@ namespace holonomicDrive{
 
 
 double XDriveModule::desiredModuleVel(const MovementVector& v) {
-    double linear = -sin(v.theta + getPhi()) * sgn(sin(getTheta())) * v.r;
+    double linear = -(v.vx * sin(getPhi()) + v.vy * cos(getPhi())) * sgn(sin(getTheta()));
     double rot    = -sgn(cos(getTheta())) * v.w * getRadius();
     return linear + rot;   // in/s
 }
@@ -50,13 +50,9 @@ double XDriveModule::maxModuleVel()  {
 }
 
 void XDriveModule::setModuleVel(double ips) {
-    // Option A: motor-side velocity PID
     double rpm = ips / (M_PI * getWheelDiameter()) * 60.0 / getGearRatio();
     module_motors.setVelocity(rpm);   // new method on MotorGroup
 
-    // Option B: voltage feedforward, using your existing setVoltage (-1..1)
-    // double u = in_per_s / maxSpeed();                    // kV term, normalized
-    // module_motors.setVoltage(sgn(u) * cfg.kS + u * (1.0 - cfg.kS));
 }
 
 

@@ -1,32 +1,48 @@
 #pragma once
 
+#include "platt2\hal\serialPort.hpp"
 
 #include "pros/rtos.hpp"
+/**
+ * @brief Namespace for PLATT2 library code.
+ * @authors PLATT2 Development team.
+ */
+namespace platt2{
 
+/**
+ * @brief Namespace for robot-related code.
+ * @authors PLATT2 Development team.
+ */
+namespace robot{
 
-class piLink{
+/**
+ * @brief Namespace for subsystem-related code.
+ * @authors PLATT2 Development team.
+ */
+namespace subsystems{
+
+/**
+ * @brief Namespace for intake subsystem related code.
+ * @authors PLATT2 Development team.
+ */
+namespace piLink{
+
+class piLinkSubsystem{
 
     public:
 
-    struct sendPacket{
-
-            double posX = 0;
-            double posY = 0;
-            double heading = 0;
-
-    }; 
     
     pros::Mutex packetMtx;
-    sendPacket linkData;
+    hal::serialPort::sendPacket linkData;
     void linkLoop();
 
-
+    
 
 
     private:
-
+    pros::Task piLinkTask;
          
+    piLinkSubsystem();
 
 
-
-};
+};}}}}

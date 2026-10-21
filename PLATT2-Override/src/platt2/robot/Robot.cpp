@@ -58,22 +58,21 @@ namespace robot{
 
             // Create movement vector
             subsystems::holonomicDrive::MovementVector movement;  
-            
-            polar p = CtoP(leftX, leftY);   
-            
-            p.theta = p.theta - (odom_subsystem->getHeading()+(M_PI_2));
 
-            p.r = p.r*60;
-
+            double heading = odom_subsystem->getHeading()+(M_PI_2);
+            double c = cos(heading), s = sin(heading);
+            double vx =  c * leftX + s * leftY;
+            double vy = -s * leftX + c * leftY;
+            
             if(driver_profile->driverEnum == JON){
-                movement.r = p.r;
-                movement.theta = p.theta;
-                movement.w = rightX*3.14;
+                movement.vx = vx*60;
+                movement.vy = vy*60;
+                movement.w = rightX*3.14; // 1 rad/s turn speed
             }
             else if(driver_profile->driverEnum == QUINN){
-                movement.r = p.r * 0.90;
-                movement.theta = p.theta; 
-                movement.w = rightX;
+                movement.vx = vx*60;
+                movement.vy = vy*60; 
+                movement.w = rightX*6.28;
             }
     
 
