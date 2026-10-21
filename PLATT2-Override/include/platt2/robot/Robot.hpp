@@ -19,6 +19,8 @@
 #include "pros/misc.hpp"
 #include "pros/rtos.hpp"
 #include "pros/screen.hpp"
+#include "subsystems/holonomicDrive/HolonomicControl.hpp"
+#include "subsystems/holonomicDrive/XDrive.hpp"
 #include "subsystems/tankDrive/tankControl.hpp"
 #include "subsystems/tankDrive/tankDrive.hpp"
 
@@ -40,6 +42,14 @@ namespace platt2
      */
     namespace robot
     {
+
+        struct RobotSubsystems{
+            std::shared_ptr<subsystems::holonomicDrive::XDrive> xdriveSubsystem;
+            std::shared_ptr<subsystems::odometry::Odometry> odometrySubsystem;
+            std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomicControlSubsystem;
+            std::shared_ptr<subsystems::intake::IntakeSubsystem> intakeSubsystem;
+        };
+
         /**
          * @brief The robot class containing all subsystems and control logic.
          * @authors Dominic Young & Logan Wolf
@@ -47,20 +57,13 @@ namespace platt2
         class Robot
         {
             private:
-
-            // Subsystems
-            std::shared_ptr<subsystems::odometry::Odometry> odom_subsystem;
-            std::shared_ptr<subsystems::holonomicDrive::XDrive> xDrive_subsystem;
-            std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomic_controller;
-            std::shared_ptr<subsystems::intake::IntakeSubsystem> intake_subsystem;
-            std::shared_ptr<subsystems::colorsort::ColorSortSubsystem> color_sort_subsystem;
+            RobotSubsystems subsystems;
 
             // Config Values
             std::unique_ptr<auton::IAuton> auton_routine;
-            AllianceConfig current_alliance;
-            RobotConfig current_config;
-            AutonConfig current_auton_route;
-            std::unique_ptr<profiles::DriverProfile> driver_profile;
+            RobotConfig currentColor;
+            AutonConfig currentAutonRoute;
+            std::unique_ptr<profiles::DriverProfile> driverProfile;
 
             public:
             
@@ -85,28 +88,8 @@ namespace platt2
             /**
              * @brief Construct a new Robot object with the given subsystems and parameters.
              * 
-             * @param xdrive_subsystem Shared pointer to an Xdrive subsystem object
-             * @param odometry_subsystem Shared pointer to an Odometry subsystem object
-             * @param holonomic_controller Shared pointer to a HolonomicControl subsystem object
-             * @param intake_subsystem Shared pointer to an IntakeSubsystem object
-             * @param alliance_config Current alliance configuration
-             * @param robot_config Current robot configuration
-             * @param auton_config Current autonomous route configuration
-             * @param driver_profile Current driver profile
-             * @param auton_routine Current autonomous routine
-             * @param color_sort_subsystem Shared pointer to a ColorSortSubsystem object
              */
-            Robot(std::shared_ptr<subsystems::holonomicDrive::XDrive>& x_drive_subsystem, 
-                std::shared_ptr<subsystems::odometry::Odometry>& odometry_subsystem, 
-                std::shared_ptr<subsystems::holonomicDrive::HolonomicControl>& holonomic_controller,
-                std::shared_ptr<subsystems::intake::IntakeSubsystem>& intake_subsystem,
-                platt2::robot::AllianceConfig alliance_config,
-                platt2::robot::RobotConfig robot_config,
-                platt2::robot::AutonConfig auton_config,
-                std::unique_ptr<profiles::DriverProfile>& driver_profile,
-                std::unique_ptr<auton::IAuton>& auton_routine,
-                std::shared_ptr<subsystems::colorsort::ColorSortSubsystem>& color_sort_subsystem
-            );
+            Robot(RobotSubsystems subsystems, RobotConfig robotColor, std::unique_ptr<auton::IAuton> autonRoutine, std::unique_ptr<profiles::DriverProfile> driverProfile);
 
         };
     };
