@@ -1,22 +1,31 @@
-#include "platt2\robot\subsystems\autonControl\LQRController.hpp"
 
+#include "platt2/robot/subsystems/holonomicDrive/autonControl/LQR.hpp"
 
-
-
-
+/**
+ * @brief Namespace for all PLATT2 library code.
+ * @authors PLATT2 Development team.
+ */
 namespace platt2{
 
-
+/**
+ * @brief Namespace for robot-related code.
+ * @authors PLATT2 Development team.
+ */
 namespace robot{
 
+/**
+ * @brief Namespace for subsystem-related code.
+ * @authors PLATT2 Development team.
+ */
 namespace subsystems{
 
-namespace autonControl{
+/**
+ * @brief Namespace for holonomic drive related code.
+ * @authors PLATT2 Development team.
+ */
+namespace holonomicDrive{
 
-namespace LQRcontroller{
-
-
-Eigen::Matrix<double, 3, 6> computeLqrGain(double tau, double dt, const Eigen::Matrix<double, 6, 1>& qDiag, const Eigen::Vector3d& rDiag)
+Eigen::Matrix<double, 3, 6> LQR::computeLqrGain( double tau, double dt, const Eigen::Matrix<double, 6, 1>& qDiag, const Eigen::Vector3d& rDiag)
 {
     // Continuous model: state = [pos error; vel error], input = velocity correction
     Eigen::Matrix<double, 6, 6> A = Eigen::Matrix<double, 6, 6>::Zero();
@@ -47,7 +56,7 @@ Eigen::Matrix<double, 3, 6> computeLqrGain(double tau, double dt, const Eigen::M
 }
 
 // Run every control loop. All quantities are in the field frame.
-Eigen::Vector3d lqrTrack(const Eigen::Matrix<double, 3, 6>& K, double tau,
+Eigen::Vector3d LQR::lqrTrack(
               const Eigen::Vector3d& posDesired, const Eigen::Vector3d& velDesired, const Eigen::Vector3d& accDesired,
               const Eigen::Vector3d& posMeasured, const Eigen::Vector3d& velMeasured)
 {
@@ -61,4 +70,4 @@ Eigen::Vector3d lqrTrack(const Eigen::Matrix<double, 3, 6>& K, double tau,
 }
 
 
-}}}}}
+}}}}

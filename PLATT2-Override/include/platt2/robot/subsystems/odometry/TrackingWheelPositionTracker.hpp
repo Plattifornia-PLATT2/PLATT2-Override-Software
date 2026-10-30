@@ -1,10 +1,12 @@
 #ifndef TRACKING_WHEEL_POSITION_TRACKER_HPP
 #define TRACKING_WHEEL_POSITION_TRACKER_HPP
 
+#include "Eigen/Dense"
 #include "platt2/robot/subsystems/odometry/OdometryPosition.hpp"
 #include "platt2/hal/TrackingWheel.hpp"
 #include "platt2/robot/subsystems/odometry/IPositionTracker.hpp"
 #include "platt2/helperFunctions.h"
+#include "Eigen/Dense"
 
 #include "pros/screen.hpp"
 #include "pros/imu.hpp"
@@ -39,6 +41,8 @@ namespace odometry{
     class TrackingWheelPositionTracker : public IPositionTracker{
         private:
         
+        
+
         std::unique_ptr<hal::TrackingWheel> x_wheel;
         std::unique_ptr<hal::TrackingWheel> y_wheel;
         std::unique_ptr<pros::IMU> imu;
@@ -49,8 +53,8 @@ namespace odometry{
         double x_offset{};
         double y_offset{};
         double heading_offset{};
-        double velocity{};
-        double angular_velocity{};
+        
+        Eigen::Vector3d velocity;
 
         public:
         /**
@@ -87,8 +91,7 @@ namespace odometry{
          */
         double getHeading() override;
 
-        double getVelocity() override;
-        double getAngularVelocity() override;
+        Eigen::Vector3d getVelocity() override;
 
         /**
          * @brief Sets the offsets for the position tracker.

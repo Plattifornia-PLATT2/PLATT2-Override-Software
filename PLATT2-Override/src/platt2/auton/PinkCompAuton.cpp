@@ -7,14 +7,18 @@
 namespace platt2{
 namespace auton{
 
-void PinkCompAuton::init() {
+void PinkCompAuton::init(const robot::RobotSubsystems& subsystems) {
+
+    this->subsystems = subsystems;
 }
 
 std::string PinkCompAuton::getName() const {
     return AUTON_NAME;
 }
-
 void PinkCompAuton::run() {
+
+
+    subsystems.holonomicControlSubsystem->tauTest();
     
 }
 

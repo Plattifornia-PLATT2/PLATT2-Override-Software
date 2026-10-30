@@ -1,5 +1,7 @@
 #include "platt2/config/PinkConfig.hpp"
-#include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
+#include "platt2/robot/subsystems/odometry/PiPositionTracker.hpp"
+
+
 #include <memory>
 
 namespace platt2{
@@ -45,10 +47,12 @@ std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> PinkConfig::b
 
 std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> PinkConfig::buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem){
     //holonomic control system
-    std::unique_ptr<robot::pid::PID>position_pid = std::make_unique<robot::pid::PID>(position_dt, position_max, position_min, position_Kp, position_Kd, position_Ki);
-    std::unique_ptr<robot::pid::PID>heading_pid = std::make_unique<robot::pid::PID>(heading_dt, heading_max, heading_min, heading_Kp, heading_Kd, heading_Ki);
+    //std::unique_ptr<robot::pid::PID>position_pid = std::make_unique<robot::pid::PID>(position_dt, position_max, position_min, position_Kp, position_Kd, position_Ki);
+    //std::unique_ptr<robot::pid::PID>heading_pid = std::make_unique<robot::pid::PID>(heading_dt, heading_max, heading_min, heading_Kp, heading_Kd, heading_Ki);
    
-    return std::make_shared<robot::subsystems::holonomicDrive::HolonomicControl>(xdriveSubsystem, odometrySubsystem, std::move(position_pid), std::move(heading_pid));
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::LQR> lqrSubsystem = std::make_unique<platt2::robot::subsystems::holonomicDrive::LQR>(TAU, DT, QDIAG, RDIAG);
+
+    return std::make_shared<robot::subsystems::holonomicDrive::HolonomicControl>(xdriveSubsystem, odometrySubsystem, lqrSubsystem);
 }
 
 std::shared_ptr<robot::subsystems::odometry::Odometry> PinkConfig::buildOdometrySubsystem(){
@@ -65,11 +69,24 @@ std::shared_ptr<robot::subsystems::odometry::Odometry> PinkConfig::buildOdometry
     std::shared_ptr<robot::subsystems::odometry::Odometry> odom_subsystem;
     odom_subsystem = std::make_shared<robot::subsystems::odometry::Odometry>(std::move(position_tracker));
    
-    robot::subsystems::odometry::Position startingPos = {0,0,270};
+    robot::subsystems::odometry::Position startingPos = {0,0,0};
     odom_subsystem->setPos(startingPos);
 
     return odom_subsystem;
+} 
+
+std::shared_ptr<robot::subsystems::odometry::Odometry> PinkConfig::buildOdometrySubsystemWithPi(std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> pi_subsystem){
+
+    std::unique_ptr<pros::IMU> vex_imu = std::make_unique<pros::IMU>(VEX_IMU_PORT);
+    std::unique_ptr<robot::subsystems::odometry::PiPositionTracker> positionTracker = std::make_unique<robot::subsystems::odometry::PiPositionTracker>(std::move(pi_subsystem), std::move(vex_imu));
+
+    std::shared_ptr<robot::subsystems::odometry::Odometry> odom_subsystem = std::make_shared<robot::subsystems::odometry::Odometry>(std::move(positionTracker));
+
+
+    return odom_subsystem;
 }
+
+
 
 std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> PinkConfig::buildIntakeSubsystem(){
     std::unique_ptr<pros::Motor> frontMotor = std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT);
@@ -78,22 +95,38 @@ std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> PinkConfig::
     return intakeSubsystem;
 }
 
+std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> PinkConfig::buildPiLinkSubsystem(){
+
+    std::unique_ptr<hal::serialPort> link = std::make_unique<hal::serialPort>(PI_PORT);
+
+    std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> piLinkSubsystem = std::make_unique<platt2::robot::subsystems::piLink::PiLinkSubsystem>(std::move(link));
+
+    return piLinkSubsystem;
+}
+
 
 robot::RobotSubsystems PinkConfig::buildSubsystems(){
     robot::RobotSubsystems subsystems;
 
     subsystems.xdriveSubsystem = buildXDriveSubsystem();
+    
+    subsystems.piLinkSubsystem = buildPiLinkSubsystem();
 
-    subsystems.odometrySubsystem = buildOdometrySubsystem();
+    subsystems.odometrySubsystem = buildOdometrySubsystemWithPi(subsystems.piLinkSubsystem);
 
     subsystems.holonomicControlSubsystem = buildControlSystem(subsystems.xdriveSubsystem, subsystems.odometrySubsystem);
 
     subsystems.intakeSubsystem = buildIntakeSubsystem();
 
+    
+
     return subsystems;
 }
 
 std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, robot::DriverProfile profile, robot::AllianceConfig alliance){
+    
+    
+    robot::RobotSubsystems subsystems = buildSubsystems();
     
     std::unique_ptr<profiles::DriverProfile> driver_profile;
     //build driver profile
@@ -113,25 +146,25 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
         case robot::PINK_SKILLS:{
             std::unique_ptr<auton::PinkSkillsAuton> pink_skills_auton = std::make_unique<auton::PinkSkillsAuton>();
             auton_routine = std::move(pink_skills_auton);
-            auton_routine->init();
+            auton_routine->init(subsystems);
             break;
         }
         case robot::PURPLE_SKILLS:{
             std::unique_ptr<auton::PurpleSkillsAuton> purple_skills_auton = std::make_unique<auton::PurpleSkillsAuton>();
             auton_routine = std::move(purple_skills_auton);
-            auton_routine->init();
+            auton_routine->init(subsystems);
              break;
         }
         case robot::PINK_COMP_WP:{
             std::unique_ptr<auton::PinkCompAuton> pink_comp_auton = std::make_unique<auton::PinkCompAuton>();
             auton_routine = std::move(pink_comp_auton);
-            auton_routine->init();
+            auton_routine->init(subsystems);
              break;
         }
         case robot::PURPLE_COMP_WP:{
             std::unique_ptr<auton::PurpleCompAuton> purple_comp_auton = std::make_unique<auton::PurpleCompAuton>();
             auton_routine = std::move(purple_comp_auton);
-            auton_routine->init();
+            auton_routine->init(subsystems);
              break;
         }
         case robot::NO_AUTON:{
@@ -141,7 +174,7 @@ std::shared_ptr<robot::Robot> PinkConfig::buildRobot(robot::AutonConfig auton, r
     }   
 
     // build robot object
-    std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(buildSubsystems(), robot::RobotConfig::PINK, std::move(auton_routine), std::move(driver_profile))};
+    std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(subsystems, robot::RobotConfig::PINK, std::move(auton_routine), std::move(driver_profile))};
 
     return robot;
 

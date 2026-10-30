@@ -86,6 +86,9 @@ class PurpleConfig : public IConfig {
     static constexpr int DESCORE_PISTON_PORT{5};
     static constexpr int REAR_INTAKE_PISTON_PORT {6};
 
+    // ** PI Port **
+    static constexpr int PI_PORT{5};
+
     // ** VEX IMU Port **
     static constexpr int VEX_IMU_PORT{18};
 
@@ -112,11 +115,18 @@ class PurpleConfig : public IConfig {
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
 
+        // LQR tuning values
+    static constexpr double TAU{0.1}; //NEEDS TO BE FOUND
+    static constexpr double DT{0.01};
+    const Eigen::Matrix<double, 6, 1> QDIAG{1, 1, 400, 0.01, 0.01, 1}; 
+    const Eigen::Vector3d RDIAG{0.0025, 0.0025, 0.25};
+
     
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> buildPiLinkSubsystem();
 
 
     robot::RobotSubsystems buildSubsystems();

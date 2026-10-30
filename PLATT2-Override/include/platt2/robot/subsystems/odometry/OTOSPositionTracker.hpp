@@ -1,6 +1,8 @@
 #ifndef TRACKING_WHEEL_POSITION_TRACKER_HPP
 #define TRACKING_WHEEL_POSITION_TRACKER_HPP
 
+#include "Eigen/Dense"
+#include "Eigen/src/Core/Matrix.h"
 #include "platt2/robot/subsystems/externalLink/piLink.hpp"
 #include "platt2/robot/subsystems/odometry/OdometryPosition.hpp"
 #include "platt2/hal/TrackingWheel.hpp"
@@ -40,15 +42,15 @@ namespace odometry{
     class OTOSPositionTracker : public IPositionTracker{
         private:
         
-        std::shared_ptr<subsystems::piLink::piLinkSubsystem> piLink_subsystem;
+        std::shared_ptr<subsystems::piLink::PiLinkSubsystem> piLink_subsystem;
         Position current_position;
         
 
         double x_offset{};
         double y_offset{};
         double heading_offset{};
-        double velocity{};
-        double angular_velocity{};
+        Eigen::Vector3d velocity{};
+
 
         public:
         /**
@@ -85,8 +87,8 @@ namespace odometry{
          */
         double getHeading() override;
 
-        double getVelocity() override;
-        double getAngularVelocity() override;
+        Eigen::Vector3d getVelocity() override;
+
 
         /**
          * @brief Sets the offsets for the position tracker.
@@ -115,7 +117,7 @@ namespace odometry{
 
         OTOSPositionTracker(
 
-            std::shared_ptr<subsystems::piLink::piLinkSubsystem> piLink_subsystem
+            std::shared_ptr<subsystems::piLink::PiLinkSubsystem> piLink_subsystem
         );
 
     };

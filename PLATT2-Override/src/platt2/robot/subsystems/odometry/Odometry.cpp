@@ -1,4 +1,5 @@
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
+#include "Eigen/src/Core/Matrix.h"
 #include "IPositionTracker.hpp"
 #include "OdometryPosition.hpp"
 #include <memory>
@@ -39,12 +40,8 @@ void Odometry::setOffsets(double x, double y){
   position_tracker->setOffsets(x, y);
 }
 
-double Odometry::getVelocity(){
+Eigen::Vector3d Odometry::getVelocity(){
   return position_tracker->getVelocity();
-}
-
-double Odometry::getAngularVelocity(){
-  return position_tracker->getAngularVelocity();
 }
 
 Odometry::Odometry(std::unique_ptr<IPositionTracker> position_tracker):

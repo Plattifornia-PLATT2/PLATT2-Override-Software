@@ -19,6 +19,7 @@
 #include "platt2/robot/subsystems/colorSort/colorSort.hpp"
 #include "platt2/hal/TrackingWheel.hpp"
 #include "platt2/robot/subsystems/odometry/TrackingWheelPositionTracker.hpp"
+#include "platt2/robot/subsystems/odometry/PiPositionTracker.hpp"
 
 // ** PROS API Includes **
 #include "pros/motors.hpp"
@@ -57,8 +58,11 @@ class PinkConfig : public IConfig {
 
     static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{-20};
     static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{19};
-    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{12};
-    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-11};
+    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{-12};
+    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{11};
+
+    // ** PI Port **
+    static constexpr int PI_PORT{5};
 
 
     // ** Intake Ports **
@@ -77,7 +81,7 @@ class PinkConfig : public IConfig {
     static constexpr int VEX_IMU_PORT{15};
 
     // ** Odometry Offsets **
-    static constexpr int HORIZONTAL_ENCODER_PORT{20};
+    static constexpr int HORIZONTAL_ENCODER_PORT{6};
     static constexpr int VERTICAL_ENCODER_PORT{-7};
     static constexpr double TRACKING_WHEEL_DIAMETER{2};
     static constexpr double HORIZONTAL_TRACKING_WHEEL_OFFSET{-.5};
@@ -99,10 +103,19 @@ class PinkConfig : public IConfig {
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
 
+    // LQR tuning values
+    static constexpr double TAU{0.340}; 
+    static constexpr double DT{0.01};
+    const Eigen::Matrix<double, 6, 1> QDIAG{1, 1, 400, 0.01, 0.01, 1}; 
+    const Eigen::Vector3d RDIAG{0.0025, 0.0025, 0.25};
+
+
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
+    std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystemWithPi(std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> pi_subsystem);
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> buildPiLinkSubsystem();
 
     robot::RobotSubsystems buildSubsystems();
 

@@ -2,7 +2,9 @@
 
 #include "platt2\hal\serialPort.hpp"
 
+#include "pros/imu.hpp"
 #include "pros/rtos.hpp"
+#include <memory>
 /**
  * @brief Namespace for PLATT2 library code.
  * @authors PLATT2 Development team.
@@ -27,22 +29,27 @@ namespace subsystems{
  */
 namespace piLink{
 
-class piLinkSubsystem{
+class PiLinkSubsystem{
 
     public:
 
+    double getXPos();
+    double getYPos();
+    double getHPos();
     
-    pros::Mutex packetMtx;
-    hal::serialPort::sendPacket linkData;
+    
     void linkLoop();
 
-    
+    PiLinkSubsystem(std::unique_ptr<hal::serialPort> port);
+
 
 
     private:
     pros::Task piLinkTask;
+    std::unique_ptr<hal::serialPort> link;
+    pros::Mutex packetMtx;
+    hal::serialPort::sendPacket linkData;
          
-    piLinkSubsystem();
-
+    
 
 };}}}}

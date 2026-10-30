@@ -8,7 +8,9 @@
 namespace platt2{
 namespace auton{
 
-void PinkSkillsAuton::init() {
+void PinkSkillsAuton::init(const robot::RobotSubsystems& subsystems) {
+
+    this->subsystems = subsystems;
 
 }
 

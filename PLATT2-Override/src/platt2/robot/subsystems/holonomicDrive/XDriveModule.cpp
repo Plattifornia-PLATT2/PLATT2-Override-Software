@@ -24,28 +24,30 @@ double XDriveModule::desiredModuleVel(const MovementVector& v) {
 
 double XDriveModule::maxModuleVel()  {
     
-    double gear;
-    
-    switch(module_motors.getMotorGearing()){
+    //double gear;
+    //
+    //switch(module_motors.getMotorGearing()){
+//
+    //    case pros::MotorGears::blue: 
+    //    gear = 600;
+    //    break;
+//
+    //    case pros::MotorGears::red: 
+    //    gear = 100;
+    //    break;
+//
+    //    case pros::MotorGears::green: 
+    //    gear = 200;
+    //    break;
+//
+    //    default:
+    //    gear = 0;
+    //    break;
+    //}
+//
+    //return ((gear)*getGearRatio()) / 60.0 * M_PI * getWheelDiameter();
 
-        case pros::MotorGears::blue: 
-        gear = 600;
-        break;
-
-        case pros::MotorGears::red: 
-        gear = 100;
-        break;
-
-        case pros::MotorGears::green: 
-        gear = 200;
-        break;
-
-        default:
-        gear = 0;
-        break;
-    }
-
-    return ((gear)*getGearRatio()) / 60.0 * M_PI * getWheelDiameter();
+    return 600;
 
 }
 

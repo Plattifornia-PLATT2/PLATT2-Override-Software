@@ -30,6 +30,7 @@ namespace auton{
 class PinkCompAuton : public auton::IAuton {
     private:
 
+    robot::RobotSubsystems subsystems;
 
     const std::string AUTON_NAME {"Pink_Comp_WP"};
 
@@ -46,7 +47,7 @@ class PinkCompAuton : public auton::IAuton {
      * @param intake_subsystem The intake subsystem to use
      * @param color_sort_subsystem The color sort subsystem to use
      */
-    void init() override; 
+    void init(const robot::RobotSubsystems& subsystems) override;
 
     std::string getName() const override;
 

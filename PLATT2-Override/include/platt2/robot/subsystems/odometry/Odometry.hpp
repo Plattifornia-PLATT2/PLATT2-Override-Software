@@ -1,6 +1,7 @@
 #ifndef ODOMETRY_HPP
 #define ODOMETRY_HPP
 
+#include "Eigen/Dense"
 #include "platt2/robot/subsystems/odometry/IPositionTracker.hpp"
 #include "platt2/hal/OpticalTrackingSensor.hpp"
 #include "platt2/robot/subsystems/odometry/OdometryPosition.hpp"
@@ -77,8 +78,8 @@ namespace odometry{
          */
         double getHeading();
 
-        double getVelocity();
-        double getAngularVelocity();
+        Eigen::Vector3d getVelocity();
+
 
         /**
          * @brief Resets the current heading of the robot to zero.

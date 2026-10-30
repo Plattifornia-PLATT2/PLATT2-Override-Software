@@ -1,4 +1,5 @@
 #include "platt2/robot/subsystems/odometry/TrackingWheelPositionTracker.hpp"
+#include "Eigen/src/Core/Matrix.h"
 #include "OdometryPosition.hpp"
 #include "pros/rtos.hpp"
 #include "pros/screen.hpp"
@@ -43,90 +44,106 @@ namespace odometry{
         y_wheel->init();
         imu->reset();
 
+        imu->set_data_rate(5);
+
         while(imu->is_calibrating()){
             pros::delay(10);
         }
     }
 
-    double TrackingWheelPositionTracker::getVelocity(){
+    Eigen::Vector3d TrackingWheelPositionTracker::getVelocity(){
         return this->velocity;
     }
 
-    double TrackingWheelPositionTracker::getAngularVelocity(){
-        return this->angular_velocity;
-    }
 
     void TrackingWheelPositionTracker::updatePosition(){
-        pros::delay(1000);
+    
+    imu->set_data_rate(5);
+    pros::delay(1000);
 
-        current_position.heading  = ((360 - imu->get_heading())*M_PI/180);
-        double oldTheta = current_position.heading ;
-        double dTheta = (current_position.heading  - oldTheta);
+    constexpr uint32_t LOOP_MS = 10;
+    constexpr int WINDOW = 4;            // velocity window, in samples (3 x 10 ms = 30 ms)
+    constexpr int RING = WINDOW + 1;
 
-        double newX = 0;//x_wheel->getPosition();
-        double oldX = newX;
-        double dX = newX - oldX;
 
+
+    struct Sample { double t, x, y, th; };
+    Sample hist[RING] = {};
+    int head = 0;
+    int count = 0;
+
+    current_position.heading = (360 - imu->get_heading()) * M_PI / 180;
+    double oldTheta = current_position.heading;
+    double unwrappedTheta = oldTheta;    // continuous heading, used only for velocity
+
+    double oldX = 0;                     // x_wheel->getPosition() once the x wheel is used
+    double oldY = y_wheel->getPosition();
+
+    uint32_t now = pros::millis();
+
+    while(true){
+        // read sensors
+        double newX = x_wheel->getPosition();                 // x_wheel->getPosition();
         double newY = y_wheel->getPosition();
-        double oldY = newY;
+        current_position.heading = (360 - imu->get_heading()) * M_PI / 180;
+
+        pros::screen::erase();
+        pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 1,"X Pos: %.3f", current_position.x);
+        pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 2,"Y Pos: %.3f", current_position.y);
+        pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 3,"Heading: %.2f", current_position.heading*180/M_PI);
+
+        // deltas
+        double dX = newX - oldX;
         double dY = newY - oldY;
+        double dTheta = current_position.heading - oldTheta;
+        if (dTheta > M_PI || dTheta < -M_PI) {
+            dTheta = -1 * sgn(dTheta) * (2 * M_PI - std::abs(dTheta));
+        }
 
-        double localX = 0;
-        double localY = 0;
+        oldX = newX;
+        oldY = newY;
+        oldTheta = current_position.heading;
+        unwrappedTheta += dTheta;
 
-        double globalX = 0;
-        double globalY = 0;
+        // tracking wheel odometry
+        double localX = dX - (x_offset * dTheta);
+        double localY = dY + (y_offset * dTheta);
+
+        double scale = 1 - (dTheta * dTheta) / 24;
+        localX *= scale;
+        localY *= scale;
+
+        double avgTheta = current_position.heading - dTheta / 2;
+        double globalX = localY * cos(avgTheta) - localX * sin(avgTheta);
+        double globalY = localY * sin(avgTheta) + localX * cos(avgTheta);
+
+        if (!std::isnan(globalX) && !std::isnan(globalY)) {
+            current_position.x += globalX;
+            current_position.y += globalY;
+        }
+
+        // windowed velocity from the pose history
+        double t = pros::micros() * 1e-6;
+        hist[head] = { t, current_position.x, current_position.y, unwrappedTheta };
+        if (count < RING) count++;
+
+        if (count == RING) {
+            const Sample& oldest = hist[(head + 1) % RING];
+            double dtw = t - oldest.t;
+            if (dtw > 1e-4) {
+                velocity.x() = (current_position.x - oldest.x) / dtw;
+                velocity.y() = (current_position.y - oldest.y) / dtw;
+                velocity.z() = (unwrappedTheta - oldest.th) / dtw;
+            }
+        }
+        head = (head + 1) % RING;
 
         
-        while(true){
-            //print statments for debugging
-            //pros::screen::erase();
-            //pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 1,"X Pos: %.3f", current_position.x);
-            //pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 2,"Y Pos: %.3f", current_position.y);
-            //pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 3,"Heading: %.2f", current_position.heading*180/M_PI);
 
-            //get new values and calculate deltas
-            newX = 0;//x_wheel->getPosition();
-            newY = y_wheel->getPosition();
-            this->current_position.heading  = ((360 - imu->get_heading())*M_PI/180);
+        // fixed-period loop, no drift
+        pros::Task::delay_until(&now, LOOP_MS);
+    }
 
-            dX = newX - oldX;
-            dY = newY - oldY;
-            dTheta = this->current_position.heading - oldTheta;
-
-            // adjust deltas for angle wraparound
-            if(dTheta > M_PI || dTheta < -M_PI){
-                dTheta = -1 * sgn(dTheta) * (2*M_PI - std::abs(dTheta));
-            }
-
-            this->velocity = sqrt(pow(dX, 2) + pow(dY, 2))/0.01;
-            this->angular_velocity = dTheta/0.01;
-
-            // save new values as old values for next loop
-            oldX = newX;
-            oldY = newY;
-            oldTheta = this->current_position.heading;
-            // apply tracking wheel odometry algorithm to calculate local and global position deltas
-            localX = dX - (x_offset*dTheta);
-            localY = dY + (y_offset*dTheta);
-
-            localX = (1-(pow(dTheta, 2)/24))*localX;
-            localY = (1-(pow(dTheta, 2)/24))*localY;
-
-            globalX = localY * cos(oldTheta-dTheta/2) - localX * sin(oldTheta-dTheta/2);
-            globalY = localY * sin(oldTheta-dTheta/2) + localX * cos(oldTheta-dTheta/2);
-
-            // if the global deltas are NaN, skip the update and try again in the next loop iteration
-            if (std::isnan(globalX) or std::isnan(globalY)){
-                pros::delay(10);
-                continue;
-            }
-            // update current position with global deltas
-            this->current_position.x += globalX;
-            this->current_position.y += globalY;
- 
-            pros::delay(10);
-        }
     }
 
     TrackingWheelPositionTracker::TrackingWheelPositionTracker(

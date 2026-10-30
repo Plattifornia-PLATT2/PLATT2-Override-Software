@@ -7,6 +7,7 @@
 #include "platt2/robot/subsystems/holonomicDrive/HolonomicControl.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
 #include "platt2/robot/subsystems/colorsort/ColorSort.hpp"
+#include "platt2/RobotSubsystems.hpp"
 #include <memory>
 #include <string>
 
@@ -39,7 +40,7 @@ class IAuton{
      * @param intake_subsystem The intake subsystem to use
      * @param color_sort_subsystem The color sort subsystem to use
      */
-    virtual void init() = 0;
+    virtual void init(const robot::RobotSubsystems& subsystems) = 0;
 
     virtual std::string getName() const = 0;
 

@@ -30,6 +30,8 @@ namespace auton{
 class PurpleSkillsAuton : public auton::IAuton {
     private:
 
+    robot::RobotSubsystems subsystems;
+
     const double STARTING_X_POSITION {86.5};
     const double STARTING_Y_POSITION {8.5};
     const double STARTING_HEADING {90.0};  
@@ -46,7 +48,7 @@ class PurpleSkillsAuton : public auton::IAuton {
      * @param intake_subsystem The intake subsystem to use
      * @param color_sort_subsystem The color sort subsystem to use
      */
-    void init() override; 
+    void init(const robot::RobotSubsystems& subsystems) override;
 
     std::string getName() const override;
 

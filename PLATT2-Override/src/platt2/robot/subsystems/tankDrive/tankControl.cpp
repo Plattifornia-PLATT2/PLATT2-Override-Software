@@ -98,7 +98,7 @@ void TankControl::moveToPoint(odometry::Position target, bool reverse, double ma
         drivetrain->moveVector(motionVector);
         pros::Task::delay_until(&now, 10); 
 
-        double avgVel = rollAverage(std::abs(odometry->getVelocity()), endArray);
+        double avgVel = rollAverage(std::hypot(std::abs(odometry->getVelocity().x()), std::abs(odometry->getVelocity().y())), endArray);
 
         if (avgVel < 0.025) {
             std::cout << "Average velocity below threshold, finishing path." << std::endl;
@@ -130,8 +130,8 @@ void TankControl::moveToPoint(odometry::Position target, bool reverse, double ma
         double v = (reversed ? -1 : 1) *((maxVel)/(lookAheadDistance*3)) * distToEnd * (std::abs(distToEnd)<0.25 ? 0:1);
         double w = std::clamp(headingPID->calculate(0, headingError), -0.15, 0.15);
 
-        double avgVel    = rollAverage(std::abs(odometry->getVelocity()),        velArray);
-        double avgAngVel = rollAverage(std::abs(odometry->getAngularVelocity()), angArray);
+        double avgVel    = rollAverage(std::hypot(std::abs(odometry->getVelocity().x()), std::abs(odometry->getVelocity().y())),        velArray);
+        double avgAngVel = rollAverage(std::abs(odometry->getVelocity().z()), angArray);
 
         //std::cout<<"DistToEnd: "<<distToEnd<< "v: "<<v<<std::endl;
 
