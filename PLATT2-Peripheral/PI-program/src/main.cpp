@@ -15,11 +15,11 @@ std::jthread sigThread(sharedData &shared);
 
 int main() {
 
+
     std::vector<std::jthread> comTask;
     std::vector<std::jthread> dependentTasks;
     
     sharedData shared;
-    OTOS otos;
     OTOS otos;
     
     piLink link;
@@ -38,11 +38,10 @@ int main() {
     while (true){
         
         // add dependent tasks to the vector below following the format
-        //dependentTasks.emplace_back([&link, &shared](std::stop_token st) {link.linkLoop(st, shared);});
         
-        //dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
+        dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
         //dependentTasks.emplace_back([&cam, &shared](std::stop_token st) {cam.camTrackLoop(st, shared);});
-        dependentTasks.emplace_back([&kalman, &shared](std::stop_token st) {kalman.kalmanLoop(st, shared);});
+        //dependentTasks.emplace_back([&kalman, &shared](std::stop_token st) {kalman.kalmanLoop(st, shared);});
         
         std::unique_lock<std::mutex> lock(shared.mtx);
         shared.cv.wait(lock, [&shared] { return shared.restart || shared.shutdown; });
