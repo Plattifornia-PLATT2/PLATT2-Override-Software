@@ -5,6 +5,7 @@
 #include "platt2/config/IConfig.hpp"
 #include "platt2/robot/Robot.hpp"
 #include "platt2/robot/pid/pid.hpp"
+#include "platt2/robot/subsystems/elevator/elevator.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
 #include "platt2/EAllianceConfig.hpp"
@@ -21,6 +22,7 @@
 #include "platt2/robot/subsystems/odometry/TrackingWheelPositionTracker.hpp"
 
 // ** PROS API Includes **
+#include "pros/abstract_motor.hpp"
 #include "pros/motors.hpp"
 
 // ** Standard C++ Library Includes **
@@ -48,7 +50,6 @@ class PinkConfig : public IConfig {
     private:
     static constexpr pros::MotorGears DRIVE_GEARSET{pros::MotorGears::blue};
 
-
     // ** Drive Ports **
     static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-9};
     static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{10};
@@ -63,8 +64,6 @@ class PinkConfig : public IConfig {
 
     // ** Intake Ports **
     static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
-
-
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
 
     // ** Color Sort Ports **
@@ -75,6 +74,20 @@ class PinkConfig : public IConfig {
 
     // ** VEX IMU Port **
     static constexpr int VEX_IMU_PORT{15};
+
+    // ** Elevator Ports **
+    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{1};
+    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{2};
+    static constexpr int ELEVATOR_ROTATION_SENSOR_PORT{3};
+    static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::green};
+
+    // ** Elevator PID Tuning Values **
+    static constexpr double ELEVATOR_DT{0.01};
+    static constexpr double ELEVATOR_MAX{1};
+    static constexpr double ELEVATOR_MIN{-1};
+    static constexpr double ELEVATOR_Kp{0.054};
+    static constexpr double ELEVATOR_Kd{0.005};
+    static constexpr double ELEVATOR_Ki{0};
 
     // ** Odometry Offsets **
     static constexpr int HORIZONTAL_ENCODER_PORT{20};
@@ -103,6 +116,7 @@ class PinkConfig : public IConfig {
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::elevator::ElevatorSubsystem> buildElevatorSubsystem();
 
     robot::RobotSubsystems buildSubsystems();
 

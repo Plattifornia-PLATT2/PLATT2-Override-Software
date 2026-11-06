@@ -84,6 +84,22 @@ std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> PurpleConfig
     return intakeSubsystem;
 }
 
+std::shared_ptr<robot::subsystems::elevator::ElevatorSubsystem> PurpleConfig::buildElevatorSubsystem(){
+    std::unique_ptr<pros::Motor> left_motor = std::make_unique<pros::Motor>(LEFT_ELEVATOR_MOTOR_PORT, ELEVATOR_MOTOR_GEARS);
+    std::unique_ptr<pros::Motor> right_motor = std::make_unique<pros::Motor>(RIGHT_ELEVATOR_MOTOR_PORT, ELEVATOR_MOTOR_GEARS);
+    std::unique_ptr<pros::Rotation> elevator_rotation = std::make_unique<pros::Rotation>(ELEVATOR_ROTATION_SENSOR_PORT);
+    std::unique_ptr<robot::pid::PID> elevator_pid = std::make_unique<robot::pid::PID>(ELEVATOR_DT, ELEVATOR_MAX, ELEVATOR_MIN, ELEVATOR_Kp, ELEVATOR_Kd, ELEVATOR_Ki);
+
+    std::shared_ptr<robot::subsystems::elevator::ElevatorSubsystem> elevatorSubsystem = std::make_shared<robot::subsystems::elevator::ElevatorSubsystem>(
+        std::move(left_motor),
+        std::move(right_motor),
+        std::move(elevator_rotation),
+        std::move(elevator_pid)
+    );
+
+    return elevatorSubsystem;
+}
+
 robot::RobotSubsystems PurpleConfig::buildSubsystems(){
     robot::RobotSubsystems subsystems;
 

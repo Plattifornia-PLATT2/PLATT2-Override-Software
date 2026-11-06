@@ -75,6 +75,20 @@ class PurpleConfig : public IConfig {
     //static constexpr int DISTANCE_SENSOR_PORT{14};
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
 
+    // ** Elevator Ports **
+    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{1};
+    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{2};
+    static constexpr int ELEVATOR_ROTATION_SENSOR_PORT{3};
+    static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::green};
+
+    // ** Elevator PID Tuning Values **
+    static constexpr double ELEVATOR_DT{0.01};
+    static constexpr double ELEVATOR_MAX{1};
+    static constexpr double ELEVATOR_MIN{-1};
+    static constexpr double ELEVATOR_Kp{0.054};
+    static constexpr double ELEVATOR_Kd{0.005};
+    static constexpr double ELEVATOR_Ki{0};
+
     // ** Color Sort Ports **
     static constexpr int OPTICAL_SENSOR_PORT{10};
 
@@ -117,7 +131,7 @@ class PurpleConfig : public IConfig {
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
-
+    std::shared_ptr<platt2::robot::subsystems::elevator::ElevatorSubsystem> buildElevatorSubsystem();
 
     robot::RobotSubsystems buildSubsystems();
 
