@@ -23,20 +23,23 @@ namespace profiles{
      */
     struct JonProfile : public DriverProfile{
     JonProfile() {
+        // Intake Mappings
         frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
         frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
-        //auto_unload_button = pros::E_CONTROLLER_DIGITAL_X;
-        edMech_toggle = pros::E_CONTROLLER_DIGITAL_R2;
-        highScore_toggle = pros::E_CONTROLLER_DIGITAL_R1;
-        stopper_toggle = pros::E_CONTROLLER_DIGITAL_B;
-        colorSort_toggle = pros::E_CONTROLLER_DIGITAL_UP;
-        rakeMech_toggle = pros::E_CONTROLLER_DIGITAL_X;
-        //fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_X;
-        //heading_reset = pros::E_CONTROLLER_DIGITAL_X;
-        descore_toggle = pros::E_CONTROLLER_DIGITAL_DOWN;
-        scoreHighMacro = pros::E_CONTROLLER_DIGITAL_R1;
-        scoreMiddleHighMacro = pros::E_CONTROLLER_DIGITAL_R2;
-        rearIntake_toggle = pros::E_CONTROLLER_DIGITAL_Y;
+
+        // Field Oriented Drive
+        fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
+        heading_reset = pros::E_CONTROLLER_DIGITAL_UP;
+
+        // Elevator Mappings
+        elevator_up = pros::E_CONTROLLER_DIGITAL_R1;
+        elevator_down = pros::E_CONTROLLER_DIGITAL_R2;
+        elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
+
+        // Claw Mappings
+        claw_toggle = pros::E_CONTROLLER_DIGITAL_LEFT;
+        claw_flip = pros::E_CONTROLLER_DIGITAL_DOWN;
+
         driverEnum = robot::JON;
     }
     };
