@@ -36,6 +36,11 @@ namespace elevator{
         rotationSensor->reset_position();
     }
 
+    uint32_t ElevatorSubsystem::getPosInches(ElevatorPosition pos){
+        //TODO: implementation
+        return 0;
+    }
+
     void ElevatorSubsystem::moveToPosition(ElevatorPosition pos){
         currentPosition = pos;
     }
