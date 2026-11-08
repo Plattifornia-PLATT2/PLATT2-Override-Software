@@ -23,6 +23,11 @@
 #include <poll.h>
 #include <unistd.h>
 #include <span>
+#include <linux/gpio.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstring>
 
 #include "utilities/sharedData.hpp"
 #include "utilities/imageProssesing.hpp"
@@ -51,6 +56,8 @@ public:
 
 private:
     bool configurePort();
+    bool gpio_set(int line_fd, bool value);
+    int gpio_request_output(const char *chip, unsigned pin, bool value);
     uint64_t msUntil(std::chrono::steady_clock::time_point deadline);
 
     int fd_ = -1;
@@ -84,3 +91,4 @@ private:
     std::string rxBuffer_;
     std::string lastError_;
 };
+

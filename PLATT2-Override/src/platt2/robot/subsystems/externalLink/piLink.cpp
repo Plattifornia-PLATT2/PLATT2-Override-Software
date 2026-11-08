@@ -2,6 +2,7 @@
 #include "platt2\hal\serialPort.hpp"
 #include "platt2\robot\subsystems\externalLink\piLink.hpp"
 #include "pros/rtos.hpp"
+#include <iostream>
 #include <memory>
 
 namespace platt2{
@@ -34,18 +35,22 @@ void PiLinkSubsystem::linkLoop(){
     hal::serialPort::sendPacket dataBuffer;
     hal::serialPort::sendPacket zeroPacket;
 
+
+    std::cout<<"Running"<<std::endl;
+
     while (true) {
         
         bool sent = link->sendLine(zeroPacket);
+
+        bool recived = link->receiveLine(dataBuffer, 0);
         
-        bool recived = link->receiveLine(dataBuffer, 100);
 
 
         if (recived){
-
+            
             packetMtx.take();
             linkData = dataBuffer;
-            packetMtx.give();
+            packetMtx.give();     
             
         }
 

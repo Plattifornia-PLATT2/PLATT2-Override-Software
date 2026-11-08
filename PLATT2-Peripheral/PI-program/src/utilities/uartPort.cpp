@@ -9,6 +9,7 @@
 #include "utilities/uartPort.hpp"
 
 
+
 UartPort::UartPort(std::string device, speed_t baud)
     : device_(std::move(device)), baud_(baud) {}
 
@@ -282,3 +283,4 @@ int32_t UartPort::get_read_avail(int fd){
     if (ioctl(fd, FIONREAD, &n) < 0) return -1;
     return static_cast<int32_t>(n);
 }
+

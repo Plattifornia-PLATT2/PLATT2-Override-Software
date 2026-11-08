@@ -294,6 +294,24 @@ CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: \
  /usr/aarch64-linux-gnu/include/bits/poll2.h \
  /usr/aarch64-linux-gnu/include/c++/11/span \
  /usr/aarch64-linux-gnu/include/c++/11/cstddef \
+ /usr/aarch64-linux-gnu/include/linux/gpio.h \
+ /usr/aarch64-linux-gnu/include/linux/const.h \
+ /usr/aarch64-linux-gnu/include/linux/ioctl.h \
+ /usr/aarch64-linux-gnu/include/asm/ioctl.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/ioctl.h \
+ /usr/aarch64-linux-gnu/include/linux/types.h \
+ /usr/aarch64-linux-gnu/include/asm/types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
+ /usr/aarch64-linux-gnu/include/linux/posix_types.h \
+ /usr/aarch64-linux-gnu/include/linux/stddef.h \
+ /usr/aarch64-linux-gnu/include/asm/posix_types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
+ /usr/aarch64-linux-gnu/include/sys/ioctl.h \
+ /usr/aarch64-linux-gnu/include/bits/ioctls.h \
+ /usr/aarch64-linux-gnu/include/asm/ioctls.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/ioctls.h \
+ /usr/aarch64-linux-gnu/include/bits/ioctl-types.h \
  /workspaces/PI-program/include/utilities/imageProssesing.hpp \
  /workspaces/PI-program/build/rpi5-libs-extracted/rpi/include/apriltag/apriltag.h \
  /usr/aarch64-linux-gnu/include/c++/11/stdlib.h \
@@ -538,4 +556,5 @@ CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: \
  /usr/aarch64-linux-gnu/include/c++/11/random \
  /usr/aarch64-linux-gnu/include/c++/11/bits/random.h \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/opt_random.h \
- /usr/aarch64-linux-gnu/include/c++/11/bits/random.tcc
+ /usr/aarch64-linux-gnu/include/c++/11/bits/random.tcc \
+ /workspaces/PI-program/include/utilities/gpio.hpp

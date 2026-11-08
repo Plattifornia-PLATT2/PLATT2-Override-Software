@@ -288,4 +288,7 @@ CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o: \
  /usr/aarch64-linux-gnu/include/c++/11/bits/shared_ptr_base.h \
  /usr/aarch64-linux-gnu/include/c++/11/bits/allocated_ptr.h \
  /usr/aarch64-linux-gnu/include/c++/11/ext/aligned_buffer.h \
- /usr/aarch64-linux-gnu/include/c++/11/ext/concurrence.h
+ /usr/aarch64-linux-gnu/include/c++/11/ext/concurrence.h \
+ /usr/aarch64-linux-gnu/include/c++/11/iostream \
+ /usr/aarch64-linux-gnu/include/c++/11/istream \
+ /usr/aarch64-linux-gnu/include/c++/11/bits/istream.tcc

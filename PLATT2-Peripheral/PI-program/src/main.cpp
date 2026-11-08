@@ -20,14 +20,14 @@ int main() {
     std::vector<std::jthread> dependentTasks;
     
     sharedData shared;
-    OTOS otos;
+    //OTOS otos;
     
     piLink link;
     cameraTracking cam;
     PoseEstimator kalman;
 
 
-    otos.calibrate();
+    //otos.calibrate();
     
     
     std::jthread signalThread = sigThread(shared);
@@ -39,7 +39,7 @@ int main() {
         
         // add dependent tasks to the vector below following the format
         
-        dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
+        //dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
         //dependentTasks.emplace_back([&cam, &shared](std::stop_token st) {cam.camTrackLoop(st, shared);});
         //dependentTasks.emplace_back([&kalman, &shared](std::stop_token st) {kalman.kalmanLoop(st, shared);});
         
@@ -58,7 +58,7 @@ int main() {
 
         shared.restart = false;
         lock.unlock();
-
+        
     }
 }
 

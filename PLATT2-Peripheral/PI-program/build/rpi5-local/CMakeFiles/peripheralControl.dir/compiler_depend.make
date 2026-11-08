@@ -677,6 +677,24 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp \
   /usr/aarch64-linux-gnu/include/bits/poll.h \
   /usr/aarch64-linux-gnu/include/bits/poll2.h \
   /usr/aarch64-linux-gnu/include/c++/11/span \
+  /usr/aarch64-linux-gnu/include/linux/gpio.h \
+  /usr/aarch64-linux-gnu/include/linux/const.h \
+  /usr/aarch64-linux-gnu/include/linux/ioctl.h \
+  /usr/aarch64-linux-gnu/include/asm/ioctl.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/ioctl.h \
+  /usr/aarch64-linux-gnu/include/linux/types.h \
+  /usr/aarch64-linux-gnu/include/asm/types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
+  /usr/aarch64-linux-gnu/include/linux/posix_types.h \
+  /usr/aarch64-linux-gnu/include/linux/stddef.h \
+  /usr/aarch64-linux-gnu/include/asm/posix_types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
+  /usr/aarch64-linux-gnu/include/sys/ioctl.h \
+  /usr/aarch64-linux-gnu/include/bits/ioctls.h \
+  /usr/aarch64-linux-gnu/include/asm/ioctls.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/ioctls.h \
+  /usr/aarch64-linux-gnu/include/bits/ioctl-types.h \
   ../../include/subsystems/piLink.hpp \
   ../../include/subsystems/otos.hpp \
   ../../include/utilities/OtosLinux.h \
@@ -1002,14 +1020,6 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: ../../src/main.cpp \
   /usr/aarch64-linux-gnu/include/bits/sigaction.h \
   /usr/aarch64-linux-gnu/include/bits/sigcontext.h \
   /usr/aarch64-linux-gnu/include/asm/sigcontext.h \
-  /usr/aarch64-linux-gnu/include/linux/types.h \
-  /usr/aarch64-linux-gnu/include/asm/types.h \
-  /usr/aarch64-linux-gnu/include/asm-generic/types.h \
-  /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
-  /usr/aarch64-linux-gnu/include/linux/posix_types.h \
-  /usr/aarch64-linux-gnu/include/linux/stddef.h \
-  /usr/aarch64-linux-gnu/include/asm/posix_types.h \
-  /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
   /usr/aarch64-linux-gnu/include/asm/sve_context.h \
   /usr/aarch64-linux-gnu/include/bits/types/stack_t.h \
   /usr/aarch64-linux-gnu/include/sys/ucontext.h \
@@ -2468,7 +2478,10 @@ CMakeFiles/peripheralControl.dir/src/subsystems/otos.cpp.o: ../../src/subsystems
   /usr/aarch64-linux-gnu/include/c++/11/bits/shared_ptr_base.h \
   /usr/aarch64-linux-gnu/include/c++/11/bits/allocated_ptr.h \
   /usr/aarch64-linux-gnu/include/c++/11/ext/aligned_buffer.h \
-  /usr/aarch64-linux-gnu/include/c++/11/ext/concurrence.h
+  /usr/aarch64-linux-gnu/include/c++/11/ext/concurrence.h \
+  /usr/aarch64-linux-gnu/include/c++/11/iostream \
+  /usr/aarch64-linux-gnu/include/c++/11/istream \
+  /usr/aarch64-linux-gnu/include/c++/11/bits/istream.tcc
 
 CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: ../../src/subsystems/piLink.cpp \
   /usr/aarch64-linux-gnu/include/stdc-predef.h \
@@ -2765,6 +2778,24 @@ CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: ../../src/subsyste
   /usr/aarch64-linux-gnu/include/bits/poll2.h \
   /usr/aarch64-linux-gnu/include/c++/11/span \
   /usr/aarch64-linux-gnu/include/c++/11/cstddef \
+  /usr/aarch64-linux-gnu/include/linux/gpio.h \
+  /usr/aarch64-linux-gnu/include/linux/const.h \
+  /usr/aarch64-linux-gnu/include/linux/ioctl.h \
+  /usr/aarch64-linux-gnu/include/asm/ioctl.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/ioctl.h \
+  /usr/aarch64-linux-gnu/include/linux/types.h \
+  /usr/aarch64-linux-gnu/include/asm/types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
+  /usr/aarch64-linux-gnu/include/linux/posix_types.h \
+  /usr/aarch64-linux-gnu/include/linux/stddef.h \
+  /usr/aarch64-linux-gnu/include/asm/posix_types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
+  /usr/aarch64-linux-gnu/include/sys/ioctl.h \
+  /usr/aarch64-linux-gnu/include/bits/ioctls.h \
+  /usr/aarch64-linux-gnu/include/asm/ioctls.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/ioctls.h \
+  /usr/aarch64-linux-gnu/include/bits/ioctl-types.h \
   ../../include/utilities/imageProssesing.hpp \
   ../rpi5-libs-extracted/rpi/include/apriltag/apriltag.h \
   /usr/aarch64-linux-gnu/include/c++/11/stdlib.h \
@@ -3009,7 +3040,8 @@ CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: ../../src/subsyste
   /usr/aarch64-linux-gnu/include/c++/11/random \
   /usr/aarch64-linux-gnu/include/c++/11/bits/random.h \
   /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/opt_random.h \
-  /usr/aarch64-linux-gnu/include/c++/11/bits/random.tcc
+  /usr/aarch64-linux-gnu/include/c++/11/bits/random.tcc \
+  ../../include/utilities/gpio.hpp
 
 CMakeFiles/peripheralControl.dir/src/utilities/ImageProssesing.cpp.o: ../../src/utilities/ImageProssesing.cpp \
   /usr/aarch64-linux-gnu/include/stdc-predef.h \
@@ -4665,6 +4697,16 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
   /usr/aarch64-linux-gnu/include/bits/fcntl2.h \
   /usr/aarch64-linux-gnu/include/c++/11/span \
   /usr/aarch64-linux-gnu/include/c++/11/cstddef \
+  /usr/aarch64-linux-gnu/include/linux/gpio.h \
+  /usr/aarch64-linux-gnu/include/linux/const.h \
+  /usr/aarch64-linux-gnu/include/linux/types.h \
+  /usr/aarch64-linux-gnu/include/asm/types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
+  /usr/aarch64-linux-gnu/include/linux/posix_types.h \
+  /usr/aarch64-linux-gnu/include/linux/stddef.h \
+  /usr/aarch64-linux-gnu/include/asm/posix_types.h \
+  /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
   ../../include/utilities/imageProssesing.hpp \
   ../rpi5-libs-extracted/rpi/include/apriltag/apriltag.h \
   /usr/aarch64-linux-gnu/include/c++/11/stdlib.h \
@@ -4910,12 +4952,6 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
   /usr/aarch64-linux-gnu/include/c++/11/bits/random.tcc
 
 
-/usr/aarch64-linux-gnu/include/asm/ioctl.h:
-
-/usr/aarch64-linux-gnu/include/asm-generic/ioctls.h:
-
-/usr/aarch64-linux-gnu/include/asm/ioctls.h:
-
 /usr/aarch64-linux-gnu/include/linux/i2c.h:
 
 /usr/aarch64-linux-gnu/include/linux/i2c-dev.h:
@@ -4933,14 +4969,6 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 /usr/aarch64-linux-gnu/include/sys/ucontext.h:
 
 /usr/aarch64-linux-gnu/include/asm/sve_context.h:
-
-/usr/aarch64-linux-gnu/include/linux/posix_types.h:
-
-/usr/aarch64-linux-gnu/include/asm-generic/types.h:
-
-/usr/aarch64-linux-gnu/include/asm/types.h:
-
-/usr/aarch64-linux-gnu/include/linux/types.h:
 
 /usr/aarch64-linux-gnu/include/asm/sigcontext.h:
 
@@ -5003,10 +5031,6 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 ../../include/Eigen/src/SparseLU/SparseLUImpl.h:
 
 ../../include/Eigen/src/SparseLU/InternalHeaderCheck.h:
-
-/usr/aarch64-linux-gnu/include/asm-generic/posix_types.h:
-
-../../include/Eigen/src/SparseLU/SparseLU_Structs.h:
 
 ../../include/Eigen/src/Eigenvalues/RealQZ.h:
 
@@ -5094,6 +5118,8 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 
 ../../include/Eigen/src/Jacobi/Jacobi.h:
 
+../../include/utilities/gpio.hpp:
+
 ../../include/Eigen/Jacobi:
 
 ../../include/Eigen/src/LU/arch/InverseSize4.h:
@@ -5142,10 +5168,6 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 
 ../../include/Eigen/src/Core/TriangularMatrix.h:
 
-/usr/aarch64-linux-gnu/include/asm/posix_types.h:
-
-../../include/Eigen/src/Core/Transpositions.h:
-
 ../../include/Eigen/Householder:
 
 ../../include/Eigen/src/Core/PermutationMatrix.h:
@@ -5187,10 +5209,6 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 ../../include/Eigen/src/Core/CwiseUnaryOp.h:
 
 ../../include/Eigen/src/Core/CwiseBinaryOp.h:
-
-/usr/aarch64-linux-gnu/include/linux/ioctl.h:
-
-../../include/Eigen/src/Core/CwiseTernaryOp.h:
 
 ../../include/Eigen/src/Eigenvalues/ComplexQZ.h:
 
@@ -5315,6 +5333,34 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 ../../include/utilities/OtosLinux.h:
 
 ../../include/subsystems/piLink.hpp:
+
+/usr/aarch64-linux-gnu/include/asm-generic/ioctls.h:
+
+/usr/aarch64-linux-gnu/include/asm/ioctls.h:
+
+../../include/Eigen/src/SparseLU/SparseLU_Structs.h:
+
+/usr/aarch64-linux-gnu/include/asm-generic/posix_types.h:
+
+../../include/Eigen/src/Core/Transpositions.h:
+
+/usr/aarch64-linux-gnu/include/asm/posix_types.h:
+
+/usr/aarch64-linux-gnu/include/linux/posix_types.h:
+
+/usr/aarch64-linux-gnu/include/asm-generic/types.h:
+
+/usr/aarch64-linux-gnu/include/asm/types.h:
+
+/usr/aarch64-linux-gnu/include/linux/types.h:
+
+/usr/aarch64-linux-gnu/include/asm/ioctl.h:
+
+../../include/Eigen/src/Core/CwiseTernaryOp.h:
+
+/usr/aarch64-linux-gnu/include/linux/ioctl.h:
+
+/usr/aarch64-linux-gnu/include/linux/const.h:
 
 /usr/aarch64-linux-gnu/include/bits/wctype-wchar.h:
 
@@ -5474,6 +5520,8 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 
 /usr/aarch64-linux-gnu/include/c++/11/bits/uses_allocator.h:
 
+/usr/aarch64-linux-gnu/include/linux/gpio.h:
+
 /usr/aarch64-linux-gnu/include/c++/11/bits/ostream_insert.h:
 
 /usr/aarch64-linux-gnu/include/c++/11/ext/new_allocator.h:
@@ -5502,11 +5550,11 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 
 /usr/aarch64-linux-gnu/include/time.h:
 
-/usr/aarch64-linux-gnu/include/bits/ioctls.h:
-
 ../../include/Eigen/src/SparseCore/SparseCwiseUnaryOp.h:
 
 ../../include/Eigen/src/Core/SelfAdjointView.h:
+
+/usr/aarch64-linux-gnu/include/bits/ioctls.h:
 
 /usr/aarch64-linux-gnu/include/bits/flt-eval-method.h:
 
@@ -5812,9 +5860,9 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: ../../src/utiliti
 
 /usr/aarch64-linux-gnu/include/c++/11/bits/cpp_type_traits.h:
 
-/usr/aarch64-linux-gnu/include/linux/stddef.h:
-
 /usr/aarch64-linux-gnu/include/bits/types/sigval_t.h:
+
+/usr/aarch64-linux-gnu/include/linux/stddef.h:
 
 /usr/aarch64-linux-gnu/include/bits/iscanonical.h:
 

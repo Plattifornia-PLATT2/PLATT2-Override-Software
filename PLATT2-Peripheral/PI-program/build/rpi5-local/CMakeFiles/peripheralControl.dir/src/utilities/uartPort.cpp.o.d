@@ -303,6 +303,16 @@ CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o: \
  /usr/aarch64-linux-gnu/include/bits/fcntl2.h \
  /usr/aarch64-linux-gnu/include/c++/11/span \
  /usr/aarch64-linux-gnu/include/c++/11/cstddef \
+ /usr/aarch64-linux-gnu/include/linux/gpio.h \
+ /usr/aarch64-linux-gnu/include/linux/const.h \
+ /usr/aarch64-linux-gnu/include/linux/types.h \
+ /usr/aarch64-linux-gnu/include/asm/types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
+ /usr/aarch64-linux-gnu/include/linux/posix_types.h \
+ /usr/aarch64-linux-gnu/include/linux/stddef.h \
+ /usr/aarch64-linux-gnu/include/asm/posix_types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
  /workspaces/PI-program/include/utilities/imageProssesing.hpp \
  /workspaces/PI-program/build/rpi5-libs-extracted/rpi/include/apriltag/apriltag.h \
  /usr/aarch64-linux-gnu/include/c++/11/stdlib.h \

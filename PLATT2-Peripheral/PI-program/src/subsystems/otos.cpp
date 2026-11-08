@@ -1,6 +1,6 @@
 #include "subsystems/otos.hpp"
 
-
+#include <iostream>
 OTOS::OTOS(){
 
     if (!i2c.openBus("/dev/i2c-1"))
@@ -128,8 +128,8 @@ void OTOS::sensorLoop(std::stop_token stopToken, sharedData& shared){
         std::lock_guard<std::mutex> lock(shared.mtx);
             shared.OTOSPos = buffer;
         }
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::cout<<"x:"<<buffer.pose.x<<" y:"<<buffer.pose.y<<std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
 
     }    
 }

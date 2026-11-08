@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <cerrno>
 #include <cstdlib>
+#include <iostream>
 
 namespace platt2{
 
@@ -54,11 +55,17 @@ bool serialPort::receiveLine(sendPacket& d, std::uint32_t timeoutMs) {
 
     while(true) {
         if (tryParse(d)) return true;             // frame already buffered or just completed
-        if (msUntil(deadline) == 0) return false; // timed out
+        if (msUntil(deadline) == 0 && timeoutMs != 0) {
+            
+            return false; // timed out
 
-        // Pull whatever the port has
+        }
+
+        // Pull whatever the port ha
         const int32_t avail = serial_.get_read_avail();
+        
         if (avail > 0) {
+            printf("things");
             const size_t room = rx_.size() - rxLen_;
             const size_t want = std::min(static_cast<size_t>(avail), room);
             const int32_t got = serial_.read(rx_.data() + rxLen_, static_cast<int32_t>(want));
