@@ -29,7 +29,7 @@ namespace robot{
 
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
         //controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());          
-        
+        subsystems.elevatorSubsystem->initElevator();
         
         while(true){
 
@@ -66,7 +66,16 @@ namespace robot{
 
             subsystems.xdriveSubsystem->moveVector(movement);
 
-            
+            if(controller.get_digital(driverProfile->elevator_up)){
+                subsystems.elevatorSubsystem->manualMove(200);
+            }
+            else if(controller.get_digital(driverProfile->elevator_down)){
+                subsystems.elevatorSubsystem->manualMove(-200);
+            }
+            else{
+                subsystems.elevatorSubsystem->manualMove(0);
+            }
+
             pros::delay(10);
         }
     

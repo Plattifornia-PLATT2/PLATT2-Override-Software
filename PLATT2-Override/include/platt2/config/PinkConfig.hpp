@@ -76,8 +76,8 @@ class PinkConfig : public IConfig {
     static constexpr int VEX_IMU_PORT{15};
 
     // ** Elevator Ports **
-    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{1};
-    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{2};
+    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{16};
+    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{-17};
     static constexpr int ELEVATOR_ROTATION_SENSOR_PORT{3};
     static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::green};
 

@@ -32,8 +32,8 @@ namespace profiles{
         heading_reset = pros::E_CONTROLLER_DIGITAL_UP;
 
         // Elevator Mappings
-        elevator_up = pros::E_CONTROLLER_DIGITAL_R1;
-        elevator_down = pros::E_CONTROLLER_DIGITAL_R2;
+        elevator_up = pros::E_CONTROLLER_DIGITAL_L1;
+        elevator_down = pros::E_CONTROLLER_DIGITAL_L2;
         elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
 
         // Claw Mappings

@@ -70,6 +70,8 @@ namespace elevator{
          */
         void elevatorTaskLoop();
 
+        void manualMove(int32_t velocity);
+
         pros::Task elevatorTask;
     
         private:

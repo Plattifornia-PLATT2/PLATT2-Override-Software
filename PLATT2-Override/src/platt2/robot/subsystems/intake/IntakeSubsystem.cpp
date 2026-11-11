@@ -17,11 +17,12 @@ namespace intake{
         frontMotor{std::move(frontMotor)}
     
     {
-        frontMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        
     }
 
     void IntakeSubsystem::moveIntake(IntakeDirection direction)
     {
+        frontMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
         if(direction == OUT)
         {
             frontMotor->move(intakeVoltage);
