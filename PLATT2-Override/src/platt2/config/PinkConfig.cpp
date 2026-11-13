@@ -160,20 +160,21 @@ PinkConfig::buildElevatorSubsystem() {
   return elevatorSubsystem;
 }
 
-std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem> PinkConfig::buildArmSubsystem()
-{
-    // build components
-    std::unique_ptr<pros::Motor> arm_motor = std::make_unique<pros::Motor>(ARM_MOTOR_PORT, ARM_MOTOR_GEARS);
-    std::unique_ptr<pros::Motor> claw_motor = std::make_unique<pros::Motor>(CLAW_MOTOR_PORT, CLAW_MOTOR_GEARS);
-    std::unique_ptr<pros::Motor> claw_piston = std::make_unique<pros::Motor>(CLAW_PISTON_PORT);
+std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem>
+PinkConfig::buildArmSubsystem() {
+  // build components
+  std::unique_ptr<pros::Motor> arm_motor =
+      std::make_unique<pros::Motor>(ARM_MOTOR_PORT, ARM_MOTOR_GEARS);
+  std::unique_ptr<pros::Motor> claw_motor =
+      std::make_unique<pros::Motor>(CLAW_MOTOR_PORT, CLAW_MOTOR_GEARS);
+  std::unique_ptr<pros::Motor> claw_piston =
+      std::make_unique<pros::Motor>(CLAW_PISTON_PORT);
 
-    std::shared_ptr<robot::subsystems::arm::ArmSubsystem> arm_subsystem = std::make_shared<robot::subsystems::arm::ArmSubsystem>(
-        std::move(arm_motor),
-        std::move(claw_motor),
-        std::move(claw_piston)
-    );
+  std::shared_ptr<robot::subsystems::arm::ArmSubsystem> arm_subsystem =
+      std::make_shared<robot::subsystems::arm::ArmSubsystem>(
+          std::move(arm_motor), std::move(claw_motor), std::move(claw_piston));
 
-    return arm_subsystem;
+  return arm_subsystem;
 }
 
 robot::RobotSubsystems PinkConfig::buildSubsystems() {

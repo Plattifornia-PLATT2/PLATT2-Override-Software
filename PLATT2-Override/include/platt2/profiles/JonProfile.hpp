@@ -9,41 +9,41 @@
  * @brief Namespace for all PLATT2 library code.
  * @author PLATT2 Development Team
  */
-namespace platt2{
+namespace platt2 {
 
 /**
  * @brief Namespace for controller profile code.
  * @author Dominic Young
  */
-namespace profiles{
+namespace profiles {
 
-    /**
-     * @brief A struct for Jon's controller mappings
-     * 
-     */
-    struct JonProfile : public DriverProfile{
-    JonProfile() {
-        // Intake Mappings
-        frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
-        frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
+/**
+ * @brief A struct for Jon's controller mappings
+ *
+ */
+struct JonProfile : public DriverProfile {
+  JonProfile() {
+    // Intake Mappings
+    frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
+    frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
 
-        // Field Oriented Drive
-        fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
-        heading_reset = pros::E_CONTROLLER_DIGITAL_UP;
+    // Field Oriented Drive
+    fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
+    heading_reset = pros::E_CONTROLLER_DIGITAL_UP;
 
-        // Elevator Mappings
-        elevator_up = pros::E_CONTROLLER_DIGITAL_R1;
-        elevator_down = pros::E_CONTROLLER_DIGITAL_R2;
-        elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
+    // Elevator Mappings
+    elevator_up = pros::E_CONTROLLER_DIGITAL_R1;
+    elevator_down = pros::E_CONTROLLER_DIGITAL_R2;
+    elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
 
-        // Claw Mappings
-        claw_toggle = pros::E_CONTROLLER_DIGITAL_LEFT;
-        claw_flip = pros::E_CONTROLLER_DIGITAL_DOWN;
+    // Claw Mappings
+    claw_toggle = pros::E_CONTROLLER_DIGITAL_LEFT;
+    claw_flip = pros::E_CONTROLLER_DIGITAL_DOWN;
 
-        driverEnum = robot::JON;
-    }
-    };
-}
-}
+    driverEnum = robot::JON;
+  }
+};
+} // namespace profiles
+} // namespace platt2
 
 #endif
