@@ -5,6 +5,7 @@
 #include "platt2/config/IConfig.hpp"
 #include "platt2/robot/Robot.hpp"
 #include "platt2/robot/pid/pid.hpp"
+#include "platt2/robot/subsystems/arm/arm.hpp"
 #include "platt2/robot/subsystems/elevator/elevator.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
@@ -69,17 +70,21 @@ class PinkConfig : public IConfig {
     // ** Color Sort Ports **
     static constexpr int OPTICAL_SENSOR_PORT{10};
 
-    // ** Pneumatics **
-
-
     // ** VEX IMU Port **
     static constexpr int VEX_IMU_PORT{15};
 
     // ** Elevator Ports **
-    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{16};
-    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{-17};
+    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{-16};
+    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{17};
     static constexpr int ELEVATOR_ROTATION_SENSOR_PORT{3};
-    static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::green};
+    static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::red};
+
+    // **Arm Ports**
+    static constexpr int ARM_MOTOR_PORT{8};
+    static constexpr int CLAW_MOTOR_PORT{7};
+    static constexpr int CLAW_PISTON_PORT{1};
+    static constexpr pros::MotorGears ARM_MOTOR_GEARS{pros::MotorGears::red};
+    static constexpr pros::MotorGears CLAW_MOTOR_GEARS{pros::MotorGears::green};
 
     // ** Elevator PID Tuning Values **
     static constexpr double ELEVATOR_DT{0.01};
@@ -117,6 +122,7 @@ class PinkConfig : public IConfig {
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
     std::shared_ptr<platt2::robot::subsystems::elevator::ElevatorSubsystem> buildElevatorSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem> buildArmSubsystem();
 
     robot::RobotSubsystems buildSubsystems();
 

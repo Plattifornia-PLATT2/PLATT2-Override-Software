@@ -19,6 +19,7 @@
 #include "pros/misc.hpp"
 #include "pros/rtos.hpp"
 #include "pros/screen.hpp"
+#include "subsystems/arm/arm.hpp"
 #include "subsystems/elevator/elevator.hpp"
 #include "subsystems/holonomicDrive/HolonomicControl.hpp"
 #include "subsystems/holonomicDrive/XDrive.hpp"
@@ -50,6 +51,7 @@ namespace platt2
             std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomicControlSubsystem;
             std::shared_ptr<subsystems::intake::IntakeSubsystem> intakeSubsystem;
             std::shared_ptr<subsystems::elevator::ElevatorSubsystem> elevatorSubsystem;
+            std::shared_ptr<subsystems::arm::ArmSubsystem> armSubsystem;
         };
 
         /**

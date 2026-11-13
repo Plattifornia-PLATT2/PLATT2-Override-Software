@@ -87,6 +87,7 @@ namespace robot{
 
     void Robot::init(){
         subsystems.odometrySubsystem->initImu();
+        subsystems.elevatorSubsystem->initElevator();
     }
 
 }
