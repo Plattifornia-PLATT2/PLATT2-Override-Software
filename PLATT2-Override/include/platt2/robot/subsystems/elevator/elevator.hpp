@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <cmath>
 #include "pros/motors.hpp"
 #include "pros/rotation.hpp"
 #include "pros/rtos.hpp"
@@ -77,7 +78,8 @@ namespace elevator{
         private:
         uint32_t getPosInches(ElevatorPosition pos);
 
-        const int32_t FULL_LIFT_HEIGHT = 30;
+        const int32_t FULL_LIFT_HEIGHT = 197;
+        const int32_t BOTTOM_LIFT_HEIGHT = 54;
 
         std::unique_ptr<pros::Motor> leftMotor;
         std::unique_ptr<pros::Motor> rightMotor;
