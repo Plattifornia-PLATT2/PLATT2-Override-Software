@@ -86,10 +86,14 @@ namespace robot{
             subsystems.elevatorSubsystem->getElevatorPositionRadians());
 
 
-            if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);
-            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X))
                 subsystems.armSubsystem->moveArmToPosition(subsystems::arm::LOAD);
-            }
+            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y))
+                subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);
+            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1))
+                subsystems.armSubsystem->toggleClaw();
+            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1))
+                subsystems.armSubsystem->releaseArm();   // optional: go limp
 
             pros::screen::print(pros::E_TEXT_LARGE, 8, "Arm Pos: %.3f", subsystems.armSubsystem->getArmPosition());
             pros::screen::print(pros::E_TEXT_LARGE, 10, "Claw Pos: %.3f", subsystems.armSubsystem->getClawPosition());
