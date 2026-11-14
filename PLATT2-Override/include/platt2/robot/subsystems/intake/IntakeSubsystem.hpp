@@ -44,17 +44,21 @@ namespace intake{
     class IntakeSubsystem{
 
         private:
-        uint32_t intakeVoltage{127};
+        const uint32_t intakeVoltage{127};
+        const uint32_t toggleVoltage{127};
 
         std::unique_ptr<pros::Motor> frontMotor;
+        std::unique_ptr<pros::Motor> toggleMechMotor;
 
         public:
         IntakeSubsystem(
-            std::unique_ptr<pros::Motor> frontMotor
+            std::unique_ptr<pros::Motor> frontMotor,
+            std::unique_ptr<pros::Motor> toggleMechMotor
         );
 
         void moveIntake(IntakeDirection direction);
 
+        void moveToggleMech(IntakeDirection direction);
 
     };
 }
