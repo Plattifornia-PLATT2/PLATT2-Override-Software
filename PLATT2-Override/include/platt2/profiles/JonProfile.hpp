@@ -37,8 +37,11 @@ struct JonProfile : public DriverProfile {
     elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
 
     // Claw Mappings
-    claw_toggle = pros::E_CONTROLLER_DIGITAL_LEFT;
-    claw_flip = pros::E_CONTROLLER_DIGITAL_DOWN;
+    claw_toggle = pros::E_CONTROLLER_DIGITAL_L2;
+
+    // Arm Mappings
+    arm_low = pros:: E_CONTROLLER_DIGITAL_DOWN;
+    arm_high = pros::E_CONTROLLER_DIGITAL_RIGHT;
 
     driverEnum = robot::JON;
   }

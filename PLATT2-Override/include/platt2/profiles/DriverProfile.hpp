@@ -32,7 +32,10 @@ namespace profiles{
 
         // Claw Mappings
         pros::controller_digital_e_t claw_toggle;
-        pros::controller_digital_e_t claw_flip;
+
+        // Arm Mappings
+        pros::controller_digital_e_t arm_low;
+        pros::controller_digital_e_t arm_high;
 
         robot::DriverProfile driverEnum;
     };

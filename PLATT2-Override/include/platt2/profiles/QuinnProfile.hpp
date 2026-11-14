@@ -26,19 +26,22 @@ namespace profiles{
         // Intake Mappings
         frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
         frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
-
+            
         // Field Oriented Drive
         fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
         heading_reset = pros::E_CONTROLLER_DIGITAL_UP;
-
+            
         // Elevator Mappings
         elevator_up = pros::E_CONTROLLER_DIGITAL_R1;
         elevator_down = pros::E_CONTROLLER_DIGITAL_R2;
         elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
-
+            
         // Claw Mappings
-        claw_toggle = pros::E_CONTROLLER_DIGITAL_LEFT;
-        claw_flip = pros::E_CONTROLLER_DIGITAL_DOWN;
+        claw_toggle = pros::E_CONTROLLER_DIGITAL_L2;
+            
+        // Arm Mappings
+        arm_low = pros:: E_CONTROLLER_DIGITAL_DOWN;
+        arm_high = pros::E_CONTROLLER_DIGITAL_RIGHT;
 
         driverEnum = robot::QUINN;
         }
