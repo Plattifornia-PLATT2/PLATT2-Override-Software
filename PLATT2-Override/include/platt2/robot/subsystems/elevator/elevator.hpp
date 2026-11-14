@@ -63,7 +63,7 @@ namespace elevator{
          * 
          * @return std::int32_t The current elevator position in inches
          */
-        std::int32_t getElevatorPositionInches();
+        double getElevatorPositionRadians();
 
         /**
          * @brief Background task for the elevator position. Runs in a pros::task.
@@ -73,13 +73,17 @@ namespace elevator{
 
         void manualMove(int32_t velocity);
 
-        pros::Task elevatorTask;
-    
+        void stop();                                 // main loop: sets intent
+
+        
         private:
         uint32_t getPosInches(ElevatorPosition pos);
 
-        const int32_t FULL_LIFT_HEIGHT = 197;
-        const int32_t BOTTOM_LIFT_HEIGHT = 54;
+        const double FULL_LIFT_HEIGHT = 33.2;
+        const double BOTTOM_LIFT_HEIGHT = 0;
+        const double MIDDLE_LIFT_HEIGHT = 11.5;
+
+        const double ELEVATOR_VELOCITY = 100;
 
         std::unique_ptr<pros::Motor> leftMotor;
         std::unique_ptr<pros::Motor> rightMotor;
@@ -87,6 +91,14 @@ namespace elevator{
         std::unique_ptr<robot::pid::PID> elevatorPID;
 
         ElevatorPosition currentPosition;
+
+        enum class Mode { IDLE, MANUAL, POSITION };
+        std::atomic<Mode>    mode{Mode::IDLE};
+        std::atomic<int32_t> manualVelocity{0};
+        std::atomic<double>  targetTicks{0};
+        std::atomic<bool>    newTarget{false};
+        std::unique_ptr<pros::Task> task;
+        void run();
 
     };
 }

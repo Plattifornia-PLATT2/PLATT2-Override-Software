@@ -2,6 +2,7 @@
 #include "platt2/robot/subsystems/arm/arm.hpp"
 #include "platt2/robot/subsystems/elevator/elevator.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
+#include "pros/adi.hpp"
 #include "pros/motors.hpp"
 #include "pros/rotation.hpp"
 #include <memory>
@@ -163,16 +164,18 @@ PinkConfig::buildElevatorSubsystem() {
 std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem>
 PinkConfig::buildArmSubsystem() {
   // build components
-  std::unique_ptr<pros::Motor> arm_motor =
-      std::make_unique<pros::Motor>(ARM_MOTOR_PORT, ARM_MOTOR_GEARS);
+  std::unique_ptr<pros::Motor> left_arm_motor =
+      std::make_unique<pros::Motor>(LEFT_ARM_MOTOR_PORT, ARM_MOTOR_GEARS);
+  std::unique_ptr<pros::Motor> right_arm_motor =
+      std::make_unique<pros::Motor>(RIGHT_ARM_MOTOR_PORT, ARM_MOTOR_GEARS);
   std::unique_ptr<pros::Motor> claw_motor =
       std::make_unique<pros::Motor>(CLAW_MOTOR_PORT, CLAW_MOTOR_GEARS);
-  std::unique_ptr<pros::Motor> claw_piston =
-      std::make_unique<pros::Motor>(CLAW_PISTON_PORT);
+  std::unique_ptr<pros::adi::DigitalOut> claw_piston =
+      std::make_unique<pros::adi::DigitalOut>(CLAW_PISTON_PORT);
 
   std::shared_ptr<robot::subsystems::arm::ArmSubsystem> arm_subsystem =
       std::make_shared<robot::subsystems::arm::ArmSubsystem>(
-          std::move(arm_motor), std::move(claw_motor), std::move(claw_piston));
+          std::move(left_arm_motor), std::move(right_arm_motor), std::move(claw_motor), std::move(claw_piston));
 
   return arm_subsystem;
 }

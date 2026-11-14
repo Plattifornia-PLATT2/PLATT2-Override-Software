@@ -1,10 +1,13 @@
 #include "platt2/robot/Robot.hpp"
 #include <cmath>    
+#include <coroutine>
 #include <math.h>
 #include <memory>
 #include "platt2/EDriverConfig.hpp"
 #include "platt2/ERobotConfig.hpp"
 #include "platt2/helperFunctions.h"
+#include "pros/misc.h"
+#include "subsystems/arm/arm.hpp"
 #include "subsystems/holonomicDrive/XDrive.hpp"
 #include "subsystems/holonomicDrive/HolonomicControl.hpp"
 #include "platt2/robot/subsystems/holonomicDrive/MovementVector.hpp"
@@ -29,7 +32,6 @@ namespace robot{
 
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
         //controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());          
-        subsystems.elevatorSubsystem->initElevator();
         
         while(true){
 
@@ -66,15 +68,33 @@ namespace robot{
 
             subsystems.xdriveSubsystem->moveVector(movement);
 
-            if(controller.get_digital(driverProfile->elevator_up)){
+            if (controller.get_digital(driverProfile->elevator_up))
                 subsystems.elevatorSubsystem->manualMove(200);
-            }
-            else if(controller.get_digital(driverProfile->elevator_down)){
+            else if (controller.get_digital(driverProfile->elevator_down))
                 subsystems.elevatorSubsystem->manualMove(-200);
+            else
+                subsystems.elevatorSubsystem->manualMove(0);    // safe: can't cancel a position move
+
+            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A))
+                subsystems.elevatorSubsystem->moveToPosition(subsystems::elevator::MIDDLE_EXTENSION);
+            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
+                subsystems.elevatorSubsystem->moveToPosition(subsystems::elevator::FULL_DOWN);
+
+
+            if(controller.get_digital_new_press(driverProfile->claw_toggle)) subsystems.armSubsystem->toggleClaw();
+            pros::screen::print(pros::E_TEXT_LARGE, 6, "Elevator Pos: %.3f",
+            subsystems.elevatorSubsystem->getElevatorPositionRadians());
+
+
+            if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);
+            if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+                subsystems.armSubsystem->moveArmToPosition(subsystems::arm::LOAD);
             }
-            else{
-                subsystems.elevatorSubsystem->manualMove(0);
-            }
+
+            pros::screen::print(pros::E_TEXT_LARGE, 8, "Arm Pos: %.3f", subsystems.armSubsystem->getArmPosition());
+            pros::screen::print(pros::E_TEXT_LARGE, 10, "Claw Pos: %.3f", subsystems.armSubsystem->getClawPosition());
+
+
 
             pros::delay(10);
         }
@@ -88,6 +108,7 @@ namespace robot{
     void Robot::init(){
         subsystems.odometrySubsystem->initImu();
         subsystems.elevatorSubsystem->initElevator();
+        subsystems.armSubsystem->init();
     }
 
 }

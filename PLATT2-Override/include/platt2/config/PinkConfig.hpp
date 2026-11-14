@@ -80,8 +80,9 @@ class PinkConfig : public IConfig {
     static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::red};
 
     // **Arm Ports**
-    static constexpr int ARM_MOTOR_PORT{8};
-    static constexpr int CLAW_MOTOR_PORT{7};
+    static constexpr int LEFT_ARM_MOTOR_PORT{-14};
+    static constexpr int RIGHT_ARM_MOTOR_PORT {13};
+    static constexpr int CLAW_MOTOR_PORT{18};
     static constexpr int CLAW_PISTON_PORT{1};
     static constexpr pros::MotorGears ARM_MOTOR_GEARS{pros::MotorGears::red};
     static constexpr pros::MotorGears CLAW_MOTOR_GEARS{pros::MotorGears::green};
