@@ -26,6 +26,7 @@ struct JonProfile : public DriverProfile {
     // Intake Mappings
     frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
     frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
+    toggle_mech = pros::E_CONTROLLER_DIGITAL_Y;
 
     // Field Oriented Drive
     fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;

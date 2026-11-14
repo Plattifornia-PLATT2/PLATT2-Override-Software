@@ -20,6 +20,7 @@ namespace profiles{
         // Intake Mappings
         pros::controller_digital_e_t frontIntake_IN;
         pros::controller_digital_e_t frontIntake_OUT;
+        pros::controller_digital_e_t toggle_mech;
 
         // Field Oriented Drive
         pros::controller_digital_e_t fieldOriented_toggle;
