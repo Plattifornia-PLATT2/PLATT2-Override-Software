@@ -23,21 +23,28 @@ namespace profiles{
      */
     struct QuinnProfile : public DriverProfile{
         QuinnProfile() {
+        // Intake Mappings
         frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
         frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
-        auto_unload_button = pros::E_CONTROLLER_DIGITAL_X;
-        edMech_toggle = pros::E_CONTROLLER_DIGITAL_R1;
-        highScore_toggle = pros::E_CONTROLLER_DIGITAL_R2;
-        stopper_toggle = pros::E_CONTROLLER_DIGITAL_UP;
-        colorSort_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
-        rakeMech_toggle = pros::E_CONTROLLER_DIGITAL_LEFT;
-        fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_X;
-        heading_reset = pros::E_CONTROLLER_DIGITAL_X;
-        descore_toggle = pros::E_CONTROLLER_DIGITAL_A;
-        scoreHighMacro = pros::E_CONTROLLER_DIGITAL_R1;
-        scoreMiddleHighMacro = pros::E_CONTROLLER_DIGITAL_R2;
-        rearIntake_toggle = pros::E_CONTROLLER_DIGITAL_DOWN;
-        driverEnum = robot::JON;
+        toggle_mech = pros::E_CONTROLLER_DIGITAL_Y;
+            
+        // Field Oriented Drive
+        fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
+        heading_reset = pros::E_CONTROLLER_DIGITAL_UP;
+            
+        // Elevator Mappings
+        elevator_up = pros::E_CONTROLLER_DIGITAL_R1;
+        elevator_down = pros::E_CONTROLLER_DIGITAL_R2;
+        elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
+            
+        // Claw Mappings
+        claw_toggle = pros::E_CONTROLLER_DIGITAL_L2;
+            
+        // Arm Mappings
+        arm_low = pros:: E_CONTROLLER_DIGITAL_DOWN;
+        arm_high = pros::E_CONTROLLER_DIGITAL_RIGHT;
+
+        driverEnum = robot::QUINN;
         }
     };
 

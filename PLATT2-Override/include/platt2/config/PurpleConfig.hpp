@@ -18,6 +18,9 @@
 #include "platt2/auton/PurpleSkillsAuton.hpp"
 #include "platt2/auton/PinkCompAuton.hpp"
 #include "platt2/auton/PurpleCompAuton.hpp"
+#include "platt2/hal/TrackingWheel.hpp"
+#include "platt2/robot/subsystems/odometry/TrackingWheelPositionTracker.hpp"
+
 
 // ** Pros API Includes **
 #include "pros/motors.hpp"
@@ -48,43 +51,50 @@ class PurpleConfig : public IConfig {
     private:
     static constexpr pros::MotorGears DRIVE_GEARSET{pros::MotorGears::blue};
 
+    // ** Drive Ports **
+    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-9};
+    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{10};
+    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{1};
+    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-2};
 
-   // ** Drive Ports **
-    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{9};
-    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{-10};
-    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{2};
-    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-1};
-
-    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{19};
-    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{-20};
+    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{-20};
+    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{19};
     static constexpr int BACK_LEFT_TOP_MOTOR_PORT{12};
     static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-11};
 
 
     // ** Intake Ports **
     static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
-    static constexpr int MIDDLE_INTAKE_MOTOR_PORT{12};
-    static constexpr int REAR_INTAKE_MOTOR_PORT{-9};
-    static constexpr int LOWER_ROLLER_MOTOR_PORT{-11};
-    static constexpr int UPPER_CONVEYOR_MOTOR_PORT{15};
-    static constexpr int REAR_INTAKE_LEFT_MOTOR_PORT{13};
-    static constexpr int REAR_INTAKE_RIGHT_MOTOR_PORT{-14};
-    //static constexpr int DISTANCE_SENSOR_PORT{14};
+    static constexpr int TOGGLE_MECH_MOTOR_PORT{4};
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
 
     // ** Color Sort Ports **
     static constexpr int OPTICAL_SENSOR_PORT{10};
 
-    // ** Pneumatics **
-    static constexpr int ED_MECH_PISTON_PORT{1};
-    static constexpr int UPPER_CONVEYOR_HEIGHT_PISTON_PORT{2};
-    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{3};
-    static constexpr int RAKE_MECH_PISTON_PORT{4};
-    static constexpr int DESCORE_PISTON_PORT{5};
-    static constexpr int REAR_INTAKE_PISTON_PORT {6};
-
     // ** VEX IMU Port **
-    static constexpr int VEX_IMU_PORT{18};
+    static constexpr int VEX_IMU_PORT{15};
+
+    // ** Elevator Ports **
+    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{-16};
+    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{17};
+    static constexpr int ELEVATOR_ROTATION_SENSOR_PORT{3};
+    static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::red};
+
+    // **Arm Ports**
+    static constexpr int LEFT_ARM_MOTOR_PORT{-14};
+    static constexpr int RIGHT_ARM_MOTOR_PORT {13};
+    static constexpr int CLAW_MOTOR_PORT{18};
+    static constexpr int CLAW_PISTON_PORT{1};
+    static constexpr pros::MotorGears ARM_MOTOR_GEARS{pros::MotorGears::red};
+    static constexpr pros::MotorGears CLAW_MOTOR_GEARS{pros::MotorGears::green};
+
+    // ** Elevator PID Tuning Values **
+    static constexpr double ELEVATOR_DT{0.01};
+    static constexpr double ELEVATOR_MAX{1};
+    static constexpr double ELEVATOR_MIN{-1};
+    static constexpr double ELEVATOR_Kp{0.054};
+    static constexpr double ELEVATOR_Kd{0.005};
+    static constexpr double ELEVATOR_Ki{0};
 
     // ** Odometry Offsets **
     static constexpr int HORIZONTAL_ENCODER_PORT{20};
@@ -97,23 +107,31 @@ class PurpleConfig : public IConfig {
     static constexpr double position_dt{0.01};
     static constexpr double position_max{1};
     static constexpr double position_min{-1};
-    static constexpr double position_Kp{0.075};
-    static constexpr double position_Kd{0.0042};
+    static constexpr double position_Kp{0.054};
+    static constexpr double position_Kd{0.005};
     static constexpr double position_Ki{0};
 
     // ** Angular PID Tuning Values **
     static constexpr double heading_dt{0.01}; 
     static constexpr double heading_max{1};
     static constexpr double heading_min{-1};
-    static constexpr double heading_Kp{0.17};
+    static constexpr double heading_Kp{0.15};
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
 
+    std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
+    std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::elevator::ElevatorSubsystem> buildElevatorSubsystem();
+    std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem> buildArmSubsystem();
+
+    robot::RobotSubsystems buildSubsystems();
     
     public:
 
     /**
-     * @brief Builds the purple robot with given config values
+     * @brief Builds the pink robot with given config values
      * 
      * @param auton The auton route to use
      * @param profile The driver profile to use
