@@ -133,10 +133,13 @@ PinkConfig::buildIntakeSubsystem() {
   std::unique_ptr<pros::Motor> frontMotor =
       std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT);
 
+    std::unique_ptr<pros::Motor> toggleMotor = 
+        std::make_unique<pros::Motor>(TOGGLE_MECH_MOTOR_PORT);
+
   std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem>
       intakeSubsystem =
           std::make_unique<platt2::robot::subsystems::intake::IntakeSubsystem>(
-              std::move(frontMotor));
+              std::move(frontMotor), std::move(toggleMotor));
   return intakeSubsystem;
 }
 

@@ -1,4 +1,11 @@
 #include "platt2/config/PurpleConfig.hpp"
+#include "platt2/robot/subsystems/arm/arm.hpp"
+#include "platt2/robot/subsystems/elevator/elevator.hpp"
+#include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
+#include "pros/adi.hpp"
+#include "pros/motors.hpp"
+#include "pros/rotation.hpp"
+#include <memory>
 
 namespace platt2 {
 namespace config {
@@ -28,24 +35,6 @@ PurpleConfig::buildXDriveSubsystem() {
       BACK_LEFT_TOP_MOTOR_PORT, DRIVE_GEARSET)};
   std::unique_ptr<pros::v5::Motor> bl_bottom{std::make_unique<pros::v5::Motor>(
       BACK_LEFT_BOTTOM_MOTOR_PORT, DRIVE_GEARSET)};
-
-  // Intake motors
-  std::unique_ptr<pros::Motor> front_intake_motor{
-      std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT, INTAKE_GEARSET)};
-  std::unique_ptr<pros::Motor> middle_intake_motor{
-      std::make_unique<pros::Motor>(MIDDLE_INTAKE_MOTOR_PORT, INTAKE_GEARSET)};
-  std::unique_ptr<pros::Motor> rear_intake_motor{
-      std::make_unique<pros::Motor>(REAR_INTAKE_MOTOR_PORT, INTAKE_GEARSET)};
-  std::unique_ptr<pros::Motor> upper_conveyor_motor{
-      std::make_unique<pros::Motor>(UPPER_CONVEYOR_MOTOR_PORT, INTAKE_GEARSET)};
-  std::unique_ptr<pros::Motor> lower_roller_motor{std::make_unique<pros::Motor>(
-      LOWER_ROLLER_MOTOR_PORT, pros::MotorGears::green)};
-  std::unique_ptr<pros::Motor> rear_intake_left_motor{
-      std::make_unique<pros::Motor>(REAR_INTAKE_LEFT_MOTOR_PORT,
-                                    pros::MotorGears::green)};
-  std::unique_ptr<pros::Motor> rear_intake_right_motor{
-      std::make_unique<pros::Motor>(REAR_INTAKE_RIGHT_MOTOR_PORT,
-                                    pros::MotorGears::green)};
 
   // X drive modules
 
@@ -144,10 +133,13 @@ PurpleConfig::buildIntakeSubsystem() {
   std::unique_ptr<pros::Motor> frontMotor =
       std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT);
 
+    std::unique_ptr<pros::Motor> toggleMotor = 
+        std::make_unique<pros::Motor>(TOGGLE_MECH_MOTOR_PORT);
+
   std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem>
       intakeSubsystem =
           std::make_unique<platt2::robot::subsystems::intake::IntakeSubsystem>(
-              std::move(frontMotor));
+              std::move(frontMotor), std::move(toggleMotor));
   return intakeSubsystem;
 }
 
@@ -172,6 +164,25 @@ PurpleConfig::buildElevatorSubsystem() {
   return elevatorSubsystem;
 }
 
+std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem>
+PurpleConfig::buildArmSubsystem() {
+  // build components
+  std::unique_ptr<pros::Motor> left_arm_motor =
+      std::make_unique<pros::Motor>(LEFT_ARM_MOTOR_PORT, ARM_MOTOR_GEARS);
+  std::unique_ptr<pros::Motor> right_arm_motor =
+      std::make_unique<pros::Motor>(RIGHT_ARM_MOTOR_PORT, ARM_MOTOR_GEARS);
+  std::unique_ptr<pros::Motor> claw_motor =
+      std::make_unique<pros::Motor>(CLAW_MOTOR_PORT, CLAW_MOTOR_GEARS);
+  std::unique_ptr<pros::adi::DigitalOut> claw_piston =
+      std::make_unique<pros::adi::DigitalOut>(CLAW_PISTON_PORT);
+
+  std::shared_ptr<robot::subsystems::arm::ArmSubsystem> arm_subsystem =
+      std::make_shared<robot::subsystems::arm::ArmSubsystem>(
+          std::move(left_arm_motor), std::move(right_arm_motor), std::move(claw_motor), std::move(claw_piston));
+
+  return arm_subsystem;
+}
+
 robot::RobotSubsystems PurpleConfig::buildSubsystems() {
   robot::RobotSubsystems subsystems;
 
@@ -184,12 +195,16 @@ robot::RobotSubsystems PurpleConfig::buildSubsystems() {
 
   subsystems.intakeSubsystem = buildIntakeSubsystem();
 
+  subsystems.elevatorSubsystem = buildElevatorSubsystem();
+
+  subsystems.armSubsystem = buildArmSubsystem();
+
   return subsystems;
 }
 
 std::shared_ptr<robot::Robot>
 PurpleConfig::buildRobot(robot::AutonConfig auton, robot::DriverProfile profile,
-                         robot::AllianceConfig alliance) {
+                       robot::AllianceConfig alliance) {
 
   std::unique_ptr<profiles::DriverProfile> driver_profile;
   // build driver profile
@@ -242,7 +257,7 @@ PurpleConfig::buildRobot(robot::AutonConfig auton, robot::DriverProfile profile,
 
   // build robot object
   std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(
-      buildSubsystems(), robot::RobotConfig::PINK, std::move(auton_routine),
+      buildSubsystems(), robot::RobotConfig::PURPLE, std::move(auton_routine),
       std::move(driver_profile))};
 
   return robot;

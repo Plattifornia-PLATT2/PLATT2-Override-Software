@@ -65,6 +65,7 @@ class PinkConfig : public IConfig {
 
     // ** Intake Ports **
     static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
+    static constexpr int TOGGLE_MECH_MOTOR_PORT{4};
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
 
     // ** Color Sort Ports **
