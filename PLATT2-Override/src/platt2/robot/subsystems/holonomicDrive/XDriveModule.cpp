@@ -52,9 +52,14 @@ double XDriveModule::maxModuleVel()  {
 }
 
 void XDriveModule::setModuleVel(double ips) {
-    double rpm = ips / (M_PI * getWheelDiameter()) * 60.0 / getGearRatio();
+    double rpm = ips / (M_PI * getWheelDiameter()) * 56.7 / getGearRatio();
     module_motors.setVelocity(rpm);   // new method on MotorGroup
 
+}
+
+void XDriveModule::setModuleVoltage(double ips) {
+    const double mvPerIps = 12000.0 / 60;   // ips at full voltage, measure it
+    module_motors.setVoltage(std::clamp((int)std::lround(ips * mvPerIps), -12000, 12000));
 }
 
 

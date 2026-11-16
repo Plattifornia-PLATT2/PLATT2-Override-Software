@@ -50,18 +50,21 @@ public:
 
     bool sendLine(const sendPacket&);
     bool receiveLine(sendPacket&, std::uint32_t timeoutMs = 100);
+    void clearBuffer();
 
 
 
 
 private:
+    
+
     bool configurePort();
     bool gpio_set(int line_fd, bool value);
     int gpio_request_output(const char *chip, unsigned pin, bool value);
     uint64_t msUntil(std::chrono::steady_clock::time_point deadline);
 
     int fd_ = -1;
-
+    
     static constexpr size_t SENSOR_PAYLOAD =
         sizeof(float) +   // id
         sizeof(float)    +   // temperature

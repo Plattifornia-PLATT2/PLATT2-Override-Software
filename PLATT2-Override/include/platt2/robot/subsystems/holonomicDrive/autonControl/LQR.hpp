@@ -37,17 +37,17 @@ class LQR {
     private:
     Eigen::Matrix<double, 3, 6> K;
     double tau = 1;
-
+    const Eigen::Vector3d kV{1.1, 1.1, 1.0};
+    static constexpr double kS   = 4.5;
     public:
         LQR(double tau, double dt, const Eigen::Matrix<double, 6, 1>& qDiag, const Eigen::Vector3d& rDiag)
             : K(computeLqrGain(tau, dt, qDiag, rDiag)), tau(tau)
         {}
 
-        Eigen::Vector3d lqrTrack(const Eigen::Vector3d& posDesired,
-                                 const Eigen::Vector3d& velDesired,
-                                 const Eigen::Vector3d& accDesired,
-                                 const Eigen::Vector3d& posMeasured,
-                                 const Eigen::Vector3d& velMeasured);
+        Eigen::Vector3d lqrTrack(const Eigen::Vector3d& posDes, const Eigen::Vector3d& velDes,
+                              const Eigen::Vector3d& velFF,  const Eigen::Vector3d& accFF,
+                              const Eigen::Vector3d& posMeas, const Eigen::Vector3d& velMeas,
+                              double fbScale = 1.0);
 
         Eigen::Matrix<double, 3, 6> computeLqrGain(double tau, double dt,
                                                    const Eigen::Matrix<double, 6, 1>& qDiag,

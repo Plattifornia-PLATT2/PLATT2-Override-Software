@@ -557,4 +557,5 @@ CMakeFiles/peripheralControl.dir/src/subsystems/piLink.cpp.o: \
  /usr/aarch64-linux-gnu/include/c++/11/bits/random.h \
  /usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu/bits/opt_random.h \
  /usr/aarch64-linux-gnu/include/c++/11/bits/random.tcc \
- /workspaces/PI-program/include/utilities/gpio.hpp
+ /workspaces/PI-program/include/utilities/gpio.hpp \
+ /workspaces/PI-program/include/utilities/softSerialRx.hpp

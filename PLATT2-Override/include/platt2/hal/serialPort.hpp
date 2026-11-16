@@ -33,7 +33,7 @@ public:
 
     }; 
     // port: smart port number (1-21). baudrate: e.g. 115200.
-    explicit serialPort(std::uint8_t port, std::int32_t baudrate = 115200);
+    explicit serialPort(std::uint8_t port, std::int32_t baudrate = 19200);
     
 
     bool sendLine(const sendPacket&);

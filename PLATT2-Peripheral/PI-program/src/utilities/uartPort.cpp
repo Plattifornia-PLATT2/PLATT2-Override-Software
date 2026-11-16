@@ -59,6 +59,11 @@ bool UartPort::isOpen() const { return fd_ >= 0; }
 
 const std::string& UartPort::lastError() const { return lastError_; }
 
+void UartPort::clearBuffer(){
+
+    tcflush(fd_, TCIFLUSH);
+
+}
 
 bool UartPort::sendLine(const sendPacket& d) {
     constexpr uint32_t kSendTimeoutMs = 20;
@@ -90,6 +95,7 @@ bool UartPort::sendLine(const sendPacket& d) {
         p    += w;
         left -= static_cast<size_t>(w);
     }
+    tcdrain(fd_); 
     return true;
 }
 
@@ -103,12 +109,16 @@ bool UartPort::receiveLine(sendPacket& d, std::uint32_t timeoutMs) {
         // Pull whatever the port has
         const int32_t avail = get_read_avail(fd_);
         if (avail > 0) {
+            
             const size_t room = rx_.size() - rxLen_;
             const size_t want = std::min(static_cast<size_t>(avail), room);
-            const int32_t got = ::read(fd_, rx_.data() + rxLen_, static_cast<int32_t>(want));
+            const int32_t got = ::read(fd_, rx_.data() + rxLen_, static_cast<int32_t>(want));     
+
             if (got > 0) { rxLen_ += static_cast<size_t>(got); continue; }
+           
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));                           // nothing arrived, yield to other tasks
+        pollfd pfd{fd_, POLLIN, 0};
+        ::poll(&pfd, 1, static_cast<int>(std::max<uint64_t>(msUntil(deadline), 1)));                          // nothing arrived, yield to other tasks
     }
 }
 
@@ -207,7 +217,7 @@ bool UartPort::tryParse(sendPacket& d) {
         get(theta);
 
         d.pos.x = posX;
-        d.pos.x = posY;
+        d.pos.y = posY;
         d.pos.theta = theta;
 
 
@@ -249,10 +259,14 @@ bool UartPort::configurePort() {
     tty.c_lflag &= ~ISIG;
 
     tty.c_iflag &= ~(IXON | IXOFF | IXANY);
-    tty.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL);
+    tty.c_iflag &= ~(BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL);
+    tty.c_iflag |= (IGNBRK | IGNPAR);
 
     tty.c_oflag &= ~OPOST;
     tty.c_oflag &= ~ONLCR;
+
+    tty.c_iflag |= (IGNBRK | IGNPAR);
+    tty.c_iflag &= ~PARMRK;
 
     tty.c_cc[VMIN] = 0;
     tty.c_cc[VTIME] = 0;

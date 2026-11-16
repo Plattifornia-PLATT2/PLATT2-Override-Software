@@ -2,6 +2,7 @@
 #define HOLONOMICCONTROL_HPP
 
 #include "autonControl/LQR.hpp"
+#include "autonControl/trajectoryGen.hpp"
 #include "platt2/robot/subsystems/holonomicDrive/XDrive.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
 #include "platt2/robot/pid/pid.hpp"
@@ -42,6 +43,8 @@ public:
     HolonomicControl(std::shared_ptr<XDrive> drive, std::shared_ptr<odometry::Odometry> odom, std::shared_ptr<LQR> lqr);
 
     void tauTest();
+
+    void moveToPoint(const Vec3& start, const Vec3& goal, double startHeading, double endHeading, TrajConstraints constraints);
     
 
 private:

@@ -82,6 +82,9 @@ std::shared_ptr<robot::subsystems::odometry::Odometry> PinkConfig::buildOdometry
 
     std::shared_ptr<robot::subsystems::odometry::Odometry> odom_subsystem = std::make_shared<robot::subsystems::odometry::Odometry>(std::move(positionTracker));
 
+    robot::subsystems::odometry::Position startingPos = {0,0,90};//x y must be set in pi
+    odom_subsystem->setPos(startingPos);
+
 
     return odom_subsystem;
 }

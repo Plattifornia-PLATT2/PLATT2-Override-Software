@@ -118,8 +118,8 @@ class PurpleConfig : public IConfig {
         // LQR tuning values
     static constexpr double TAU{0.1}; //NEEDS TO BE FOUND
     static constexpr double DT{0.01};
-    const Eigen::Matrix<double, 6, 1> QDIAG{1, 1, 400, 0.01, 0.01, 1}; 
-    const Eigen::Vector3d RDIAG{0.0025, 0.0025, 0.25};
+    const Eigen::Matrix<double, 6, 1> QDIAG{1.2, 1.2, 40, 0.01, 0.01, 1}; 
+    const Eigen::Vector3d RDIAG{0.0025, 0.0025, 100};
 
     
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();

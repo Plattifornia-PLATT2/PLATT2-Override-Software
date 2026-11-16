@@ -1,26 +1,7 @@
 #include "subsystems/otos.hpp"
 
 #include <iostream>
-OTOS::OTOS(){
 
-    if (!i2c.openBus("/dev/i2c-1"))
-    {
-        std::fprintf(stderr, "Could not open I2C bus. Is I2C enabled (raspi-config)?\n");
-    }
-
-    sfTkError_t err = otos.begin(&i2c);
-    if (err != ksfTkErrOk)
-    {
-        std::fprintf(stderr, "OTOS begin() failed, error code %d\n", static_cast<int>(err));
-    }
-    std::printf("OTOS connected.\n");
-
-    sfe_otos_pose2d_t pos;
-    pos = {0.0f, 0.0f, 0.0f};
-
-    otos.setPosition(pos);
-
-}
 
 void OTOS::calibrate(){
     
@@ -30,6 +11,13 @@ void OTOS::calibrate(){
         std::fprintf(stderr, "OTOS calibrateImu() failed, error code %d\n", static_cast<int>(err));
     }
     std::printf("OTOS IMU calibration complete.\n");
+}
+
+void OTOS::restart(){
+
+    otos.setPosition(startPos);
+    this->calibrate();
+
 }
 
 void OTOS::getPos(){
@@ -128,8 +116,27 @@ void OTOS::sensorLoop(std::stop_token stopToken, sharedData& shared){
         std::lock_guard<std::mutex> lock(shared.mtx);
             shared.OTOSPos = buffer;
         }
-        std::cout<<"x:"<<buffer.pose.x<<" y:"<<buffer.pose.y<<std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
     }    
+}
+
+
+
+OTOS::OTOS(){
+
+    if (!i2c.openBus("/dev/i2c-1"))
+    {
+        std::fprintf(stderr, "Could not open I2C bus. Is I2C enabled (raspi-config)?\n");
+    }
+
+    sfTkError_t err = otos.begin(&i2c);
+    if (err != ksfTkErrOk)
+    {
+        std::fprintf(stderr, "OTOS begin() failed, error code %d\n", static_cast<int>(err));
+    }
+    std::printf("OTOS connected.\n");
+
+    this->restart();
 }

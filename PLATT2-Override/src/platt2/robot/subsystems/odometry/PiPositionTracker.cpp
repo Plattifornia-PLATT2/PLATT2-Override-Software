@@ -18,7 +18,8 @@ namespace odometry{
     }
 
     void PiPositionTracker::setPos(Position pos){
-
+        current_position.heading = pos.heading*(M_PI/180);
+        imu->set_heading(360 - pos.heading);
     }
 
     double PiPositionTracker::getX(){
@@ -74,6 +75,10 @@ namespace odometry{
         uint32_t last_change_us = 0;
         uint32_t t = pros::millis();
 
+        uint32_t uniqueCount = 0;
+        uint32_t rateWindowStart_us = pros::micros();
+        double updatesPerSec = 0.0;
+
         while (true) {
             uint32_t now = pros::micros();
 
@@ -89,6 +94,7 @@ namespace odometry{
             if (x != lastX || y != lastY) {
                 lastX = x; lastY = y;
                 last_change_us = now;
+                uniqueCount++;  
                 history.push_back({x, y, now});
 
                 while (history.size() > 2 && (now - history[1].t_us) >= MIN_WINDOW_US)
@@ -105,6 +111,13 @@ namespace odometry{
                 history.clear();
             }
 
+            //uint32_t windowElapsed_us = now - rateWindowStart_us;
+            //if (windowElapsed_us >= 100000) {
+            //    updatesPerSec = uniqueCount * 1e6 / windowElapsed_us;
+            //    uniqueCount = 0;
+            //    rateWindowStart_us = now;
+            //}
+
             mtx.take();
             
             current_position.x = x;
@@ -115,13 +128,20 @@ namespace odometry{
             velocity.y() = vy;
             if (gyroRateOk) velocity.z() = -gyroRate.z * M_PI / 180.0;
             
-            pros::screen::erase();
-            pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 1,"X Pos: %.3f", current_position.x);
-            pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 2,"Y Pos: %.3f", current_position.y);
-            pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 3,"Heading: %.2f", current_position.heading*180/M_PI);
-            
-            mtx.give();
+            //pros::screen::erase();
+            //pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 1,"X Pos: %.3f", current_position.x);
+            //pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 2,"Y Pos: %.3f", current_position.y);
+            //pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 3,"Heading: %.2f", current_position.heading*180/M_PI);
+            //pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 4, "Updates/s: %.1f", updatesPerSec);
 
+            mtx.give();
+            
+            pros::screen::erase();
+            pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 1,"X Pos: %.3f", x);
+            pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 2,"Y Pos: %.3f", y);
+            pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 3,"Heading: %.2f",  (360 - heading));
+            
+            
             pros::Task::delay_until(&t, 10);
     }
 }

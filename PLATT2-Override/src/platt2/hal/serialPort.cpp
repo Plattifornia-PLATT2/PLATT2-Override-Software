@@ -65,7 +65,6 @@ bool serialPort::receiveLine(sendPacket& d, std::uint32_t timeoutMs) {
         const int32_t avail = serial_.get_read_avail();
         
         if (avail > 0) {
-            printf("things");
             const size_t room = rx_.size() - rxLen_;
             const size_t want = std::min(static_cast<size_t>(avail), room);
             const int32_t got = serial_.read(rx_.data() + rxLen_, static_cast<int32_t>(want));

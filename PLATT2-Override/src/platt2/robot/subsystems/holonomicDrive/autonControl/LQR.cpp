@@ -27,13 +27,14 @@ namespace holonomicDrive{
 
 Eigen::Matrix<double, 3, 6> LQR::computeLqrGain( double tau, double dt, const Eigen::Matrix<double, 6, 1>& qDiag, const Eigen::Vector3d& rDiag)
 {
+   
     // Continuous model: state = [pos error; vel error], input = velocity correction
     Eigen::Matrix<double, 6, 6> A = Eigen::Matrix<double, 6, 6>::Zero();
     A.block<3, 3>(0, 3) = Eigen::Matrix3d::Identity();
     A.block<3, 3>(3, 3) = -Eigen::Matrix3d::Identity() / tau;
 
     Eigen::Matrix<double, 6, 3> B = Eigen::Matrix<double, 6, 3>::Zero();
-    B.block<3, 3>(3, 0) = Eigen::Matrix3d::Identity() / tau;
+    B.block<3, 3>(3, 0) = kV.asDiagonal()  * (1.0 / tau);
 
     // Discretize (Euler is fine when dt << tau)
     Eigen::Matrix<double, 6, 6> Ad = Eigen::Matrix<double, 6, 6>::Identity() + A * dt;
@@ -56,17 +57,31 @@ Eigen::Matrix<double, 3, 6> LQR::computeLqrGain( double tau, double dt, const Ei
 }
 
 // Run every control loop. All quantities are in the field frame.
-Eigen::Vector3d LQR::lqrTrack(
-              const Eigen::Vector3d& posDesired, const Eigen::Vector3d& velDesired, const Eigen::Vector3d& accDesired,
-              const Eigen::Vector3d& posMeasured, const Eigen::Vector3d& velMeasured)
+Eigen::Vector3d LQR::lqrTrack(const Eigen::Vector3d& posDes, const Eigen::Vector3d& velDes,
+                              const Eigen::Vector3d& velFF,  const Eigen::Vector3d& accFF,
+                              const Eigen::Vector3d& posMeas, const Eigen::Vector3d& velMeas,
+                              double fbScale)
 {
     Eigen::Matrix<double, 6, 1> e;
-    e.head<3>() = posMeasured - posDesired;
-    e(2) = std::remainder(e(2), 2.0 * M_PI);       // wrap heading error to [-pi, pi]
-    e.tail<3>() = velMeasured - velDesired;
+    e.head<3>() = posMeas - posDes;
+    e(2) = std::remainder(e(2), 2.0 * M_PI);
+    e.tail<3>() = velMeas - velDes;               // error vs. the CURRENT reference
 
-    Eigen::Vector3d uFF = velDesired + tau * accDesired;       // lag-compensating feedforward
-    return uFF - K * e;                             // commanded (vx, vy, omega)
+    Eigen::Vector3d uFF = (velFF + tau * accFF).cwiseQuotient(kV);   // look-ahead, feedforward only
+    for (int k = 0; k < 2; ++k)
+        if (std::abs(velFF(k)) > 0.5) uFF(k) += kS * (velFF(k) > 0 ? 1.0 : -1.0);
+    
+    static int n = 0;
+    if (n++ % 25 == 0)
+        printf("K11=%.3f K14=%.3f fb_y=%.3f scale=%.2f\n",
+           K(1, 1), K(1, 4), -(K * e)(1), fbScale);
+
+    Eigen::Vector3d fb  = fbScale * (K * e);
+    Eigen::Vector3d out = uFF - fb;
+    static int z = 0;
+    //if (z++ % 25 == 0)
+    //    printf("uFF_y=%.3f fb_y=%.3f out_y=%.3f\n", uFF(1), -fb(1), out(1));
+    return out;
 }
 
 

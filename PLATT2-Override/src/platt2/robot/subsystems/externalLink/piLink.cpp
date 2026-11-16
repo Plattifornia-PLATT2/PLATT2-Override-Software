@@ -35,12 +35,16 @@ void PiLinkSubsystem::linkLoop(){
     hal::serialPort::sendPacket dataBuffer;
     hal::serialPort::sendPacket zeroPacket;
 
+    hal::serialPort::sendPacket startPacket = {1, 0,0};
+    hal::serialPort::sendPacket testPacket = {1, 2,3};
+
+    bool sent = link->sendLine(startPacket);
 
     std::cout<<"Running"<<std::endl;
 
     while (true) {
         
-        bool sent = link->sendLine(zeroPacket);
+        
 
         bool recived = link->receiveLine(dataBuffer, 0);
         
@@ -53,8 +57,10 @@ void PiLinkSubsystem::linkLoop(){
             packetMtx.give();     
             
         }
+        pros::delay(7);
 
-        pros::delay(10);
+        bool sent = link->sendLine(zeroPacket);
+
 
     }
 

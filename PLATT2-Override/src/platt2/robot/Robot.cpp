@@ -47,10 +47,13 @@ namespace robot{
             // Create movement vector
             subsystems::holonomicDrive::MovementVector movement;  
 
-            double heading = subsystems.odometrySubsystem->getHeading()+(M_PI_2);
+            //std::cout<<leftX << ", "<<leftY<<std::endl;
+
+            double heading = subsystems.odometrySubsystem->getHeading();
             double c = cos(heading), s = sin(heading);
-            double vx =  c * leftX + s * leftY;
-            double vy = -s * leftX + c * leftY;
+            double vx =  s * leftX + c * leftY;
+            double vy =  c * leftX + s * leftY;
+
 
             if(driverProfile->driverEnum == JON){
                 movement.vx = vx*60;

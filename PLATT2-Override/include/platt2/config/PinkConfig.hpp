@@ -51,15 +51,15 @@ class PinkConfig : public IConfig {
 
 
     // ** Drive Ports **
-    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-9};
-    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{10};
-    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{1};
-    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-2};
+    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{1};
+    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{-2};
+    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{-12};
+    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{11};
 
-    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{-20};
-    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{19};
-    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{-12};
-    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{11};
+    static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{-9};
+    static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{10};
+    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{-20};
+    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{19};
 
     // ** PI Port **
     static constexpr int PI_PORT{5};
@@ -104,10 +104,10 @@ class PinkConfig : public IConfig {
     static constexpr double heading_Ki{0};
 
     // LQR tuning values
-    static constexpr double TAU{0.340}; 
+    static constexpr double TAU{0.17}; 
     static constexpr double DT{0.01};
-    const Eigen::Matrix<double, 6, 1> QDIAG{1, 1, 400, 0.01, 0.01, 1}; 
-    const Eigen::Vector3d RDIAG{0.0025, 0.0025, 0.25};
+    const Eigen::Matrix<double, 6, 1> QDIAG{40, 40, 50, 1.5, 1.5, 0.5};
+const Eigen::Vector3d RDIAG{10, 10, 5};
 
 
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
@@ -116,7 +116,6 @@ class PinkConfig : public IConfig {
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
     std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> buildPiLinkSubsystem();
-
     robot::RobotSubsystems buildSubsystems();
 
 
