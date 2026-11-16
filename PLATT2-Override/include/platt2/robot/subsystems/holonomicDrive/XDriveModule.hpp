@@ -57,7 +57,7 @@ namespace holonomicDrive{
         double maxModuleVel();
         double desiredModuleVel(const MovementVector&);
         void setModuleVel(double);
-        void setModuleVoltage(double ips);
+        void setModuleVoltageVel(double ips);
 
 
         /**

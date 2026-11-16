@@ -66,7 +66,7 @@ namespace robot{
                 movement.vy = vy*60; 
                 movement.w = rightX*6.28;
             }
-
+            movement.useVel = true;
             subsystems.xdriveSubsystem->moveVector(movement);
 
         

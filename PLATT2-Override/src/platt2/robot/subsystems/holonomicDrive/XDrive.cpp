@@ -31,7 +31,12 @@ namespace holonomicDrive{
         }
         
         for (size_t i = 0; i < drive_modules.size(); ++i)
-            drive_modules[i]->setModuleVel(pV[i] * scale);
+            
+            if (v.useVel){
+                drive_modules[i]->setModuleVel(pV[i] * scale);
+            }else {
+                drive_modules[i]->setModuleVoltageVel(pV[i] * scale);
+            }
         }
 
 

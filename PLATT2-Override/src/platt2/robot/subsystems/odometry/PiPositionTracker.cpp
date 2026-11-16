@@ -136,7 +136,6 @@ namespace odometry{
 
             mtx.give();
             
-            pros::screen::erase();
             pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 1,"X Pos: %.3f", x);
             pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 2,"Y Pos: %.3f", y);
             pros::screen::print(pros::E_TEXT_MEDIUM_CENTER, 3,"Heading: %.2f",  (360 - heading));

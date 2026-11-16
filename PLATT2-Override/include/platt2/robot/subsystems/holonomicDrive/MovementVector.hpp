@@ -30,10 +30,11 @@ namespace holonomicDrive{
      * @author Dominic Young
      */
     struct MovementVector {
-    double vx;
-    double vy;
-    double w;
-};
+        double vx;
+        double vy;
+        double w;
+        bool useVel = false;   
+    };
 }
 }
 }
