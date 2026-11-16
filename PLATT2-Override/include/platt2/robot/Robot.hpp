@@ -46,15 +46,6 @@ namespace platt2
     namespace robot
     {
 
-        struct RobotSubsystems{
-            std::shared_ptr<subsystems::holonomicDrive::XDrive> xdriveSubsystem;
-            std::shared_ptr<subsystems::odometry::Odometry> odometrySubsystem;
-            std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomicControlSubsystem;
-            std::shared_ptr<subsystems::intake::IntakeSubsystem> intakeSubsystem;
-            std::shared_ptr<subsystems::elevator::ElevatorSubsystem> elevatorSubsystem;
-            std::shared_ptr<subsystems::arm::ArmSubsystem> armSubsystem;
-        };
-
         /**
          * @brief The robot class containing all subsystems and control logic.
          * @authors Dominic Young & Logan Wolf

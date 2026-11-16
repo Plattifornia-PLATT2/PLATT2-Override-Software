@@ -130,6 +130,7 @@ class PurpleConfig : public IConfig {
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
 
+
         // LQR tuning values
     static constexpr double TAU{0.1}; //NEEDS TO BE FOUND
     static constexpr double DT{0.01};
@@ -138,11 +139,13 @@ class PurpleConfig : public IConfig {
 
     
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
+    std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystemWithPi(std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> pi_subsystem);
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
     std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> buildPiLinkSubsystem();
-
+    std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem> buildArmSubsystem();
+    std::shared_ptr<robot::subsystems::elevator::ElevatorSubsystem> buildElevatorSubsystem();
 
     robot::RobotSubsystems buildSubsystems();
 

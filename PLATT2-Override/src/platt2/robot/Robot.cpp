@@ -47,11 +47,14 @@ namespace robot{
                 rightX = 0;
             }
 
+            
+
             double heading = subsystems.odometrySubsystem->getHeading();
             double c = cos(heading), s = sin(heading);
             double vx =  s * leftX + c * leftY;
             double vy =  c * leftX + s * leftY;
-
+            
+            subsystems::holonomicDrive::MovementVector movement;
 
             if(driverProfile->driverEnum == JON){
                 movement.vx = vx*60;

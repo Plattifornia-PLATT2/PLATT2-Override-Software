@@ -6,6 +6,8 @@
 #include "platt2/robot/subsystems/holonomicDrive/HolonomicControl.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
+#include "robot/subsystems/arm/arm.hpp"
+#include "robot/subsystems/elevator/elevator.hpp"
 #include "robot/subsystems/externalLink/piLink.hpp"
 
 namespace platt2 {
@@ -17,7 +19,10 @@ struct RobotSubsystems {
     std::shared_ptr<subsystems::holonomicDrive::HolonomicControl> holonomicControlSubsystem;
     std::shared_ptr<subsystems::intake::IntakeSubsystem> intakeSubsystem;
     std::shared_ptr<subsystems::piLink::PiLinkSubsystem> piLinkSubsystem;
+    std::shared_ptr<subsystems::elevator::ElevatorSubsystem> elevatorSubsystem;
+    std::shared_ptr<subsystems::arm::ArmSubsystem> armSubsystem;
+};
 };
 
-}}
+}
 #endif
