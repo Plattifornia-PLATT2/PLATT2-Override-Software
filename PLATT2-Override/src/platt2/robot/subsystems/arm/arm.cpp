@@ -48,7 +48,7 @@ void ArmSubsystem::init() {
     currentClawPosition = OPEN;
 
     task = std::make_unique<pros::Task>([this]() { run(); }, "arm");
-    moveArmToPosition(LOAD);   // task is running, so this just queues the move
+
 }
 
 // ---- Called from the main loop: only set state ----
