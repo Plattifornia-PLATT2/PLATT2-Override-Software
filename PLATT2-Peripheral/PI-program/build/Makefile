@@ -369,6 +369,30 @@ src/utilities/sfTkLinuxI2C.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.s
 .PHONY : src/utilities/sfTkLinuxI2C.cpp.s
 
+src/utilities/softSerialRx.o: src/utilities/softSerialRx.cpp.o
+.PHONY : src/utilities/softSerialRx.o
+
+# target to build an object file
+src/utilities/softSerialRx.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/softSerialRx.cpp.o
+.PHONY : src/utilities/softSerialRx.cpp.o
+
+src/utilities/softSerialRx.i: src/utilities/softSerialRx.cpp.i
+.PHONY : src/utilities/softSerialRx.i
+
+# target to preprocess a source file
+src/utilities/softSerialRx.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/softSerialRx.cpp.i
+.PHONY : src/utilities/softSerialRx.cpp.i
+
+src/utilities/softSerialRx.s: src/utilities/softSerialRx.cpp.s
+.PHONY : src/utilities/softSerialRx.s
+
+# target to generate assembly for a file
+src/utilities/softSerialRx.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/peripheralControl.dir/build.make CMakeFiles/peripheralControl.dir/src/utilities/softSerialRx.cpp.s
+.PHONY : src/utilities/softSerialRx.cpp.s
+
 src/utilities/uartPort.o: src/utilities/uartPort.cpp.o
 .PHONY : src/utilities/uartPort.o
 
@@ -432,6 +456,9 @@ help:
 	@echo "... src/utilities/sfTkLinuxI2C.o"
 	@echo "... src/utilities/sfTkLinuxI2C.i"
 	@echo "... src/utilities/sfTkLinuxI2C.s"
+	@echo "... src/utilities/softSerialRx.o"
+	@echo "... src/utilities/softSerialRx.i"
+	@echo "... src/utilities/softSerialRx.s"
 	@echo "... src/utilities/uartPort.o"
 	@echo "... src/utilities/uartPort.i"
 	@echo "... src/utilities/uartPort.s"

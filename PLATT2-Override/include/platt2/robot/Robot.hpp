@@ -2,6 +2,8 @@
 #define ROBOT_HPP
 
 // ** PLATT2 Library Includes **
+#include "platt2/RobotSubsystems.hpp"
+#include "platt2/auton/IAuton.hpp"
 #include "platt2/profiles/DriverProfile.hpp"
 #include "platt2/robot/subsystems/odometry/Odometry.hpp"
 #include "platt2/EAllianceConfig.hpp"
@@ -13,7 +15,6 @@
 #include "platt2/EAllianceConfig.hpp"
 #include "platt2/EAutonConfig.hpp"
 #include "platt2/ERobotConfig.hpp"
-#include "platt2/auton/IAuton.hpp"
 
 // ** PROS API Includes **
 #include "pros/misc.hpp"

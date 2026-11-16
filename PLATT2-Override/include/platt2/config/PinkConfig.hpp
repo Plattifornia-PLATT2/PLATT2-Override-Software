@@ -21,6 +21,7 @@
 #include "platt2/robot/subsystems/colorSort/colorSort.hpp"
 #include "platt2/hal/TrackingWheel.hpp"
 #include "platt2/robot/subsystems/odometry/TrackingWheelPositionTracker.hpp"
+#include "platt2/robot/subsystems/odometry/PiPositionTracker.hpp"
 
 // ** PROS API Includes **
 #include "pros/abstract_motor.hpp"
@@ -97,7 +98,7 @@ class PinkConfig : public IConfig {
     static constexpr double ELEVATOR_Ki{0};
 
     // ** Odometry Offsets **
-    static constexpr int HORIZONTAL_ENCODER_PORT{20};
+    static constexpr int HORIZONTAL_ENCODER_PORT{6};
     static constexpr int VERTICAL_ENCODER_PORT{-7};
     static constexpr double TRACKING_WHEEL_DIAMETER{2};
     static constexpr double HORIZONTAL_TRACKING_WHEEL_OFFSET{-.5};
@@ -119,13 +120,19 @@ class PinkConfig : public IConfig {
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
 
+    // LQR tuning values
+    static constexpr double TAU{0.17}; 
+    static constexpr double DT{0.01};
+    const Eigen::Matrix<double, 6, 1> QDIAG{40, 40, 50, 1.5, 1.5, 0.5};
+const Eigen::Vector3d RDIAG{10, 10, 5};
+
+
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
+    std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystemWithPi(std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> pi_subsystem);
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::XDrive> buildXDriveSubsystem();
     std::shared_ptr<platt2::robot::subsystems::holonomicDrive::HolonomicControl> buildControlSystem(std::shared_ptr<robot::subsystems::holonomicDrive::XDrive> xdriveSubsystem, std::shared_ptr<robot::subsystems::odometry::Odometry> odometrySubsystem);
     std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem> buildIntakeSubsystem();
-    std::shared_ptr<platt2::robot::subsystems::elevator::ElevatorSubsystem> buildElevatorSubsystem();
-    std::shared_ptr<platt2::robot::subsystems::arm::ArmSubsystem> buildArmSubsystem();
-
+    std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> buildPiLinkSubsystem();
     robot::RobotSubsystems buildSubsystems();
 
 

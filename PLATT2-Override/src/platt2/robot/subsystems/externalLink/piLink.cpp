@@ -1,47 +1,98 @@
+
+#include "platt2\hal\serialPort.hpp"
 #include "platt2\robot\subsystems\externalLink\piLink.hpp"
-#include "platt2\robot\subsystems\externalLink\serialPort.hpp"
 #include "pros/rtos.hpp"
-#include "pros/screen.hpp"
+#include <iostream>
+#include <memory>
 
-void piLink::linkLoop(){
+namespace platt2{
+namespace robot{
+namespace subsystems{
+namespace piLink{
 
-    sendPacket dataBuffer;
-    sendPacket zeroPacket;
-    
-    serialPort link(5);
+static void taskLink(void *p) {
+    reinterpret_cast<PiLinkSubsystem*>(p)->linkLoop();
 
-    pros::screen::print(pros::E_TEXT_MEDIUM, 5, "working");
+}
+
+PiLinkSubsystem::PiLinkSubsystem(
+
+        std::unique_ptr<hal::serialPort> port
+
+
+) : 
+
+link{std::move(port)},
+
+piLinkTask(taskLink, this)
+
+{
+}
+
+
+void PiLinkSubsystem::linkLoop(){
+
+    hal::serialPort::sendPacket dataBuffer;
+    hal::serialPort::sendPacket zeroPacket;
+
+    hal::serialPort::sendPacket startPacket = {1, 0,0};
+    hal::serialPort::sendPacket testPacket = {1, 2,3};
+
+    bool sent = link->sendLine(startPacket);
+
+    std::cout<<"Running"<<std::endl;
 
     while (true) {
         
-        bool sent = link.sendLine(zeroPacket);
         
-        bool recived = link.receiveLine(dataBuffer, 100);
+
+        bool recived = link->receiveLine(dataBuffer, 0);
+        
+
 
         if (recived){
-            pros::screen::print(pros::E_TEXT_MEDIUM, 4, "recived");
-
-        }
-
-        if (recived){
-
+            
             packetMtx.take();
             linkData = dataBuffer;
-            packetMtx.give();
+            packetMtx.give();     
             
         }
+        pros::delay(7);
 
-        pros::delay(10);
+        bool sent = link->sendLine(zeroPacket);
 
-        packetMtx.take();
-        pros::screen::print(pros::E_TEXT_MEDIUM, 2, std::to_string(linkData.posX).c_str());
-        packetMtx.give();
-        
+
     }
-    
-
 
 }
+
+
+double PiLinkSubsystem::getXPos(){
+    packetMtx.take();
+    double out = linkData.posX;
+    packetMtx.give();
+    return out;
+}
+
+double PiLinkSubsystem::getYPos(){
+    packetMtx.take();
+    double out = linkData.posY;
+    packetMtx.give();
+    return out;
+}
+
+double PiLinkSubsystem::getHPos(){
+
+    packetMtx.take();
+    double out = linkData.heading;
+    packetMtx.give();
+    return out;
+}
+
+
+
+
+}}}}
 
         //piLink comlink;
         //comlink.linkLoop();

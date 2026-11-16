@@ -7,7 +7,9 @@
 namespace platt2{
 namespace auton{
 
-void PurpleCompAuton::init() {
+void PurpleCompAuton::init(const robot::RobotSubsystems& subsystems) {
+
+    this->subsystems = subsystems;
 
 }
 

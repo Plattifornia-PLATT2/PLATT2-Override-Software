@@ -19,6 +19,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/peripheralControl.dir/src/utilities/KalmanFilterHolonomicPose.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o"
   "CMakeFiles/peripheralControl.dir/src/utilities/sfTkLinuxI2C.cpp.o.d"
+  "CMakeFiles/peripheralControl.dir/src/utilities/softSerialRx.cpp.o"
+  "CMakeFiles/peripheralControl.dir/src/utilities/softSerialRx.cpp.o.d"
   "CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o"
   "CMakeFiles/peripheralControl.dir/src/utilities/uartPort.cpp.o.d"
   "peripheralControl"

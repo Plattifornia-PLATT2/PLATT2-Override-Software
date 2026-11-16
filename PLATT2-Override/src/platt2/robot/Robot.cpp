@@ -47,27 +47,26 @@ namespace robot{
                 rightX = 0;
             }
 
-            // Create movement vector
-            subsystems::holonomicDrive::MovementVector movement;  
-            
-            polar p = CtoP(leftX, leftY);   
-            
-            p.theta = p.theta - (subsystems.odometrySubsystem->getHeading()+(M_PI_2));
+            double heading = subsystems.odometrySubsystem->getHeading();
+            double c = cos(heading), s = sin(heading);
+            double vx =  s * leftX + c * leftY;
+            double vy =  c * leftX + s * leftY;
 
-            p.r = p.r*60;
 
             if(driverProfile->driverEnum == JON){
-                movement.r = p.r;
-                movement.theta = p.theta;
-                movement.w = rightX*3.14;
+                movement.vx = vx*60;
+                movement.vy = vy*60;
+                movement.w = rightX*3.14; // 1 rad/s turn speed
             }
             else if(driverProfile->driverEnum == QUINN){
-                movement.r = p.r * 0.90;
-                movement.theta = p.theta; 
-                movement.w = rightX;
+                 movement.vx = vx*60;
+                movement.vy = vy*60; 
+                movement.w = rightX*6.28;
             }
 
             subsystems.xdriveSubsystem->moveVector(movement);
+
+        
 
             // ********* Button Mappings *********
 
@@ -101,6 +100,9 @@ namespace robot{
             pros::screen::print(pros::E_TEXT_LARGE, 6, "Elevator Pos: %.3f",
             subsystems.elevatorSubsystem->getElevatorPositionRadians());
 
+
+
+            
             pros::delay(10);
         }
     

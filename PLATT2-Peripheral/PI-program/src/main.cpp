@@ -15,19 +15,18 @@ std::jthread sigThread(sharedData &shared);
 
 int main() {
 
+    std::cout  << "running" << std::endl;
+
     std::vector<std::jthread> comTask;
     std::vector<std::jthread> dependentTasks;
     
     sharedData shared;
-    OTOS otos;
     OTOS otos;
     
     piLink link;
     cameraTracking cam;
     PoseEstimator kalman;
 
-
-    otos.calibrate();
     
     
     std::jthread signalThread = sigThread(shared);
@@ -38,16 +37,15 @@ int main() {
     while (true){
         
         // add dependent tasks to the vector below following the format
-        //dependentTasks.emplace_back([&link, &shared](std::stop_token st) {link.linkLoop(st, shared);});
         
-        //dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
+        dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
         //dependentTasks.emplace_back([&cam, &shared](std::stop_token st) {cam.camTrackLoop(st, shared);});
-        dependentTasks.emplace_back([&kalman, &shared](std::stop_token st) {kalman.kalmanLoop(st, shared);});
+        //dependentTasks.emplace_back([&kalman, &shared](std::stop_token st) {kalman.kalmanLoop(st, shared);});
         
         std::unique_lock<std::mutex> lock(shared.mtx);
         shared.cv.wait(lock, [&shared] { return shared.restart || shared.shutdown; });
 
-        std::cout << "fuck" << std::endl;
+        std::cout << "restarting" << std::endl;
 
         for (auto& t : dependentTasks) {
             t.request_stop();
@@ -57,9 +55,11 @@ int main() {
             break;
         }
 
+        otos.restart();
+
         shared.restart = false;
         lock.unlock();
-
+        
     }
 }
 

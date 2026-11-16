@@ -8,19 +8,22 @@
 #include <utilities/sharedData.hpp>
 
 class OTOS {
-        private:
+    private:
 
         OtosLinux otos;
 
         sfTkLinuxI2C i2c {0x17};
 
-        public:
-        
-        OTOS();
-
         void calibrate();
 
+        sfe_otos_pose2d_t startPos = {0,0,270};
+
+    public:
+        
+
         void sensorLoop(std::stop_token stopToken, sharedData& shared);
+
+        void restart();
 
         void getPos();
 
@@ -30,7 +33,8 @@ class OTOS {
         double getXstdDev();
         double getYstdDev();
         double getHstdDev();
-
+        
+        OTOS();
 
     };
 

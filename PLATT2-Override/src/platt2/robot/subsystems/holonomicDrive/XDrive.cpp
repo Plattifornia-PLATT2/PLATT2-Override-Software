@@ -34,6 +34,19 @@ namespace holonomicDrive{
             drive_modules[i]->setModuleVel(pV[i] * scale);
         }
 
+
+    MovementVector XDrive::fieldToRobotOrientation(MovementVector v, double heading){
+
+
+
+        double a = heading - M_PI / 2.0;
+        double c = cos(a), s = sin(a);
+        double vx =  c * v.vx + s * v.vy;
+        double vy = -s * v.vx + c * v.vy;
+        return {vx, vy, v.w};
+
+    }
+
 }
      
 } // class

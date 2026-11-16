@@ -26,6 +26,6 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/PI-program,type=bind,consistency=cached", 
   "workspaceFolder": "/workspaces/PI-program",
 
-  "postCreateCommand": "chmod +x /workspaces/PI-program/platt.sh; sed -i 's/\r$//' platt.sh"
+  "postCreateCommand": "chmod +x /workspaces/PI-program/platt.sh; sed -i 's/\r$//' ./platt.sh"
 
 }

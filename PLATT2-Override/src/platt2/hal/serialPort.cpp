@@ -1,11 +1,17 @@
-#include "platt2/robot/subsystems/externalLink/serialPort.hpp"
-#include "piLink.hpp"
+#pragma once
+
+#include "platt2\hal\serialPort.hpp"
 #include "pros/error.h"
 #include "pros/rtos.hpp"
 
 #include <algorithm>
 #include <cerrno>
 #include <cstdlib>
+#include <iostream>
+
+namespace platt2{
+
+namespace hal{
 
 serialPort::serialPort(std::uint8_t port, std::int32_t baudrate)
     : serial_(port, baudrate) {}
@@ -15,7 +21,7 @@ std::uint32_t serialPort::msUntil(std::uint32_t deadline) {
     return (deadline > now) ? (deadline - now) : 0;
 }
 
-bool serialPort::sendLine(const piLink::sendPacket& d) {
+bool serialPort::sendLine(const sendPacket& d) {
     constexpr uint32_t kSendTimeoutMs = 20;
 
     std::array<uint8_t, 64> buf;              // must be >= frame size
@@ -44,15 +50,20 @@ bool serialPort::sendLine(const piLink::sendPacket& d) {
     return true;
 }
 
-bool serialPort::receiveLine(piLink::sendPacket& d, std::uint32_t timeoutMs) {
+bool serialPort::receiveLine(sendPacket& d, std::uint32_t timeoutMs) {
     const std::uint32_t deadline = pros::millis() + timeoutMs;
 
     while(true) {
         if (tryParse(d)) return true;             // frame already buffered or just completed
-        if (msUntil(deadline) == 0) return false; // timed out
+        if (msUntil(deadline) == 0 && timeoutMs != 0) {
+            
+            return false; // timed out
 
-        // Pull whatever the port has
+        }
+
+        // Pull whatever the port ha
         const int32_t avail = serial_.get_read_avail();
+        
         if (avail > 0) {
             const size_t room = rx_.size() - rxLen_;
             const size_t want = std::min(static_cast<size_t>(avail), room);
@@ -75,7 +86,7 @@ uint16_t serialPort::crc16(const uint8_t* p, size_t n) {   // CRC-16/CCITT-FALSE
     return crc;
 }
 
-size_t serialPort::pack(const piLink::sendPacket& d, std::span<uint8_t> out) {
+size_t serialPort::pack(const sendPacket& d, std::span<uint8_t> out) {
     static_assert(std::endian::native == std::endian::little,
                   "wire format is little-endian");
 
@@ -114,7 +125,7 @@ size_t serialPort::pack(const piLink::sendPacket& d, std::span<uint8_t> out) {
     return static_cast<size_t>(p - out.data());
 }
 
-bool serialPort::tryParse(piLink::sendPacket& d) {
+bool serialPort::tryParse(sendPacket& d) {
     
     auto drop = [this](size_t n) {
         memmove(rx_.data(), rx_.data() + n, rxLen_ - n);
@@ -175,4 +186,4 @@ bool serialPort::tryParse(piLink::sendPacket& d) {
     return false;
 }
 
-
+}}

@@ -538,6 +538,24 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/bits/poll.h \
  /usr/aarch64-linux-gnu/include/bits/poll2.h \
  /usr/aarch64-linux-gnu/include/c++/11/span \
+ /usr/aarch64-linux-gnu/include/linux/gpio.h \
+ /usr/aarch64-linux-gnu/include/linux/const.h \
+ /usr/aarch64-linux-gnu/include/linux/ioctl.h \
+ /usr/aarch64-linux-gnu/include/asm/ioctl.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/ioctl.h \
+ /usr/aarch64-linux-gnu/include/linux/types.h \
+ /usr/aarch64-linux-gnu/include/asm/types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
+ /usr/aarch64-linux-gnu/include/linux/posix_types.h \
+ /usr/aarch64-linux-gnu/include/linux/stddef.h \
+ /usr/aarch64-linux-gnu/include/asm/posix_types.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
+ /usr/aarch64-linux-gnu/include/sys/ioctl.h \
+ /usr/aarch64-linux-gnu/include/bits/ioctls.h \
+ /usr/aarch64-linux-gnu/include/asm/ioctls.h \
+ /usr/aarch64-linux-gnu/include/asm-generic/ioctls.h \
+ /usr/aarch64-linux-gnu/include/bits/ioctl-types.h \
  /workspaces/PI-program/include/subsystems/piLink.hpp \
  /workspaces/PI-program/include/subsystems/otos.hpp \
  /workspaces/PI-program/include/utilities/OtosLinux.h \
@@ -863,14 +881,6 @@ CMakeFiles/peripheralControl.dir/src/main.cpp.o: \
  /usr/aarch64-linux-gnu/include/bits/sigaction.h \
  /usr/aarch64-linux-gnu/include/bits/sigcontext.h \
  /usr/aarch64-linux-gnu/include/asm/sigcontext.h \
- /usr/aarch64-linux-gnu/include/linux/types.h \
- /usr/aarch64-linux-gnu/include/asm/types.h \
- /usr/aarch64-linux-gnu/include/asm-generic/types.h \
- /usr/aarch64-linux-gnu/include/asm-generic/int-ll64.h \
- /usr/aarch64-linux-gnu/include/linux/posix_types.h \
- /usr/aarch64-linux-gnu/include/linux/stddef.h \
- /usr/aarch64-linux-gnu/include/asm/posix_types.h \
- /usr/aarch64-linux-gnu/include/asm-generic/posix_types.h \
  /usr/aarch64-linux-gnu/include/asm/sve_context.h \
  /usr/aarch64-linux-gnu/include/bits/types/stack_t.h \
  /usr/aarch64-linux-gnu/include/sys/ucontext.h \

@@ -1,6 +1,7 @@
 #include "platt2/robot/subsystems/holonomicDrive/XDriveModule.hpp"
 #include "MovementVector.hpp"
 #include "platt2/helperFunctions.h"
+#include "pros/abstract_motor.hpp"
 #include "pros/screen.hpp"
 #include <cmath>
 #include <ostream>
@@ -16,46 +17,49 @@ namespace holonomicDrive{
 
 
 double XDriveModule::desiredModuleVel(const MovementVector& v) {
-    double linear = -sin(v.theta + getPhi()) / sin(getTheta()) * v.r;
+    double linear = -(v.vx * sin(getPhi()) + v.vy * cos(getPhi())) * sgn(sin(getTheta()));
     double rot    = -sgn(cos(getTheta())) * v.w * getRadius();
     return linear + rot;   // in/s
 }
 
 double XDriveModule::maxModuleVel()  {
     
-    double gear;
-    
-    switch(module_motors.getMotorGearing()){
+    //double gear;
+    //
+    //switch(module_motors.getMotorGearing()){
+//
+    //    case pros::MotorGears::blue: 
+    //    gear = 600;
+    //    break;
+//
+    //    case pros::MotorGears::red: 
+    //    gear = 100;
+    //    break;
+//
+    //    case pros::MotorGears::green: 
+    //    gear = 200;
+    //    break;
+//
+    //    default:
+    //    gear = 0;
+    //    break;
+    //}
+//
+    //return ((gear)*getGearRatio()) / 60.0 * M_PI * getWheelDiameter();
 
-        case pros::MotorGears::blue: 
-        gear = 600;
-        break;
-
-        case pros::MotorGears::red: 
-        gear = 100;
-        break;
-
-        case pros::MotorGears::green: 
-        gear = 200;
-        break;
-
-        default:
-        gear = 0;
-        break;
-    }
-
-    return ((gear)*getGearRatio()) / 60.0 * M_PI * getWheelDiameter();
+    return 600;
 
 }
 
 void XDriveModule::setModuleVel(double ips) {
-    // Option A: motor-side velocity PID
-    double rpm = ips / (M_PI * getWheelDiameter()) * 60.0 / getGearRatio();
+    double rpm = ips / (M_PI * getWheelDiameter()) * 56.7 / getGearRatio();
     module_motors.setVelocity(rpm);   // new method on MotorGroup
 
-    // Option B: voltage feedforward, using your existing setVoltage (-1..1)
-    // double u = in_per_s / maxSpeed();                    // kV term, normalized
-    // module_motors.setVoltage(sgn(u) * cfg.kS + u * (1.0 - cfg.kS));
+}
+
+void XDriveModule::setModuleVoltage(double ips) {
+    const double mvPerIps = 12000.0 / 60;   // ips at full voltage, measure it
+    module_motors.setVoltage(std::clamp((int)std::lround(ips * mvPerIps), -12000, 12000));
 }
 
 
@@ -67,6 +71,7 @@ void XDriveModule::setModuleVel(double ips) {
 XDriveModule::XDriveModule(std::unique_ptr<pros::Motor>& motor_l, std::unique_ptr<pros::Motor>& motor_r, double theta, double phi, double radius, double wheelDiameter, double gearRatio){
     module_motors.addMotor(motor_l);
     module_motors.addMotor(motor_r);
+    module_motors.setBrakeMode(pros::MotorBrake::brake);
     this->theta = theta;
     this->phi = phi;
     this->radius = radius;
