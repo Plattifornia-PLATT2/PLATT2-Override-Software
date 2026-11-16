@@ -11,6 +11,7 @@
 #include "subsystems/holonomicDrive/XDrive.hpp"
 #include "subsystems/holonomicDrive/HolonomicControl.hpp"
 #include "platt2/robot/subsystems/holonomicDrive/MovementVector.hpp"
+#include "subsystems/intake/IntakeSubsystem.hpp"
 
 namespace platt2{
 
@@ -71,6 +72,7 @@ namespace robot{
             // ********* Button Mappings *********
 
             if(controller.get_digital(driverProfile->toggle_mech)) subsystems.intakeSubsystem->moveToggleMech(subsystems::intake::IN);
+            else subsystems.intakeSubsystem->moveToggleMech(subsystems::intake::STOP);
 
             if (controller.get_digital(driverProfile->elevator_up))
                 subsystems.elevatorSubsystem->manualMove(200);
@@ -98,7 +100,6 @@ namespace robot{
             pros::screen::print(pros::E_TEXT_LARGE, 10, "Claw Pos: %.3f", subsystems.armSubsystem->getClawPosition());
             pros::screen::print(pros::E_TEXT_LARGE, 6, "Elevator Pos: %.3f",
             subsystems.elevatorSubsystem->getElevatorPositionRadians());
-
 
             pros::delay(10);
         }

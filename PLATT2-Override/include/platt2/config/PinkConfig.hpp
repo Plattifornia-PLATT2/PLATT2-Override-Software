@@ -48,24 +48,24 @@ namespace config{
  * @author Dominic Young
  */
 class PinkConfig : public IConfig {
-    private:
+    private:        
     static constexpr pros::MotorGears DRIVE_GEARSET{pros::MotorGears::blue};
 
     // ** Drive Ports **
-    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-9};
-    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{10};
-    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{1};
-    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-2};
+    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-17};
+    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{18};
+    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{12};
+    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-11};
 
     static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{-20};
     static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{19};
-    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{12};
-    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-11};
+    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{15};
+    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-16};
 
 
     // ** Intake Ports **
-    static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
-    static constexpr int TOGGLE_MECH_MOTOR_PORT{4};
+    static constexpr int FRONT_INTAKE_MOTOR_PORT{-14};
+    static constexpr int TOGGLE_MECH_MOTOR_PORT{-3};
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
 
     // ** Color Sort Ports **
@@ -75,15 +75,15 @@ class PinkConfig : public IConfig {
     static constexpr int VEX_IMU_PORT{15};
 
     // ** Elevator Ports **
-    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{-16};
-    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{17};
+    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{2};
+    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{-13};
     static constexpr int ELEVATOR_ROTATION_SENSOR_PORT{3};
     static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::red};
 
     // **Arm Ports**
-    static constexpr int LEFT_ARM_MOTOR_PORT{-14};
-    static constexpr int RIGHT_ARM_MOTOR_PORT {13};
-    static constexpr int CLAW_MOTOR_PORT{18};
+    static constexpr int LEFT_ARM_MOTOR_PORT{-6};
+    static constexpr int RIGHT_ARM_MOTOR_PORT {7};
+    static constexpr int CLAW_MOTOR_PORT{8};
     static constexpr int CLAW_PISTON_PORT{1};
     static constexpr pros::MotorGears ARM_MOTOR_GEARS{pros::MotorGears::red};
     static constexpr pros::MotorGears CLAW_MOTOR_GEARS{pros::MotorGears::green};

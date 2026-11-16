@@ -79,7 +79,7 @@ namespace elevator{
         private:
         uint32_t getPosInches(ElevatorPosition pos);
 
-        const double FULL_LIFT_HEIGHT = 33.2;
+        const double FULL_LIFT_HEIGHT = 55;
         const double BOTTOM_LIFT_HEIGHT = 0;
         const double MIDDLE_LIFT_HEIGHT = 11.5;
 

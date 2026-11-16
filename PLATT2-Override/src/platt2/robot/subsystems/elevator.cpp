@@ -1,6 +1,7 @@
 #include "platt2/robot/subsystems/elevator/elevator.hpp"
 #include "pros/motors.h"
 #include "pros/rtos.hpp"
+#include "pros/screen.hpp"
 #include <cstdint>
 #include <math.h>
 
@@ -10,11 +11,11 @@ namespace subsystems {
 namespace elevator {
 
 static double encoderTicksToRadians(double ticks) {
-  return ticks * ((2 * M_PI) / 1800);
+  return ticks * ((2 * M_PI) / 900);
 }
 
 static double radiansToEncoderTicks(double rad) {
-  return rad * 1800 / (2.0 * M_PI);
+  return rad * 900 / (2.0 * M_PI);
 }
 
 ElevatorSubsystem::ElevatorSubsystem(
@@ -43,9 +44,7 @@ void ElevatorSubsystem::initElevator() {
 uint32_t ElevatorSubsystem::getPosInches(ElevatorPosition pos) { return 0; }
 
 double ElevatorSubsystem::getElevatorPositionRadians() {
-  double position =
-      (leftMotor->get_position() + rightMotor->get_position()) / 2.0;
-  return encoderTicksToRadians(position);
+  return encoderTicksToRadians(rightMotor->get_position());
 }
 
 void ElevatorSubsystem::moveToPosition(ElevatorPosition pos) {
@@ -84,6 +83,7 @@ void ElevatorSubsystem::run() {
   Mode last = Mode::IDLE;
 
   while (true) {
+
     Mode m = mode.load();
 
     switch (m) {
