@@ -80,6 +80,15 @@ double ArmSubsystem::getClawPosition() {
     return encoderTicksToRadians(clawMotor->get_position(), REV_COUNTS_GREEN);
 }
 
+void ArmSubsystem::moveToLoadThenReady2() {
+    mode = Mode::LOAD_THEN_READY2;
+    sequenceStep = 0;          // restart the sequence
+}
+
+bool ArmSubsystem::armAtTarget(double targetTicks) {
+    return std::fabs(leftArmMotor->get_position() - targetTicks) < ARM_TOLERANCE_TICKS
+        && std::fabs(rightArmMotor->get_position() - targetTicks) < ARM_TOLERANCE_TICKS;
+}
 // ---- The task: the only code that commands the arm/claw motors ----
 
 void ArmSubsystem::run() {
@@ -101,13 +110,20 @@ void ArmSubsystem::run() {
                     armRad = ARM_MOTOR_INSIZE_POSITION;
                     clawRad = CLAW_MOTOR_INSIZE_POSITION;
                     break;
+                case READY2:
+                    armRad = ARM_MOTOR_READY2_POSITION;
+                    clawRad = ARM_MOTOR_READY2_POSITION;
+                    break;
+                
                 }
+
                 double armTicks = radiansToEncoderTicks(armRad, REV_COUNTS_RED);
                 double clawTicks = radiansToEncoderTicks(clawRad, REV_COUNTS_GREEN);
 
                 leftArmMotor->move_absolute(armTicks, ARM_VELOCITY);
                 rightArmMotor->move_absolute(armTicks, ARM_VELOCITY);
                 clawMotor->move_absolute(clawTicks, CLAW_VELOCITY);
+
             }
             break;
 
@@ -121,7 +137,38 @@ void ArmSubsystem::run() {
 
         case Mode::IDLE:
             break;
+        
+        case Mode::LOAD_THEN_READY2: {
+    const double loadArmTicks =
+        radiansToEncoderTicks(ARM_MOTOR_READY_POSITION, REV_COUNTS_RED);
+    const double loadClawTicks =
+        radiansToEncoderTicks(CLAW_MOTOR_READY_POSITION, REV_COUNTS_GREEN);
+    const double r2ArmTicks =
+        radiansToEncoderTicks(ARM_MOTOR_READY2_POSITION, REV_COUNTS_RED);
+    const double r2ClawTicks =
+        radiansToEncoderTicks(CLAW_MOTOR_READY2_POSITION, REV_COUNTS_GREEN);
+
+    if (sequenceStep == 0) {
+        // Step 0: command LOAD (arm only, per your request)
+        leftArmMotor->move_absolute(loadArmTicks, ARM_VELOCITY);
+        rightArmMotor->move_absolute(loadArmTicks, ARM_VELOCITY);
+        sequenceStep = 1;
+    } else if (sequenceStep == 1) {
+        // Step 1: wait until the arm reaches LOAD
+        if (armAtTarget(loadArmTicks)) {
+            sequenceStep = 2;
         }
+    } else if (sequenceStep == 2) {
+        // Step 2: command READY2 for arm and claw
+        leftArmMotor->move_absolute(r2ArmTicks, ARM_VELOCITY);
+        rightArmMotor->move_absolute(r2ArmTicks, ARM_VELOCITY);
+        clawMotor->move_absolute(r2ClawTicks, CLAW_VELOCITY);
+        currentPosition = READY2;
+        mode = Mode::IDLE;
+    }
+    }
+    break;
+}
 
         pros::delay(10);
     }

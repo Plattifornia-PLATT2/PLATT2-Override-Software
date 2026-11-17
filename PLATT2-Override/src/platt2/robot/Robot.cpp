@@ -31,6 +31,9 @@ namespace robot{
 
     void Robot::driverControl(){
 
+        subsystems.armSubsystem->moveToLoadThenReady2();
+
+
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
         //controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());          
         
@@ -90,7 +93,7 @@ namespace robot{
             if(controller.get_digital_new_press(driverProfile->claw_toggle)) subsystems.armSubsystem->toggleClaw();
 
             if (controller.get_digital_new_press(driverProfile->arm_low))
-                subsystems.armSubsystem->moveArmToPosition(subsystems::arm::LOAD);
+                subsystems.armSubsystem->moveArmToPosition(subsystems::arm::READY2);
 
             if (controller.get_digital_new_press(driverProfile->arm_high))
                 subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);

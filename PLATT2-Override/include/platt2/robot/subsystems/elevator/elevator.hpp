@@ -20,7 +20,8 @@ namespace elevator{
     enum ElevatorPosition{
         FULL_DOWN,
         MIDDLE_EXTENSION,
-        FULL_EXTENSION
+        FULL_EXTENSION,
+        INTAKE_POSITION
 
     };
 
@@ -82,8 +83,9 @@ namespace elevator{
         const double FULL_LIFT_HEIGHT = 55;
         const double BOTTOM_LIFT_HEIGHT = 0;
         const double MIDDLE_LIFT_HEIGHT = 11.5;
+        const double INTAKE_LOAD_HEIGHT = 11.5;
 
-        const double ELEVATOR_VELOCITY = 100;
+        const double ELEVATOR_VELOCITY = 200;
 
         std::unique_ptr<pros::Motor> leftMotor;
         std::unique_ptr<pros::Motor> rightMotor;

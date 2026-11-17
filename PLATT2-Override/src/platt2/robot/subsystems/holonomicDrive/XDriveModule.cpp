@@ -22,7 +22,9 @@ double XDriveModule::desiredModuleVel(const MovementVector& v) {
     return linear + rot;   // in/s
 }
 
-
+double XDriveModule::maxModuleVel(){
+    return 600;
+}
 
 void XDriveModule::setModuleVel(double ips) {
 
@@ -31,12 +33,6 @@ void XDriveModule::setModuleVel(double ips) {
 
 }
 
-double XDriveModule::maxModuleVel(){
-
-    return 60;
-
-
-}
 
 void XDriveModule::setModuleVoltageVel(double ips) {
     

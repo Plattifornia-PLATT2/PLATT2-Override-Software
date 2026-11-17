@@ -59,6 +59,9 @@ void ElevatorSubsystem::moveToPosition(ElevatorPosition pos) {
   case FULL_EXTENSION:
     targetTicks = radiansToEncoderTicks(FULL_LIFT_HEIGHT);
     break;
+  case INTAKE_POSITION:
+    targetTicks = radiansToEncoderTicks(INTAKE_LOAD_HEIGHT);
+    break;
   }
   newTarget = true;
   mode = Mode::POSITION;
