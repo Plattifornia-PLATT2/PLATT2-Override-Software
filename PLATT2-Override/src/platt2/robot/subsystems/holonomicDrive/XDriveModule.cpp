@@ -31,13 +31,21 @@ void XDriveModule::setModuleVel(double ips) {
 
 }
 
+double XDriveModule::maxModuleVel(){
+
+    return 60;
+
+
+}
+
 void XDriveModule::setModuleVoltageVel(double ips) {
     
-    const double mvPerIps = 12000.0 / 60;
-    const double Kv =  mvPerIps;
-    const double Ks = 1000;
+    const double Ks = 800;                       // mV, tune per wheel direction
+    const double Kv = (12000.0 - Ks) / 60.0;      // mV per ips
+    const double blend = 0.3;                     // ips, avoids a jump/chatter near zero
 
-    double output = (Kv*ips) + (ips>0 ? Ks:0);
+    double sgnSmooth = std::clamp(ips / blend, -1.0, 1.0);
+    double output = Kv * ips + Ks * sgnSmooth;
 
     module_motors.setVoltage(std::clamp((int)std::lround(output), -12000, 12000));
 

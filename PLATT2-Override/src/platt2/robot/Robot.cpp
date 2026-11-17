@@ -38,35 +38,35 @@ namespace robot{
 
 
             
-            double leftX = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X))/127;
-            double leftY = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y))/127;
-            double rightX = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X))/127;
+            double vx = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X))/127;
+            double vy = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y))/127;
+            double vw = double(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X))/127;
 
             // right stick deadzone to eliminate stick drift issues with heading
-            if(rightX < 0.03 && rightX > -0.03){
-                rightX = 0;
+            if(vw < 0.03 && vw > -0.03){
+                vw = 0;
             }
 
             
-
-            double heading = subsystems.odometrySubsystem->getHeading();
-            double c = cos(heading), s = sin(heading);
-            double vx =  s * leftX + c * leftY;
-            double vy =  c * leftX + s * leftY;
             
             subsystems::holonomicDrive::MovementVector movement;
+
+        
 
             if(driverProfile->driverEnum == JON){
                 movement.vx = vx*60;
                 movement.vy = vy*60;
-                movement.w = rightX*3.14; // 1 rad/s turn speed
+                movement.w = vw*3.14; // 1 rad/s turn speed
             }
             else if(driverProfile->driverEnum == QUINN){
                  movement.vx = vx*60;
                 movement.vy = vy*60; 
-                movement.w = rightX*6.28;
+                movement.w = vw*6.28;
             }
-            movement.useVel = true;
+            movement.useVel = false;
+
+            movement = subsystems.xdriveSubsystem->fieldToRobotOrientation(movement,subsystems.odometrySubsystem->getHeading());
+
             subsystems.xdriveSubsystem->moveVector(movement);
 
         

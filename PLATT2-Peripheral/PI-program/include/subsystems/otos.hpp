@@ -16,7 +16,7 @@ class OTOS {
 
         void calibrate();
 
-        sfe_otos_pose2d_t startPos = {0,0,270};
+        sfe_otos_pose2d_t startPos = {0,0,90};
 
     public:
         

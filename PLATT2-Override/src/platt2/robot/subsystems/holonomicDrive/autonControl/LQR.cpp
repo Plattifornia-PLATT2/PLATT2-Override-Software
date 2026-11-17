@@ -73,8 +73,8 @@ Eigen::Vector3d LQR::lqrTrack(const Eigen::Vector3d& posDes, const Eigen::Vector
     
     static int n = 0;
     if (n++ % 25 == 0)
-        printf("K11=%.3f K14=%.3f fb_y=%.3f scale=%.2f\n",
-           K(1, 1), K(1, 4), -(K * e)(1), fbScale);
+        printf("K11=%.3f K14=%.3f fb_x=%.3f b_y=%.3f scale=%.2f\n",
+           K(1, 1), K(1, 4), -(K * e)(1), -(K * e)(0), fbScale);
 
     Eigen::Vector3d fb  = fbScale * (K * e);
     Eigen::Vector3d out = uFF - fb;

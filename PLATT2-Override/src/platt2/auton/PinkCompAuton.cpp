@@ -22,14 +22,14 @@ void PinkCompAuton::run() {
     //subsystems.holonomicControlSubsystem->tauTest();
 
         TrajConstraints lim; 
-        lim.maxVel = 40; 
-        lim.maxAccel = 40; 
+        lim.maxVel = 60; 
+        lim.maxAccel = 80; 
         lim.maxOmega = 2; 
         lim.maxAlpha = 6;
 
-    subsystems.holonomicControlSubsystem->moveToPoint({0,0,M_PI_2}, {18,-24,M_PI+M_PI_2}, M_PI_2, M_PI+M_PI_2, lim);
-
-    
+    //subsystems.holonomicControlSubsystem->moveToPoint({0,0,M_PI_2}, {0,36,M_PI_2}, M_PI_2, M_PI_2, lim);
+    subsystems.holonomicControlSubsystem->moveToPoint({0,0,M_PI_2}, {-48,60,M_PI_2+M_PI}, M_PI_2, M_PI_2+M_PI, lim);
+        //subsystems.holonomicControlSubsystem->tauTest();
 }
 
 }

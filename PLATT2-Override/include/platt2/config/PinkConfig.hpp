@@ -73,7 +73,7 @@ class PinkConfig : public IConfig {
     static constexpr int OPTICAL_SENSOR_PORT{10};
 
     // ** VEX IMU Port **
-    static constexpr int VEX_IMU_PORT{15};
+    static constexpr int VEX_IMU_PORT{8};
 
     // ** Elevator Ports **
     static constexpr int LEFT_ELEVATOR_MOTOR_PORT{2};
@@ -82,9 +82,9 @@ class PinkConfig : public IConfig {
     static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::red};
 
     // **Arm Ports**
-    static constexpr int LEFT_ARM_MOTOR_PORT{-6};
-    static constexpr int RIGHT_ARM_MOTOR_PORT {7};
-    static constexpr int CLAW_MOTOR_PORT{8};
+    static constexpr int LEFT_ARM_MOTOR_PORT{-4};
+    static constexpr int RIGHT_ARM_MOTOR_PORT {6};
+    static constexpr int CLAW_MOTOR_PORT{5};
     static constexpr int CLAW_PISTON_PORT{1};
     static constexpr pros::MotorGears ARM_MOTOR_GEARS{pros::MotorGears::red};
     static constexpr pros::MotorGears CLAW_MOTOR_GEARS{pros::MotorGears::green};
@@ -124,10 +124,10 @@ class PinkConfig : public IConfig {
     static constexpr double heading_Ki{0};
 
     // LQR tuning values
-    static constexpr double TAU{0.17}; 
+    static constexpr double TAU{0.25}; 
     static constexpr double DT{0.01};
-    const Eigen::Matrix<double, 6, 1> QDIAG{40, 40, 50, 1.5, 1.5, 0.5};
-const Eigen::Vector3d RDIAG{10, 10, 5};
+    const Eigen::Matrix<double, 6, 1> QDIAG{500, 500, 100, 3, 3, 2};
+const Eigen::Vector3d RDIAG{9, 9, 5};
 
 
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
