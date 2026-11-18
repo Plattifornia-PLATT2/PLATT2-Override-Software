@@ -56,7 +56,7 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
     const double posTol       = 0.15;   // in
     const double headTol      = 0.03;   // rad
     const double exitSpeed    = 2.0;    // ips
-    const double settleTime   = 2.0;    // s hard timeout
+    const double settleTime   = 1.0;    // s hard timeout
     const double kI           = 1.0;    // ips per (in*s)
     const double iMax         = 1.0;    // in*s per axis
     const double iRange       = 10.0;   // in, integral only acts this close

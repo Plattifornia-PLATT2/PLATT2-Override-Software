@@ -18,7 +18,7 @@ struct TrajPoint {
 };
 
 // Length (inches) of the "roughly straight" lead-in and lead-out.
-constexpr double kStraightLen = 6.0;
+constexpr double kStraightLen = 10.0;
 
 // How far (inches) the curve may drift sideways from the start/end heading line
 // within kStraightLen of the start or end. buildBezierPath scales the control point

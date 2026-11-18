@@ -66,10 +66,10 @@ private:
     const int32_t REV_COUNTS_RED = 1800;
     const int32_t REV_COUNTS_GREEN = 900;
 
-    const double CLAW_MOTOR_SCORE_POSITION = -0.9;
-    const double ARM_MOTOR_SCORE_POSITION = 2.00;
-    const double CLAW_MOTOR_READY_POSITION = 0.0;
-    const double ARM_MOTOR_READY_POSITION = 0.71;
+    const double CLAW_MOTOR_SCORE_POSITION = -2.5;
+    const double ARM_MOTOR_SCORE_POSITION = -0.1;
+    const double CLAW_MOTOR_READY_POSITION = -2.5;
+    const double ARM_MOTOR_READY_POSITION = 0.2;
     const double CLAW_MOTOR_READY2_POSITION = -2.4;
     const double ARM_MOTOR_READY2_POSITION = 0.71;
     const double CLAW_MOTOR_INSIZE_POSITION = 0;

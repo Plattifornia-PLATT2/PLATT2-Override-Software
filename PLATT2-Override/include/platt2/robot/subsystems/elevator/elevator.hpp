@@ -57,7 +57,7 @@ namespace elevator{
          * 
          * @param pos the enum for the desired position
          */
-        void moveToPosition(ElevatorPosition pos);
+        void moveToPosition(ElevatorPosition pos, double delay=0);
 
         /**
          * @brief Gets the current position of the elevator in inches
@@ -82,7 +82,7 @@ namespace elevator{
 
         const double FULL_LIFT_HEIGHT = 55;
         const double BOTTOM_LIFT_HEIGHT = 0;
-        const double MIDDLE_LIFT_HEIGHT = 11.5;
+        const double MIDDLE_LIFT_HEIGHT = 15.5;
         const double INTAKE_LOAD_HEIGHT = 11.5;
 
         const double ELEVATOR_VELOCITY = 200;
@@ -99,6 +99,7 @@ namespace elevator{
         std::atomic<int32_t> manualVelocity{0};
         std::atomic<double>  targetTicks{0};
         std::atomic<bool>    newTarget{false};
+        std::atomic<double> delayTime{0};
         std::unique_ptr<pros::Task> task;
         void run();
 

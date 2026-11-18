@@ -47,7 +47,8 @@ double ElevatorSubsystem::getElevatorPositionRadians() {
   return encoderTicksToRadians(rightMotor->get_position());
 }
 
-void ElevatorSubsystem::moveToPosition(ElevatorPosition pos) {
+void ElevatorSubsystem::moveToPosition(ElevatorPosition pos, double delay) {
+  delayTime = delay;
   currentPosition = pos;
   switch (pos) {
   case FULL_DOWN:
@@ -99,7 +100,9 @@ void ElevatorSubsystem::run() {
       break;
     }
     case Mode::POSITION:
-      if (newTarget.exchange(false)) { // send move_absolute once per request
+      if (newTarget.exchange(false)) {
+        pros::Task::delay(delayTime); // send move_absolute once per request
+        delayTime = 0;
         double t = targetTicks.load();
         leftMotor->move_absolute(t, ELEVATOR_VELOCITY);
         rightMotor->move_absolute(t, ELEVATOR_VELOCITY);
