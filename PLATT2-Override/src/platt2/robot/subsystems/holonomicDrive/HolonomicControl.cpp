@@ -68,7 +68,7 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
     const size_t lookahead = static_cast<size_t>(std::lround(lookaheadSec / dt));
     const auto   period    = std::chrono::milliseconds(10);
 
-    TrajPtr path = generatePath(start, goal, startHeading, endHeading, 0.25);
+    TrajPtr path = generatePath(start, goal, startHeading, endHeading, constraints, 0.25);
     path = applyMotionProfile(path, constraints, dt);
     if (path->size() < 2) { drivetrain->moveVector({0, 0, 0}); return; }
 

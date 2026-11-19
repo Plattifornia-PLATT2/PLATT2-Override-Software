@@ -46,7 +46,7 @@ void OTOS::getPos(){
     {
         std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
-    std::printf("OTOS Position: X: %.2f, Y: %.2f, H: %.2f\n", pos.x, pos.y, pos.h);
+    //std::printf("OTOS Position: X: %.2f, Y: %.2f, H: %.2f\n", pos.x, pos.y, pos.h);
 }
 
 double OTOS::getX(){
@@ -54,7 +54,7 @@ double OTOS::getX(){
     sfTkError_t err = otos.getPosition(pos);
     if (err != ksfTkErrOk)
     {
-        std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
+        //std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
 
     return pos.x;
@@ -65,7 +65,7 @@ double OTOS::getY(){
     sfTkError_t err = otos.getPosition(pos);
     if (err != ksfTkErrOk)
     {
-        std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
+        //std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.y;
 }
@@ -75,7 +75,7 @@ double OTOS::getH(){
     sfTkError_t err = otos.getPosition(pos);
     if (err != ksfTkErrOk)
     {
-        std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
+        //std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.h;
 }
@@ -87,7 +87,7 @@ double OTOS::getXstdDev(){
     sfTkError_t err = otos.getPositionStdDev(pos);
     if (err != ksfTkErrOk)
     {
-        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+        //std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.x;
 }
@@ -97,7 +97,7 @@ double OTOS::getYstdDev(){
     sfTkError_t err = otos.getPositionStdDev(pos);
     if (err != ksfTkErrOk)
     {
-        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+        //std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.y;
 }
@@ -107,7 +107,7 @@ double OTOS::getHstdDev(){
     sfTkError_t err = otos.getPositionStdDev(pos);
     if (err != ksfTkErrOk)
     {
-        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+        //std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.h;
 }

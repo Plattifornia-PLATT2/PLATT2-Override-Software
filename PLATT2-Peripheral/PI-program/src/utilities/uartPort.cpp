@@ -95,13 +95,6 @@ bool UartPort::sendLine(const sendPacket& d) {
         p    += w;
         left -= static_cast<size_t>(w);
     }
-
-    static uint32_t dbgCount = 0;
-    if (++dbgCount % 50 == 1) {                       // ~1 dump per second at 50 Hz
-        std::printf("TX %zu bytes: ", n);
-        for (size_t i = 0; i < n; i++) std::printf("%02X ", buf[i]);
-        std::printf("\n");
-    }
     
     tcdrain(fd_); 
     return true;

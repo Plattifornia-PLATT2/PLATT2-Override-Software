@@ -18,7 +18,7 @@ struct TrajPoint {
 };
 
 // Length (inches) of the "roughly straight" lead-in and lead-out.
-constexpr double kStraightLen = 10.0;
+//constexpr double kStraightLen = 10.0;
 
 // How far (inches) the curve may drift sideways from the start/end heading line
 // within kStraightLen of the start or end. buildBezierPath scales the control point
@@ -46,7 +46,8 @@ struct TrajConstraints {
     double maxVel   = 60.0;  // in/s    cap on linear speed
     double maxAccel = 60.0;  // in/s^2  cap on total linear acceleration magnitude
     double maxOmega = 6.0;   // rad/s   cap on heading rate
-    double maxAlpha = 20.0;  // rad/s^2 cap on heading angular acceleration
+    double maxAlpha = 20.0;
+    double kStraightLen = 10.0; // rad/s^2 cap on heading angular acceleration
 };
 
 // One Bezier curve (degree 4) in x, y. ctrl is ordered start -> end:
@@ -84,7 +85,7 @@ struct BezierPath {
 // buildBezierPath. omega and alpha are not computed here: applyMotionProfile derives
 // them from the theta values in the points.
 TrajPtr generatePath(const Vec3& start, const Vec3& end,
-                     double startHeading, double endHeading,
+                     double startHeading, double endHeading, TrajConstraints constraints,
                      double ds = 0.1);
 
 // Builds the Bezier curve. start.theta and end.theta (direction of travel) set where
@@ -97,7 +98,7 @@ TrajPtr generatePath(const Vec3& start, const Vec3& end,
 // start-to-end distance, so a short move with a sharp turn gets a long leadDist (and
 // the curve swings out past the end point). If the tolerance can't be met, the
 // closest candidate is used.
-BezierPath buildBezierPath(const Vec3& start, const Vec3& end);
+BezierPath buildBezierPath(const Vec3& start, const Vec3& end, TrajConstraints constraints);
 
 // Middle control point from ctrl[1], ctrl[3] and the start/end travel directions: intersection of
 // the line from ctrl[1] along start.theta with the line into ctrl[3] along end.theta.
@@ -143,6 +144,8 @@ std::vector<double> buildSpeedProfile(const std::vector<TrajPoint>& path,
 // ends doesn't cause a divide by zero. result[0] = 0.
 std::vector<double> timeAtPoints(const std::vector<double>& arcLength,
                                  const std::vector<double>& speed);
+
+
 
 // Takes the path vector from generatePath and the limits, and returns a NEW
 // trajectory vector sampled at a fixed time step dt: t = 0, dt, 2*dt, ...
