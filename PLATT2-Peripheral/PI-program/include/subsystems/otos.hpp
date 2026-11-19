@@ -34,7 +34,9 @@ class OTOS {
         double getXstdDev();
         double getYstdDev();
         double getHstdDev();
+        double getAcceleration();
         
+        int selfTest();
         OTOS();
 
     };

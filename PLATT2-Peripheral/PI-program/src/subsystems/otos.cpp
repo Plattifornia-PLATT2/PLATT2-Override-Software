@@ -15,6 +15,13 @@ void OTOS::calibrate(){
         std::fprintf(stderr, "OTOS calibrateImu() failed, error code %d\n", static_cast<int>(err));
     }
     std::printf("OTOS IMU calibration complete.\n");
+
+    sfe_otos_signal_process_config_t config;
+    config.enAcc = false;
+    config.enRot = true;
+    config.enLut = true;
+    otos.setSignalProcessConfig(config);
+    otos.resetTracking();
 }
 std::string getHostName() {
     char buf[HOST_NAME_MAX + 1] = {};
@@ -54,7 +61,7 @@ double OTOS::getX(){
     sfTkError_t err = otos.getPosition(pos);
     if (err != ksfTkErrOk)
     {
-        //std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
+        std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
 
     return pos.x;
@@ -65,7 +72,7 @@ double OTOS::getY(){
     sfTkError_t err = otos.getPosition(pos);
     if (err != ksfTkErrOk)
     {
-        //std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
+        std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.y;
 }
@@ -75,7 +82,7 @@ double OTOS::getH(){
     sfTkError_t err = otos.getPosition(pos);
     if (err != ksfTkErrOk)
     {
-        //std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
+        std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.h;
 }
@@ -87,7 +94,7 @@ double OTOS::getXstdDev(){
     sfTkError_t err = otos.getPositionStdDev(pos);
     if (err != ksfTkErrOk)
     {
-        //std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.x;
 }
@@ -97,7 +104,7 @@ double OTOS::getYstdDev(){
     sfTkError_t err = otos.getPositionStdDev(pos);
     if (err != ksfTkErrOk)
     {
-        //std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
     }
     return pos.y;
 }
@@ -107,11 +114,19 @@ double OTOS::getHstdDev(){
     sfTkError_t err = otos.getPositionStdDev(pos);
     if (err != ksfTkErrOk)
     {
-        //std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
+        std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
     }
-    return pos.h;
+ 
+   return pos.h;
 }
 
+int OTOS::selfTest(){
+    return otos.selfTest();
+}
+
+double OTOS::getAcceleration(){
+    return 0;
+}
 
 void OTOS::sensorLoop(std::stop_token stopToken, sharedData& shared){
     
