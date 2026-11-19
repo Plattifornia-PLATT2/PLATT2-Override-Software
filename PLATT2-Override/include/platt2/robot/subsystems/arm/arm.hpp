@@ -79,7 +79,7 @@ private:
     const double CLAW_MOTOR_INSIZE_POSITION = 0;
     const double ARM_MOTOR_INSIZE_POSITION = 0;
     const double ARM_VELOCITY = 50;
-    const double CLAW_VELOCITY = 50;
+    const double CLAW_VELOCITY = 25;
 };
 
 } // namespace arm

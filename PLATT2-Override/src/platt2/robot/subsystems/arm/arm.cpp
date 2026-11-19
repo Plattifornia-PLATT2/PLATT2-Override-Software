@@ -32,9 +32,9 @@ static double radiansToEncoderTicks(double rad, double countsPerRev) {
 void ArmSubsystem::init() {
     if (task) return;   // already initialized
 
-    leftArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    rightArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    clawMotor->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    leftArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    rightArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    clawMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
     leftArmMotor->set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
     rightArmMotor->set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
@@ -190,7 +190,7 @@ void ArmSubsystem::run() {
         } else if(manualClawDirection > 0){
             clawMotor->move_velocity(CLAW_VELOCITY);
         }
-        mode = Mode::IDLE;
+        mode = Mode::RELEASE;
         break;
 }
         pros::screen::print(pros::E_TEXT_LARGE, 8, "Arm Pos: %.3f", getArmPosition());
