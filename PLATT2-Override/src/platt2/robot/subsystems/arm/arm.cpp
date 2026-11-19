@@ -86,6 +86,16 @@ void ArmSubsystem::moveToLoadThenReady2() {
     sequenceStep = 0;          // restart the sequence
 }
 
+void ArmSubsystem::manualClawMove(int8_t direction){
+    if(direction != 0){
+        mode = Mode::MANUAL;
+        manualClawDirection = direction;
+    }
+    else{
+        clawMotor->move(0);
+    }
+}
+
 bool ArmSubsystem::armAtTarget(double targetTicks) {
     return std::fabs(leftArmMotor->get_position() - targetTicks) < ARM_TOLERANCE_TICKS
         && std::fabs(rightArmMotor->get_position() - targetTicks) < ARM_TOLERANCE_TICKS;
@@ -169,6 +179,15 @@ void ArmSubsystem::run() {
     }
     }
     break;
+
+    case Mode::MANUAL:
+        if(manualClawDirection < 0){
+            clawMotor->move_velocity(-CLAW_VELOCITY);
+        } else if(manualClawDirection > 0){
+            clawMotor->move_velocity(CLAW_VELOCITY);
+        }
+        mode = Mode::IDLE;
+        break;
 }
         pros::screen::print(pros::E_TEXT_LARGE, 8, "Arm Pos: %.3f", getArmPosition());
         pros::screen::print(pros::E_TEXT_LARGE, 10, "Claw Pos: %.3f", getClawPosition());

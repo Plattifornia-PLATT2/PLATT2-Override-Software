@@ -33,6 +33,8 @@ namespace profiles{
 
         // Claw Mappings
         pros::controller_digital_e_t claw_toggle;
+        pros::controller_digital_e_t manual_claw_up;
+        pros::controller_digital_e_t manual_claw_down;
 
         // Arm Mappings
         pros::controller_digital_e_t arm_low;

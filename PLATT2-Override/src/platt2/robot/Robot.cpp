@@ -101,6 +101,13 @@ namespace robot{
             if (controller.get_digital_new_press(driverProfile->claw_toggle))
                 subsystems.armSubsystem->toggleClaw();
 
+            if(controller.get_digital(driverProfile->manual_claw_down)){
+                subsystems.armSubsystem->manualClawMove(-1);
+            } else if (controller.get_digital(driverProfile->manual_claw_up)){
+                subsystems.armSubsystem->manualClawMove(1);
+            } else{
+                subsystems.armSubsystem->manualClawMove(0);
+            }
             pros::screen::print(pros::E_TEXT_LARGE, 6, "Elevator Pos: %.3f",
             subsystems.elevatorSubsystem->getElevatorPositionRadians());
             

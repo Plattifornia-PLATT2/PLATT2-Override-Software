@@ -40,10 +40,11 @@ public:
     double getClawPosition();                  // radians
     void moveToLoadThenReady2();
     bool armAtTarget(double targetTicks);
+    void manualClawMove(int8_t direction);
 
 
 private:
-    enum class Mode { IDLE, POSITION, RELEASE, LOAD_THEN_READY2 };
+    enum class Mode { IDLE, POSITION, RELEASE, LOAD_THEN_READY2, MANUAL };
 
     bool atTarget(double armTicks, double clawTicks, bool checkClaw);
 
@@ -59,6 +60,7 @@ private:
     std::atomic<bool> newTarget{false};
     std::atomic<bool> isMoving{false};
     std::atomic<int> sequenceStep{0};
+    std::atomic<int> manualClawDirection{0};
 
     std::unique_ptr<pros::Task> task;
     void run();

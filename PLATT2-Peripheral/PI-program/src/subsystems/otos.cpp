@@ -21,7 +21,7 @@ void OTOS::calibrate(){
     config.enRot = true;
     config.enLut = true;
     otos.setSignalProcessConfig(config);
-    otos.resetTracking();
+    //otos.resetTracking();
 }
 std::string getHostName() {
     char buf[HOST_NAME_MAX + 1] = {};
