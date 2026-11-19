@@ -3,6 +3,7 @@
 #include "pros/motors.h"
 #include "pros/motors.hpp"
 #include "pros/rtos.hpp"
+#include "pros/screen.hpp"
 #include <cmath>
 #include <memory>
 
@@ -169,7 +170,8 @@ void ArmSubsystem::run() {
     }
     break;
 }
-
+        pros::screen::print(pros::E_TEXT_LARGE, 8, "Arm Pos: %.3f", getArmPosition());
+        pros::screen::print(pros::E_TEXT_LARGE, 10, "Claw Pos: %.3f", getClawPosition());
         pros::delay(10);
     }
 }
