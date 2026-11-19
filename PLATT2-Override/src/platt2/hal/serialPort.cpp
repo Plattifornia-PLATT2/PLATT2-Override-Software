@@ -111,7 +111,7 @@ size_t serialPort::pack(const sendPacket& d, std::span<uint8_t> out) {
 
     put(static_cast<float>(d.posX));
     put(static_cast<float>(d.posY));
-    put(static_cast<float>(d.heading));
+    put(static_cast<short>(d.resetCount));
 
     // Payload
     //put(static_cast<uint32_t>(d.id));
@@ -162,15 +162,15 @@ bool serialPort::tryParse(sendPacket& d) {
 
         float posX;
         float posY;
-        float heading;
+        short resetCount;
 
         get(posX);
         get(posY);
-        get(heading);
+        get(resetCount);
 
         d.posX = posX;
         d.posY = posY;
-        d.heading = heading;
+        d.resetCount = resetCount;
 
         //uint32_t id;  float temp;  uint16_t x;  uint8_t ok;
         //get(id);  get(temp);  get(x);  get(ok);

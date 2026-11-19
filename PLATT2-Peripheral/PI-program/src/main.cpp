@@ -7,84 +7,77 @@
 #include "subsystems/PoseEstimator.hpp"
 #include <thread>
 #include <vector>
-#include <stop_token>
 #include <csignal>
+#include <cerrno>
+#include <pthread.h>
+#include <thread>
 
+std::jthread sigThread(sharedData &shared) {
+    sigset_t set;
+    sigemptyset(&set);
+    sigaddset(&set, SIGINT);
+    sigaddset(&set, SIGTERM);   // systemd sends this on shutdown/reboot/stop
+    sigaddset(&set, SIGHUP);    // session teardown
+    pthread_sigmask(SIG_BLOCK, &set, nullptr);
 
-std::jthread sigThread(sharedData &shared);
+    return std::jthread([set, &shared](std::stop_token st) {   // set by value
+        const timespec timeout{0, 200'000'000};                // 200 ms
+        while (!st.stop_requested()) {
+            int sig = sigtimedwait(&set, nullptr, &timeout);
+            if (sig < 0) {
+                if (errno == EAGAIN || errno == EINTR) continue;
+                break;
+            }
+            {
+                std::lock_guard lock(shared.mtx);
+                shared.shutdown = true;
+            }
+            shared.cv.notify_all();
+            return;
+        }
+    });
+}
 
 int main() {
+    std::cout << "running" << std::endl;
 
-    std::cout  << "running" << std::endl;
+    sharedData shared;
+    std::jthread signalThread = sigThread(shared);   // FIRST, before any other thread exists
 
     std::vector<std::jthread> comTask;
     std::vector<std::jthread> dependentTasks;
-    
-    sharedData shared;
+
     OTOS otos;
-    
     piLink link;
     cameraTracking cam;
     PoseEstimator kalman;
 
-    
-    
-    std::jthread signalThread = sigThread(shared);
-    comTask.emplace_back([&link, &shared](std::stop_token st) {link.linkLoop(st, shared);});
+    comTask.emplace_back([&link, &shared](std::stop_token st) { link.linkLoop(st, shared); });
 
-    //comTask[0].request_stop(); 
+    while (true) {
+        dependentTasks.emplace_back([&otos, &shared](std::stop_token st) { otos.sensorLoop(st, shared); });
+        //dependentTasks.emplace_back([&cam, &shared](std::stop_token st) { cam.camTrackLoop(st, shared); });
+        //dependentTasks.emplace_back([&kalman, &shared](std::stop_token st) { kalman.kalmanLoop(st, shared); });
 
-    while (true){
-        
-        // add dependent tasks to the vector below following the format
-        
-        dependentTasks.emplace_back([&otos, &shared](std::stop_token st) {otos.sensorLoop(st, shared);});
-        //dependentTasks.emplace_back([&cam, &shared](std::stop_token st) {cam.camTrackLoop(st, shared);});
-        //dependentTasks.emplace_back([&kalman, &shared](std::stop_token st) {kalman.kalmanLoop(st, shared);});
-        
-        std::unique_lock<std::mutex> lock(shared.mtx);
+        std::unique_lock lock(shared.mtx);
         shared.cv.wait(lock, [&shared] { return shared.restart || shared.shutdown; });
+        shared.restartCount++;
+        const bool quit = shared.shutdown;
+        shared.restart = false;
+        lock.unlock();                       // never join while holding the mutex
+
+        for (auto& t : dependentTasks) t.request_stop();
+        dependentTasks.clear();              // joins and removes the old threads
+
+        if (quit) break;
 
         std::cout << "restarting" << std::endl;
-
-        for (auto& t : dependentTasks) {
-            t.request_stop();
-        }
-
-        if (shared.shutdown){
-            break;
-        }
-
         otos.restart();
-
-        shared.restart = false;
-        lock.unlock();
         
     }
+
+    // Shutdown: stop the comms thread(s), then do your hardware cleanup
+    for (auto& t : comTask) t.request_stop();
+    comTask.clear();
+    // e.g. stop motors, close UART/GPIO
 }
-
-
-std::jthread sigThread(sharedData &shared){
-
-    sigset_t set;
-    
-    sigemptyset(&set);
-    sigaddset(&set, SIGINT);
-    sigaddset(&set, SIGTERM);
-    pthread_sigmask(SIG_BLOCK, &set, nullptr);
-
-    std::jthread signalThread([&set, &shared] {
-        int sig;
-        sigwait(&set, &sig); 
-        {
-            std::lock_guard lock(shared.mtx);
-            shared.shutdown = true;
-            shared.cv.notify_all();
-        }
-        
-    });
-
-    return signalThread;
-}
-
-    

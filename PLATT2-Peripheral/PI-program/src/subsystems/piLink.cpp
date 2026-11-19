@@ -35,6 +35,8 @@ void piLink::linkLoop(std::stop_token stopToken, sharedData& shared){
         {
         std::lock_guard<std::mutex> lock(shared.mtx);
             dataBuffer.pos = shared.OTOSPos.pose;
+            dataBuffer.resetCount = shared.restartCount;
+
         }
         //dataBuffer.pos = {6,9,0};
 

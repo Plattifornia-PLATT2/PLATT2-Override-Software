@@ -164,6 +164,25 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
 
 
 
+void HolonomicControl::driverControl(double wantedX, double wantedY, double wantedW){
+
+    Vec3 currentPos = {};
+    Vec3 currentVel = {};
+    Vec3 wantedVel = {80,80, 8};
+    Vec3 wantedAccel = {80,80, 8};
+
+
+
+
+    //Vec3 u = lqrController->lqrTrack(ref.pos, ref.vel, wantedAccel, wantedAccel, pose, vel, fbScale);
+
+
+
+   
+}
+
+
+
 HolonomicControl::HolonomicControl(std::shared_ptr<XDrive> drive, std::shared_ptr<odometry::Odometry> odom, std::shared_ptr<LQR> lqr)
 {
     drivetrain = drive;

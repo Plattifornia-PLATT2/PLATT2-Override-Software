@@ -183,7 +183,9 @@ upload_binary() {
     
     log_info "Uploading binary to platt@${pi_host}:~"
     
-    if scp "${BUILD_DIR}/peripheralControl" "platt@${pi_host}:~/"; then
+    if ssh -t "platt@${pi_host}" "sudo systemctl disable --now peripheralControl.service"; then
+        scp "${BUILD_DIR}/peripheralControl" "platt@${pi_host}:~/";
+        ssh -t "platt@${pi_host}" "sudo systemctl enable --now peripheralControl.service"
         log_success "Upload complete"
         log_info "Binary ready at ~/peripheralControl on ${pi_name} (${pi_host})"
     else

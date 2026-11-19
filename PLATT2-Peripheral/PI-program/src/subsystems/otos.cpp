@@ -1,7 +1,11 @@
 #include "subsystems/otos.hpp"
-
+#include <pwd.h>
+#include <cstdlib>
+#include <string>
 #include <iostream>
-
+#include <unistd.h>
+#include <limits.h>
+#include <string>
 
 void OTOS::calibrate(){
     
@@ -12,12 +16,27 @@ void OTOS::calibrate(){
     }
     std::printf("OTOS IMU calibration complete.\n");
 }
-
+std::string getHostName() {
+    char buf[HOST_NAME_MAX + 1] = {};
+    if (gethostname(buf, sizeof(buf)) != 0) {
+        return "";
+    }
+    return std::string(buf);
+}
 void OTOS::restart(){
+    std::string name = getHostName();
 
-    otos.setPosition(startPos);
+    if (name == "purple") {
+        otos.setPosition(purpleStartPos);
+    } else if (name == "pink") {
+        otos.setPosition(pinkStartPos);
+    } else {
+        std::cout << "Unknown host: '" << name << "'" << std::endl;
+        sfe_otos_pose2d_t zero = {0, 0, 0};
+        otos.setPosition(zero);
+    }
+
     this->calibrate();
-
 }
 
 void OTOS::getPos(){

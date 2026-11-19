@@ -29,7 +29,7 @@ public:
 
             double posX = 0;
             double posY = 0;
-            double heading = 0;
+            short resetCount = 0;
 
     }; 
     // port: smart port number (1-21). baudrate: e.g. 115200.
@@ -49,7 +49,7 @@ private:
     static constexpr size_t SENSOR_PAYLOAD =
         sizeof(float) +   // id
         sizeof(float)    +   // temperature
-        sizeof(float);   // x     // ok
+        sizeof(short);   // x     // ok
 
     static constexpr size_t kSyncLen   = 2;
     static constexpr size_t kHeaderLen = kSyncLen + 1 + 2;   // sync + type + length
