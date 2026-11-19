@@ -61,9 +61,7 @@ int main() {
 
         std::unique_lock lock(shared.mtx);
         shared.cv.wait(lock, [&shared] { return shared.restart || shared.shutdown; });
-        shared.restartCount++;
         const bool quit = shared.shutdown;
-        shared.restart = false;
         lock.unlock();                       // never join while holding the mutex
 
         for (auto& t : dependentTasks) t.request_stop();
@@ -73,6 +71,11 @@ int main() {
 
         std::cout << "restarting" << std::endl;
         otos.restart();
+        {
+            std::lock_guard<std::mutex> lock(shared.mtx);
+            shared.restartCount++;
+            shared.restart = false;
+        }
         
     }
 

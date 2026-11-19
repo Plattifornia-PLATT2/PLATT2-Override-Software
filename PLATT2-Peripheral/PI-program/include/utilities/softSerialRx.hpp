@@ -94,7 +94,7 @@ private:
     static constexpr size_t SENSOR_PAYLOAD =
         sizeof(float) +   // x
         sizeof(float) +   // y
-        sizeof(float);    // theta
+        sizeof(short);    // theta
 
     static constexpr size_t kSyncLen   = 2;
     static constexpr size_t kHeaderLen = kSyncLen + 1 + 2;   // sync + type + length

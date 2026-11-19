@@ -301,15 +301,15 @@ bool SoftSerialRx::tryParse(sendPacket& d) {
 
         float posX;
         float posY;
-        float theta;
+        short resetCount;
 
         get(posX);
         get(posY);
-        get(theta);
+        get(resetCount);
 
         d.pos.x = posX;
         d.pos.y = posY;
-        d.pos.theta = theta;
+        d.resetCount = resetCount;
 
         drop(kFrameLen);
         return true;

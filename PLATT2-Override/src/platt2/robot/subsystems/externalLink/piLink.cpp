@@ -68,13 +68,10 @@ void PiLinkSubsystem::linkLoop(){
         
         pros::delay(100);
 
-        previousCount =
-        loopCount++;
+        previousCount = count;
+
 
     }
-    
-    bool sent = link->sendLine(startPacket);
-
     
 
     while (true) {

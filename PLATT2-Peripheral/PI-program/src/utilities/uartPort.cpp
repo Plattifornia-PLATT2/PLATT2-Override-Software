@@ -95,6 +95,14 @@ bool UartPort::sendLine(const sendPacket& d) {
         p    += w;
         left -= static_cast<size_t>(w);
     }
+
+    static uint32_t dbgCount = 0;
+    if (++dbgCount % 50 == 1) {                       // ~1 dump per second at 50 Hz
+        std::printf("TX %zu bytes: ", n);
+        for (size_t i = 0; i < n; i++) std::printf("%02X ", buf[i]);
+        std::printf("\n");
+    }
+    
     tcdrain(fd_); 
     return true;
 }
@@ -134,6 +142,8 @@ uint16_t UartPort::crc16(const uint8_t* p, size_t n) {   // CRC-16/CCITT-FALSE
 
 
 size_t UartPort::pack(const sendPacket& d, std::span<uint8_t> out) {
+    static_assert(SENSOR_PAYLOAD == 2 * sizeof(float) + sizeof(short),
+              "SENSOR_PAYLOAD doesn't match the fields pack() writes");
     static_assert(std::endian::native == std::endian::little,
                   "wire format is little-endian");
 
