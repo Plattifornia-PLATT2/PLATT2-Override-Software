@@ -13,7 +13,7 @@ namespace robot {
 namespace subsystems {
 namespace arm {
 
-enum ArmPosition { LOAD, SCORE, IN_SIZE, READY2 };
+enum ArmPosition { LOAD, SCORE_LOW, SCORE, IN_SIZE, READY2 };
 
 enum ClawPosition { CLOSED = 1, OPEN = 0 };
 
@@ -70,10 +70,12 @@ private:
 
     const double CLAW_MOTOR_SCORE_POSITION = -2.5;
     const double ARM_MOTOR_SCORE_POSITION = -0.1;
+    const double CLAW_MOTOR_SCORE_LOW_POSITION = -2.6;
+    const double ARM_MOTOR_SCORE_LOW_POSITION = -0.1;
     const double CLAW_MOTOR_READY_POSITION = -2.5;
-    const double ARM_MOTOR_READY_POSITION = 0.2;
+    const double ARM_MOTOR_READY_POSITION = -0.1;
     const double CLAW_MOTOR_READY2_POSITION = -2.4;
-    const double ARM_MOTOR_READY2_POSITION = 0.71;
+    const double ARM_MOTOR_READY2_POSITION = 0.2;
     const double CLAW_MOTOR_INSIZE_POSITION = 0;
     const double ARM_MOTOR_INSIZE_POSITION = 0;
     const double ARM_VELOCITY = 50;

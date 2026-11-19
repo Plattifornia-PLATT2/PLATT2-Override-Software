@@ -23,9 +23,10 @@ void PinkCompAuton::run() {
     //subsystems.holonomicControlSubsystem->tauTest();
         TrajConstraints lim; 
         lim.maxVel = 45; 
-        lim.maxAccel = 80; 
+        lim.maxAccel = 50; 
         lim.maxOmega = 2; 
         lim.maxAlpha = 6;
+        lim.kStraightLen = 8;
     
     //Spin toggle to color
     subsystems.intakeSubsystem->moveToggleMech(platt2::robot::subsystems::intake::IN);
@@ -33,25 +34,75 @@ void PinkCompAuton::run() {
     subsystems.intakeSubsystem->moveToggleMech(platt2::robot::subsystems::intake::STOP);
 
     //Score Matchload
-    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::MIDDLE_EXTENSION);
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ZERO_PIN);
     pros::delay(400);
-    subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::SCORE);
+    subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::SCORE_LOW);
     subsystems.holonomicControlSubsystem->moveToPoint({63.5,7.5,M_PI_2}, {56.5,23.5,M_PI}, 0, 0, lim);
     subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::FULL_DOWN);
     pros::delay(750);
     subsystems.armSubsystem->toggleClaw();
 
-    //Move 
-    subsystems.holonomicControlSubsystem->moveToPoint({57.0,23.5,0}, {12.0,14.0,M_PI}, 0, 0, lim);
+
+    //Move to pin in front of matchload
+    //subsystems.holonomicControlSubsystem->moveToPoint({56.5,23.5,0}, {90.0,10.5,0}, 0, 0, lim);
     subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::LOAD);
-    //subsystems.holonomicControlSubsystem->moveToPoint({75.0,12.5,M_PI}, {13.25,13.0,M_PI}, 0, 0, lim);
+    lim.maxAccel =30; 
+    subsystems.holonomicControlSubsystem->moveToPoint({56.5,23.5,M_PI*.3}, {28.25,31.75,M_PI*1.15}, 0, M_PI*.25, lim); //Supposed to be 315
     subsystems.armSubsystem->toggleClaw();
-    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::MIDDLE_EXTENSION, 750);
-    subsystems.holonomicControlSubsystem->moveToPoint({12.0,14.0,0}, {38.0,24.25,0}, 0, M_PI, lim);
+    lim.maxAccel = 50; 
+    lim.kStraightLen = .1;
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ONE_PIN);
+    subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::SCORE_LOW);
+    pros::delay(200);
+    subsystems.holonomicControlSubsystem->moveToPoint({28.25,31.75,M_PI}, {40.5,32.25,M_PI*.75}, M_PI*1.75, M_PI*.75, lim);
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::FULL_DOWN);
+    pros::delay(350);
+    subsystems.armSubsystem->toggleClaw();
+    pros::delay(100);
+
+    lim.maxVel = 45; 
+    lim.maxOmega = 2; 
+    lim.maxAlpha = 6;
+    lim.kStraightLen = 8;
+
+    //Matchload Single Pin
+    subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::LOAD);
+    subsystems.holonomicControlSubsystem->moveToPoint({40.5,32.25,M_PI*1.25}, {11.0,14.5,M_PI}, M_PI*1.25, 0, lim);
+    pros::delay(500);
+    subsystems.armSubsystem->toggleClaw();
+    lim.maxAccel = 40; 
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ZERO_PIN);
+    subsystems.holonomicControlSubsystem->moveToPoint({11.0,14.5,0}, {24.0,40,M_PI*.5}, 0, M_PI*1.5, lim);
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::FULL_DOWN);
+    pros::delay(350);
+    subsystems.armSubsystem->toggleClaw();
+
+    lim.kStraightLen = 8;
+    lim.maxOmega = 30; 
+    lim.maxAlpha = 24;
+    //Matchload Single Pin
+    subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::LOAD);
+    subsystems.holonomicControlSubsystem->moveToPoint({24.0,40,M_PI*1.55}, {11.0,14.5,M_PI}, M_PI, 0, lim);
+    subsystems.armSubsystem->toggleClaw();
+    pros::delay(500);
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::THREE_PIN);
+    subsystems.holonomicControlSubsystem->moveToPoint({11.0,14.5,0}, {38.0,24.75,0}, 0, M_PI, lim);
     subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::FULL_DOWN);
     pros::delay(250);
     subsystems.armSubsystem->toggleClaw();
 
+    //Matchload Single Pin
+    subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::LOAD);
+    subsystems.holonomicControlSubsystem->moveToPoint({38.0,24.75,M_PI}, {11.0,14.5,M_PI}, M_PI, 0, lim);
+    subsystems.armSubsystem->toggleClaw();
+    pros::delay(500);
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::FULL_EXTENSION);
+    subsystems.holonomicControlSubsystem->moveToPoint({11.0,14.5,0}, {38.0,24.75,0}, 0, M_PI, lim);
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::THREE_PIN);
+    pros::delay(250);
+    subsystems.armSubsystem->toggleClaw();
+    
+    //38.0,24.25,0
 
     
 

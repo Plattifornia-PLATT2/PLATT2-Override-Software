@@ -113,6 +113,10 @@ void ArmSubsystem::run() {
                     armRad = ARM_MOTOR_SCORE_POSITION;
                     clawRad = CLAW_MOTOR_SCORE_POSITION;
                     break;
+                case SCORE_LOW:
+                    armRad = ARM_MOTOR_SCORE_LOW_POSITION;
+                    clawRad = CLAW_MOTOR_SCORE_LOW_POSITION;
+                    break;
                 case LOAD:
                     armRad = ARM_MOTOR_READY_POSITION;
                     clawRad = CLAW_MOTOR_READY_POSITION;

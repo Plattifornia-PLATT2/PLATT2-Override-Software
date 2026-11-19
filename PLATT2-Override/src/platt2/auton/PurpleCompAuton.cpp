@@ -25,10 +25,17 @@ void PurpleCompAuton::run() {
         lim.maxAccel = 80; 
         lim.maxOmega = 2; 
         lim.maxAlpha = 6;
-    subsystems.holonomicControlSubsystem->moveToPoint({42.5,7.5,M_PI_2}, {35.0,22.0,M_PI}, 0, 0, lim);
 
+        subsystems.intakeSubsystem->moveToggleMech(platt2::robot::subsystems::intake::IN);
+    pros::delay(500);
+    subsystems.intakeSubsystem->moveToggleMech(platt2::robot::subsystems::intake::STOP);
 
+    //Score Matchload
+    subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ZERO_PIN);
+    pros::delay(400);
+    subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::SCORE_LOW);
+    subsystems.holonomicControlSubsystem->moveToPoint({63.5,7.5,M_PI_2}, {56.5,23.5,M_PI}, 180, 180, lim);
 }
-
+    
 }
 }

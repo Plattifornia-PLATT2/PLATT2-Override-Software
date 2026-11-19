@@ -49,7 +49,7 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
 {
     // ---- tunables ----
     const double dt           = 0.010;
-    const double lookaheadSec = 0.2;   // s, feedforward lookahead
+    const double lookaheadSec = 0.1;   // s, feedforward lookahead
     const double fbDelay      = 0.10;   // s, feedback off until robot can respond
     const double fbRamp       = 0.15;   // s, then fades in
 

@@ -121,10 +121,10 @@ class PinkConfig : public IConfig {
     static constexpr double heading_Ki{0};
 
     // LQR tuning values
-    static constexpr double TAU{0.23}; 
+    static constexpr double TAU{0.19}; 
     static constexpr double DT{0.01};
     const Eigen::Matrix<double, 6, 1> QDIAG{500, 500, 150, 3, 3, 1};
-const Eigen::Vector3d RDIAG{8, 8, 4};
+    const Eigen::Vector3d RDIAG{6.5, 6.5, 4};
 
 
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();
