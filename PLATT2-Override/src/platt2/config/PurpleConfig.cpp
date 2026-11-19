@@ -1,4 +1,4 @@
-#include "platt2/config/purpleConfig.hpp"
+#include "platt2/config/PurpleConfig.hpp"
 #include "platt2/robot/subsystems/arm/arm.hpp"
 #include "platt2/robot/subsystems/elevator/elevator.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
@@ -112,7 +112,7 @@ std::shared_ptr<robot::subsystems::odometry::Odometry> PurpleConfig::buildOdomet
 
     std::shared_ptr<robot::subsystems::odometry::Odometry> odom_subsystem = std::make_shared<robot::subsystems::odometry::Odometry>(std::move(positionTracker));
 
-    robot::subsystems::odometry::Position startingPos = {0,0,90};//x y must be set in pi
+    robot::subsystems::odometry::Position startingPos = {0,0,270};//x y must be set in pi
     odom_subsystem->setPos(startingPos);
 
 
@@ -131,16 +131,6 @@ std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> PurpleConfig
 
     return piLinkSubsystem;
 }
-
-
-
-
-
-
-
-
-
-
 
 std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem>
 PurpleConfig::buildIntakeSubsystem() {
@@ -272,7 +262,7 @@ std::shared_ptr<robot::Robot> PurpleConfig::buildRobot(robot::AutonConfig auton,
     }   
 
     // build robot object
-    std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(subsystems, robot::RobotConfig::PURPLE, std::move(auton_routine), std::move(driver_profile))};
+    std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(subsystems, robot::RobotConfig::PINK, std::move(auton_routine), std::move(driver_profile))};
 
     return robot;
 

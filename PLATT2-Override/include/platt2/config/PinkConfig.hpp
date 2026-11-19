@@ -69,9 +69,6 @@ class PinkConfig : public IConfig {
     static constexpr int TOGGLE_MECH_MOTOR_PORT{-3};
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
 
-    // ** Color Sort Ports **
-    static constexpr int OPTICAL_SENSOR_PORT{10};
-
     // ** VEX IMU Port **
     static constexpr int VEX_IMU_PORT{8};
 
