@@ -49,16 +49,22 @@ namespace intake{
 
         std::unique_ptr<pros::Motor> frontMotor;
         std::unique_ptr<pros::Motor> toggleMechMotor;
+        std::unique_ptr<pros::adi::DigitalOut> alignerDeployPiston;
 
         public:
         IntakeSubsystem(
             std::unique_ptr<pros::Motor> frontMotor,
-            std::unique_ptr<pros::Motor> toggleMechMotor
+            std::unique_ptr<pros::Motor> toggleMechMotor,
+            std::unique_ptr<pros::adi::DigitalOut> alignerDeployPiston
         );
 
         void moveIntake(IntakeDirection direction);
 
         void moveToggleMech(IntakeDirection direction);
+
+        void toggleAlignerMech();
+
+        void init();
 
     };
 }

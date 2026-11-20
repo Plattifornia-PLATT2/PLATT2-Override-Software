@@ -67,6 +67,8 @@ class PurpleConfig : public IConfig {
     static constexpr int FRONT_INTAKE_MOTOR_PORT{-14};
     static constexpr int TOGGLE_MECH_MOTOR_PORT{-3};
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
+    static constexpr int ALIGNER_DEPLOY_PISTON{2};
+
 
     // ** VEX IMU Port **
     static constexpr int VEX_IMU_PORT{8};

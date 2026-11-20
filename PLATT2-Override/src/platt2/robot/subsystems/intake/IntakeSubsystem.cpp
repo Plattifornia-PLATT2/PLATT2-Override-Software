@@ -13,11 +13,12 @@ namespace intake{
 
     IntakeSubsystem::IntakeSubsystem(
         std::unique_ptr<pros::Motor> frontMotor,
-        std::unique_ptr<pros::Motor> toggleMechMotor
+        std::unique_ptr<pros::Motor> toggleMechMotor,
+        std::unique_ptr<pros::adi::DigitalOut> alignerDeployPiston
     ) :
         frontMotor{std::move(frontMotor)},
-        toggleMechMotor{std::move(toggleMechMotor)}
-    
+        toggleMechMotor{std::move(toggleMechMotor)},
+        alignerDeployPiston{std::move(alignerDeployPiston)}
     {
         
     }
@@ -56,7 +57,15 @@ namespace intake{
         }
     }
 
-    
+    void IntakeSubsystem::toggleAlignerMech(){
+        alignerDeployPiston->set_value(true);
+        pros::delay(500);
+        alignerDeployPiston->set_value(false);
+    }
+
+    void IntakeSubsystem::init(){
+        alignerDeployPiston->set_value(false);
+    }
 }
 }
 }
