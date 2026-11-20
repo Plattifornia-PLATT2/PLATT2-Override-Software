@@ -70,8 +70,8 @@ private:
     const int32_t REV_COUNTS_RED = 1800;
     const int32_t REV_COUNTS_GREEN = 900;
 
-    const double CLAW_MOTOR_SCORE_POSITION = -2.5;
-    const double ARM_MOTOR_SCORE_POSITION = -0.1;
+    const double CLAW_MOTOR_SCORE_POSITION = -0.85;
+    const double ARM_MOTOR_SCORE_POSITION = 2.0;
     const double CLAW_MOTOR_SCORE_LOW_POSITION = -2.8;
     const double ARM_MOTOR_SCORE_LOW_POSITION = -0.1;
     const double CLAW_MOTOR_READY_POSITION = -2.35;
