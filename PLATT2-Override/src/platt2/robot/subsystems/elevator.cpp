@@ -10,6 +10,10 @@ namespace robot {
 namespace subsystems {
 namespace elevator {
 
+// How close (in radians) to FULL_LIFT_HEIGHT counts as "at max".
+// move_absolute usually settles slightly short of the target.
+static constexpr double ELEVATOR_MAX_TOLERANCE_RAD = 0.05;
+
 static double encoderTicksToRadians(double ticks) {
   return ticks * ((2 * M_PI) / 900);
 }
@@ -90,18 +94,23 @@ void ElevatorSubsystem::manualMove(int32_t velocity) {
 
 void ElevatorSubsystem::stop() { mode = Mode::IDLE; }
 
+bool ElevatorSubsystem::isElevatorAtMax() { return isElevatorMax; }
+
 // ---- The task: the only code that commands the motors ----
 
 void ElevatorSubsystem::run() {
   Mode last = Mode::IDLE;
 
   while (true) {
+    // Updated every loop, in every mode, so it is true whether the
+    // elevator got to max manually or via moveToPosition(FULL_EXTENSION).
+    double pos = getElevatorPositionRadians();
+    isElevatorMax = pos >= (FULL_LIFT_HEIGHT - ELEVATOR_MAX_TOLERANCE_RAD);
 
     Mode m = mode.load();
 
     switch (m) {
     case Mode::MANUAL: {
-      double pos = getElevatorPositionRadians();
       int32_t v = manualVelocity.load();
       bool blocked = (pos <= 0 && v < 0) || (pos >= FULL_LIFT_HEIGHT && v > 0);
       leftMotor->move_velocity(blocked ? 0 : v);

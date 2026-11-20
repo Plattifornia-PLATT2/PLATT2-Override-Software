@@ -34,7 +34,10 @@ namespace robot{
         subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ONE_PIN);
         subsystems.armSubsystem->moveToLoadThenReady2();
         
-
+        // declared once, outside the while loop
+        bool elevatorWasAtMax = false;
+                    // inside the loop
+            bool elevatorAtMax;
 
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
         //controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());          
@@ -108,6 +111,14 @@ namespace robot{
             } else if (controller.get_digital(driverProfile->manual_claw_up)){
                 subsystems.armSubsystem->manualClawMove(1);
             }
+
+
+            elevatorAtMax = subsystems.elevatorSubsystem->isElevatorAtMax();
+
+            if (elevatorAtMax && !elevatorWasAtMax) {
+              subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);   // fires once on the rising edge
+            }
+            elevatorWasAtMax = elevatorAtMax;
             pros::screen::print(pros::E_TEXT_LARGE, 6, "Elevator Pos: %.3f",
             subsystems.elevatorSubsystem->getElevatorPositionRadians());
             

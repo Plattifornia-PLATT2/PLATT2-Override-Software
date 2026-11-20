@@ -43,6 +43,7 @@ public:
     void manualClawMove(int8_t direction);
 
 
+
 private:
     enum class Mode { IDLE, POSITION, RELEASE, LOAD_THEN_READY2, MANUAL };
 
@@ -61,6 +62,7 @@ private:
     std::atomic<bool> isMoving{false};
     std::atomic<int> sequenceStep{0};
     std::atomic<int> manualClawDirection{0};
+    std::atomic<bool> isArmMax{false};
 
     std::unique_ptr<pros::Task> task;
     void run();

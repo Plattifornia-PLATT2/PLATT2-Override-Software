@@ -79,6 +79,7 @@ namespace elevator{
 
         void stop();                                 // main loop: sets intent
 
+        bool isElevatorAtMax();
         
         private:
         uint32_t getPosInches(ElevatorPosition pos);
@@ -106,6 +107,7 @@ namespace elevator{
         std::atomic<double>  targetTicks{0};
         std::atomic<bool>    newTarget{false};
         std::atomic<double> delayTime{0};
+        std::atomic<bool> isElevatorMax{false};
         std::unique_ptr<pros::Task> task;
         void run();
 
