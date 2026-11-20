@@ -104,7 +104,7 @@ class PurpleConfig : public IConfig {
 
     static constexpr double PI_PORT{7};
 
-    // ** Linear PID Tuning Values **
+   // ** Linear PID Tuning Values **
     static constexpr double position_dt{0.01};
     static constexpr double position_max{1};
     static constexpr double position_min{-1};
@@ -120,12 +120,12 @@ class PurpleConfig : public IConfig {
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
 
-
-        // LQR tuning values
-    static constexpr double TAU{0.1}; //NEEDS TO BE FOUND
+    // LQR tuning values
+    static constexpr double TAU{0.19}; 
     static constexpr double DT{0.01};
-    const Eigen::Matrix<double, 6, 1> QDIAG{1.2, 1.2, 40, 0.01, 0.01, 1}; 
-    const Eigen::Vector3d RDIAG{0.0025, 0.0025, 100};
+    const Eigen::Matrix<double, 6, 1> QDIAG{500, 500, 150, 3, 3, 1};
+    const Eigen::Vector3d RDIAG{6.5, 6.5, 4};
+
 
     
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();

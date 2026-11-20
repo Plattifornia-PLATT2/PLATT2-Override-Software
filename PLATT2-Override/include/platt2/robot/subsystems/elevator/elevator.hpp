@@ -19,6 +19,7 @@ namespace elevator{
 
     enum ElevatorPosition{
         FULL_DOWN,
+        START,
         ZERO_PIN,
         ONE_PIN,
         TWO_PIN,
@@ -86,10 +87,11 @@ namespace elevator{
 
         const double FULL_LIFT_HEIGHT = 55;
         const double BOTTOM_LIFT_HEIGHT = 0;
-        const double ZERO_PIN_HEIGHT = 15.5;
+        const double ZERO_PIN_HEIGHT = 8.0;
+        const double START_HEIGHT = 20.5;
         const double ONE_PIN_HEIGHT = 27.5;
         const double TWO_PIN_HEIGHT = 27.5;
-        const double THREE_PIN_HEIGHT = 34.5;
+        const double THREE_PIN_HEIGHT = 37.5;
         const double INTAKE_LOAD_HEIGHT = 11.5;
 
         const double ELEVATOR_VELOCITY = 200;

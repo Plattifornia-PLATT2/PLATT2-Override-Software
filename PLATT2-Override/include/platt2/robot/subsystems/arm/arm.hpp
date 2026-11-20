@@ -72,16 +72,16 @@ private:
 
     const double CLAW_MOTOR_SCORE_POSITION = -2.5;
     const double ARM_MOTOR_SCORE_POSITION = -0.1;
-    const double CLAW_MOTOR_SCORE_LOW_POSITION = -2.6;
+    const double CLAW_MOTOR_SCORE_LOW_POSITION = -2.8;
     const double ARM_MOTOR_SCORE_LOW_POSITION = -0.1;
-    const double CLAW_MOTOR_READY_POSITION = -2.5;
+    const double CLAW_MOTOR_READY_POSITION = -2.35;
     const double ARM_MOTOR_READY_POSITION = -0.1;
     const double CLAW_MOTOR_READY2_POSITION = -2.4;
-    const double ARM_MOTOR_READY2_POSITION = 0.2;
+    const double ARM_MOTOR_READY2_POSITION = -0.1;
     const double CLAW_MOTOR_INSIZE_POSITION = 0;
     const double ARM_MOTOR_INSIZE_POSITION = 0;
     const double ARM_VELOCITY = 50;
-    const double CLAW_VELOCITY = 25;
+    const double CLAW_VELOCITY = 100;
 };
 
 } // namespace arm

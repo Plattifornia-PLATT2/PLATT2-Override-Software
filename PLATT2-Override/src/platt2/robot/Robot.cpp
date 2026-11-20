@@ -31,8 +31,8 @@ namespace robot{
 
     void Robot::driverControl(){
 
-        subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ONE_PIN);
-        subsystems.armSubsystem->moveToLoadThenReady2();
+        // subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ONE_PIN);
+        // subsystems.armSubsystem->moveToLoadThenReady2();
         
         // declared once, outside the while loop
         bool elevatorWasAtMax = false;

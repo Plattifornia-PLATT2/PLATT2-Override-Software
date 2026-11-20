@@ -70,6 +70,9 @@ void ElevatorSubsystem::moveToPosition(ElevatorPosition pos, double delay) {
   case THREE_PIN:
     targetTicks = radiansToEncoderTicks(THREE_PIN_HEIGHT);
     break;
+  case START:
+    targetTicks = radiansToEncoderTicks(START_HEIGHT);
+    break;
   case FULL_EXTENSION:
     targetTicks = radiansToEncoderTicks(FULL_LIFT_HEIGHT);
     break;
