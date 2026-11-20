@@ -31,13 +31,19 @@ namespace robot{
 
     void Robot::driverControl(){
 
+        if(currentColor == PINK){
+            subsystems::odometry::Position currentPos = subsystems.odometrySubsystem->getPos();
+            currentPos.heading += 90;
+            subsystems.odometrySubsystem->setPos(currentPos);
+        }
+
         // subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ONE_PIN);
         // subsystems.armSubsystem->moveToLoadThenReady2();
         
         // declared once, outside the while loop
         bool elevatorWasAtMax = false;
                     // inside the loop
-            bool elevatorAtMax;
+        bool elevatorAtMax;
 
         pros::Controller controller{pros::Controller(pros::E_CONTROLLER_MASTER)};
         //controller.print(0, 0, "Sorted Color: %d", color_sort_subsystem->getSortedColor());          
