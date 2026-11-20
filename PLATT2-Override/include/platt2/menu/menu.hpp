@@ -87,6 +87,12 @@ public:
      */
     FullConfig getFullConfig();
 
+    /**
+     * @brief Clears the menu off the screen.
+     * 
+     */
+    void clearMenu();
+
 private:
     // stored values
     robot::RobotConfig robot_config = robot::NO_ROBOT;
