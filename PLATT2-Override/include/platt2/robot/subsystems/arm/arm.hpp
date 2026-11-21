@@ -13,7 +13,7 @@ namespace robot {
 namespace subsystems {
 namespace arm {
 
-enum ArmPosition { LOAD, SCORE_LOW, SCORE, IN_SIZE, READY2 };
+enum ArmPosition { LOAD, SCORE_LOW, SCORE, IN_SIZE, READY2, PURPLE_LOW };
 
 enum ClawPosition { CLOSED = 1, OPEN = 0 };
 
@@ -41,6 +41,7 @@ public:
     void moveToLoadThenReady2();
     bool armAtTarget(double targetTicks);
     void manualClawMove(int8_t direction);
+    ArmPosition getCurrentPositionState();
 
 
 
@@ -82,6 +83,7 @@ private:
     const double ARM_MOTOR_INSIZE_POSITION = 0;
     const double ARM_VELOCITY = 50;
     const double CLAW_VELOCITY = 100;
+    const double CLAW_PURPLE_LOW_POSITION = -2.6;
 };
 
 } // namespace arm

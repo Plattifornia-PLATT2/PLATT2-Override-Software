@@ -80,8 +80,8 @@ class PurpleConfig : public IConfig {
     static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::red};
 
     // **Arm Ports**
-    static constexpr int LEFT_ARM_MOTOR_PORT{-4};
-    static constexpr int RIGHT_ARM_MOTOR_PORT {6};
+    static constexpr int LEFT_ARM_MOTOR_PORT{4};
+    static constexpr int RIGHT_ARM_MOTOR_PORT {-6};
     static constexpr int CLAW_MOTOR_PORT{5};
     static constexpr int CLAW_PISTON_PORT{1};
     static constexpr pros::MotorGears ARM_MOTOR_GEARS{pros::MotorGears::red};
