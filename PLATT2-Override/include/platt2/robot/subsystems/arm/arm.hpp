@@ -41,6 +41,7 @@ public:
     void moveToLoadThenReady2();
     bool armAtTarget(double targetTicks);
     void manualClawMove(int8_t direction);
+    ArmPosition getCurrentPositionState();
 
 
 

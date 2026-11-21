@@ -99,6 +99,10 @@ bool ArmSubsystem::armAtTarget(double targetTicks) {
         && std::fabs(rightArmMotor->get_position() - targetTicks) < ARM_TOLERANCE_TICKS;
 }
 
+ArmPosition ArmSubsystem::getCurrentPositionState(){
+    return currentPosition;
+}
+
 // NOTE: ArmSubsystem::isElevatorAtMax() was removed. It called itself
 // forever (infinite recursion) and the arm doesn't need elevator state.
 
