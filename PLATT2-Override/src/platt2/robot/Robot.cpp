@@ -33,7 +33,7 @@ namespace robot{
 
         if(currentColor == PINK){
             subsystems::odometry::Position currentPos = subsystems.odometrySubsystem->getPos();
-            currentPos.heading += 90;
+            currentPos.heading -= 90;
             subsystems.odometrySubsystem->setPos(currentPos);
         }
 
@@ -104,7 +104,7 @@ namespace robot{
             if(controller.get_digital_new_press(driverProfile->claw_toggle)) subsystems.armSubsystem->toggleClaw();
 
             if (controller.get_digital_new_press(driverProfile->arm_low))
-                subsystems.armSubsystem->moveArmToPosition(subsystems::arm::READY2);
+                subsystems.armSubsystem->moveArmToPosition(subsystems::arm::LOAD);
 
             if (controller.get_digital_new_press(driverProfile->arm_high))
                 subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);
