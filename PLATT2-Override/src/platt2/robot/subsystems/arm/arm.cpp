@@ -135,6 +135,10 @@ void ArmSubsystem::run() {
                     armRad = ARM_MOTOR_READY2_POSITION;
                     clawRad = CLAW_MOTOR_READY2_POSITION;   // was ARM_MOTOR_READY2_POSITION
                     break;
+                case PURPLE_LOW:
+                    armRad = ARM_MOTOR_READY_POSITION;
+                    clawRad = CLAW_PURPLE_LOW_POSITION;
+                    break;
                 }
 
                 double armTicks = radiansToEncoderTicks(armRad, REV_COUNTS_RED);
