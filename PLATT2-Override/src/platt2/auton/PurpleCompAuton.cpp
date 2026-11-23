@@ -65,7 +65,7 @@ void PurpleCompAuton::run() {
     lim.maxAlpha = 6;
     lim.kStraightLen = 4;
     lim.maxAccel = 40; 
-    subsystems.holonomicControlSubsystem->moveToPoint({52.5,14.25,M_PI*1.6}, {86.75,40.75,M_PI*.25}, M_PI*1.67, M_PI*1.25, lim);
+    subsystems.holonomicControlSubsystem->moveToPoint({52.5,14.25,M_PI*1.6}, {87,40.50,M_PI*.25}, M_PI*1.67, M_PI*1.25, lim);
     subsystems.armSubsystem->toggleClaw();
     subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::ONE_PIN);
     lim.kStraightLen = 4;
@@ -79,7 +79,7 @@ void PurpleCompAuton::run() {
     subsystems.armSubsystem->moveArmToPosition(platt2::robot::subsystems::arm::PURPLE_LOW);
 
     lim.kStraightLen = 5;
-    subsystems.holonomicControlSubsystem->moveToPoint({84.0,23.5,M_PI}, {90.25,9.75,M_PI*1.66}, M_PI, M_PI*.66, lim);
+    subsystems.holonomicControlSubsystem->moveToPoint({84.0,23.5,M_PI}, {90.25,9.5,M_PI*1.66}, M_PI, M_PI*.66, lim);
     
     subsystems.armSubsystem->toggleClaw();
     subsystems.elevatorSubsystem->moveToPosition(platt2::robot::subsystems::elevator::THREE_PIN);

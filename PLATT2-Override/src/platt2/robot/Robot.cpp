@@ -31,13 +31,13 @@ bool armAutoScored = false;
 bool armReturnPending = false;
 
 // How many encoder ticks below the "at max" threshold before the arm returns.
-constexpr double RETURN_EXTRA_RAD = 10;
+constexpr double RETURN_EXTRA_RAD = 40;
 
 void Robot::driverControl() {
 
         if(currentColor == PINK){
             subsystems::odometry::Position currentPos = subsystems.odometrySubsystem->getPos();
-            currentPos.heading -= 90;
+            currentPos.heading += 90;
             subsystems.odometrySubsystem->setPos(currentPos);
         }
 
@@ -121,33 +121,33 @@ void Robot::driverControl() {
       subsystems.armSubsystem->manualClawMove(1);
     }
 
-    elevatorAtMax = subsystems.elevatorSubsystem->isElevatorAtMax();
+    // elevatorAtMax = subsystems.elevatorSubsystem->isElevatorAtMax();
 
-    if (elevatorAtMax && !elevatorWasAtMax) {
-      // Rising edge
-      subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);
-      armAutoScored = true;     // was missing
-      armReturnPending = false; // cancel any stale pending return
-    } else if (!elevatorAtMax && elevatorWasAtMax) {
-      // Falling edge: start waiting
-      armReturnPending = armAutoScored;
-      armAutoScored = false;
-    }
-    elevatorWasAtMax = elevatorAtMax; // was missing
+    // if (elevatorAtMax && !elevatorWasAtMax) {
+    //   // Rising edge
+    //   subsystems.armSubsystem->moveArmToPosition(subsystems::arm::SCORE);
+    //   armAutoScored = true;     // was missing
+    //   armReturnPending = false; // cancel any stale pending return
+    // } else if (!elevatorAtMax && elevatorWasAtMax) {
+    //   // Falling edge: start waiting
+    //   armReturnPending = armAutoScored;
+    //   armAutoScored = false;
+    // }
+    // elevatorWasAtMax = elevatorAtMax; // was missing
 
-    // Runs every loop iteration, never blocks
-    if (armReturnPending) {
-      double pos = subsystems.elevatorSubsystem->getElevatorPositionRadians();
-      double releasePos = 55 - RETURN_EXTRA_RAD;
+    // // Runs every loop iteration, never blocks
+    // if (armReturnPending) {
+    //   double pos = subsystems.elevatorSubsystem->getElevatorPositionRadians();
+    //   double releasePos = 55 - RETURN_EXTRA_RAD;
 
-      if (pos <= releasePos) {
-        if (subsystems.armSubsystem->getCurrentPositionState() ==
-            subsystems::arm::SCORE) {
-          subsystems.armSubsystem->moveArmToPosition(subsystems::arm::LOAD);
-        }
-        armReturnPending = false;
-      }
-    }
+    //   if (pos <= releasePos) {
+    //     if (subsystems.armSubsystem->getCurrentPositionState() ==
+    //         subsystems::arm::SCORE) {
+    //       subsystems.armSubsystem->moveArmToPosition(subsystems::arm::LOAD);
+    //     }
+    //     armReturnPending = false;
+    //   }
+    // }
     pros::screen::print(
         pros::E_TEXT_LARGE, 6, "Elevator Pos: %.3f",
         subsystems.elevatorSubsystem->getElevatorPositionRadians());

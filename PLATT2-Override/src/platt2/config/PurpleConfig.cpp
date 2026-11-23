@@ -263,7 +263,7 @@ std::shared_ptr<robot::Robot> PurpleConfig::buildRobot(robot::AutonConfig auton,
     }   
 
     // build robot object
-    std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(subsystems, robot::RobotConfig::PINK, std::move(auton_routine), std::move(driver_profile))};
+    std::shared_ptr<robot::Robot> robot{std::make_shared<robot::Robot>(subsystems, robot::RobotConfig::PURPLE, std::move(auton_routine), std::move(driver_profile))};
 
     return robot;
 
