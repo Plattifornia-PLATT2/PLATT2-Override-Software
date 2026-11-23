@@ -37,7 +37,7 @@ void Robot::driverControl() {
 
         if(currentColor == PINK){
             subsystems::odometry::Position currentPos = subsystems.odometrySubsystem->getPos();
-            currentPos.heading += 90;
+            currentPos.heading -= 90;
             subsystems.odometrySubsystem->setPos(currentPos);
         }
 
@@ -80,8 +80,13 @@ void Robot::driverControl() {
     }
     movement.useVel = false;
 
+double heading = subsystems.odometrySubsystem->getHeading();
+if(currentColor==PINK){
+    heading += M_PI_2;
+}
+
     movement = subsystems.xdriveSubsystem->fieldToRobotOrientation(
-        movement, subsystems.odometrySubsystem->getHeading());
+        movement, heading);
 
     subsystems.xdriveSubsystem->moveVector(movement);
 
