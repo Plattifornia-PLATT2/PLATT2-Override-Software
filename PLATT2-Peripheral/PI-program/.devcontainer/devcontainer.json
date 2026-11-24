@@ -1,0 +1,31 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile.devcontainer",
+    "context": ".",
+    "args":{}
+  },
+  "hostRequirements": {
+    "gpu": false
+  },
+
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-cmake-tools.cmake-tools"
+      ]
+    }
+  },
+  "remoteUser": "root",
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/PI-program,type=bind,consistency=cached", 
+  "workspaceFolder": "/workspaces/PI-program",
+
+  "postCreateCommand": "chmod +x /workspaces/PI-program/platt.sh; sed -i 's/\r$//' ./platt.sh"
+
+}

@@ -9,6 +9,7 @@ void MatchController::init(){
         pros::delay(10);
     }
 
+    menu.clearMenu();
     menu::FullConfig roboConfig =  menu.getFullConfig();
     std::cout<<roboConfig.robotConfig<<std::endl;
     if(roboConfig.robotConfig == robot::PINK) {

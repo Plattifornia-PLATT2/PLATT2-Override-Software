@@ -1,4 +1,6 @@
 #include "platt2/menu/menu.hpp"
+#include "liblvgl/core/lv_obj_tree.h"
+#include "liblvgl/display/lv_display.h"
 #include "liblvgl/lv_conf_internal.h"
 #include "liblvgl/misc/lv_color.h"
 #include "liblvgl/misc/lv_types.h"
@@ -144,6 +146,14 @@ void RobotConfigMenu::cbSave(lv_event_t* e) {
     RobotConfigMenu* self = static_cast<RobotConfigMenu*>(lv_event_get_user_data(e));
     self->updateButtonStates();
     self->saveConfig();
+}
+
+static void deferred_clear_cb(void* user_data) {
+    lv_obj_clean(lv_screen_active());
+}
+
+void RobotConfigMenu::clearMenu(){
+    lv_async_call(deferred_clear_cb, nullptr);
 }
 
 // ---------- Build the menu ----------

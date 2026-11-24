@@ -2,7 +2,7 @@
 #define IPOSITION_TRACKER_HPP
 
 #include "platt2/robot/subsystems/odometry/OdometryPosition.hpp"
-
+#include "Eigen/Dense"
  /**
  * @brief Namespace for PLATT2 library code.
  * @authors PLATT2 Development team.
@@ -65,8 +65,8 @@ namespace odometry{
          */
         virtual double getHeading() = 0;
 
-        virtual double getVelocity() = 0;
-        virtual double getAngularVelocity() = 0;
+        virtual Eigen::Vector3d getVelocity() = 0;
+
 
         /**
          * @brief Sets the offsets for the position tracker.

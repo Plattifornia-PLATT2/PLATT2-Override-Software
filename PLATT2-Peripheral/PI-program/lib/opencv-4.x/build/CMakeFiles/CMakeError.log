@@ -1,0 +1,741 @@
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wnon-virtual-dtor’ is valid for C++/ObjC++ but not for C'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type  -Wnon-virtual-dtor'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c2fa4/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_c2fa4.dir/build.make CMakeFiles/cmTC_c2fa4.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c2fa4.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type  -Wnon-virtual-dtor -o CMakeFiles/cmTC_c2fa4.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wnon-virtual-dtor’ is valid for C++/ObjC++ but not for C
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking C executable cmTC_c2fa4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2fa4.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc -O3 -DNDEBUG CMakeFiles/cmTC_c2fa4.dir/src.c.o -o cmTC_c2fa4 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C\+\+'
+    Output line: 'cc1plus: warning: command-line option ‘-Wmissing-prototypes’ is valid for C/ObjC but not for C++'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wmissing-prototypes'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_94d21/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_94d21.dir/build.make CMakeFiles/cmTC_94d21.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_94d21.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wmissing-prototypes -o CMakeFiles/cmTC_94d21.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command-line option ‘-Wmissing-prototypes’ is valid for C/ObjC but not for C++
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking CXX executable cmTC_94d21
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_94d21.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++ -O3 -DNDEBUG CMakeFiles/cmTC_94d21.dir/src.cxx.o -o cmTC_94d21 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C\+\+'
+    Output line: 'cc1plus: warning: command-line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wstrict-prototypes'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c4beb/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_c4beb.dir/build.make CMakeFiles/cmTC_c4beb.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c4beb.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wstrict-prototypes -o CMakeFiles/cmTC_c4beb.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command-line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking CXX executable cmTC_c4beb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4beb.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++ -O3 -DNDEBUG CMakeFiles/cmTC_c4beb.dir/src.cxx.o -o cmTC_c4beb 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wsign-promo’ is valid for C++/ObjC++ but not for C'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow  -Wsign-promo'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_96424/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_96424.dir/build.make CMakeFiles/cmTC_96424.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_96424.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow  -Wsign-promo -o CMakeFiles/cmTC_96424.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wsign-promo’ is valid for C++/ObjC++ but not for C
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking C executable cmTC_96424
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_96424.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc -O3 -DNDEBUG CMakeFiles/cmTC_96424.dir/src.c.o -o cmTC_96424 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wsuggest-override'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6f29a/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_6f29a.dir/build.make CMakeFiles/cmTC_6f29a.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6f29a.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wsuggest-override -o CMakeFiles/cmTC_6f29a.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking C executable cmTC_6f29a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6f29a.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc -O3 -DNDEBUG CMakeFiles/cmTC_6f29a.dir/src.c.o -o cmTC_6f29a 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wno-delete-non-virtual-dtor’ is valid for C++/ObjC++ but not for C'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-delete-non-virtual-dtor'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_89a1e/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_89a1e.dir/build.make CMakeFiles/cmTC_89a1e.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_89a1e.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-delete-non-virtual-dtor -o CMakeFiles/cmTC_89a1e.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wno-delete-non-virtual-dtor’ is valid for C++/ObjC++ but not for C
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking C executable cmTC_89a1e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_89a1e.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc -O3 -DNDEBUG CMakeFiles/cmTC_89a1e.dir/src.c.o -o cmTC_89a1e 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1plus: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor  -Wno-unnamed-type-template-args'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_df409/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_df409.dir/build.make CMakeFiles/cmTC_df409.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_df409.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor  -Wno-unnamed-type-template-args -o CMakeFiles/cmTC_df409.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1plus: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics
+Linking CXX executable cmTC_df409
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df409.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++ -O3 -DNDEBUG CMakeFiles/cmTC_df409.dir/src.cxx.o -o cmTC_df409 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-unnamed-type-template-args'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_57514/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_57514.dir/build.make CMakeFiles/cmTC_57514.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_57514.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-unnamed-type-template-args -o CMakeFiles/cmTC_57514.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics
+Linking C executable cmTC_57514
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_57514.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc -O3 -DNDEBUG CMakeFiles/cmTC_57514.dir/src.c.o -o cmTC_57514 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_sve.cpp'
+    check option: ''
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5bf9d/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_5bf9d.dir/build.make CMakeFiles/cmTC_5bf9d.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5bf9d.dir/cpu_sve.cpp.o
+/usr/bin/aarch64-linux-gnu-g++   -O3 -DNDEBUG -std=c++11 -fPIE -o CMakeFiles/cmTC_5bf9d.dir/cpu_sve.cpp.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_sve.cpp
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_sve.cpp:17:2: error: #error "SVE is not supported"
+   17 | #error "SVE is not supported"
+      |  ^~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_sve.cpp: In function ‘int main()’:
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_sve.cpp:22:18: error: ‘test’ was not declared in this scope
+   22 |   printf("%d\n", test());
+      |                  ^~~~
+gmake[1]: *** [CMakeFiles/cmTC_5bf9d.dir/build.make:78: CMakeFiles/cmTC_5bf9d.dir/cpu_sve.cpp.o] Error 1
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_5bf9d/fast] Error 2
+
+
+===== END =====
+
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_dotprod.cpp'
+    check option: ''
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_47c90/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_47c90.dir/build.make CMakeFiles/cmTC_47c90.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_47c90.dir/cpu_neon_dotprod.cpp.o
+/usr/bin/aarch64-linux-gnu-g++   -O3 -DNDEBUG -std=c++11 -fPIE -o CMakeFiles/cmTC_47c90.dir/cpu_neon_dotprod.cpp.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_dotprod.cpp
+In file included from /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_dotprod.cpp:6:
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h: In function ‘int test()’:
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26767:1: error: inlining failed in call to ‘always_inline’ ‘uint32x4_t vdotq_u32(uint32x4_t, uint8x16_t, uint8x16_t)’: target specific option mismatch
+26767 | vdotq_u32 (uint32x4_t __r, uint8x16_t __a, uint8x16_t __b)
+      | ^~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_dotprod.cpp:14:33: note: called from here
+   14 |     uint32x4_t v_dst = vdotq_u32(v_src, v_m0, v_m1);
+      |                        ~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+gmake[1]: *** [CMakeFiles/cmTC_47c90.dir/build.make:78: CMakeFiles/cmTC_47c90.dir/cpu_neon_dotprod.cpp.o] Error 1
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_47c90/fast] Error 2
+
+
+===== END =====
+
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp'
+    check option: ''
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c74d9/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_c74d9.dir/build.make CMakeFiles/cmTC_c74d9.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c74d9.dir/cpu_neon_fp16.cpp.o
+/usr/bin/aarch64-linux-gnu-g++   -O3 -DNDEBUG -std=c++11 -fPIE -o CMakeFiles/cmTC_c74d9.dir/cpu_neon_fp16.cpp.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp
+In file included from /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:5:
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h: In function ‘void test()’:
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:29:24: note: called from here
+   29 |     d = vfmaq_laneq_f16(d, s1, s2, 0);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26420:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vsubq_f16(float16x8_t, float16x8_t)’: target specific option mismatch
+26420 | vsubq_f16 (float16x8_t __a, float16x8_t __b)
+      | ^~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:28:30: note: called from here
+   28 |     float16x8_t d = vsubq_f16(s1, s1);
+      |                     ~~~~~~~~~^~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:30:24: note: called from here
+   30 |     d = vfmaq_laneq_f16(d, s1, s2, 1);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:31:24: note: called from here
+   31 |     d = vfmaq_laneq_f16(d, s1, s2, 2);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:32:24: note: called from here
+   32 |     d = vfmaq_laneq_f16(d, s1, s2, 3);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:33:24: note: called from here
+   33 |     d = vfmaq_laneq_f16(d, s1, s2, 4);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:34:24: note: called from here
+   34 |     d = vfmaq_laneq_f16(d, s1, s2, 5);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:35:24: note: called from here
+   35 |     d = vfmaq_laneq_f16(d, s1, s2, 6);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:36:24: note: called from here
+   36 |     d = vfmaq_laneq_f16(d, s1, s2, 7);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:29:24: note: called from here
+   29 |     d = vfmaq_laneq_f16(d, s1, s2, 0);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26420:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vsubq_f16(float16x8_t, float16x8_t)’: target specific option mismatch
+26420 | vsubq_f16 (float16x8_t __a, float16x8_t __b)
+      | ^~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:28:30: note: called from here
+   28 |     float16x8_t d = vsubq_f16(s1, s1);
+      |                     ~~~~~~~~~^~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:29:24: note: called from here
+   29 |     d = vfmaq_laneq_f16(d, s1, s2, 0);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26420:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vsubq_f16(float16x8_t, float16x8_t)’: target specific option mismatch
+26420 | vsubq_f16 (float16x8_t __a, float16x8_t __b)
+      | ^~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:28:30: note: called from here
+   28 |     float16x8_t d = vsubq_f16(s1, s1);
+      |                     ~~~~~~~~~^~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:30:24: note: called from here
+   30 |     d = vfmaq_laneq_f16(d, s1, s2, 1);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:31:24: note: called from here
+   31 |     d = vfmaq_laneq_f16(d, s1, s2, 2);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:32:24: note: called from here
+   32 |     d = vfmaq_laneq_f16(d, s1, s2, 3);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:33:24: note: called from here
+   33 |     d = vfmaq_laneq_f16(d, s1, s2, 4);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:34:24: note: called from here
+   34 |     d = vfmaq_laneq_f16(d, s1, s2, 5);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:35:24: note: called from here
+   35 |     d = vfmaq_laneq_f16(d, s1, s2, 6);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:26499:1: error: inlining failed in call to ‘always_inline’ ‘float16x8_t vfmaq_laneq_f16(float16x8_t, float16x8_t, float16x8_t, int)’: target specific option mismatch
+26499 | vfmaq_laneq_f16 (float16x8_t __a, float16x8_t __b,
+      | ^~~~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_fp16.cpp:36:24: note: called from here
+   36 |     d = vfmaq_laneq_f16(d, s1, s2, 7);
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+gmake[1]: *** [CMakeFiles/cmTC_c74d9.dir/build.make:78: CMakeFiles/cmTC_c74d9.dir/cpu_neon_fp16.cpp.o] Error 1
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_c74d9/fast] Error 2
+
+
+===== END =====
+
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp'
+    check option: ''
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f1edb/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_f1edb.dir/build.make CMakeFiles/cmTC_f1edb.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f1edb.dir/cpu_neon_bf16.cpp.o
+/usr/bin/aarch64-linux-gnu-g++   -O3 -DNDEBUG -std=c++11 -fPIE -o CMakeFiles/cmTC_f1edb.dir/cpu_neon_bf16.cpp.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp
+In file included from /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp:3:
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h: In function ‘bfloat16x8_t vld1q_as_bf16(const float*)’:
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:27898:1: error: inlining failed in call to ‘always_inline’ ‘bfloat16x8_t vcombine_bf16(bfloat16x4_t, bfloat16x4_t)’: target specific option mismatch
+27898 | vcombine_bf16 (bfloat16x4_t __a, bfloat16x4_t __b)
+      | ^~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp:14:25: note: called from here
+   14 |     return vcombine_bf16(vcvt_bf16_f32(s0), vcvt_bf16_f32(s1));
+      |            ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:28382:1: error: inlining failed in call to ‘always_inline’ ‘bfloat16x4_t vcvt_bf16_f32(float32x4_t)’: target specific option mismatch
+28382 | vcvt_bf16_f32 (float32x4_t __a)
+      | ^~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp:14:25: note: called from here
+   14 |     return vcombine_bf16(vcvt_bf16_f32(s0), vcvt_bf16_f32(s1));
+      |            ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:28382:1: error: inlining failed in call to ‘always_inline’ ‘bfloat16x4_t vcvt_bf16_f32(float32x4_t)’: target specific option mismatch
+28382 | vcvt_bf16_f32 (float32x4_t __a)
+      | ^~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp:14:25: note: called from here
+   14 |     return vcombine_bf16(vcvt_bf16_f32(s0), vcvt_bf16_f32(s1));
+      |            ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:27898:1: error: inlining failed in call to ‘always_inline’ ‘bfloat16x8_t vcombine_bf16(bfloat16x4_t, bfloat16x4_t)’: target specific option mismatch
+27898 | vcombine_bf16 (bfloat16x4_t __a, bfloat16x4_t __b)
+      | ^~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp:14:25: note: called from here
+   14 |     return vcombine_bf16(vcvt_bf16_f32(s0), vcvt_bf16_f32(s1));
+      |            ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:28382:1: error: inlining failed in call to ‘always_inline’ ‘bfloat16x4_t vcvt_bf16_f32(float32x4_t)’: target specific option mismatch
+28382 | vcvt_bf16_f32 (float32x4_t __a)
+      | ^~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp:14:25: note: called from here
+   14 |     return vcombine_bf16(vcvt_bf16_f32(s0), vcvt_bf16_f32(s1));
+      |            ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/gcc-cross/aarch64-linux-gnu/13/include/arm_neon.h:28382:1: error: inlining failed in call to ‘always_inline’ ‘bfloat16x4_t vcvt_bf16_f32(float32x4_t)’: target specific option mismatch
+28382 | vcvt_bf16_f32 (float32x4_t __a)
+      | ^~~~~~~~~~~~~
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/cmake/checks/cpu_neon_bf16.cpp:14:25: note: called from here
+   14 |     return vcombine_bf16(vcvt_bf16_f32(s0), vcvt_bf16_f32(s1));
+      |            ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gmake[1]: *** [CMakeFiles/cmTC_f1edb.dir/build.make:78: CMakeFiles/cmTC_f1edb.dir/cpu_neon_bf16.cpp.o] Error 1
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_f1edb/fast] Error 2
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C'
+    Output line: 'cc1: warning: command-line option ‘-fvisibility-inlines-hidden’ is valid for C++/ObjC++ but not for C'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden  -fvisibility-inlines-hidden'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1b403/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_1b403.dir/build.make CMakeFiles/cmTC_1b403.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1b403.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden  -fvisibility-inlines-hidden -o CMakeFiles/cmTC_1b403.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-fvisibility-inlines-hidden’ is valid for C++/ObjC++ but not for C
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking C executable cmTC_1b403
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1b403.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc -O3 -DNDEBUG CMakeFiles/cmTC_1b403.dir/src.c.o -o cmTC_1b403 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1: note: unrecognized command-line option ‘-Wno-shorten-64-to-32’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -Wno-shorten-64-to-32'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_074e1/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_074e1.dir/build.make CMakeFiles/cmTC_074e1.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_074e1.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden  -O3 -DNDEBUG  -DNDEBUG -fPIE    -Wno-shorten-64-to-32 -o CMakeFiles/cmTC_074e1.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1: note: unrecognized command-line option ‘-Wno-shorten-64-to-32’ may have been intended to silence earlier diagnostics
+Linking C executable cmTC_074e1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_074e1.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_074e1.dir/src.c.o -o cmTC_074e1 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'command[- ]line option .* is valid for .* but not for C\+\+'
+    Output line: 'cc1plus: warning: command-line option ‘-Wno-missing-prototypes’ is valid for C/ObjC but not for C++'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -Wno-missing-prototypes'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_dcc27/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_dcc27.dir/build.make CMakeFiles/cmTC_dcc27.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_dcc27.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-missing-declarations -Wno-unused-parameter  -O3 -DNDEBUG  -DNDEBUG -std=c++11 -fPIE    -Wno-missing-prototypes -o CMakeFiles/cmTC_dcc27.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command-line option ‘-Wno-missing-prototypes’ is valid for C/ObjC but not for C++
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+Linking CXX executable cmTC_dcc27
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dcc27.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-missing-declarations -Wno-unused-parameter  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_dcc27.dir/src.cxx.o -o cmTC_dcc27 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1: note: unrecognized command-line option ‘-Wno-implicit-const-int-float-conversion’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -Wno-implicit-const-int-float-conversion'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6b7e5/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_6b7e5.dir/build.make CMakeFiles/cmTC_6b7e5.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6b7e5.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden  -O3 -DNDEBUG  -DNDEBUG -fPIE    -Wno-implicit-const-int-float-conversion -o CMakeFiles/cmTC_6b7e5.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1: note: unrecognized command-line option ‘-Wno-implicit-const-int-float-conversion’ may have been intended to silence earlier diagnostics
+Linking C executable cmTC_6b7e5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b7e5.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_6b7e5.dir/src.c.o -o cmTC_6b7e5 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1: note: unrecognized command-line option ‘-Wno-documentation’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -Wno-documentation'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0f110/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_0f110.dir/build.make CMakeFiles/cmTC_0f110.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0f110.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -Wno-unused-but-set-variable -Wno-missing-prototypes -Wno-missing-declarations  -O3 -DNDEBUG  -DNDEBUG -fPIE    -Wno-documentation -o CMakeFiles/cmTC_0f110.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1: note: unrecognized command-line option ‘-Wno-documentation’ may have been intended to silence earlier diagnostics
+Linking C executable cmTC_0f110
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f110.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -Wno-unused-but-set-variable -Wno-missing-prototypes -Wno-missing-declarations  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_0f110.dir/src.c.o -o cmTC_0f110 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1: note: unrecognized command-line option ‘-Wno-null-pointer-subtraction’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c'
+    check option: ' -Wno-null-pointer-subtraction'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e6fcc/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_e6fcc.dir/build.make CMakeFiles/cmTC_e6fcc.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e6fcc.dir/src.c.o
+/usr/bin/aarch64-linux-gnu-gcc   -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -Wno-undef -Wno-cast-align -Wno-implicit-fallthrough -Wno-unused-parameter -Wno-sign-compare -Wno-maybe-uninitialized  -O3 -DNDEBUG  -DNDEBUG -fPIE    -Wno-null-pointer-subtraction -o CMakeFiles/cmTC_e6fcc.dir/src.c.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1: note: unrecognized command-line option ‘-Wno-null-pointer-subtraction’ may have been intended to silence earlier diagnostics
+Linking C executable cmTC_e6fcc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e6fcc.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-gcc    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -Wno-undef -Wno-cast-align -Wno-implicit-fallthrough -Wno-unused-parameter -Wno-sign-compare -Wno-maybe-uninitialized  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_e6fcc.dir/src.c.o -o cmTC_e6fcc 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1plus: note: unrecognized command-line option ‘-Wno-tautological-undefined-compare’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -Wno-tautological-undefined-compare'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bdc0a/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_bdc0a.dir/build.make CMakeFiles/cmTC_bdc0a.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_bdc0a.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef  -O3 -DNDEBUG  -DNDEBUG -std=c++11 -fPIE    -Wno-tautological-undefined-compare -o CMakeFiles/cmTC_bdc0a.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1plus: note: unrecognized command-line option ‘-Wno-tautological-undefined-compare’ may have been intended to silence earlier diagnostics
+Linking CXX executable cmTC_bdc0a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bdc0a.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_bdc0a.dir/src.cxx.o -o cmTC_bdc0a 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1plus: note: unrecognized command-line option ‘-Wno-shorten-64-to-32’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -Wno-shorten-64-to-32'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4866d/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_4866d.dir/build.make CMakeFiles/cmTC_4866d.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4866d.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable  -O3 -DNDEBUG  -DNDEBUG -std=c++11 -fPIE    -Wno-shorten-64-to-32 -o CMakeFiles/cmTC_4866d.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1plus: note: unrecognized command-line option ‘-Wno-shorten-64-to-32’ may have been intended to silence earlier diagnostics
+Linking CXX executable cmTC_4866d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4866d.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_4866d.dir/src.cxx.o -o cmTC_4866d 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1plus: note: unrecognized command-line option ‘-Wno-enum-compare-switch’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -Wno-enum-compare-switch'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ea8fd/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_ea8fd.dir/build.make CMakeFiles/cmTC_ea8fd.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ea8fd.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable -Wno-invalid-offsetof  -O3 -DNDEBUG  -DNDEBUG -std=c++11 -fPIE    -Wno-enum-compare-switch -o CMakeFiles/cmTC_ea8fd.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1plus: note: unrecognized command-line option ‘-Wno-enum-compare-switch’ may have been intended to silence earlier diagnostics
+Linking CXX executable cmTC_ea8fd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea8fd.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable -Wno-invalid-offsetof  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_ea8fd.dir/src.cxx.o -o cmTC_ea8fd 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1plus: note: unrecognized command-line option ‘-Wno-inconsistent-missing-override’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -Wno-inconsistent-missing-override'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e4275/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_e4275.dir/build.make CMakeFiles/cmTC_e4275.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e4275.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable -Wno-invalid-offsetof -Wno-suggest-override  -O3 -DNDEBUG  -DNDEBUG -std=c++11 -fPIE    -Wno-inconsistent-missing-override -o CMakeFiles/cmTC_e4275.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1plus: note: unrecognized command-line option ‘-Wno-inconsistent-missing-override’ may have been intended to silence earlier diagnostics
+Linking CXX executable cmTC_e4275
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4275.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable -Wno-invalid-offsetof -Wno-suggest-override  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_e4275.dir/src.cxx.o -o cmTC_e4275 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+
+Build output check failed:
+    Regex: 'unrecognized .*option'
+    Output line: 'cc1plus: note: unrecognized command-line option ‘-Wno-comma’ may have been intended to silence earlier diagnostics'
+Compilation failed:
+    source file: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx'
+    check option: ' -Wno-comma'
+===== BUILD LOG =====
+Change Dir: '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_50690/fast
+/usr/bin/gmake  -f CMakeFiles/cmTC_50690.dir/build.make CMakeFiles/cmTC_50690.dir/build
+gmake[1]: Entering directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_50690.dir/src.cxx.o
+/usr/bin/aarch64-linux-gnu-g++   -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wno-delete-non-virtual-dtor -Wno-comment -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable -Wno-invalid-offsetof -Wno-suggest-override -Wno-implicit-fallthrough -Wno-array-bounds -Wno-stringop-overflow -Wno-stringop-overread -Wno-extra-semi  -O3 -DNDEBUG  -DNDEBUG -std=c++11 -fPIE    -Wno-comma -o CMakeFiles/cmTC_50690.dir/src.cxx.o -c /mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
+    1 | #pragma
+      | 
+cc1plus: note: unrecognized command-line option ‘-Wno-comma’ may have been intended to silence earlier diagnostics
+Linking CXX executable cmTC_50690
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_50690.dir/link.txt --verbose=1
+/usr/bin/aarch64-linux-gnu-g++    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Winit-self -Wpointer-arith -Wuninitialized -Wno-delete-non-virtual-dtor -Wno-comment -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -fvisibility=hidden -fvisibility-inlines-hidden -Wno-deprecated -Wno-missing-declarations -Wno-shadow -Wno-unused-parameter -Wno-unused-local-typedefs -Wno-sign-compare -Wno-sign-promo -Wno-undef -Wno-ignored-qualifiers -Wno-extra -Wno-unused-function -Wno-unused-const-variable -Wno-invalid-offsetof -Wno-suggest-override -Wno-implicit-fallthrough -Wno-array-bounds -Wno-stringop-overflow -Wno-stringop-overread -Wno-extra-semi  -O3 -DNDEBUG  -DNDEBUG   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  CMakeFiles/cmTC_50690.dir/src.cxx.o -o cmTC_50690 
+gmake[1]: Leaving directory '/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/opencv-4.x/build/CMakeFiles/CMakeTmp'
+
+
+===== END =====
+

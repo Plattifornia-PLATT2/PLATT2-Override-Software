@@ -1,0 +1,2 @@
+/usr/bin/aarch64-linux-gnu-ar qc ../../lib/libopencv_flann.a CMakeFiles/opencv_flann.dir/src/flann.cpp.o CMakeFiles/opencv_flann.dir/src/miniflann.cpp.o
+/usr/bin/aarch64-linux-gnu-ranlib ../../lib/libopencv_flann.a

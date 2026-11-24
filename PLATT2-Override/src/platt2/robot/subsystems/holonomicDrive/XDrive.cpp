@@ -19,28 +19,37 @@ namespace holonomicDrive{
 
     void XDrive::moveVector(MovementVector v){ 
 
-        double projection;
-        double s;
-        double test;
-
         std::vector<double> pV;
+        pV.reserve(drive_modules.size());
+        double scale = 1.0;
 
-        for (auto& module : drive_modules) {
+        for (auto& m : drive_modules) {
+            double s = m->desiredModuleVel(v);
+            pV.push_back(s);
+            if (std::abs(s) > m->maxModuleVel())
+                scale = std::min(scale, m->maxModuleVel() / std::abs(s));
+        }
+        
+        for (size_t i = 0; i < drive_modules.size(); ++i)
             
-            projection = -sin(v.theta+(module->getPhi()))/sin((module->getTheta()));
-            
-            pV.push_back(std::abs(projection));
+            if (v.useVel){
+                drive_modules[i]->setModuleVel(pV[i] * scale);
+            }else {
+                drive_modules[i]->setModuleVoltageVel(pV[i] * scale);
+            }
         }
 
-        s = *std::max_element(pV.begin(), pV.end());
-       
-        v.normalization_scalar = s/v.r;
 
-        for (auto& module : drive_modules){
-            module->move_vector(v);
-        }
+    MovementVector XDrive::fieldToRobotOrientation(MovementVector v, double heading){
 
-         
+
+
+        double a = heading - M_PI / 2.0;
+        double c = cos(a), s = sin(a);
+        double vx =  c * v.vx + s * v.vy;
+        double vy = -s * v.vx + c * v.vy;
+        return {vx, vy, v.w};
+
     }
 
 }

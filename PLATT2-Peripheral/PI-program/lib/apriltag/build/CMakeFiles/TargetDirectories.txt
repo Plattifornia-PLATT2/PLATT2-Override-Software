@@ -1,0 +1,8 @@
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/apriltag.dir
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/apriltag_demo.dir
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/list_install_components.dir
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/install.dir
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/install/local.dir
+/mnt/c/Users/logan/Documents/GitHub/PLATT2-Override-Software/PLATT2-Peripheral/PI-program/lib/apriltag/build/CMakeFiles/install/strip.dir

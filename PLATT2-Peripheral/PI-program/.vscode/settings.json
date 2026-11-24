@@ -1,0 +1,6 @@
+{
+  "dev.containers.mountSourceWorkspace": true,
+  "dev.containers.passEnvironment": false,
+  "remote.containers.copyMounts": false,
+  "remote.containers.displaySocketPath": ""
+}

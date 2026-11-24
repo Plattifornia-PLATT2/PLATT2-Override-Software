@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build (Quick)",
+            "type": "shell",
+            "command": "/bin/bash",
+            "args": [
+                "${workspaceFolder}/rebuild-app.sh"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Rebuild (Full)",
+            "type": "shell",
+            "command": "/bin/bash",
+            "args": [
+                "${workspaceFolder}/build-rpi5-full.sh"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

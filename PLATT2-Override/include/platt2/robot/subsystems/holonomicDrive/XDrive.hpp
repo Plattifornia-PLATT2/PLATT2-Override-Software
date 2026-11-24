@@ -1,6 +1,7 @@
 #ifndef XDRIVE_HPP
 #define XDRIVE_HPP
 
+#include "MovementVector.hpp"
 #include "platt2/robot/subsystems/holonomicDrive/IHolonomicDrive.hpp"
 #include "platt2/robot/subsystems/holonomicDrive/XDriveModule.hpp"
 
@@ -50,6 +51,8 @@ class XDrive : public IHolonomic {
          * @param v The movement vector to apply to the chassis.
          */
         void moveVector(MovementVector v);
+
+        MovementVector fieldToRobotOrientation(MovementVector v, double heading);
 
         /**
          * @brief Turns the X Drive chassis to the specified heading.

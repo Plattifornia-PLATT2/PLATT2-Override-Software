@@ -9,38 +9,48 @@
  * @brief Namespace for all PLATT2 library code.
  * @author PLATT2 Development Team
  */
-namespace platt2{
+namespace platt2 {
 
 /**
  * @brief Namespace for controller profile code.
  * @author Dominic Young
  */
-namespace profiles{
+namespace profiles {
 
-    /**
-     * @brief A struct for Jon's controller mappings
-     * 
-     */
-    struct JonProfile : public DriverProfile{
-    JonProfile() {
-        frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
-        frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
-        //auto_unload_button = pros::E_CONTROLLER_DIGITAL_X;
-        edMech_toggle = pros::E_CONTROLLER_DIGITAL_R2;
-        highScore_toggle = pros::E_CONTROLLER_DIGITAL_R1;
-        stopper_toggle = pros::E_CONTROLLER_DIGITAL_B;
-        colorSort_toggle = pros::E_CONTROLLER_DIGITAL_UP;
-        rakeMech_toggle = pros::E_CONTROLLER_DIGITAL_X;
-        //fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_X;
-        //heading_reset = pros::E_CONTROLLER_DIGITAL_X;
-        descore_toggle = pros::E_CONTROLLER_DIGITAL_DOWN;
-        scoreHighMacro = pros::E_CONTROLLER_DIGITAL_R1;
-        scoreMiddleHighMacro = pros::E_CONTROLLER_DIGITAL_R2;
-        rearIntake_toggle = pros::E_CONTROLLER_DIGITAL_Y;
-        driverEnum = robot::JON;
-    }
-    };
-}
-}
+/**
+ * @brief A struct for Jon's controller mappings
+ *
+ */
+struct JonProfile : public DriverProfile {
+  JonProfile() {
+    // Intake Mappings
+    frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
+    frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
+    toggle_mech = pros::E_CONTROLLER_DIGITAL_L2;
+
+    // Field Oriented Drive
+    fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
+    heading_reset = pros::E_CONTROLLER_DIGITAL_UP;
+
+    // Elevator Mappings
+    elevator_up = pros::E_CONTROLLER_DIGITAL_R1;
+    elevator_down = pros::E_CONTROLLER_DIGITAL_R2;
+    elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
+
+    // Claw Mappings
+    claw_toggle = pros::E_CONTROLLER_DIGITAL_L1;
+    manual_claw_up = pros::E_CONTROLLER_DIGITAL_DOWN;
+    manual_claw_down = pros::E_CONTROLLER_DIGITAL_RIGHT;
+
+
+    // Arm Mappings
+    arm_low = pros:: E_CONTROLLER_DIGITAL_Y;
+    arm_high = pros::E_CONTROLLER_DIGITAL_X;
+
+    driverEnum = robot::JON;
+  }
+};
+} // namespace profiles
+} // namespace platt2
 
 #endif
