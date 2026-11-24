@@ -36,11 +36,43 @@ void PiLinkSubsystem::linkLoop(){
     hal::serialPort::sendPacket zeroPacket;
 
     hal::serialPort::sendPacket startPacket = {1, 0,0};
-    hal::serialPort::sendPacket testPacket = {1, 2,3};
+    hal::serialPort::sendPacket testPacket = {1, 0,0};
 
-    bool sent = link->sendLine(startPacket);
+    short count = 0;
+    short previousCount = count;
 
-    std::cout<<"Running"<<std::endl;
+    int loopCount = 0;
+
+    while(true){
+
+        bool recived = link->receiveLine(dataBuffer, 0);
+
+
+
+        if (recived){
+
+            count = dataBuffer.resetCount;
+            loopCount++;
+            if (loopCount == 1){
+
+                previousCount = count;
+
+            }
+        }
+
+        
+
+        if (previousCount != count){break;}
+
+        bool sent = link->sendLine(startPacket);
+        
+        pros::delay(100);
+
+        previousCount = count;
+
+
+    }
+    
 
     while (true) {
         
@@ -81,10 +113,10 @@ double PiLinkSubsystem::getYPos(){
     return out;
 }
 
-double PiLinkSubsystem::getHPos(){
+double PiLinkSubsystem::getResetCount(){
 
     packetMtx.take();
-    double out = linkData.heading;
+    double out = linkData.resetCount;
     packetMtx.give();
     return out;
 }

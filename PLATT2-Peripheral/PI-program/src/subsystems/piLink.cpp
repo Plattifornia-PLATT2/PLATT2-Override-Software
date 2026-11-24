@@ -20,7 +20,7 @@ void piLink::linkLoop(std::stop_token stopToken, sharedData& shared){
         std::cerr << rx.lastError() << std::endl;   
         return;}
     rx.setRealtimePriority(30); 
-    std::cerr << rx.lastError() << std::endl; 
+    //std::cerr << rx.lastError() << std::endl; 
 
     GpioOut pin(19); 
 
@@ -35,6 +35,8 @@ void piLink::linkLoop(std::stop_token stopToken, sharedData& shared){
         {
         std::lock_guard<std::mutex> lock(shared.mtx);
             dataBuffer.pos = shared.OTOSPos.pose;
+            dataBuffer.resetCount = shared.restartCount;
+
         }
         //dataBuffer.pos = {6,9,0};
 
@@ -69,17 +71,13 @@ void piLink::linkLoop(std::stop_token stopToken, sharedData& shared){
         //    recvCount = 0;
         //    lastReport = now;
         //}
-        if (zeroPacket.pos.x == 1){
-//
-            std::cout << "recived reset command" << std::endl;
-//
-            {
+        if (recived && zeroPacket.pos.x == 1) {
             std::lock_guard<std::mutex> lock(shared.mtx);
+            if (!shared.restart) {          // ignore starts while one is pending/running
                 shared.restart = true;
                 shared.cv.notify_all();
             }
-//
-        }
+}
 
         //if (recived) {std::this_thread::sleep_for(std::chrono::milliseconds(10));}
 

@@ -3,6 +3,7 @@
 #include "pros/motors.h"
 #include "pros/motors.hpp"
 #include "pros/rtos.hpp"
+#include "pros/screen.hpp"
 #include <cmath>
 #include <memory>
 
@@ -31,9 +32,9 @@ static double radiansToEncoderTicks(double rad, double countsPerRev) {
 void ArmSubsystem::init() {
     if (task) return;   // already initialized
 
-    leftArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    rightArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    clawMotor->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    leftArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    rightArmMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    clawMotor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
     leftArmMotor->set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
     rightArmMotor->set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
@@ -48,7 +49,6 @@ void ArmSubsystem::init() {
     currentClawPosition = OPEN;
 
     task = std::make_unique<pros::Task>([this]() { run(); }, "arm");
-    moveArmToPosition(LOAD);   // task is running, so this just queues the move
 }
 
 // ---- Called from the main loop: only set state ----
@@ -80,6 +80,32 @@ double ArmSubsystem::getClawPosition() {
     return encoderTicksToRadians(clawMotor->get_position(), REV_COUNTS_GREEN);
 }
 
+void ArmSubsystem::moveToLoadThenReady2() {
+    mode = Mode::LOAD_THEN_READY2;
+    sequenceStep = 0;          // restart the sequence
+}
+
+void ArmSubsystem::manualClawMove(int8_t direction) {
+    if (direction != 0) {
+        mode = Mode::MANUAL;
+        manualClawDirection = direction;
+    } else {
+        clawMotor->move(0);
+    }
+}
+
+bool ArmSubsystem::armAtTarget(double targetTicks) {
+    return std::fabs(leftArmMotor->get_position() - targetTicks) < ARM_TOLERANCE_TICKS
+        && std::fabs(rightArmMotor->get_position() - targetTicks) < ARM_TOLERANCE_TICKS;
+}
+
+ArmPosition ArmSubsystem::getCurrentPositionState(){
+    return currentPosition;
+}
+
+// NOTE: ArmSubsystem::isElevatorAtMax() was removed. It called itself
+// forever (infinite recursion) and the arm doesn't need elevator state.
+
 // ---- The task: the only code that commands the arm/claw motors ----
 
 void ArmSubsystem::run() {
@@ -93,6 +119,10 @@ void ArmSubsystem::run() {
                     armRad = ARM_MOTOR_SCORE_POSITION;
                     clawRad = CLAW_MOTOR_SCORE_POSITION;
                     break;
+                case SCORE_LOW:
+                    armRad = ARM_MOTOR_SCORE_LOW_POSITION;
+                    clawRad = CLAW_MOTOR_SCORE_LOW_POSITION;
+                    break;
                 case LOAD:
                     armRad = ARM_MOTOR_READY_POSITION;
                     clawRad = CLAW_MOTOR_READY_POSITION;
@@ -101,7 +131,16 @@ void ArmSubsystem::run() {
                     armRad = ARM_MOTOR_INSIZE_POSITION;
                     clawRad = CLAW_MOTOR_INSIZE_POSITION;
                     break;
+                case READY2:
+                    armRad = ARM_MOTOR_READY2_POSITION;
+                    clawRad = CLAW_MOTOR_READY2_POSITION;   // was ARM_MOTOR_READY2_POSITION
+                    break;
+                case PURPLE_LOW:
+                    armRad = ARM_MOTOR_READY_POSITION;
+                    clawRad = CLAW_PURPLE_LOW_POSITION;
+                    break;
                 }
+
                 double armTicks = radiansToEncoderTicks(armRad, REV_COUNTS_RED);
                 double clawTicks = radiansToEncoderTicks(clawRad, REV_COUNTS_GREEN);
 
@@ -121,8 +160,48 @@ void ArmSubsystem::run() {
 
         case Mode::IDLE:
             break;
+
+        case Mode::LOAD_THEN_READY2: {
+            const double loadArmTicks =
+                radiansToEncoderTicks(ARM_MOTOR_READY_POSITION, REV_COUNTS_RED);
+            const double r2ArmTicks =
+                radiansToEncoderTicks(ARM_MOTOR_READY2_POSITION, REV_COUNTS_RED);
+            const double r2ClawTicks =
+                radiansToEncoderTicks(CLAW_MOTOR_READY2_POSITION, REV_COUNTS_GREEN);
+
+            if (sequenceStep == 0) {
+                // Step 0: command LOAD (arm only)
+                leftArmMotor->move_absolute(loadArmTicks, ARM_VELOCITY);
+                rightArmMotor->move_absolute(loadArmTicks, ARM_VELOCITY);
+                sequenceStep = 1;
+            } else if (sequenceStep == 1) {
+                // Step 1: wait until the arm reaches LOAD
+                if (armAtTarget(loadArmTicks)) {
+                    sequenceStep = 2;
+                }
+            } else if (sequenceStep == 2) {
+                // Step 2: command READY2 for arm and claw
+                leftArmMotor->move_absolute(r2ArmTicks, ARM_VELOCITY);
+                rightArmMotor->move_absolute(r2ArmTicks, ARM_VELOCITY);
+                clawMotor->move_absolute(r2ClawTicks, CLAW_VELOCITY);
+                currentPosition = READY2;
+                mode = Mode::IDLE;
+            }
+            break;
         }
 
+        case Mode::MANUAL:
+            if (manualClawDirection < 0) {
+                clawMotor->move_velocity(-CLAW_VELOCITY);
+            } else if (manualClawDirection > 0) {
+                clawMotor->move_velocity(CLAW_VELOCITY);
+            }
+            mode = Mode::RELEASE;
+            break;
+        }
+
+        pros::screen::print(pros::E_TEXT_LARGE, 8, "Arm Pos: %.3f", getArmPosition());
+        pros::screen::print(pros::E_TEXT_LARGE, 10, "Claw Pos: %.3f", getClawPosition());
         pros::delay(10);
     }
 }

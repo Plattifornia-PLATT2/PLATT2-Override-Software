@@ -1,4 +1,4 @@
-#include "platt2/config/purpleConfig.hpp"
+#include "platt2/config/PurpleConfig.hpp"
 #include "platt2/robot/subsystems/arm/arm.hpp"
 #include "platt2/robot/subsystems/elevator/elevator.hpp"
 #include "platt2/robot/subsystems/intake/IntakeSubsystem.hpp"
@@ -112,7 +112,7 @@ std::shared_ptr<robot::subsystems::odometry::Odometry> PurpleConfig::buildOdomet
 
     std::shared_ptr<robot::subsystems::odometry::Odometry> odom_subsystem = std::make_shared<robot::subsystems::odometry::Odometry>(std::move(positionTracker));
 
-    robot::subsystems::odometry::Position startingPos = {0,0,90};//x y must be set in pi
+    robot::subsystems::odometry::Position startingPos = {0,0,270};//x y must be set in pi
     odom_subsystem->setPos(startingPos);
 
 
@@ -132,29 +132,20 @@ std::shared_ptr<platt2::robot::subsystems::piLink::PiLinkSubsystem> PurpleConfig
     return piLinkSubsystem;
 }
 
-
-
-
-
-
-
-
-
-
-
 std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem>
 PurpleConfig::buildIntakeSubsystem() {
   std::unique_ptr<pros::Motor> frontMotor =
       std::make_unique<pros::Motor>(FRONT_INTAKE_MOTOR_PORT);
 
-    std::unique_ptr<pros::Motor> toggleMotor = 
-        std::make_unique<pros::Motor>(TOGGLE_MECH_MOTOR_PORT);
+  std::unique_ptr<pros::Motor> toggleMotor =
+      std::make_unique<pros::Motor>(TOGGLE_MECH_MOTOR_PORT);
 
-  std::shared_ptr<platt2::robot::subsystems::intake::IntakeSubsystem>
-      intakeSubsystem =
-          std::make_unique<platt2::robot::subsystems::intake::IntakeSubsystem>(
-              std::move(frontMotor), std::move(toggleMotor));
-  return intakeSubsystem;
+  std::unique_ptr<pros::adi::DigitalOut> alignerDeployPiston =
+      std::make_unique<pros::adi::DigitalOut>(ALIGNER_DEPLOY_PISTON);
+
+  return std::make_shared<platt2::robot::subsystems::intake::IntakeSubsystem>(
+      std::move(frontMotor), std::move(toggleMotor),
+      std::move(alignerDeployPiston));
 }
 
 std::shared_ptr<robot::subsystems::elevator::ElevatorSubsystem>

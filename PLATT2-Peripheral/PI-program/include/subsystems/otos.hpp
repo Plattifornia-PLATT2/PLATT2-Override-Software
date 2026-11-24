@@ -16,7 +16,8 @@ class OTOS {
 
         void calibrate();
 
-        sfe_otos_pose2d_t startPos = {0,0,270};
+        sfe_otos_pose2d_t pinkStartPos = {63.5,7.5,270};
+        sfe_otos_pose2d_t purpleStartPos = {42.5,7.5,270};
 
     public:
         
@@ -33,7 +34,9 @@ class OTOS {
         double getXstdDev();
         double getYstdDev();
         double getHstdDev();
+        double getAcceleration();
         
+        int selfTest();
         OTOS();
 
     };

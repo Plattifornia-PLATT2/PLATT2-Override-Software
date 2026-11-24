@@ -95,6 +95,7 @@ bool UartPort::sendLine(const sendPacket& d) {
         p    += w;
         left -= static_cast<size_t>(w);
     }
+    
     tcdrain(fd_); 
     return true;
 }
@@ -134,6 +135,8 @@ uint16_t UartPort::crc16(const uint8_t* p, size_t n) {   // CRC-16/CCITT-FALSE
 
 
 size_t UartPort::pack(const sendPacket& d, std::span<uint8_t> out) {
+    static_assert(SENSOR_PAYLOAD == 2 * sizeof(float) + sizeof(short),
+              "SENSOR_PAYLOAD doesn't match the fields pack() writes");
     static_assert(std::endian::native == std::endian::little,
                   "wire format is little-endian");
 
@@ -158,7 +161,7 @@ size_t UartPort::pack(const sendPacket& d, std::span<uint8_t> out) {
 
     put(static_cast<float>(d.pos.x));
     put(static_cast<float>(d.pos.y));
-    put(static_cast<float>(d.pos.theta));
+    put(static_cast<short>(d.resetCount));
 
     // Payload
     //put(static_cast<uint32_t>(d.id));
@@ -210,15 +213,15 @@ bool UartPort::tryParse(sendPacket& d) {
 
         float posX;
         float posY;
-        float theta;
+        short resetCount;
 
         get(posX);
         get(posY);
-        get(theta);
+        get(resetCount);
 
         d.pos.x = posX;
         d.pos.y = posY;
-        d.pos.theta = theta;
+        d.resetCount = resetCount;
 
 
         //uint32_t id;  float temp;  uint16_t x;  uint8_t ok;

@@ -35,7 +35,7 @@ class PiLinkSubsystem{
 
     double getXPos();
     double getYPos();
-    double getHPos();
+    double getResetCount();
     
     
     void linkLoop();

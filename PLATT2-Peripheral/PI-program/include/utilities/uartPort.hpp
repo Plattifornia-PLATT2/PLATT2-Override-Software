@@ -68,7 +68,7 @@ private:
     static constexpr size_t SENSOR_PAYLOAD =
         sizeof(float) +   // id
         sizeof(float)    +   // temperature
-        sizeof(float);
+        sizeof(short);
 
     static constexpr size_t kSyncLen   = 2;
     static constexpr size_t kHeaderLen = kSyncLen + 1 + 2;   // sync + type + length

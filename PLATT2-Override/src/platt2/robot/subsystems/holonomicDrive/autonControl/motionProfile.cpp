@@ -47,7 +47,8 @@ PathGeometry computeGeometry(const std::vector<TrajPoint>& path,
         phi[i] = std::atan2(d.y(), d.x());
         if (i > 0) phi[i] = unwrapAngle(phi[i - 1], phi[i]);
         g.tangent[i] = Vec2(std::cos(phi[i]), std::sin(phi[i]));
-        theta[i] = path[i].pos.z();  // robot heading, set by generatePath
+        theta[i] = (i > 0) ? unwrapAngle(theta[i - 1], path[i].pos.z())
+                   : path[i].pos.z();
     }
     // Curvature from the x, y path; heading rates from theta along the path.
     for (size_t i = 0; i < n; ++i) {
@@ -200,7 +201,9 @@ TrajPtr applyMotionProfile(const TrajPtr& pathPtr,
         const double f = std::clamp(travelled / segLen, 0.0, 1.0);
 
         const Vec2 xy = (1.0 - f) * path[j].pos.head<2>() + f * path[j + 1].pos.head<2>();
-        const double theta = (1.0 - f) * path[j].pos.z() + f * path[j + 1].pos.z();
+        const double th0 = path[j].pos.z();
+        const double th1 = unwrapAngle(th0, path[j + 1].pos.z());
+        const double theta = (1.0 - f) * th0 + f * th1;
         Vec2 tan = (1.0 - f) * g.tangent[j] + f * g.tangent[j + 1];
         tan = tan.norm() > kEps ? Vec2(tan.normalized()) : g.tangent[j];
         const Vec2 nrm(-tan.y(), tan.x());

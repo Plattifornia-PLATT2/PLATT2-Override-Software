@@ -52,49 +52,37 @@ class PurpleConfig : public IConfig {
     static constexpr pros::MotorGears DRIVE_GEARSET{pros::MotorGears::blue};
 
     // ** Drive Ports **
-    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-9};
-    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{10};
-    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{1};
-    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-2};
+    static constexpr int FRONT_RIGHT_TOP_MOTOR_PORT{-17};
+    static constexpr int FRONT_RIGHT_BOTTOM_MOTOR_PORT{18};
+    static constexpr int FRONT_LEFT_TOP_MOTOR_PORT{12};
+    static constexpr int FRONT_LEFT_BOTTOM_MOTOR_PORT{-11};
 
     static constexpr int BACK_RIGHT_TOP_MOTOR_PORT{-20};
     static constexpr int BACK_RIGHT_BOTTOM_MOTOR_PORT{19};
-    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{12};
-    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-11};
+    static constexpr int BACK_LEFT_TOP_MOTOR_PORT{15};
+    static constexpr int BACK_LEFT_BOTTOM_MOTOR_PORT{-16};
 
 
     // ** Intake Ports **
-    static constexpr int FRONT_INTAKE_MOTOR_PORT{-8};
-    static constexpr int TOGGLE_MECH_MOTOR_PORT{4};
+    static constexpr int FRONT_INTAKE_MOTOR_PORT{-14};
+    static constexpr int TOGGLE_MECH_MOTOR_PORT{-3};
     static constexpr pros::MotorGears INTAKE_GEARSET{pros::MotorGears::blue};
+    static constexpr int ALIGNER_DEPLOY_PISTON{2};
 
-    // ** Color Sort Ports **
-    static constexpr int OPTICAL_SENSOR_PORT{10};
-
-    // ** Pneumatics **
-    static constexpr int ED_MECH_PISTON_PORT{1};
-    static constexpr int UPPER_CONVEYOR_HEIGHT_PISTON_PORT{2};
-    static constexpr int CONVEYOR_STOPPER_PISTON_PORT{3};
-    static constexpr int RAKE_MECH_PISTON_PORT{4};
-    static constexpr int DESCORE_PISTON_PORT{5};
-    static constexpr int REAR_INTAKE_PISTON_PORT {6};
-
-    // ** PI Port **
-    static constexpr int PI_PORT{5};
 
     // ** VEX IMU Port **
-    static constexpr int VEX_IMU_PORT{15};
+    static constexpr int VEX_IMU_PORT{8};
 
     // ** Elevator Ports **
-    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{-16};
-    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{17};
+    static constexpr int LEFT_ELEVATOR_MOTOR_PORT{-2};
+    static constexpr int RIGHT_ELEVATOR_MOTOR_PORT{13};
     static constexpr int ELEVATOR_ROTATION_SENSOR_PORT{3};
     static constexpr pros::MotorGears ELEVATOR_MOTOR_GEARS{pros::MotorGears::red};
 
     // **Arm Ports**
-    static constexpr int LEFT_ARM_MOTOR_PORT{-14};
-    static constexpr int RIGHT_ARM_MOTOR_PORT {13};
-    static constexpr int CLAW_MOTOR_PORT{18};
+    static constexpr int LEFT_ARM_MOTOR_PORT{4};
+    static constexpr int RIGHT_ARM_MOTOR_PORT {-6};
+    static constexpr int CLAW_MOTOR_PORT{5};
     static constexpr int CLAW_PISTON_PORT{1};
     static constexpr pros::MotorGears ARM_MOTOR_GEARS{pros::MotorGears::red};
     static constexpr pros::MotorGears CLAW_MOTOR_GEARS{pros::MotorGears::green};
@@ -114,7 +102,9 @@ class PurpleConfig : public IConfig {
     static constexpr double HORIZONTAL_TRACKING_WHEEL_OFFSET{-.5};
     static constexpr double VERTICAL_TRACKING_WHEEL_OFFSET{-3.15};
 
-    // ** Linear PID Tuning Values **
+    static constexpr double PI_PORT{7};
+
+   // ** Linear PID Tuning Values **
     static constexpr double position_dt{0.01};
     static constexpr double position_max{1};
     static constexpr double position_min{-1};
@@ -130,12 +120,12 @@ class PurpleConfig : public IConfig {
     static constexpr double heading_Kd{0.005};
     static constexpr double heading_Ki{0};
 
-
-        // LQR tuning values
-    static constexpr double TAU{0.1}; //NEEDS TO BE FOUND
+    // LQR tuning values
+    static constexpr double TAU{0.19}; 
     static constexpr double DT{0.01};
-    const Eigen::Matrix<double, 6, 1> QDIAG{1.2, 1.2, 40, 0.01, 0.01, 1}; 
-    const Eigen::Vector3d RDIAG{0.0025, 0.0025, 100};
+    const Eigen::Matrix<double, 6, 1> QDIAG{500, 500, 150, 3, 3, 1};
+    const Eigen::Vector3d RDIAG{6.5, 6.5, 4};
+
 
     
     std::shared_ptr<robot::subsystems::odometry::Odometry> buildOdometrySubsystem();

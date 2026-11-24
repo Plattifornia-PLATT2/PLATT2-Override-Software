@@ -36,7 +36,7 @@ class PinkCompAuton : public auton::IAuton {
 
     const double STARTING_X_POSITION {56};
     const double STARTING_Y_POSITION {8.5};
-    const double STARTING_HEADING {90.0};
+    const double STARTING_HEADING {270.0};
     
     public:
     /**

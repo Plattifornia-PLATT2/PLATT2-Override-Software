@@ -10,6 +10,10 @@ namespace robot {
 namespace subsystems {
 namespace elevator {
 
+// How close (in radians) to FULL_LIFT_HEIGHT counts as "at max".
+// move_absolute usually settles slightly short of the target.
+static constexpr double ELEVATOR_MAX_TOLERANCE_RAD = 0.05;
+
 static double encoderTicksToRadians(double ticks) {
   return ticks * ((2 * M_PI) / 900);
 }
@@ -47,17 +51,33 @@ double ElevatorSubsystem::getElevatorPositionRadians() {
   return encoderTicksToRadians(rightMotor->get_position());
 }
 
-void ElevatorSubsystem::moveToPosition(ElevatorPosition pos) {
+void ElevatorSubsystem::moveToPosition(ElevatorPosition pos, double delay) {
+  delayTime = delay;
   currentPosition = pos;
   switch (pos) {
   case FULL_DOWN:
     targetTicks = radiansToEncoderTicks(BOTTOM_LIFT_HEIGHT);
     break;
-  case MIDDLE_EXTENSION:
-    targetTicks = radiansToEncoderTicks(MIDDLE_LIFT_HEIGHT);
+  case ZERO_PIN:
+    targetTicks = radiansToEncoderTicks(ZERO_PIN_HEIGHT);
+    break;
+  case ONE_PIN:
+    targetTicks = radiansToEncoderTicks(ONE_PIN_HEIGHT);
+    break;
+  case TWO_PIN:
+    targetTicks = radiansToEncoderTicks(TWO_PIN_HEIGHT);
+    break;
+  case THREE_PIN:
+    targetTicks = radiansToEncoderTicks(THREE_PIN_HEIGHT);
+    break;
+  case START:
+    targetTicks = radiansToEncoderTicks(START_HEIGHT);
     break;
   case FULL_EXTENSION:
     targetTicks = radiansToEncoderTicks(FULL_LIFT_HEIGHT);
+    break;
+  case INTAKE_POSITION:
+    targetTicks = radiansToEncoderTicks(INTAKE_LOAD_HEIGHT);
     break;
   }
   newTarget = true;
@@ -77,18 +97,23 @@ void ElevatorSubsystem::manualMove(int32_t velocity) {
 
 void ElevatorSubsystem::stop() { mode = Mode::IDLE; }
 
+bool ElevatorSubsystem::isElevatorAtMax() { return isElevatorMax; }
+
 // ---- The task: the only code that commands the motors ----
 
 void ElevatorSubsystem::run() {
   Mode last = Mode::IDLE;
 
   while (true) {
+    // Updated every loop, in every mode, so it is true whether the
+    // elevator got to max manually or via moveToPosition(FULL_EXTENSION).
+    double pos = getElevatorPositionRadians();
+    isElevatorMax = pos >= (FULL_LIFT_HEIGHT - ELEVATOR_MAX_TOLERANCE_RAD);
 
     Mode m = mode.load();
 
     switch (m) {
     case Mode::MANUAL: {
-      double pos = getElevatorPositionRadians();
       int32_t v = manualVelocity.load();
       bool blocked = (pos <= 0 && v < 0) || (pos >= FULL_LIFT_HEIGHT && v > 0);
       leftMotor->move_velocity(blocked ? 0 : v);
@@ -96,7 +121,9 @@ void ElevatorSubsystem::run() {
       break;
     }
     case Mode::POSITION:
-      if (newTarget.exchange(false)) { // send move_absolute once per request
+      if (newTarget.exchange(false)) {
+        pros::Task::delay(delayTime); // send move_absolute once per request
+        delayTime = 0;
         double t = targetTicks.load();
         leftMotor->move_absolute(t, ELEVATOR_VELOCITY);
         rightMotor->move_absolute(t, ELEVATOR_VELOCITY);

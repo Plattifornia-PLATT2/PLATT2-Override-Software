@@ -1,7 +1,11 @@
 #include "subsystems/otos.hpp"
-
+#include <pwd.h>
+#include <cstdlib>
+#include <string>
 #include <iostream>
-
+#include <unistd.h>
+#include <limits.h>
+#include <string>
 
 void OTOS::calibrate(){
     
@@ -11,13 +15,35 @@ void OTOS::calibrate(){
         std::fprintf(stderr, "OTOS calibrateImu() failed, error code %d\n", static_cast<int>(err));
     }
     std::printf("OTOS IMU calibration complete.\n");
+
+    sfe_otos_signal_process_config_t config;
+    config.enAcc = false;
+    config.enRot = true;
+    config.enLut = true;
+    otos.setSignalProcessConfig(config);
+    //otos.resetTracking();
 }
-
+std::string getHostName() {
+    char buf[HOST_NAME_MAX + 1] = {};
+    if (gethostname(buf, sizeof(buf)) != 0) {
+        return "";
+    }
+    return std::string(buf);
+}
 void OTOS::restart(){
+    std::string name = getHostName();
 
-    otos.setPosition(startPos);
+    if (name == "purple") {
+        otos.setPosition(purpleStartPos);
+    } else if (name == "pink") {
+        otos.setPosition(pinkStartPos);
+    } else {
+        std::cout << "Unknown host: '" << name << "'" << std::endl;
+        sfe_otos_pose2d_t zero = {0, 0, 0};
+        otos.setPosition(zero);
+    }
+
     this->calibrate();
-
 }
 
 void OTOS::getPos(){
@@ -27,7 +53,7 @@ void OTOS::getPos(){
     {
         std::fprintf(stderr, "OTOS getPosition() failed, error code %d\n", static_cast<int>(err));
     }
-    std::printf("OTOS Position: X: %.2f, Y: %.2f, H: %.2f\n", pos.x, pos.y, pos.h);
+    //std::printf("OTOS Position: X: %.2f, Y: %.2f, H: %.2f\n", pos.x, pos.y, pos.h);
 }
 
 double OTOS::getX(){
@@ -90,9 +116,17 @@ double OTOS::getHstdDev(){
     {
         std::fprintf(stderr, "OTOS getPositionStdDev() failed, error code %d\n", static_cast<int>(err));
     }
-    return pos.h;
+ 
+   return pos.h;
 }
 
+int OTOS::selfTest(){
+    return otos.selfTest();
+}
+
+double OTOS::getAcceleration(){
+    return 0;
+}
 
 void OTOS::sensorLoop(std::stop_token stopToken, sharedData& shared){
     

@@ -45,6 +45,7 @@ public:
     void tauTest();
 
     void moveToPoint(const Vec3& start, const Vec3& goal, double startHeading, double endHeading, TrajConstraints constraints);
+    void driverControl(double wantedX, double wantedY, double wantedW);
     
 
 private:

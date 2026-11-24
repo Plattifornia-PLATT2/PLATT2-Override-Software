@@ -22,6 +22,7 @@ struct PoseReading {
 struct sendPacket{
 
     Pose pos;
+    short resetCount = 0;
 
 };
 
@@ -38,6 +39,8 @@ struct sharedData {
     PoseReading camPos;
 
     Pose kalmanPos;
+
+    int restartCount = 0;
 
 };
 

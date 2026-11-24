@@ -44,10 +44,10 @@ BezierPath makeBezier(const Vec3& start, const Vec3& end, double d) {
 // Worst sideways distance (inches) of the curve from the start heading line, measured
 // kStraightLen of arc length from the start, and from the end heading line, measured
 // kStraightLen of arc length before the end.
-double worstLeadDeviation(const BezierPath& bez) {
+double worstLeadDeviation(const BezierPath& bez, TrajConstraints constraints) {
     const std::vector<double> table = buildArcLengthTable(bez, 200);
     const double L = totalLength(table);
-    const double ell = std::min(kStraightLen, 0.5 * L);
+    const double ell = std::min(constraints.kStraightLen, 0.5 * L);
 
     const Vec2 dirStart(std::cos(bez.start.z()), std::sin(bez.start.z()));
     const Vec2 dirEnd(std::cos(bez.end.z()), std::sin(bez.end.z()));
@@ -87,25 +87,25 @@ Vec2 computeMiddleControlPoint(const Vec2& p1, double startTheta,
     return p1 + a * d0;
 }
 
-BezierPath buildBezierPath(const Vec3& start, const Vec3& end) {
+BezierPath buildBezierPath(const Vec3& start, const Vec3& end, TrajConstraints constraints) {
     // No cap based on the start-to-end distance: a short move that turns sharply needs
     // control points much farther out than the move is long.
-    const double maxD = kMaxLeadScale * kStraightLen;
+    const double maxD = kMaxLeadScale * constraints.kStraightLen;
 
     // First try: kStraightLen, but no more than a third of the start-to-end distance.
     // Otherwise on a short move the two outer control points pass each other and the
     // curve doubles back on itself, even for a perfectly straight move.
     const double chord = (end.head<2>() - start.head<2>()).norm();
-    const double firstD = std::min(kStraightLen, chord / 3.0);
+    const double firstD = std::min(constraints.kStraightLen, chord / 3.0);
 
     BezierPath best = makeBezier(start, end, firstD);
-    double bestDev = worstLeadDeviation(best);
+    double bestDev = worstLeadDeviation(best, constraints);
 
-    for (double d = firstD + kStraightLen * kLeadStepScale;
+    for (double d = firstD + constraints.kStraightLen * kLeadStepScale;
          bestDev > kStraightTol && d <= maxD + 1e-9;
-         d += kStraightLen * kLeadStepScale) {
+         d += constraints.kStraightLen * kLeadStepScale) {
         const BezierPath cand = makeBezier(start, end, d);
-        const double dev = worstLeadDeviation(cand);
+        const double dev = worstLeadDeviation(cand, constraints);
         if (dev < bestDev) {
             best = cand;
             bestDev = dev;
@@ -190,10 +190,10 @@ HeadingState headingAtArcLength(double startHeading, double endHeading,
 }
 
 TrajPtr generatePath(const Vec3& start, const Vec3& end,
-                     double startHeading, double endHeading, double ds) {
+                     double startHeading, double endHeading, TrajConstraints constraints, double ds) {
     ds = std::max(ds, 0.01);
 
-    const BezierPath bez = buildBezierPath(start, end);
+    const BezierPath bez = buildBezierPath(start, end, constraints);
     const std::vector<double> table = buildArcLengthTable(bez);
     const double L = totalLength(table);
 

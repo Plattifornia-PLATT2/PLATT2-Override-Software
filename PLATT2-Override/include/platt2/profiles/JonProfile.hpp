@@ -26,7 +26,7 @@ struct JonProfile : public DriverProfile {
     // Intake Mappings
     frontIntake_IN = pros::E_CONTROLLER_DIGITAL_L1;
     frontIntake_OUT = pros::E_CONTROLLER_DIGITAL_L2;
-    toggle_mech = pros::E_CONTROLLER_DIGITAL_Y;
+    toggle_mech = pros::E_CONTROLLER_DIGITAL_L2;
 
     // Field Oriented Drive
     fieldOriented_toggle = pros::E_CONTROLLER_DIGITAL_RIGHT;
@@ -38,11 +38,14 @@ struct JonProfile : public DriverProfile {
     elevator_full_down = pros::E_CONTROLLER_DIGITAL_B;
 
     // Claw Mappings
-    claw_toggle = pros::E_CONTROLLER_DIGITAL_L2;
+    claw_toggle = pros::E_CONTROLLER_DIGITAL_L1;
+    manual_claw_up = pros::E_CONTROLLER_DIGITAL_DOWN;
+    manual_claw_down = pros::E_CONTROLLER_DIGITAL_RIGHT;
+
 
     // Arm Mappings
-    arm_low = pros:: E_CONTROLLER_DIGITAL_DOWN;
-    arm_high = pros::E_CONTROLLER_DIGITAL_RIGHT;
+    arm_low = pros:: E_CONTROLLER_DIGITAL_Y;
+    arm_high = pros::E_CONTROLLER_DIGITAL_X;
 
     driverEnum = robot::JON;
   }

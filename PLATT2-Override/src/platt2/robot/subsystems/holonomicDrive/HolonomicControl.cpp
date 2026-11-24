@@ -24,33 +24,21 @@ namespace holonomicDrive{
 void HolonomicControl::tauTest(){
 
 
-    //pros::delay(500);
-    //uint32_t start = pros::millis();
-    //drivetrain->moveVector({0, 30,0});
-//
-//
-    //while (pros::millis() - start < 2000) {
-    //std::cout<<pros::millis()-start<<","<<std::hypot(std::abs(odometry->getVelocity().x()), std::abs(odometry->getVelocity().y()))<<std::endl;
-//
-    //pros::delay(20);
-    //
-    //}
-//
-    //drivetrain->moveVector({0,0,0});
+    pros::delay(500);
+    uint32_t start = pros::millis();
+    drivetrain->moveVector({0, 40,0});
 
-    struct Sample { int ms; double v; };
-    std::vector<Sample> buf; buf.reserve(400);
-    auto t0 = std::chrono::steady_clock::now(), next = t0;
-    while (std::chrono::steady_clock::now() - t0 < std::chrono::seconds(2)) {
-        drivetrain->moveVector({0, 30, 0});   // constant, robot frame
-        int ms = (int)std::chrono::duration_cast<std::chrono::milliseconds>(
-                     std::chrono::steady_clock::now() - t0).count();
-        buf.push_back({ms, odometry->getVelocity().head<2>().norm()});
-        next += std::chrono::milliseconds(10);
-        std::this_thread::sleep_until(next);
+
+    while (pros::millis() - start < 1500) {
+    std::cout<<pros::millis()-start<<","<<std::hypot(std::abs(odometry->getVelocity().x()), std::abs(odometry->getVelocity().y()))<<std::endl;
+
+    pros::delay(20);
+    
     }
-drivetrain->moveVector({0, 0, 0});
-for (auto& s : buf) printf("%d %.1f\n", s.ms, s.v);
+
+    drivetrain->moveVector({0,0,0});
+
+
 
 
  
@@ -61,24 +49,26 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
 {
     // ---- tunables ----
     const double dt           = 0.010;
-    const double lookaheadSec = 0.08;   // s, feedforward lookahead
-    const double fbDelay      = 0.20;   // s, feedback off until robot can respond
-    const double fbRamp       = 0.30;   // s, then fades in
+    const double lookaheadSec = 0.1;   // s, feedforward lookahead
+    const double fbDelay      = 0.10;   // s, feedback off until robot can respond
+    const double fbRamp       = 0.15;   // s, then fades in
 
     const double posTol       = 0.15;   // in
-    const double headTol      = 0.01;   // rad
+    const double headTol      = 0.03;   // rad
     const double exitSpeed    = 2.0;    // ips
-    const double settleTime   = 2.0;    // s hard timeout
+    const double settleTime   = 1.0;    // s hard timeout
     const double kI           = 1.0;    // ips per (in*s)
-    const double iMax         = 1.5;    // in*s per axis
+    const double iMax         = 1.0;    // in*s per axis
     const double iRange       = 10.0;   // in, integral only acts this close
-    const double kickRate     = 10.0;   // ips/s ramp while stuck
-    const double kickMax      = 7.0;    // ips, just above breakaway
+    //const double kickRate     = 40.0;   // ips/s ramp while stuck
+    //const double kickMax      = 7.0; 
+    const double floorCmd = 12.0;   // ips of command, just above breakaway
+    const double floorDist = 0.25;  // in, fade the floor to 0 at this distance   // ips, just above breakaway
 
     const size_t lookahead = static_cast<size_t>(std::lround(lookaheadSec / dt));
     const auto   period    = std::chrono::milliseconds(10);
 
-    TrajPtr path = generatePath(start, goal, startHeading, endHeading, 0.25);
+    TrajPtr path = generatePath(start, goal, startHeading, endHeading, constraints, 0.25);
     path = applyMotionProfile(path, constraints, dt);
     if (path->size() < 2) { drivetrain->moveVector({0, 0, 0}); return; }
 
@@ -117,7 +107,7 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
     next = settleStart;
 
     Eigen::Vector2d integ = Eigen::Vector2d::Zero();
-    double kick = 0.0;
+    Eigen::Vector2d prevErr = Eigen::Vector2d::Zero();
     bool arrived = false;
 
     while (std::chrono::steady_clock::now() < deadline) {
@@ -134,6 +124,9 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
             break;
         }
 
+        if (err.dot(prevErr) < 0) integ.setZero();
+            prevErr = err;
+
         // integral, only when close
         if (dist < iRange)
             integ = (integ + err * dt).cwiseMax(-iMax).cwiseMin(iMax);
@@ -144,10 +137,15 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
         u.head<2>() += kI * integ;
 
         // stiction kick: ramp toward target while stuck, drop it once moving
-        if (dist > posTol && spd < 1.0) kick = std::min(kickMax, kick + kickRate * dt);
-        else                            kick = 0.0;
-        if (dist > posTol) u.head<2>() += kick * (err / dist);
+       if (dist > posTol) {
+        Eigen::Vector2d dir = err / dist;
+        double fade = std::clamp((dist - posTol) / floorDist, 0.0, 1.0);
+        double have = u.head<2>().dot(dir);
+        double want = floorCmd * fade;
+        if (have < want) u.head<2>() += (want - have) * dir;
+        }
 
+        //printf("ux:%.3f, uy:%.3f, uw:%.3f ", u.x(), u.y(), u.z());
         drive(u, pose);
         next += period;
         std::this_thread::sleep_until(next);
@@ -162,6 +160,25 @@ void HolonomicControl::moveToPoint(const Vec3& start, const Vec3& goal, double s
            std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - settleStart).count(),
            ex, ey, std::hypot(ex, ey),
            std::remainder(pf.heading - end.pos.z(), 2.0 * M_PI));
+}
+
+
+
+void HolonomicControl::driverControl(double wantedX, double wantedY, double wantedW){
+
+    Vec3 currentPos = {};
+    Vec3 currentVel = {};
+    Vec3 wantedVel = {80,80, 8};
+    Vec3 wantedAccel = {80,80, 8};
+
+
+
+
+    //Vec3 u = lqrController->lqrTrack(ref.pos, ref.vel, wantedAccel, wantedAccel, pose, vel, fbScale);
+
+
+
+   
 }
 
 
